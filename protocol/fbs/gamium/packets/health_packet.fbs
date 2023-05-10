@@ -1,0 +1,20 @@
+namespace Gamium.Protocol.Packets;
+
+table HelloParam {
+  version: string;
+}
+
+table Env { // for debugging
+  key: string;
+  value: string;
+}
+
+table HelloResult {
+  app_name: string;
+  app_version: string;
+  gamium_version: string;
+  frames_from_start: ulong;
+  seconds_from_start: float;
+  client_sequence: uint; // incresemental number starts from 1
+  envs: [Env] (native_inline);
+}

@@ -1,0 +1,24 @@
+namespace Gamium.Protocol.Types;
+
+enum InputKeyPressType: short {
+  DOWN = 0,
+  UP,
+}
+
+enum InputKeyBy: short {
+  UNITY_KEYCODE = 0,
+  UNITY_KEYBOARD,
+}
+
+enum InputMousePressType: short {
+  DOWN = 0,
+  UP,
+  MOVE,
+  SCROLL,
+}
+
+enum InputMouseButtonCode: short {
+  LEFT = 0,
+  MIDDLE = 1,
+  RIGHT = 2,
+}

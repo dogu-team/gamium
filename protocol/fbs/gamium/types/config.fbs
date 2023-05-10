@@ -1,0 +1,6 @@
+namespace Gamium.Protocol.Types;
+
+table Configuration {
+  show_debug_ui: bool = null;
+  inspect_ignore_big_object: bool = null;
+}

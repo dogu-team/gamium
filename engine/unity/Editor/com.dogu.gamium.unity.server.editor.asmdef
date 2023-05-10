@@ -1,0 +1,19 @@
+{
+  "name": "com.dogu.gamium.engine.unity.editor",
+  "rootNamespace": "",
+  "references": [
+    "com.dogu.gamium.engine.unity.runtime",
+    "com.dogu.gamium.engine.unity.runtime.protocol"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

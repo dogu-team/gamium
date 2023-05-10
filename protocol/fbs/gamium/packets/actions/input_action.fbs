@@ -1,0 +1,22 @@
+include "gamium/types/input.fbs";
+include "gamium/types/vector.fbs";
+include "gamium/types/object.fbs";
+
+namespace Gamium.Protocol.Packets.Actions;
+
+table InputKeyParam {
+  press: Types.InputKeyPressType;
+  codes: [string];
+}
+
+table InputMouseParam {
+  press: Types.InputMousePressType;
+  button: Types.InputMouseButtonCode;
+  position: Types.Vector2 (native_inline);
+  delta: Types.Vector2 (native_inline);
+}
+
+table InputSetTextParam {
+  object_id: string;
+  text: string;
+}

@@ -1,0 +1,12 @@
+namespace Gamium.Protocol.Types;
+
+table ObjectHierarchyNode {
+  name: string (required);
+  path: string (required);
+  children: [ObjectHierarchyNode]  (native_inline);
+}
+
+table ObjectsHierarchy {
+  name: string (required);
+  children: [ObjectHierarchyNode]  (native_inline);
+}

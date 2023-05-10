@@ -1,0 +1,33 @@
+{
+  "name": "@dogu-tech/gamium-protocol",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "dogu",
+  "homepage": "https://github.com/gamium/gamium",
+  "main": "build/src/index.js",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "shx rm -rf build generated .publish-github .publish-npm",
+    "rebuild": "yarn run clean && yarn run build",
+    "watch": "clear; echo @dogu-tech/gamium-protocol Watching... && nodemon"
+  },
+  "types": "build/src/index.d.ts",
+  "dependencies": {
+    "flatbuffers": "22.10.26"
+  },
+  "devDependencies": {
+    "@types/node": "18.15.11",
+    "cross-env": "7.0.3",
+    "shelljs": "0.8.5",
+    "shx": "0.3.4",
+    "ts-node": "10.9.1",
+    "tsconfig-paths": "4.0.0",
+    "typescript": "4.7.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

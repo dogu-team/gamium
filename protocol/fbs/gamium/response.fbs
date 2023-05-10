@@ -1,0 +1,48 @@
+include "gamium/types/errors.fbs";
+include "gamium/packets/health_packet.fbs";
+include "gamium/packets/config_packet.fbs";
+include "gamium/packets/object_packet.fbs";
+include "gamium/packets/inspector_packet.fbs";
+include "gamium/packets/action_packet.fbs";
+include "gamium/packets/execute_packet.fbs";
+include "gamium/packets/screen_packet.fbs";
+include "gamium/packets/profile_packet.fbs";
+
+namespace Gamium.Protocol;
+
+union Result {
+  // health
+  Packets.HelloResult,
+
+  // screen
+  Packets.QueryScreenResult,
+
+  // object
+  Packets.FindObjectsResult,
+  Packets.QueryObjectInteractableResult,
+
+  // action
+  Packets.ActionsResult,
+
+  // execute
+  Packets.ExecuteRpcResult,
+
+  // inspector
+  Packets.InspectObjectOnScreenResult,
+  Packets.InspectObjectWithIdResult,
+  Packets.DumpObjectsHierarchyResult,
+
+  // configuration
+  Packets.ChangeConfigurationResult,
+
+  // profile
+  Packets.QueryProfileResult,
+}
+
+table Response {
+  seq: uint;
+  error: Types.ErrorResult;
+  result: Result;
+}
+
+root_type Response;

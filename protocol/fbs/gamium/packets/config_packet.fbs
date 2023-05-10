@@ -1,0 +1,10 @@
+include "gamium/types/config.fbs";
+
+namespace Gamium.Protocol.Packets;
+
+table ChangeConfigurationParam {
+  config: Types.Configuration;
+}
+
+table ChangeConfigurationResult {
+}

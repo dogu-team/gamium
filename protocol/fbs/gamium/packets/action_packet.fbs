@@ -1,0 +1,29 @@
+
+include "gamium/types/errors.fbs";
+include "gamium/packets/actions/app_action.fbs";
+include "gamium/packets/actions/sleep_action.fbs";
+include "gamium/packets/actions/input_action.fbs";
+include "gamium/packets/actions/player_action.fbs";
+
+namespace Gamium.Protocol.Packets;
+
+union ActionParam {
+  Actions.SleepParam,
+  Actions.InputKeyParam,
+  Actions.InputMouseParam,
+  Actions.InputSetTextParam,
+  Actions.MovePlayerParam,
+  Actions.AppQuitParam,
+}
+
+table ActionResult {
+  error: Types.ErrorResult;
+}
+
+table ActionsParam {
+  actions: [ActionParam];
+}
+
+table ActionsResult {
+  results: [ActionResult] (native_inline);
+}

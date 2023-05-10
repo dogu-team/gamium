@@ -1,0 +1,23 @@
+include "gamium/types/object.fbs";
+include "gamium/types/vector.fbs";
+include "gamium/types/object_hierarchy.fbs";
+
+namespace Gamium.Protocol.Packets;
+
+table FindObjectsParam {
+  locator: Types.ObjectLocator;
+}
+
+table FindObjectsResult {
+  infos: [Types.ObjectInfo] (native_inline);
+}
+
+table QueryObjectInteractableParam {
+  object_id: string;
+  check_moving: bool;
+  check_raycast: bool;
+}
+
+table QueryObjectInteractableResult {
+  is_interactable: bool;
+}

@@ -1,0 +1,13 @@
+{
+  "name": "com.dogu.gamium.engine.unity",
+  "version": "1.0.0",
+  "description": "gamium unity server package",
+  "author": "gamium",
+  "keywords": [],
+  "changelogUrl": "https://github.com/dogu-team/gamium-engine-unity/blob/main/CHANGELOG.md",
+  "displayName": "Dogu.Gamium.Unity.Server",
+  "license": "zlib",
+  "licensesUrl": "https://github.com/dogu-team/gamium-engine-unity/blob/main/LICENSE.md",
+  "unity": "2020.3",
+  "unityRelease": "0b5"
+}

@@ -1,1 +1,0 @@
-# @dogu-tech/gamium-protocol

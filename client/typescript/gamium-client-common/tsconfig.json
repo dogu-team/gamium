@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "rootDir": ".",
-    "baseUrl": ".",
     "outDir": "build",
     "allowSyntheticDefaultImports": true,
     "composite": true,

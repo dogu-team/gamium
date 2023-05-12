@@ -6,7 +6,7 @@
   "keywords": [],
   "changelogUrl": "https://github.com/dogu-team/gamium-engine-unity/blob/main/CHANGELOG.md",
   "displayName": "Dogu.Gamium.Unity.Server",
-  "license": "zlib",
+  "license": "MIT",
   "licensesUrl": "https://github.com/dogu-team/gamium-engine-unity/blob/main/LICENSE.md",
   "unity": "2020.3",
   "unityRelease": "0b5"

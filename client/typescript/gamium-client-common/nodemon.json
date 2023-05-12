@@ -1,14 +1,6 @@
 {
   "verbose": true,
-  "watch": [
-    "../types/src",
-    "../gamium-protocol/src",
-    "./src",
-    "../common/src",
-    "../../typescript-dev-private/build-tools/src",
-    "../../typescript-dev-private/docs-gen/src",
-    "../../typescript-dev-private/publish-package/src"
-  ],
+  "watch": ["./src"],
   "exec": "yarn run build",
   "events": {
     "restart": ""

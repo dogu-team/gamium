@@ -1,0 +1,6 @@
+src/
+node_modules/
+yarn.lock
+packakge-lock.json
+
+!build

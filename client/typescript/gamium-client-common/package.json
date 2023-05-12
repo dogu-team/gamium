@@ -13,10 +13,7 @@
     "clean": "shx rm -rf build generated .publish-github .publish-npm",
     "dev": "nodemon",
     "docs:mirror": "ts-node scripts/mirror-doc",
-    "publish:npm": "tsc -b && ts-node scripts/publish-npm.ts",
     "rebuild": "yarn run clean && yarn run build",
-    "start": "ts-node src/index.ts",
-    "test": "jest --runInBand --forceExit --verbose=true",
     "watch": "clear; echo @dogu-tech/gamium-client-common Watching... && nodemon"
   },
   "types": "build/src/index.d.ts",

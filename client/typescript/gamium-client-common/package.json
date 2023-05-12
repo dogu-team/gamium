@@ -30,6 +30,7 @@
     "flatbuffers": "22.10.26"
   },
   "devDependencies": {
+    "@dogu/docs-gen": "file:../../../utils/typescript/docs-gen",
     "@types/assert": "1.5.6",
     "@types/node": "18.15.11",
     "@types/shelljs": "0.8.11",

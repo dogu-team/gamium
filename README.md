@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://s3.ap-northeast-2.amazonaws.com/storage.dogutech.io/dogu/logo/dogu-gamium-logo.png" width="100px" height="100px" title="Github_Logo"/>
+<img src="https://s3.ap-northeast-2.amazonaws.com/public.dogutech.io/dogu/logo/dogu-gamium-logo.png" width="100px" height="100px" title="Gamium_Logo"/>
 </p>
 <p align="center">
 Gamium

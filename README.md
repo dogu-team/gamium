@@ -34,19 +34,19 @@ The interface we provide is inspired by Playwright, Selenium.
 
 ### Engine
 
-| Engine | Supported   |
-| ------ | ----------- |
-| Unity  | ✅          |
-| Unreal | Coming soon |
-| Godot  | Coming soon |
+| Engine                             | Supported   |
+| ---------------------------------- | ----------- |
+| [Unity](https://unity.com)         | ✅          |
+| [Unreal](https://unrealengine.com) | Coming soon |
+| [Godot](https://godotengine.org/)  | Coming soon |
 
 ### Client Language
 
-| Language   | Supported   |
-| ---------- | ----------- |
-| Typescript | ✅          |
-| Python     | Coming soon |
-| C#         | Coming soon |
+| Language                                         | Supported   |
+| ------------------------------------------------ | ----------- |
+| [Typescript](https://www.typescriptlang.org/)    | ✅          |
+| [Python](https://www.python.org/)                | Coming soon |
+| [C#](https://learn.microsoft.com/dotnet/csharp/) | Coming soon |
 
 ## Getting Started
 
@@ -87,6 +87,3 @@ yarn build
 ## License
 
 Gamium is [MIT licensed](LICENSE)
-
-// ffmpeg cli convert mp4 to gif
-ffmpeg -i input.mp4 -vf "fps=10,scale=640:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" output.gif

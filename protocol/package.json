@@ -1,10 +1,10 @@
 {
-  "name": "flatbuffer-exporter",
+  "name": "protocol",
   "version": "0.1.0",
   "scripts": {
     "clean": "shx rm -rf build generated .export",
     "dev": "nodemon",
-    "export": "tsc -b && ts-node scripts/export.ts"
+    "export": "tsc -b && node scripts/export.ts"
   },
   "devDependencies": {
     "@types/eslint": "8",

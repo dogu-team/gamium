@@ -1,0 +1,48 @@
+{
+  "name": "gamium",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "dogu",
+  "homepage": "https://github.com/dogu-team/gamium.git",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "shx rm -rf build generated .publish-github .publish-npm",
+    "dev": "nodemon",
+    "docs:mirror": "ts-node scripts/mirror-doc",
+    "rebuild": "yarn run clean && yarn run build",
+    "watch": "clear; echo gamium Watching... && nodemon"
+  },
+  "dependencies": {
+    "flatbuffers": "22.10.26",
+    "gl-matrix": "3.4.3"
+  },
+  "devDependencies": {
+    "@types/assert": "1.5.6",
+    "@types/node": "18.15.11",
+    "@types/shelljs": "0.8.11",
+    "cross-env": "7.0.3",
+    "nodemon": "2.0.22",
+    "shelljs": "0.8.5",
+    "shx": "0.3.4",
+    "ts-node": "10.9.1",
+    "tsconfig-paths": "4.0.0",
+    "typescript": "4.7.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "default": "./build/src/index.js",
+      "types": "./build/src/index.d.ts"
+    },
+    "./common": {
+      "default": "./build/src/common/index.js",
+      "types": "./build/src/common/index.d.ts"
+    }
+  }
+}

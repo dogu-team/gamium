@@ -23,7 +23,7 @@ const DOCKER_CONTAINER_NAME = "flatbuffer-exporter-container";
 
 // const DEST_CPP_GAMIUM_PROTOCOL_DIR = `${CURRENT_DIR}/../../packages/cpp/gamium-engine/src/include/Internal/Protocol`;
 const DEST_CSHARP_GAMIUM_PROTOCOL_DIR = `${REPO_DIR}/engine/unity/Runtime/Public/Protocol/FlatBufferGenerated`;
-const DEST_TS_GAMIUM_PROTOCOL_DIR = `${REPO_DIR}/client/typescript/gamium-client-common/src/protocols/generated`;
+const DEST_TS_GAMIUM_PROTOCOL_DIR = `${REPO_DIR}/client/typescript/gamium-client/src/common/protocols/generated`;
 
 const FLATC_COMMON_OPTION =
   " --gen-object-api" +

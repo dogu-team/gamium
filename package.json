@@ -1,0 +1,15 @@
+{
+  "name": "gamium-workspace",
+  "scripts": {
+    "clean": "yarn workspaces foreach --jobs unlimited -ptvi run clean",
+    "build": "yarn workspaces foreach --exclude 'dogu' --jobs unlimited -ptvi run build",
+    "rebuild": "yarn clean && yarn build"
+  },
+  "workspaces": {
+    "packages": [
+      "protocol",
+      "client/typescript/gamium-client",
+      "utils/typescript/docs-gen"
+    ]
+  }
+}

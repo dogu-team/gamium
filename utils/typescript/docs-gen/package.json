@@ -1,5 +1,5 @@
 {
-  "name": "@dogu/docs-gen",
+  "name": "docs-gen",
   "version": "0.0.3",
   "description": "",
   "license": "ISC",
@@ -19,8 +19,8 @@
   },
   "types": "build/src/index.d.ts",
   "dependencies": {
-    "compressing": "1.6.2",
     "chalk": "4.1.2",
+    "compressing": "1.6.2",
     "glob": "10.0.0"
   },
   "devDependencies": {

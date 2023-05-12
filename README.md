@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://s3.ap-northeast-2.amazonaws.com/public.dogutech.io/dogu/logo/dogu-gamium-logo.png" width="100px" height="100px" title="Gamium_Logo"/>
+<img src="https://github.com/dogu-team/gamium/assets/22186124/21b93839-57a2-48a4-b32a-bd48a626dfe4" width="100px" height="100px" title="Gamium_Logo"/>
 </p>
 <p align="center">
 Gamium
@@ -25,6 +25,10 @@ As various platforms emerge, the number of things to test is increasing. Accordi
 
 We want to solve this problem and develop engine-agnostic automation libraries through the same interface.
 The interface we provide is inspired by Playwright, Selenium.
+
+## Demo
+
+![example](https://github.com/dogu-team/gamium/assets/22186124/ccfbee35-452f-4497-a27f-8b86f612cc5d)
 
 ## Support List
 
@@ -83,3 +87,6 @@ yarn build
 ## License
 
 Gamium is [MIT licensed](LICENSE)
+
+// ffmpeg cli convert mp4 to gif
+ffmpeg -i input.mp4 -vf "fps=10,scale=640:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" output.gif

@@ -1,14 +1,8 @@
 import {
   ActionParam,
   AppQuitParamT,
-  ChangeConfigurationResultT,
-  ConfigurationT,
-  DumpObjectsHierarchyParamT,
-  EnvT,
+  ErrorCode,
   ErrorResultT,
-  ExecuteRpcParamT,
-  ExecuteRpcResultT,
-  HelloParamT,
   InputKeyParamT,
   InputMouseParamT,
   InputSetTextParamT,
@@ -16,11 +10,7 @@ import {
   ObjectLocatorT,
   ObjectType,
   Param,
-  QueryObjectInteractableParamT,
-  QueryObjectInteractableResultT,
-  QueryProfileParamT,
   QueryProfileResultT,
-  QueryScreenParamT,
   QueryScreenResultT,
   Result,
   SleepParamT,
@@ -60,73 +50,22 @@ export type SleepParam = FilteredGamiumObject<SleepParamT>;
 export interface ActionResult {
   error: ErrorResult;
 }
-export interface ActionsParam {
-  actionsType: ActionParam[];
-  actions: (
-    | AppQuitParam
-    | InputKeyParam
-    | InputMouseParam
-    | InputSetTextParam
-    | MovePlayerParam
-    | SleepParam
-  )[];
-}
-export interface ActionsResult {
-  results: ActionResult[];
-}
-export interface ChangeConfigurationParam {
-  config: Configuration;
-}
-export type ChangeConfigurationResult =
-  FilteredGamiumObject<ChangeConfigurationResultT>;
-export type DumpObjectsHierarchyParam =
-  FilteredGamiumObject<DumpObjectsHierarchyParamT>;
-export interface DumpObjectsHierarchyResult {
-  hierarchies: ObjectsHierarchy[];
-}
-export type Env = FilteredGamiumObject<EnvT>;
-export type ExecuteRpcParam = FilteredGamiumObject<ExecuteRpcParamT>;
-export type ExecuteRpcResult = FilteredGamiumObject<ExecuteRpcResultT>;
-export interface FindObjectsParam {
-  locator: ObjectLocator;
-}
-export interface FindObjectsResult {
-  infos: ObjectInfo[];
-}
-export type HelloParam = FilteredGamiumObject<HelloParamT>;
-export interface HelloResult {
-  appName: string;
-  appVersion: string;
-  gamiumVersion: string;
-  framesFromStart: bigint;
-  secondsFromStart: number;
-  clientSequence: number;
-  envs: Env[];
-}
-export interface InspectObjectOnScreenParam {
-  pos: Vector2;
-  screenSize: Vector2;
-}
 export interface InspectObjectOnScreenResult {
   infos: ObjectInfo[];
   hitPoint: Vector3;
 }
-export interface InspectObjectWithIdParam {
-  objectId: string;
+export interface QueryProfileResult {
+  fps: number;
 }
-export interface InspectObjectWithIdResult {
-  info: ObjectInfo;
+export interface QueryScreenResult {
+  width: number;
+  height: number;
 }
-export type QueryObjectInteractableParam =
-  FilteredGamiumObject<QueryObjectInteractableParamT>;
-export type QueryObjectInteractableResult =
-  FilteredGamiumObject<QueryObjectInteractableResultT>;
-export type QueryProfileParam = FilteredGamiumObject<QueryProfileParamT>;
-export type QueryProfileResult = FilteredGamiumObject<QueryProfileResultT>;
-export type QueryScreenParam = FilteredGamiumObject<QueryScreenParamT>;
-export type QueryScreenResult = FilteredGamiumObject<QueryScreenResultT>;
-export type Configuration = FilteredGamiumObject<ConfigurationT>;
-export type ErrorResult = FilteredGamiumObject<ErrorResultT>;
+export interface ErrorResult {
+  code: ErrorCode;
+  reason: string;
+}
+
 export interface ObjectHierarchyNode {
   name: string;
   path: string;
@@ -163,37 +102,4 @@ export interface Vector4 {
   y: number;
   z: number;
   w: number;
-}
-export interface Request {
-  seq: number;
-  paramType: Param;
-  param:
-    | ActionsParam
-    | ChangeConfigurationParam
-    | DumpObjectsHierarchyParam
-    | ExecuteRpcParam
-    | FindObjectsParam
-    | HelloParam
-    | InspectObjectOnScreenParam
-    | InspectObjectWithIdParam
-    | QueryObjectInteractableParam
-    | QueryProfileParam
-    | QueryScreenParam;
-}
-export interface Response {
-  seq: number;
-  error: ErrorResult;
-  resultType: Result;
-  result:
-    | ActionsResult
-    | ChangeConfigurationResult
-    | DumpObjectsHierarchyResult
-    | ExecuteRpcResult
-    | FindObjectsResult
-    | HelloResult
-    | InspectObjectOnScreenResult
-    | InspectObjectWithIdResult
-    | QueryObjectInteractableResult
-    | QueryProfileResult
-    | QueryScreenResult;
 }

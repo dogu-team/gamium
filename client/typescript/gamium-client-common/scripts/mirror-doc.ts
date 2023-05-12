@@ -5,12 +5,12 @@ import {
   CodeGenTypescript,
   TypescriptGenerateOption,
 } from "@dogu/docs-gen";
+import { buildTree } from "@dogu/docs-gen/build/src/codegen-elemtree";
 import fs from "fs";
 import path from "path";
 
 interface FileToMd {
   codeFilePath: string;
-  mdFilePath: string;
   option?: Partial<TypescriptGenerateOption>;
 }
 if (!process.env.DOGU_DOCS_PATH) {
@@ -18,6 +18,10 @@ if (!process.env.DOGU_DOCS_PATH) {
 }
 
 const doguDocsPath = process.env.DOGU_DOCS_PATH as string;
+const doguDocsApiPath = path.resolve(
+  doguDocsPath,
+  "docs/gamium/gamium-client/api"
+);
 const projectPath = path.resolve(__dirname, "..");
 const gamiumProtocolPath = path.resolve(
   projectPath,
@@ -43,7 +47,6 @@ const optionFiles = fs
 const fileToMdList: FileToMd[] = [
   {
     codeFilePath: path.resolve(projectPath, "src/gamium-client.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "gamium-client.mdx"),
     option: {
       methodsExlude: ["connect", "disconnect", "inspector", "hello", "sleep"],
       propertiesExlude: ["logger"],
@@ -51,47 +54,36 @@ const fileToMdList: FileToMd[] = [
   },
   {
     codeFilePath: path.resolve(projectPath, "src/ui/ui.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "ui.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/object/player.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "player.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/object/ui-element.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "ui-element.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/actions/action-chain.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "action-chain.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/locator/locator.ts"),
-    mdFilePath: path.resolve(typesMdxDirectory, "locator.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/locator/rpc-locator.ts"),
-    mdFilePath: path.resolve(typesMdxDirectory, "rpc-locator.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/locator/by.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "by.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/actions/key-by.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "key-by.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/locator/rpc-by.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "rpc-by.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/until.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "until.mdx"),
   },
   {
     codeFilePath: path.resolve(projectPath, "src/errors/gamium-error.ts"),
-    mdFilePath: path.resolve(classesMdxDirectory, "gamium-error.mdx"),
     option: {
       classExlude: [],
       interfaceExlude: [],
@@ -101,93 +93,60 @@ const fileToMdList: FileToMd[] = [
 
   ...optionFiles.map((file) => ({
     codeFilePath: path.resolve(projectPath, "src/options", file),
-    mdFilePath: path.resolve(
-      typesMdxDirectory,
-      camelToDashcase(file.replace(".ts", ".mdx"))
-    ),
   })),
-  // {
-  //   codeFilePath: path.resolve(projectPath, 'src/protocols/vector2.ts'),
-  //   mdFilePath: path.resolve(workspacePath, classesMdxDirectory, 'vector2.mdx'),
-  // },
-  // {
-  //   codeFilePath: path.resolve(projectPath, 'src/protocols/vector3.ts'),
-  //   mdFilePath: path.resolve(workspacePath, classesMdxDirectory, 'vector3.mdx'),
-  // },
-  // {
-  //   codeFilePath: path.resolve(projectPath, 'src/protocols/vector4.ts'),
-  //   mdFilePath: path.resolve(workspacePath, classesMdxDirectory, 'vector4.mdx'),
-  // },
-  // {
-  //   codeFilePath: path.resolve(projectPath, 'src/protocols/objectInfo.ts'),
-  //   mdFilePath: path.resolve(workspacePath, classesMdxDirectory, 'object-info.mdx'),
-  // },
-  // {
-  //   codeFilePath: path.resolve(projectPath, 'src/protocols/actionResult.ts'),
-  //   mdFilePath: path.resolve(workspacePath, classesMdxDirectory, 'action-result.mdx'),
-  // },
-  // {
-  //   codeFilePath: path.resolve(projectPath, 'src/protocols/errorResult.ts'),
-  //   mdFilePath: path.resolve(workspacePath, classesMdxDirectory, 'error-result.mdx'),
-  // },
-  // {
-  //   codeFilePath: path.resolve(projectPath, 'src/protocols/queryScreenResult.ts'),
-  //   mdFilePath: path.resolve(workspacePath, classesMdxDirectory, 'query-screen-result.mdx'),
-  // },
-  // {
-  //   codeFilePath: path.resolve(projectPath, 'src/protocols/queryProfileResult.ts'),
-  //   mdFilePath: path.resolve(workspacePath, classesMdxDirectory, 'query-profile-result.mdx'),
-  // },
+  {
+    codeFilePath: path.resolve(projectPath, "src/protocols/types.ts"),
+    option: {
+      classExlude: [],
+      interfaceExlude: [
+        "ObjectHierarchyNode",
+        "ObjectsHierarchy",
+        "InspectObjectOnScreenResult",
+      ],
+      methodsExlude: [],
+    },
+  },
   {
     codeFilePath: path.resolve(gamiumProtocolPath, "types/object-type.ts"),
-    mdFilePath: path.resolve(enumsMdxDirectory, "object-type.mdx"),
   },
   {
     codeFilePath: path.resolve(
       gamiumProtocolPath,
       "types/unity/unity-keyboard.ts"
     ),
-    mdFilePath: path.resolve(enumsMdxDirectory, "unity-keyboard.mdx"),
   },
   {
     codeFilePath: path.resolve(
       gamiumProtocolPath,
       "types/unity/unity-key-code.ts"
     ),
-    mdFilePath: path.resolve(enumsMdxDirectory, "unity-key-code.mdx"),
   },
   {
     codeFilePath: path.resolve(
       gamiumProtocolPath,
       "types/unity/unity-key-code.ts"
     ),
-    mdFilePath: path.resolve(enumsMdxDirectory, "unity-key-code.mdx"),
   },
   {
     codeFilePath: path.resolve(
       gamiumProtocolPath,
       "types/object-locator-by.ts"
     ),
-    mdFilePath: path.resolve(enumsMdxDirectory, "object-locator-by.mdx"),
   },
   {
     codeFilePath: path.resolve(gamiumProtocolPath, "types/input-key-by.ts"),
-    mdFilePath: path.resolve(enumsMdxDirectory, "input-key-by.mdx"),
   },
   {
     codeFilePath: path.resolve(gamiumProtocolPath, "types/execute-rpc-by.ts"),
-    mdFilePath: path.resolve(enumsMdxDirectory, "execute-rpc-by.mdx"),
   },
   {
     codeFilePath: path.resolve(
       gamiumProtocolPath,
       "packets/actions/move-player-by.ts"
     ),
-    mdFilePath: path.resolve(enumsMdxDirectory, "move-player-by.mdx"),
   },
   {
     codeFilePath: path.resolve(gamiumProtocolPath, "types/error-code.ts"),
-    mdFilePath: path.resolve(enumsMdxDirectory, "error-code.mdx"),
   },
 ];
 
@@ -200,19 +159,52 @@ const fileToMdList: FileToMd[] = [
   await typeMdx.parse();
   for (const fileToMd of fileToMdList) {
     const ts = new CodeGenTypescript(fileToMd.codeFilePath, fileToMd.option);
-    const md = new CodeGenMarkdown(fileToMd.mdFilePath);
 
-    await ts.parse();
-    await md.parse();
+    const elemData = await ts.parse();
+    for (const elemDatum of elemData) {
+      const nodes = buildTree(elemDatum.elems);
+      const category = mapCategory(elemDatum.category);
+      if (!elemDatum.elems[0]) {
+        console.warn(
+          `file: ${fileToMd.codeFilePath}, category: ${category} has no elem`
+        );
+        continue;
+      }
+      const name = pascalToKebabCase(elemDatum.elems[0].text);
 
-    const syncer = new CodeGenSyncer(ts, md, typeMdx);
-    await syncer.sync();
+      const mdFilePath = path.resolve(doguDocsApiPath, category, `${name}.mdx`);
+
+      const md = new CodeGenMarkdown(mdFilePath);
+      await md.parse();
+
+      const syncer = new CodeGenSyncer(nodes, md, typeMdx);
+      await syncer.sync();
+    }
   }
 })().catch((e) => {
   console.error(e);
   process.exit(1);
 });
 
-function camelToDashcase(str: string): string {
+function camelToKebabCase(str: string): string {
   return str.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`);
+}
+
+function pascalToKebabCase(str: string): string {
+  str = str.replace("UI", "ui");
+  str = str.replace(/^[A-Z]/, (letter) => letter.toLowerCase());
+  return camelToKebabCase(str);
+}
+
+function mapCategory(str: string): string {
+  if (str === "class") {
+    return "classes";
+  }
+  if (str === "interface") {
+    return "types";
+  }
+  if (str === "enum") {
+    return "enums";
+  }
+  throw new Error(`unknown category: ${str}`);
 }

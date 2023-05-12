@@ -9,12 +9,9 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@dogu/docs-gen@file:../../../utils/typescript/docs-gen":
-  version "0.0.3"
-  dependencies:
-    chalk "4.1.2"
-    compressing "1.6.2"
-    glob "10.0.0"
+"@dogu/docs-gen@link:../../../utils/typescript/docs-gen":
+  version "0.0.0"
+  uid ""
 
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.1.1"

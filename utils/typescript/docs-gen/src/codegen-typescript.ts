@@ -27,6 +27,10 @@ import {
 } from "./markdown-tag";
 
 type CodeGenElems = CodeGenElem[];
+type CodeGenElemData = {
+  category: "class" | "interface" | "enum";
+  elems: CodeGenElems;
+};
 
 export interface TypescriptGenerateOption {
   classExlude: string[];
@@ -57,23 +61,22 @@ export class CodeGenTypescript {
     public readonly nodes: CodeGenElemTreeNode[] = []
   ) {}
 
-  async parse(): Promise<void> {
+  async parse(): Promise<CodeGenElemData[]> {
     const codeElems = await CodeGenTypescript.parseCodeFile(
       this.codeFilePath,
       this.option
     );
-    const nodes = buildTree(codeElems);
-    this.nodes.push(...nodes);
+    return codeElems;
   }
 
   private static async parseCodeFile(
     filePath: string,
     option: Partial<TypescriptGenerateOption>
-  ): Promise<CodeGenElems> {
+  ): Promise<CodeGenElemData[]> {
     const parser = new TypescriptParser();
     const parsed = await parser.parseFile(filePath, process.cwd());
 
-    const ret: CodeGenElems = [];
+    const ret: CodeGenElemData[] = [];
     const optionMixed = { ...defualtOption(), ...option };
 
     const context: TypescriptGenerateContext = {
@@ -86,19 +89,28 @@ export class CodeGenTypescript {
         continue;
       }
       if (decl instanceof ClassDeclaration) {
-        ret.push(...generateElemFromClass(decl, context));
+        ret.push({
+          category: "class",
+          elems: generateElemFromClass(decl, context),
+        });
       }
 
       if (decl instanceof InterfaceDeclaration) {
-        ret.push(...generateElemFromInterface(decl, context));
+        ret.push({
+          category: "interface",
+          elems: generateElemFromInterface(decl, context),
+        });
       }
 
-      if (decl instanceof TypeAliasDeclaration) {
-        ret.push(...generateElemFromTypeAlias(decl, context));
-      }
+      // if (decl instanceof TypeAliasDeclaration) {
+      //   ret.push(...generateElemFromTypeAlias(decl, context));
+      // }
 
       if (decl instanceof EnumDeclaration) {
-        ret.push(...generateElemFromEnum(decl, context));
+        ret.push({
+          category: "enum",
+          elems: generateElemFromEnum(decl, context),
+        });
       }
     }
     return ret;
@@ -273,6 +285,9 @@ function generateElemFromInterface(
   const ret: CodeGenElems = [];
   if (!decl.isExported) {
     return ret;
+  }
+  if (context.option.interfaceExlude.includes(decl.name)) {
+    return [];
   }
 
   ret.push({

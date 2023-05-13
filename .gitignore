@@ -130,3 +130,4 @@ build
 
 # Misc
 .DS_Store
+.yarn/install-state.gz

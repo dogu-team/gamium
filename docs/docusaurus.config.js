@@ -73,9 +73,9 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'get-started/introduction',
+            docId: 'gamium/introduction',
             position: 'left',
-            label: 'Introduction',
+            label: 'Docs',
           },
           {
             href: 'https://github.com/dogu-team/gamium',

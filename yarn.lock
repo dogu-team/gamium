@@ -2776,6 +2776,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remix-run/router@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@remix-run/router@npm:1.5.0"
+  checksum: 9c510c174af1553edd1f039ba16e7e3d34e04d53b3bac18814660e31cd0c48297ea4291ff86d0736b560123ebc63ecb62fa525829181d16a8dad15270d6672d7
+  languageName: node
+  linkType: hard
+
 "@sideway/address@npm:^4.1.3":
   version: 4.1.4
   resolution: "@sideway/address@npm:4.1.4"
@@ -3356,7 +3363,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router-dom@npm:*":
+"@types/react-router-dom@npm:*, @types/react-router-dom@npm:^5.3.3":
   version: 5.3.3
   resolution: "@types/react-router-dom@npm:5.3.3"
   dependencies:
@@ -7171,13 +7178,16 @@ __metadata:
     "@docusaurus/types": ^2.2.0
     "@mdx-js/react": ^1.6.22
     "@tsconfig/docusaurus": ^1.0.6
+    "@types/node": 18.15.11
     "@types/react": ^17.0.2
+    "@types/react-router-dom": ^5.3.3
     "@yarnpkg/sdks": ^3.0.0-rc.34
     clsx: ^1.2.1
     cross-env: ^7.0.3
     prism-react-renderer: ^1.3.5
     react: ^17.0.2
     react-dom: ^17.0.2
+    react-router-dom: 6.10.0
     typescript: ^4.7.4
   languageName: unknown
   linkType: soft
@@ -10739,6 +10749,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-router-dom@npm:6.10.0":
+  version: 6.10.0
+  resolution: "react-router-dom@npm:6.10.0"
+  dependencies:
+    "@remix-run/router": 1.5.0
+    react-router: 6.10.0
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: d048d8cc66e5aec782bd675097d6bf0e5f867f3f0539bff9acdc4a314b5e0e34093944762960ca0977a54c6255272edd262231242b18c4e260d68df6b5288464
+  languageName: node
+  linkType: hard
+
 "react-router-dom@npm:^5.3.3":
   version: 5.3.4
   resolution: "react-router-dom@npm:5.3.4"
@@ -10772,6 +10795,17 @@ __metadata:
   peerDependencies:
     react: ">=15"
   checksum: 892d4e274a23bf4f39abc2efca54472fb646d3aed4b584020cf49654d2f50d09a2bacebe7c92b4ec7cb8925077376dfcd0664bad6442a73604397cefec9f01f9
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.10.0":
+  version: 6.10.0
+  resolution: "react-router@npm:6.10.0"
+  dependencies:
+    "@remix-run/router": 1.5.0
+  peerDependencies:
+    react: ">=16.8"
+  checksum: c9fce46147c04257d7d6fa1f5bbfac96c5fdd0b15f26918bd12b2e5fe9143977c5a4452272f9b85795a22e29ec105a60d0bbe036118efc52b383d163cd8829ab
   languageName: node
   linkType: hard
 

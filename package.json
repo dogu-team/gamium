@@ -9,7 +9,8 @@
     "packages": [
       "protocol",
       "client/typescript/gamium-client",
-      "utils/typescript/docs-gen"
+      "utils/typescript/docs-gen",
+      "docs"
     ]
   }
 }

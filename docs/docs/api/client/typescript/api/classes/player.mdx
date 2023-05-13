@@ -6,17 +6,20 @@ toc_max_heading_level: 4
 
 # Player <s generated />
 
-유저가 플레이하는 플레이어를 나타냅니다.
+Indicates the player that the user plays.
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ## Methods <s generated />
 
 ### isNear <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-해당 GameObject와 다른 GameObject가 일정 거리 이내에 있는지 확인합니다.
+Verify that the GameObject and other GameObject are within a certain distance.
 
 ##### Usage
 
@@ -27,50 +30,58 @@ await player.isNear(By.path('Another object path'), { epsilon: 10 });
 
 ##### Arguments <s generated />
 
-- otherLocator [`Locator`]( ../types/locator) <s generated />
+- otherLocator [`Locator`](../types/locator) <s generated />
 
-- option [`object`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) <s generated />
+- option [`object`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) <s generated />
 
-  - epsilon [`number`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) <s generated />
+  - epsilon [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`boolean`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### move <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-Player를 특정위치까지 움직입니다.
+Move the Player to a specific position.
 
 ##### Usage
 
 ```ts
 const player = await gamium.player(By.path('Object path'));
-await player.move(By.path('Camera object path'), By.path('Dest Object path'), { by: MovePlayerBy.Navigation });
+await player.move(By.path('Camera object path'), By.path('Dest Object path'), {
+  by: MovePlayerBy.Navigation,
+});
 ```
 
 ##### Arguments <s generated />
 
-- cameraLocator [`Locator`]( ../types/locator) <s generated />
+- cameraLocator [`Locator`](../types/locator) <s generated />
 
-- dest [`Vector3`]( vector3) | [`Locator`]( ../types/locator) <s generated />
+- dest [`Vector3`](vector3) | [`Locator`](../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`]( ../types/move-player-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`](../types/move-player-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### refresh <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-Object가 가지고있는 정보를 갱신합니다.
+Updates the information that the object has.
 
 ##### Usage
 
@@ -81,13 +92,12 @@ await player.refresh();
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ## Properties <s generated />
 
-#### info [`ObjectInfo`]( object-info) <s generated />
+#### info [`ObjectInfo`](object-info) <s generated />
 
-<hr class="solid" />  <s generated />
-
+<hr class="solid" /> <s generated />

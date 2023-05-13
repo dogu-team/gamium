@@ -6,17 +6,20 @@ toc_max_heading_level: 4
 
 # ActionChain <s generated />
 
-[게임 조작하기](../../game-control) 에서 여러 동작을 연속으로 실행하고자 할때 사용되는 클래스입니다.
+This class is used when you want to run multiple actions in a row in [`Game Controling`](../../game-control).
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ## Methods <s generated />
 
 ### appQuit <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-앱을 종료합니다.
+Quit the app.
 
 ##### Usage
 
@@ -26,21 +29,24 @@ await gamium.actions().appQuit().perform();
 
 ##### Arguments <s generated />
 
-- exitCode  <s generated />
+- exitCode <s generated />
 
-- delayMs  <s generated />
+- delayMs <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### click <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-화면 좌표를 클릭하는 액션을 ActionChain에 추가합니다.
+Add the action of clicking on the screen coordinates to the Action Chain.
 
 ##### Usage
 
@@ -50,21 +56,24 @@ await gamium.actions().click({ x: 0, y: 0 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`]( vector2) <s generated />
+- position [`Vector2`](vector2) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsClickOptions`]( ../types/actions-click-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsClickOptions`](../types/actions-click-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### drag <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-특정 좌표에서 부터 특정 좌표까지 드래그하는 액션을 ActionChain에 추가합니다.
+Adds an action to ActionChain that drags from one coordinate to another coordinate.
 
 ##### Usage
 
@@ -74,23 +83,26 @@ await gamium.actions().drag({ x: 0, y: 0 }, { x: 0, y: 10 }).perform();
 
 ##### Arguments <s generated />
 
-- fromPosition [`Vector2`]( vector2) <s generated />
+- fromPosition [`Vector2`](vector2) <s generated />
 
-- toPosition [`Vector2`]( vector2) <s generated />
+- toPosition [`Vector2`](vector2) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsDragOptions`]( ../types/actions-drag-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsDragOptions`](../types/actions-drag-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### move <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-특정 좌표로 마우스를 이동하는 액션을 ActionChain에 추가합니다.
+Add the action of moving the mouse to a specific coordinate to the Action Chain.
 
 ##### Usage
 
@@ -100,61 +112,78 @@ await gamium.actions().move({ x: 0, y: 0 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`]( vector2) <s generated />
+- position [`Vector2`](vector2) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsMoveOptions`]( ../types/actions-move-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsMoveOptions`](../types/actions-move-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### movePlayer <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-Player를 특정위치까지 움직이는 액션을 ActionChain에 추가합니다.
+Adds an action to the Action Chain that moves the Player to a specific position.
 
 ##### Usage
 
 ```ts
-await gamium.actions().movePlayer(By.path('/PlayerSpawnPoint[1]/WizardCharacter(Clone)[1]'), By.path('/Main Camera[1]'), { x: 0, y: 0, z: 0 }, { by: MovePlayerBy.Navigation }).perform();
+await gamium
+  .actions()
+  .movePlayer(
+    By.path('/PlayerSpawnPoint[1]/WizardCharacter(Clone)[1]'),
+    By.path('/Main Camera[1]'),
+    { x: 0, y: 0, z: 0 },
+    { by: MovePlayerBy.Navigation },
+  )
+  .perform();
 ```
 
 ##### Arguments <s generated />
 
-- playerLocator [`Locator`]( ../types/locator) <s generated />
+- playerLocator [`Locator`](../types/locator) <s generated />
 
-- cameraLocator [`Locator`]( ../types/locator) <s generated />
+- cameraLocator [`Locator`](../types/locator) <s generated />
 
-- dest [`Vector3`]( vector3) <s generated />
+- dest [`Vector3`](vector3) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`]( ../types/move-player-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`](../types/move-player-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### perform <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-AcrtionChain에 등록된 액션들을 `Gamium Engine`에 요청합니다.
+Request actions registered in the AccrtionChain to 'Gamium Engine'.
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ActionResult`]( action-result)[]> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ActionResult`](action-result)[]> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### scroll <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-특정 좌표에서 부터 delta만큼 스크롤하는 액션을 ActionChain에 추가합니다.
+Adds an action to ActionChain that scrolls by delta from a specific coordinate.
 
 ##### Usage
 
@@ -164,23 +193,26 @@ await gamium.actions().scroll({ x: 0, y: 0 }, { x: 0, y: 10 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`]( vector2) <s generated />
+- position [`Vector2`](vector2) <s generated />
 
-- delta [`Vector2`]( vector2) <s generated />
+- delta [`Vector2`](vector2) <s generated />
 
-- options  <s generated />
+- options <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### sendKeys <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-특정 키입력들을 발생시키는 액션을 ActionChain에 추가합니다.
+Adds an action to ActionChain that causes specific keystrokes to occur.
 
 ##### Usage
 
@@ -193,47 +225,56 @@ await game
 
 ##### Arguments <s generated />
 
-- byList [`KeyBy`]( key-by)[] <s generated />
+- byList [`KeyBy`](key-by)[] <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SendKeyOptions`]( ../types/send-key-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SendKeyOptions`](../types/send-key-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### setText <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-특정 Object에 텍스트를 입력하는 액션을 ActionChain에 추가합니다.
+Adds an action to ActionChain to enter text for a specific object.
 
 ##### Usage
 
 ```ts
-await gamium.actions().setText(By.path('/Canvas[1]/Panel[1]/InputField[1]/Text[1]'), 'Hello World').perform();
+await gamium
+  .actions()
+  .setText(By.path('/Canvas[1]/Panel[1]/InputField[1]/Text[1]'), 'Hello World')
+  .perform();
 ```
 
 ##### Arguments <s generated />
 
-- locator [`Locator`]( ../types/locator) <s generated />
+- locator [`Locator`](../types/locator) <s generated />
 
-- text [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+- text [`string`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SetTextOptions`]( ../types/set-text-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SetTextOptions`](../types/set-text-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### sleep <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-ActionChain 중간에 비어있는 시간을 추가합니다.
+Add an empty time in the middle of the ActionChain.
 
 ##### Usage
 
@@ -243,11 +284,10 @@ await gamium.actions().sleep(300).setText(text1, 'Hello World').perform();
 
 ##### Arguments <s generated />
 
-- millseconds [`number`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) <s generated />
+- millseconds [`number`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`]( action-chain) <s generated />
+- [`ActionChain`](action-chain) <s generated />
 
-<hr class="solid" />  <s generated />
-
+<hr class="solid" /> <s generated />

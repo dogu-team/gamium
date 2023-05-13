@@ -6,17 +6,21 @@ toc_max_heading_level: 4
 
 # UIElement <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ## Methods <s generated />
 
 ### click <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-UIElement를 클릭합니다.
+Click UIElement.
 
 ##### Usage
+
 ```ts
 const okButton = await ui.find(By.path('Object path'));
 await gamium.wait(Until.elementInteractable(okButton));
@@ -25,46 +29,60 @@ await okButton.click();
 
 ##### Arguments <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsClickOptions`]( ../types/actions-click-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsClickOptions`](../types/actions-click-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### drag <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-UIElement를 drag합니다.
+Drag the UIElement.
 
 ##### Usage
+
 ```ts
 const handle = await ui.find(By.path('Object path'));
 await gamium.wait(Until.elementInteractable(handle));
-await handle.drag({ x: handle.gameObject.info.screenPosition.x - 30, y: handle.gameObject.info.screenPosition.y }, { durationMs: 1000, intervalMs: 100 });
+await handle.drag(
+  {
+    x: handle.gameObject.info.screenPosition.x - 30,
+    y: handle.gameObject.info.screenPosition.y,
+  },
+  { durationMs: 1000, intervalMs: 100 },
+);
 ```
 
 ##### Arguments <s generated />
 
-- to [`UIElement`]( ui-element) | [`Vector2`]( vector2) <s generated />
+- to [`UIElement`](ui-element) | [`Vector2`](vector2) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsDragOptions`]( ../types/actions-drag-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsDragOptions`](../types/actions-drag-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### getText <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-text를 가지고 있는 UIElement인 경우에 text를 가져옵니다.
+Import text if it is a UIElement that has text.
 
 ##### Usage
+
 ```ts
 const questObject = await ui.find(By.path('Object path'));
 const progress = questObject.getText();
@@ -72,17 +90,21 @@ const progress = questObject.getText();
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`string`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### isInteractable <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-UIElement가 상호작용이 가능한지 확인합니다. true로 반환하기위해서는 여러가지 조건을 통과해야합니다. option으로 일부 조건을 무시할 수 있습니다.
+Verify that UIElement is interactive. To return to true, you must pass a number of conditions. Option allows you to override some conditions.
 
 ##### Usage
+
 ```ts
 const okButton = await ui.find(By.path('Object path'));
 const isInteractable = await okButton.isInteractable();
@@ -90,19 +112,22 @@ const isInteractable = await okButton.isInteractable();
 
 ##### Arguments <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`]( ../types/query-object-interactable-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`](../types/query-object-interactable-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`boolean`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### refresh <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-Object가 가지고있는 정보를 갱신합니다.
+Updates the information that the object has.
 
 ##### Usage
 
@@ -113,15 +138,18 @@ await okButton.refresh();
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### scroll <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-UIElement로 부터 delta만큼 스크롤합니다.
+Scroll by delta from UIElement.
 
 ##### Usage
 
@@ -133,21 +161,24 @@ await dragger.scroll({ x: 0, y: -0.5 }, { durationMs: 2000 });
 
 ##### Arguments <s generated />
 
-- delta [`Vector2`]( vector2) <s generated />
+- delta [`Vector2`](vector2) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsScrollOptions`]( ../types/actions-scroll-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsScrollOptions`](../types/actions-scroll-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### setText <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-UIElement에 텍스트를 입력합니다.
+Enter text in UIElement.
 
 ##### Usage
 
@@ -158,49 +189,58 @@ await text1.setText('Hello World').perform();
 
 ##### Arguments <s generated />
 
-- text [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+- text [`string`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
 
-- options  <s generated />
+- options <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### tryIsInteractable <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
 ##### Arguments <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`]( ../types/query-object-interactable-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`](../types/query-object-interactable-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`boolean`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`boolean`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)>> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### tryWaitInteractable <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
 ##### Arguments <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`]( ../types/query-object-interactable-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`](../types/query-object-interactable-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)>> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)>> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### waitInteractable <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <s generated />
 
-UIElement가 상호작용이 가능할 때까지 기다립니다..
+Wait for UIElement to interact..
 
 ##### Usage
 
@@ -211,17 +251,16 @@ await okButton.waitInteractable();
 
 ##### Arguments <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`]( ../types/query-object-interactable-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`](../types/query-object-interactable-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ## Properties <s generated />
 
-#### info [`ObjectInfo`]( object-info) <s generated />
+#### info [`ObjectInfo`](object-info) <s generated />
 
-<hr class="solid" />  <s generated />
-
+<hr class="solid" /> <s generated />

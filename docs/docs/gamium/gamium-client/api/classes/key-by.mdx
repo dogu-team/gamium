@@ -1,0 +1,84 @@
+---
+sidebar_position: 11
+title: KeyBy
+toc_max_heading_level: 4
+---
+
+# KeyBy <s generated />
+
+[게임 조작하기](../../game-control) 에서 키입력을 요청할때 사용되는 클래스입니다.
+
+<hr class="solid" />  <s generated />
+
+## Methods <s generated />
+
+### unityKeyboard <s generated />
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+[Unity Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest)이 적용된 프로젝트에서 키보드 입력을 하기위해 사용되는 타입입니다.
+
+##### Usage
+
+```ts
+await gamium.sendKey(KeyBy.unityKeyboard('Space'));
+```
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+
+##### Arguments <s generated />
+
+- key `keyof` `typeof` [`UnityKeyboard`]( ../enums/unity-keyboard) <s generated />
+
+##### Returns <s generated />
+
+- [`KeyBy`]( key-by) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### unityKeycode <s generated />
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+[Unity Input Manager](https://docs.unity3d.com/Manual/class-InputManager.html)이 적용된 프로젝트에서 키보드 입력을 하기위해 사용되는 타입입니다.
+
+##### Usage
+
+```ts
+await gamium.sendKey(KeyBy.unityKeycode('Space'));
+```
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+
+##### Arguments <s generated />
+
+- code `keyof` `typeof` [`UnityKeyCode`]( ../enums/unity-key-code) <s generated />
+
+##### Returns <s generated />
+
+- [`KeyBy`]( key-by) <s generated />
+
+<hr class="solid" />  <s generated />
+
+## Properties <s generated />
+
+#### by [`InputKeyBy`]( ../enums/input-key-by) <s generated />
+
+<hr class="solid" />  <s generated />
+
+#### str [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+<hr class="solid" />  <s generated />
+

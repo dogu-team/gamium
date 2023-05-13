@@ -1,0 +1,36 @@
+---
+sidebar_position: 4
+title: Input 구성하기
+toc_max_heading_level: 4
+---
+
+import unity_input_setting from '@site/static/img/gamium/unity_input_setting.png';
+
+아래 사진을 참고하여 [Input Manager](https://docs.unity3d.com/Manual/class-InputManager.html)를 사용하는지 [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest) 을 사용하는지 확인해주세요.  
+[`Project Settings`](https://docs.unity3d.com/Manual/comp-ManagerGroup.html) -> `Player` => `Other Settings` => `Active Input Handling` 항목으로 이동하면 됩니다.
+
+<img src={unity_input_setting} style={{ width: 500 }} />
+
+## Input Manager 사용시
+
+Unity [`Input`](https://docs.unity3d.com/ScriptReference/Input.html) 클래스를 사용하는 곳을 `Gamium.Input`을 사용하도록 수정해야합니다.  
+아래와 같이 파일 제일 상단에 [`using`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive)을 사용하여 `Input`을 `alias`해주세요.
+
+:::tip
+`Gamium.Input`은 Unity Input과 동일한 API를 제공합니다.
+다른점은 `Gamium.Input`은 `Gamium Engine`의 [`sendKey`](../../gamium-client/api/classes/gamium-client#sendkey-) 함수를 통해 입력된 값들도 반환한다는 것 입니다.
+:::
+
+### Usage
+
+```csharp
+#if USE_GAMIUM
+using Input = Gamium.Input;
+#endif
+
+```
+
+## Input System 사용시
+
+추가로 진행해야할 작업은 없습니다.  
+다만 아직 Input System으로 테스트 된 게임들이 많지 않아 불안정할 수 있습니다.

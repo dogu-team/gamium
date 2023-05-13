@@ -1,0 +1,94 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.headerBanner {
+  display: flex;
+  padding: 5rem 2rem;
+  background-color: var(--ifm-heading-backogrund-color);
+  color: var(--ifm-color-primary-darker);
+  align-items: center;
+}
+
+.headerBannerInner {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.headerBannerTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.headerBannerDescription {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docsMain {
+  max-width: 1440px;
+  width: 100%;
+  padding: 3rem 1rem 0 1rem;
+  display: flex;
+  margin: 3rem auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.docsSection {
+  width: 33.33%;
+  padding: 0 1rem 3rem 1rem;
+}
+
+.docsSectionTitle {
+  display: flex;
+  line-height: 1.2;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  align-items: center;
+}
+
+.logoWrapper {
+  display: flex;
+  margin-right: 0.4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.docsSectionListContainer {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.docsSectionListItem {
+  margin: 0.25rem 0;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+
+  .docsSection {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .docsSection {
+    width: 100%;
+  }
+}

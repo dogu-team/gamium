@@ -1,0 +1,313 @@
+---
+sidebar_position: 1
+title: GamiumClient
+toc_max_heading_level: 4
+---
+
+# GamiumClient <s generated />
+
+`Gamium Engine`와 상호작용하는 기능을 제공합니다. GamiumClient는 `Gamium Engine SDK`가 탑재된 게임빌드와 통신할 수 있습니다. 
+`Gamium Client`는 지정된 메시지를 보내고 해당 메시지를 수신받은 `Gamium Engine SDK`가 메시지에 해당되는 로직을 수행합니다. 
+
+`Gamium Client`는 아래와 같이 사용할 수 있습니다.
+
+##### Usage
+
+```ts
+import { prepareGamium } from '@dogu-tech/toolkit';
+
+const gamiumKit = await prepareGamium();
+const gamium = gamiumKit.gamium;
+```
+
+<hr class="solid" />  <s generated />
+
+## Methods <s generated />
+
+
+### actions <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`ActionChain`]( action-chain)을  생성합니다. [게임 조작하기](../../game-control)에서 사용법 확인가능합니다.
+
+##### Usage
+```ts
+await gamium.actions().click({ x: 0, y: 0 }).move({ x: 0, y: 0 }).perform();
+```
+
+##### Returns <s generated />
+
+- [`ActionChain`]( action-chain) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### executeRpc <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Game내에 특정한 함수를 호출할 수 있습니다. [Remote Procedure Call](../../rpc)에서 사용법 확인가능합니다.
+
+##### Usage
+```ts
+await gamium.executeRpc(RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10))
+await gamium.executeRpc(RpcBy.method('Namespace', 'FunctionName', params))
+```
+
+##### Arguments <s generated />
+
+- locator [`RpcLocator`]( ../types/rpc-locator) <s generated />
+
+- option [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ExecuteRpcOptions`]( ../types/execute-rpc-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`undefined`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) | [`number`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) | [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) | [`object`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### find <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 Object를 찾습니다. 
+
+##### Usage
+```ts
+const cameraObj = await gamium.find(By.path('Object path'));
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ObjectInfo`]( object-info)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### finds <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+
+[`Locator`]( ../types/locator)를 통해 Object를 찾습니다. 지정한 `Object path`와 일치하는 모든 Object를 반환합니다.
+
+##### Usage
+```ts
+const products = await gamium.finds(By.path('Object path'));
+```
+지정한 Object를 찾을 수 없으면 [ObjectNotFound](../enums/error-code#objectnotfound-) 코드의 [GamiumError](gamium-error)가 발생합니다.
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ObjectInfo`]( object-info)[]> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### player <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 Object를 찾습니다. 해당 Object를 [`Player`](player)로 간주하여 객체를 리턴합니다.
+해당 객체를 통해 [`Player`](player)를 조작할 수 있습니다.
+
+##### Usage
+```ts
+const player = await gamium.player(By.path('Object path'));
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`Player`]( player)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### profile <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Game내의 성능지표를 수집합니다. Game에서 요청받은시점에 수집된 성능지표를 반환합니다.
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`QueryProfileResult`]( query-profile-result)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### screen <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Game의 화면정보를 얻어옵니다.
+
+##### Usage
+```ts
+const screen = await gamium.screen();
+```
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`QueryScreenResult`]( query-screen-result)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### sendKey <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`KeyBy`]( key-by)에 해당하는 key를 입력합니다. [게임 조작하기](../../game-control)에서 사용법 확인가능합니다.
+
+##### Usage
+```ts
+await gamium.sendKey(KeyBy.unityKeycode('E'));
+```
+
+##### Arguments <s generated />
+
+- by [`KeyBy`]( key-by) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SendKeyOptions`]( ../types/send-key-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### sendKeys <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`KeyBy`]( key-by)배열에 해당하는 key를 동시에 입력합니다. [게임 조작하기](../../game-control)에서 사용법 확인가능합니다.
+
+##### Usage
+```ts
+await gamium.sendKeys([KeyBy.unityKeycode('W'), KeyBy.unityKeycode('D')], { duratiomMs: 300 });
+```
+
+##### Arguments <s generated />
+
+- byList [`KeyBy`]( key-by)[] <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SendKeyOptions`]( ../types/send-key-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### tryFind <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`ObjectInfo`]( object-info)>> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### tryFinds <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`ObjectInfo`]( object-info)[]>> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### tryWait <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+조건이 만족될때까지 기다립니다. 조건이 만족되지 않으면 [Timeout](../enums/error-code#timeout-) 코드의 [GamiumError](gamium-error)가 반환됩니다.
+
+##### Usage
+```ts
+const buttonInfoOrError = await gamium.tryWait(Until.objectLocated(By.path('Object path')));
+if (buttonInfoOrError instanceof GamiumError) {
+  // handle error
+}
+```
+
+##### Arguments <s generated />
+
+- condition `WaitCondition`<[`Type`]( https://www.typescriptlang.org/docs/handbook/2/generics.html)> <s generated />
+
+- option [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`WaitOptions`]( ../types/wait-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`Type`]( https://www.typescriptlang.org/docs/handbook/2/generics.html)>> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### ui <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`UI`]( ui)객체를 생성합니다.  [`UI`]( ui)객체를 통해 쉽게 UI object들을 조작할 수 있습니다.
+
+##### Usage
+```ts
+const ui = gamium.ui();
+```
+
+##### Returns <s generated />
+
+- [`UI`]( ui) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### wait <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+조건이 만족될때까지 기다립니다. 조건이 만족되지 않으면 [Timeout](../enums/error-code#timeout-) 코드의 [GamiumError](gamium-error)가 발생합니다.
+
+##### Usage
+```ts
+const buttonInfo = await gamium.wait(Until.objectLocated(By.path('Object path')));
+```
+
+##### Arguments <s generated />
+
+- condition `WaitCondition`<[`Type`]( https://www.typescriptlang.org/docs/handbook/2/generics.html)> <s generated />
+
+- option [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`WaitOptions`]( ../types/wait-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`Type`]( https://www.typescriptlang.org/docs/handbook/2/generics.html)> <s generated />
+
+<hr class="solid" />  <s generated />
+

@@ -1,0 +1,41 @@
+---
+sidebar_position: 4
+title: 게임 조작하기
+toc_max_heading_level: 4
+---
+
+## 키입력
+
+유저의 키입력을 `Gamium Client`를 통해 시뮬레이션 할 수 있습니다.  
+[KeyBy](api/classes/key-by)를 통해 키입력 방법을 지정할 수 있습니다.
+
+아래와 같이 사용할 수 있습니다.
+
+```ts
+await gamium.sendKey(KeyBy.unityKeycode('Space'));
+await gamium.sendKey(KeyBy.unityKeyboard('Space'));
+```
+
+## ActionChain
+
+`Gamium Client`를 통해 게임을 조작할 시, 여러 동작을 연속으로 실행하고자 할 때 최대한 정확한 타이밍에 동작을 수행하고자 한다면 [`ActionChain`](api/classes/action-chain)를 사용하면 됩니다.
+
+[`ActionChain`](api/classes/action-chain)에는 여러개의 Action을 추가할 수 있습니다. [`ActionChain`](api/classes/action-chain)의 perform()을 호출하면 추가된 Action들이 순차적으로 수행됩니다.
+
+아래와 같이 여러 액션을 묶어서 사용가능합니다.
+
+#### Usage
+
+```ts
+await gamium
+  .actions()
+  .move({ x: screen.width / 2, y: screen.height / 2 })
+  .click({ x: screen.width / 2, y: screen.height / 2 })
+  .perform();
+
+await gamium
+  .actions()
+  .sendKeys([KeyBy.unityKeycode('W'), KeyBy.unityKeycode('A')])
+  .sendKeys([KeyBy.unityKeycode('Space')])
+  .perform();
+```

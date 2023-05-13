@@ -1,0 +1,28 @@
+---
+sidebar_position: 5
+title: 원격 함수 호출(RPC) 실행하기
+toc_max_heading_level: 4
+---
+
+`Gamium Client`를 통해 `Gamium Engine` 와 통신하여 Game에 포함된 함수를 원격에서 호출할 수 있습니다.  
+해당 동작을 수행하기 전에 지원하는 함수를 가이드를 통해 먼저 확인해 주세요.
+
+> [Unity Rpc Calls](../gamium-engine/unity/rpc)
+
+<br />
+
+[RpcBy](api/classes/rpc-by)를 통해 원하는 호출방식을 지정하여 사용하면 됩니다.
+
+아래와 같이 사용할 수 있습니다.
+
+```ts
+await gamium.executeRpc(
+  RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10),
+);
+const field = await gamium.executeRpc(
+  RpcBy.field('Gamium.Private.CodebaseSample', 'field'),
+);
+const property = await gamium.executeRpc(
+  RpcBy.property('Gamium.Private.CodebaseSample', 'property'),
+);
+```

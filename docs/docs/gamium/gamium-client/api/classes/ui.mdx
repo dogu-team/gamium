@@ -1,0 +1,219 @@
+---
+sidebar_position: 2
+title: UI 
+toc_max_heading_level: 4
+---
+
+# UI <s generated />
+
+<hr class="solid" />  <s generated />
+
+[UI 조작하기](../../ui) 에 관련 설명이 있습니다. 손쉽게 UI를 조작하기 위한 클래스입니다.
+
+## Methods <s generated />
+
+### click <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 지정된 Object를 찾아질때까지 기다립니다. Object가 찾아졌다면 상호작용이 가능할때까지 기다립니다. 상호작용이 가능하다면 클릭합니다.
+
+##### Usage
+```ts
+await ui.click(By.path('Object path'));
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options) & [`ActionsClickOptions`]( ../types/actions-click-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### drag <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 지정된 Object를 찾아질때까지 기다립니다. Object가 찾아졌다면 상호작용이 가능할때까지 기다립니다. 상호작용이 가능하다면 drag를 시작합니다.
+
+##### Usage
+```ts
+await ui.drag(By.path('Object path'), { x: 0, y: 0 });
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- to [`Locator`]( ../types/locator) | [`Vector2`]( vector2) <s generated />
+
+  - drag로 이동할 위치입니다. 
+    - [`Locator`]( ../types/locator)를 사용할 경우 해당 위치로 이동합니다. 
+    - [`Vector2`]( vector2)를 사용할 경우 현재 위치에서 해당 위치로 이동합니다. 화면 스크린 좌표입니다.
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options) & [`ActionsDragOptions`]( ../types/actions-drag-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### find <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 지정된 Object를 찾아질때까지 기다립니다. Object가 찾아졌다면 해당 Object를 [`UIElement`](ui-element)로 간주하여 객체를 리턴합니다
+
+##### Usage
+```ts
+const elem = await ui.find(By.path('Object path'));
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`UIElement`]( ui-element)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### finds <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 지정된 Object들을 찾습니다. Object들이 찾아졌다면 해당 Object들을 [`UIElement`](ui-element)로 간주하여 객체를 리턴합니다
+
+##### Usage
+```ts
+const elems = await ui.finds(By.path('Object path'));
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`UIElement`]( ui-element)[]> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### getText <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 지정된 Object를 찾아질때까지 기다립니다. Object가 찾아졌다면 상호작용이 가능할때까지 기다립니다. 상호작용이 가능하고 Text가 존재한다면 Text를 리턴합니다.
+
+##### Usage
+```ts
+const progress = await ui.getText(By.path('Object path'));
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### scroll <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 지정된 Object를 찾아질때까지 기다립니다. Object가 찾아졌다면 상호작용이 가능할때까지 기다립니다. 상호작용이 가능하다면 scroll을 시작합니다.
+
+##### Usage
+```ts
+await ui.scroll(By.path('Object path'), { x: 0, y: -0.1 });
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- delta [`Vector2`]( vector2) <s generated />
+
+  - locator로 검색된 Obejct의 스크린좌표 기준으로 scroll할 delta값입니다. 화면 스크린 좌표입니다.
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options) & [`ActionsScrollOptions`]( ../types/actions-scroll-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### setText <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+[`Locator`]( ../types/locator)를 통해 지정된 Object를 찾아질때까지 기다립니다. Object가 찾아졌다면 상호작용이 가능할때까지 기다립니다. 상호작용이 가능하고 Text를 입력할 수 있다면 Text를 입력합니다.
+
+##### Usage
+```ts
+await ui.setText(By.path('Object path'), 'Hello, World!');
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- text [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### tryFind <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`UIElement`]( ui-element)>> <s generated />
+
+<hr class="solid" />  <s generated />
+
+### tryFinds <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( ../types/locator) <s generated />
+
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`UIElement`]( ui-element)[]>> <s generated />
+
+<hr class="solid" />  <s generated />
+

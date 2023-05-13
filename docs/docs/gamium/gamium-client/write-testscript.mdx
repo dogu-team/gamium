@@ -1,0 +1,34 @@
+---
+sidebar_position: 1
+title: 테스트스크립트 작성하기
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+[`Gamium Client`](../introduction/#gamium-client)를 실행하기 위해서는 아래요소가 필요합니다.
+
+- [`Gamium Engine SDK`](../introduction/#gamium-engine)가 포함된 게임 실행파일
+- 자동으로 조작하고자 하는 UI, Object의 `Object path`
+  - [Object path](objectpath)문서 참고
+
+실행파일이 준비가 되었다면 `Gamium Client`를 `Gamium Engine`가 포함된 프로그램에 연결하여 UI, Object를 조작할 수 있습니다.
+
+## Gamium Engine와 연결
+
+```ts
+import { prepareGamium } from '@dogu-tech/toolkit';
+
+const gamiumKit = await prepareGamium();
+const gamium = gamiumKit.gamium;
+const ui = gamium.ui();
+```
+
+## Button 클릭하기
+
+누르고자하는 Button Object를 찾은 후 스크립트를 작성하여 클릭합니다.
+
+```ts
+await ui.click(By.path('Object path'));
+```

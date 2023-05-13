@@ -1,0 +1,44 @@
+---
+sidebar_position: 3
+title: Server 구성하기
+toc_max_heading_level: 4
+---
+
+`Gamium Engine`의 설정을 프로젝트별로 구성할 수 있습니다.
+
+## Gamium.ServerBuilder
+
+`ServerBuilder`는 `Gamium Engine`를 구성하고 실행하는 기능을 제공합니다. `ServerConfig`를 통해 아래와 같이 설정이 가능합니다.
+
+#### Usage
+
+```csharp
+new ServerBuilder()
+    .SetConfig(new ServerConfig
+    {
+        port = 50061
+        inputMappings = new InputMapping[]
+        {
+            new InputMapping()
+            {
+                alias = "Horizontal", positiveCodes = new HashSet<KeyCode>() { KeyCode.D },
+                negativeCodes = new HashSet<KeyCode>() { KeyCode.A }
+            },
+            new InputMapping()
+            {
+                alias = "Vertical", positiveCodes = new HashSet<KeyCode>() { KeyCode.W },
+                negativeCodes = new HashSet<KeyCode>() { KeyCode.S }
+            },
+        },
+    }).Run();
+```
+
+### Port
+
+`Gamium Engine`가 데이터를 수신하기위해 Listen하고 있는 포트입니다. `ServerConfig`에 포트를 설정할 수 있습니다.
+port``에 아무값도 설정하지 않을경우 50061로 설정됩니다. Console에서 `Inspector`를 사용하기 위해선 50061 포트를 그대로 사용하는것을 권장합니다.
+
+### Input Mapping
+
+`Gamium Client`에서는 [sendKey](../../gamium-client/api/classes/gamium-client#sendkey-)함수를 이용하여 키보드 입력을 전송할 수 있습니다.
+`Gamium Engine`에서는 이러한 키보드입력을 받아서 `Horizontal`, `Vertical` 인풋을 처리할 수 있습니다.

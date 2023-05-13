@@ -127,3 +127,6 @@ dist
 
 build
 .export
+
+# Misc
+.DS_Store

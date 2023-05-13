@@ -1,0 +1,28 @@
+---
+sidebar_position: 3
+title: UI 조작하기
+toc_max_heading_level: 4
+---
+
+[`Game Driver`](api/classes/gamium-client)를 통해 [`UI`](api/classes/ui)객체를 얻을 수 있습니다.
+[`UI`](api/classes/ui)는 손쉽게 UI를 조작하는 인터페이스를 제공합니다.
+
+아래와 같이 사용할 수 있습니다.
+
+##### Usage
+
+```ts
+const ui = gamium.ui();
+await ui.click(By.path('Object path'));
+```
+
+### Auto wait
+
+[`UI`](api/classes/ui) 클래스 사용시에는 [`UIelement`](api/classes/ui-element)가 찾아질때까지 자동으로 [`wait`](api/classes/gamium-client#wait-)를 수행합니다.
+위 Usage 는 아래와 동일하게 동작합니다.
+
+```ts
+const button = await ui.wait(By.path('Object path'));
+await gamium.wait(Until.elementInteractable(button));
+await button.click();
+```

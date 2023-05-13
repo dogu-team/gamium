@@ -1,0 +1,130 @@
+---
+sidebar_position: 12
+title: RpcBy
+toc_max_heading_level: 4
+---
+
+# RpcBy <s generated />
+
+[Remote Procedure Call](../../rpc) 에서 원격 함수호출시 사용되는 클래스입니다.
+
+<hr class="solid" />  <s generated />
+
+## Methods <s generated />
+
+### field <s generated />
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+특정 필드의 값을 얻어옵니다
+
+##### Usage
+
+```ts
+const field = await gamium.executeRpc(RpcBy.field('Gamium.Private.CodebaseSample', 'field'));
+```
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+
+##### Arguments <s generated />
+
+- classPath [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+- fieldName [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+##### Returns <s generated />
+
+- [`RpcBy`]( rpc-by) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### method <s generated />
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+특정 함수를 호출합니다.
+
+##### Usage
+
+```ts
+await gamium.executeRpc(RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10));
+```
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+
+##### Arguments <s generated />
+
+- classPath [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+- methodName [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+- params [`unknown`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)[] <s generated />
+
+##### Returns <s generated />
+
+- [`RpcBy`]( rpc-by) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### property <s generated />
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+특정 프로퍼티의 값을 얻어옵니다
+
+##### Usage
+
+```ts
+const property = await gamium.executeRpc(RpcBy.property('Gamium.Private.CodebaseSample', 'property'));
+```
+
+<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
+  generated
+/>
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+
+##### Arguments <s generated />
+
+- classPath [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+- propertyName [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+##### Returns <s generated />
+
+- [`RpcBy`]( rpc-by) <s generated />
+
+<hr class="solid" />  <s generated />
+
+## Properties <s generated />
+
+#### by [`ExecuteRpcBy`]( ../enums/execute-rpc-by) <s generated />
+
+<hr class="solid" />  <s generated />
+
+#### className [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+<hr class="solid" />  <s generated />
+
+#### targetName [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+<hr class="solid" />  <s generated />
+
+#### params [`unknown`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)[] <s generated />
+
+<hr class="solid" />  <s generated />
+

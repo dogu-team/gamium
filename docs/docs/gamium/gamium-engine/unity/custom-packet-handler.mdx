@@ -1,0 +1,60 @@
+---
+sidebar_position: 5
+title: 메시지 처리 조작하기
+toc_max_heading_level: 4
+---
+
+특정 메시지에 대한 처리를 개발자가 직접 구현한 로직을 사용하고 싶은경우 Custom Packet 핸들러를 사용할 수 있습니다.  
+아래는 [findObjects](../../gamium-client/api/classes/gamium-client#findobjects-)와 [move](../../gamium-client/api/classes/player#move-) 요청에 대한 처리를 커스터마이즈하는 예시입니다.
+
+```csharp
+Gamium.PacketTypes.findObjects.SetPreprocessor(PreprocessFindObjects);
+Gamium.PacketTypes.findObjects.SetHandler(HandleFindObjects);
+
+Gamium.ActionsTypes.movePlayer.SetPreprocessor(PreprocessMovePlayer);
+Gamium.ActionsTypes.movePlayer.SetHandler(HandleMovePlayer);
+
+
+private static async Task<FindObjectsResultT> HandleFindObjects(FindObjectsParamT param)
+{
+    await Task.Delay(0);
+    bool isFailed = true;
+    if (isFailed)
+    {
+        throw new Exception("error");
+    }
+
+    // do find objects
+    return new FindObjectsResultT { Infos = new List<ObjectInfoT>() };
+}
+
+private static async Task PreprocessMovePlayer(MovePlayerParamT param)
+{
+    await Task.Delay(0);
+    Debug.Log("PreprocessMovePlayer");
+}
+
+
+private static async Task<ActionResultT> HandleMovePlayer(MovePlayerParamT param)
+{
+    await Task.Delay(0);
+    bool isFailed = true;
+    if (isFailed)
+    {
+        throw new Exception("error");
+    }
+
+    // do move player
+    return new ActionResultT();
+}
+
+```
+
+### SetPreprocessor
+
+특정 메시지 요청이 `Gamium Engine`에 올 때, 먼저 실행되는 로직을 구현합니다. 예를 들어 특정 메시지에 대한 로그를 남길 수 있습니다.
+
+### SetHandler
+
+특정 메시지에 대한 처리를 개발자가 직접 구현한 로직으로 대신합니다.  
+`SetHandler`로 Handler가 등록된 메시지는 더 이상 `Gamium Engine SDK`에서 처리하지 않고, 유저가 등록한 Handler에서 처리됩니다.

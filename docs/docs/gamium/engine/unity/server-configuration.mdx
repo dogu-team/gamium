@@ -1,0 +1,44 @@
+---
+sidebar_position: 3
+title: Configure Server
+toc_max_heading_level: 4
+---
+
+The settings for the `Gamium Engine` can be configured by project.
+
+## Gamium.ServerBuilder
+
+`ServerBuilder` provides the ability to configure and run `Gamium Engine`. It can be set up as below through `ServerConfig`.
+
+#### Usage
+
+```csharp
+new ServerBuilder()
+    .SetConfig(new ServerConfig
+    {
+        port = 50061
+        inputMappings = new InputMapping[]
+        {
+            new InputMapping()
+            {
+                alias = "Horizontal", positiveCodes = new HashSet<KeyCode>() { KeyCode.D },
+                negativeCodes = new HashSet<KeyCode>() { KeyCode.A }
+            },
+            new InputMapping()
+            {
+                alias = "Vertical", positiveCodes = new HashSet<KeyCode>() { KeyCode.W },
+                negativeCodes = new HashSet<KeyCode>() { KeyCode.S }
+            },
+        },
+    }).Run();
+```
+
+### Port
+
+The port on which `Gamium Engine` is listening to receive data. Port can be set to `ServerConfig`.
+If you do not set any value for port, it is set to 50061. To use `Inspector` in the [Dogu Console](https://dogutech.io), we recommend that you use the 50061 port as it is.
+
+### Input Mapping
+
+The `Gamium Client` allows keyboard input to be transferred using the function [sendKey] (../gamium-client/api/classes/gamium-client#sendkey-).
+The `Gamium Engine` can take these keyboard inputs and process the `Horizontal` and `Vertical` inputs.

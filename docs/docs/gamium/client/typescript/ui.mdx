@@ -1,0 +1,28 @@
+---
+sidebar_position: 3
+title: Control UI
+toc_max_heading_level: 4
+---
+
+You can obtain an object called [`UI`](api/classes/ui) through the [`Game Driver`](api/classes/gamium-client).
+[`UI`](api/classes/ui) provides an interface for easy UI manipulation.
+
+You can use it as below.
+
+##### Usage
+
+```ts
+const ui = gamium.ui();
+await ui.click(By.path('Object path'));
+```
+
+### Auto wait
+
+If you are using the class [`UI`](api/classes/ui), automatically do the [`wait`](api/classes/ui-element) until you find it.
+The above Usage works the same as below.
+
+```ts
+const button = await ui.wait(By.path('Object path'));
+await gamium.wait(Until.elementInteractable(button));
+await button.click();
+```

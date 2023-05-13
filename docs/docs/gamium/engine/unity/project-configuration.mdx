@@ -1,0 +1,68 @@
+---
+sidebar_position: 1
+title: Configure Project
+---
+
+import unity_define_symbol from '@site/static/img/gamium/unity_define_symbol.png';
+import unity_gamium_update_log from '@site/static/img/gamium/unity_gamium_update_log.png';
+
+To use `Gamium`, you must add `Gamium Engine SDK` to your project.
+The `Gamium Engine SDK` performs the functions requested by the `Gamium Client` to help you proceed with automated testing.
+
+## 1. Add Gamium Engine SDK
+
+In [Project manifest](https://docs.unity3d.com/Manual/upm-manifestPrj.html), add to `dependencies` as follows.
+
+```
+"com.dogu.gamium.engine.unity": "https://github.com/dogu-team/gamium.git?path=/engine/unity#1.0.0",
+```
+
+:::info
+The source code and example project for the Gamium Engine SDK can be found at the link below
+
+- [gamium](https://github.com/dogu-team/gamium)
+- [gamium-engine-unity-samples](https://github.com/dogu-team/gamium-engine-unity-samples)
+
+:::
+
+## 2. Add Scripting Define Symbol
+
+A `Scripting Define Symbol` called **`USE_GAMIUM`** is required for `Gamium` to work. **Only when `USE_GAMIUM`** is set will the `Gamium Engine` run normally.
+Go to the topic `Script Compilation` using the [Custom scripting symbols](https://docs.unity3d.com/Manual/CustomScriptingSymbols.html) guide and add **`USE_GAMIUM`**).
+
+:::tip
+The `Gamium Engine SDK` has been added to the project, but if you do not want to run `Gamium Engine`, you must turn off **`USE_GAMIUM`**.
+:::
+
+<img src={unity_define_symbol} style={{ width: 500 }} />
+
+## 3. Add Initialization Code
+
+The following code can be added to run `Gamium Engine`.
+[ServerBuilder](server-configuration) provides functions such as input mapping and event handler registration, and please refer to [Server Configuration](server-configuration) for more information.
+
+```csharp
+using System.Collections.Generic;
+using Gamium;
+using UnityEngine;
+
+public class GamiumServerStarter
+{
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void OnLoad()
+    {
+        new ServerBuilder().Run();
+    }
+}
+```
+
+## 4. Check the log
+
+If the following log is output from the 'Unity Editor', the 'Gamium Engine' has been executed normally.
+
+<img src={unity_gamium_update_log} style={{ width: 500 }} />
+
+## 5. Build
+
+Check [Build Settings](https://docs.unity3d.com/Manual/BuildSettings.html) to create an executable after building unity.
+You can proceed with test automation with that executable file.

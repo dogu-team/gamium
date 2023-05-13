@@ -1,8 +1,8 @@
-import { ErrorCode, GamiumError, GamiumProtocol, GamiumService, PacketTypes, Version, createHello } from "../common";
+import { ErrorCode, GamiumError, GamiumProtocol, GamiumService, PacketTypes, Version, createHello } from '../common';
 import { Socket } from 'net';
-import { SizePrefixedRecvQueue } from "./size-prefixed-recv-queue";
-import { Printable } from "../common/internal/logs";
-import { delay, stringify, stringifyError } from "../common/internal/functions";
+import { SizePrefixedRecvQueue } from './size-prefixed-recv-queue';
+import { Printable } from '../common/internal/logs';
+import { delay, stringify, stringifyError } from '../common/internal/functions';
 import * as flatbuffers from 'flatbuffers';
 import { EventEmitter } from 'events';
 
@@ -21,7 +21,7 @@ export class NodeGamiumService implements GamiumService {
   }
   private isConnected: boolean;
   private seq = 0;
-  constructor(private readonly host: string, private readonly port: number, private readonly requestTimeout: number = 50000, private readonly printable: Printable) {
+  constructor(private readonly host: string, private readonly port: number, private readonly requestTimeout: number = 50000, private readonly printable: Printable = console) {
     this.client = new Socket();
     this.isConnected = false;
 

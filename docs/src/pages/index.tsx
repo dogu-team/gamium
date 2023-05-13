@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
@@ -7,23 +6,21 @@ import Link from '@docusaurus/Link';
 
 import styles from './index.module.css';
 import RocketLogo from '@site/static/img/main/rocket.svg';
-import DeviceLogo from '@site/static/img/main/device.svg';
 import CodeLogo from '@site/static/img/main/code.svg';
-import RoutineLogo from '@site/static/img/main/routine.svg';
-import OrgLogo from '@site/static/img/main/organization.svg';
-import CommunityLogo from '@site/static/img/main/community.svg';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <section className={styles.headerBanner}>
-      <div className={styles.headerBannerInner}>
-        <h1 className={styles.headerBannerTitle}>{siteConfig.title}</h1>
-        <p className={styles.headerBannerDescription}>
-          Automate game testing in android, ios, windows devices
-        </p>
-      </div>
-    </section>
+    <center>
+      <section className={styles.headerBanner}>
+        <div className={styles.headerBannerInner}>
+          {/* <h1 className={styles.headerBannerTitle}>{siteConfig.title}</h1> */}
+          <p className={styles.headerBannerDescription}>
+            Automate game testing in android, ios, windows devices
+          </p>
+        </div>
+      </section>
+    </center>
   );
 }
 

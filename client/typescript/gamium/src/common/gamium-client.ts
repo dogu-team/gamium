@@ -1,55 +1,27 @@
-import { ActionChain } from "./actions/action-chain";
-import { KeyBy } from "./actions/key-by";
-import { GamiumError } from "./errors/gamium-error";
-import {
-  createExecuteRpc,
-  createFindObjects,
-  createHello,
-  createQueryProfile,
-  createQueryScreen,
-  GamiumService,
-} from "./gamium-service";
-import { Inspector } from "./inspect/inspector";
-import { delay, stringify, stringifyAllProps } from "./internal/functions";
-import { Printable } from "./internal/logs";
-import { waitGeneric } from "./internal/utils/wait";
-import { Locator } from "./locator/locator";
-import { RpcLocator } from "./locator/rpc-locator";
-import { Player } from "./object/player";
-import {
-  DefaultExecuteRpcOptions,
-  ExecuteRpcOptions,
-} from "./options/execute-rpc-options";
-import {
-  DefaultFindObjectOptions,
-  FindObjectOptions,
-} from "./options/find-object-options";
-import {
-  DefaultSendKeyOptions,
-  SendKeyOptions,
-} from "./options/send-key-options";
-import { DefaultWaitOptions, WaitOptions } from "./options/wait-options";
-import {
-  ErrorCode,
-  HelloResultT,
-  ObjectInfoT,
-  ObjectLocatorT,
-} from "./protocols/generated";
-import {
-  ObjectInfo,
-  QueryProfileResult,
-  QueryScreenResult,
-} from "./protocols/types";
-import { tryify, TryResult } from "./try";
-import { UI } from "./ui/ui";
-import { Version } from "./version";
-import { WaitCondition } from "./wait-condition";
+import { ActionChain } from './actions/action-chain';
+import { KeyBy } from './actions/key-by';
+import { GamiumError } from './errors/gamium-error';
+import { createExecuteRpc, createFindObjects, createHello, createQueryProfile, createQueryScreen, GamiumService } from './gamium-service';
+import { Inspector } from './inspect/inspector';
+import { delay, stringify, stringifyAllProps } from './internal/functions';
+import { Printable } from './internal/logs';
+import { waitGeneric } from './internal/utils/wait';
+import { Locator } from './locator/locator';
+import { RpcLocator } from './locator/rpc-locator';
+import { Player } from './object/player';
+import { DefaultExecuteRpcOptions, ExecuteRpcOptions } from './options/execute-rpc-options';
+import { DefaultFindObjectOptions, FindObjectOptions } from './options/find-object-options';
+import { DefaultSendKeyOptions, SendKeyOptions } from './options/send-key-options';
+import { DefaultWaitOptions, WaitOptions } from './options/wait-options';
+import { ErrorCode, HelloResultT, ObjectInfoT, ObjectLocatorT } from './protocols/generated';
+import { ObjectInfo, QueryProfileResult, QueryScreenResult } from './protocols/types';
+import { tryify, TryResult } from './try';
+import { UI } from './ui/ui';
+import { Version } from './version';
+import { WaitCondition } from './wait-condition';
 
 export class GamiumClient {
-  constructor(
-    private readonly gamiumService: GamiumService,
-    readonly logger: Printable
-  ) {}
+  constructor(private readonly gamiumService: GamiumService, readonly logger: Printable = console) {}
 
   get connected(): boolean {
     return this.gamiumService.connected;
@@ -83,66 +55,42 @@ export class GamiumClient {
 
   // object
 
-  async find(
-    locator: Locator,
-    options: Partial<FindObjectOptions> = DefaultFindObjectOptions()
-  ): Promise<ObjectInfo> {
+  async find(locator: Locator, options: Partial<FindObjectOptions> = DefaultFindObjectOptions()): Promise<ObjectInfo> {
     const infos = await this.finds(locator, options);
     if (infos.length === 0) {
-      throw new GamiumError(
-        ErrorCode.ObjectNotFound,
-        `GamiumClient.findObject By:${locator.by}, str:${locator.str} not found`
-      );
+      throw new GamiumError(ErrorCode.ObjectNotFound, `GamiumClient.findObject By:${locator.by}, str:${locator.str} not found`);
     }
     const info = infos[0];
     if (info === undefined) {
-      throw new GamiumError(
-        ErrorCode.ObjectNotFound,
-        `GamiumClient.findObject By:${locator.by}, str:${locator.str} not found`
-      );
+      throw new GamiumError(ErrorCode.ObjectNotFound, `GamiumClient.findObject By:${locator.by}, str:${locator.str} not found`);
     }
     return info;
   }
 
-  async tryFind(
-    locator: Locator,
-    options: Partial<FindObjectOptions> = DefaultFindObjectOptions()
-  ): Promise<TryResult<ObjectInfo>> {
+  async tryFind(locator: Locator, options: Partial<FindObjectOptions> = DefaultFindObjectOptions()): Promise<TryResult<ObjectInfo>> {
     return tryify(this.find(locator, options));
   }
 
-  async finds(
-    locator: Locator,
-    options: Partial<FindObjectOptions> = DefaultFindObjectOptions()
-  ): Promise<ObjectInfo[]> {
-    this.logger.info(
-      `GamiumClient.findObjects By:${locator.by}, str:${locator.str}`
-    );
+  async finds(locator: Locator, options: Partial<FindObjectOptions> = DefaultFindObjectOptions()): Promise<ObjectInfo[]> {
+    this.logger.info(`GamiumClient.findObjects By:${locator.by}, str:${locator.str}`);
     const optionMixed: FindObjectOptions = {
       ...DefaultFindObjectOptions(),
       ...options,
     };
-    if (
-      locator.str === undefined ||
-      locator.str === null ||
-      locator.str.length === 0
-    ) {
-      throw new GamiumError(
-        ErrorCode.InvalidParameter,
-        `GamiumClient.findObject By:${locator.by}, str:${locator.str} is invalid`
-      );
+    if (locator.str === undefined || locator.str === null || locator.str.length === 0) {
+      throw new GamiumError(ErrorCode.InvalidParameter, `GamiumClient.findObject By:${locator.by}, str:${locator.str} is invalid`);
     }
     const res = await this.gamiumService.request(
       createFindObjects({
         locator: new ObjectLocatorT(locator.by, locator.str),
-      })
+      }),
     );
 
     await delay(optionMixed.delayMs);
     const infos: ObjectInfo[] = res.infos.map((info: ObjectInfoT) => {
       return {
-        path: info.path?.toString() ?? "",
-        name: info.name?.toString() ?? "",
+        path: info.path?.toString() ?? '',
+        name: info.name?.toString() ?? '',
         type: info.type,
         tag: info.tag,
         isActive: info.isActive,
@@ -150,16 +98,13 @@ export class GamiumClient {
         screenRectSize: info.screenRectSize ?? { x: 0, y: 0 },
         position: info.position ?? { x: 0, y: 0, z: 0 },
         rotation: info.rotation ?? { x: 0, y: 0, z: 0, w: 0 },
-        text: info.text?.toString() ?? "",
+        text: info.text?.toString() ?? '',
       };
     });
     return infos;
   }
 
-  async tryFinds(
-    locator: Locator,
-    options: Partial<FindObjectOptions> = DefaultFindObjectOptions()
-  ): Promise<TryResult<ObjectInfo[]>> {
+  async tryFinds(locator: Locator, options: Partial<FindObjectOptions> = DefaultFindObjectOptions()): Promise<TryResult<ObjectInfo[]>> {
     return tryify(this.finds(locator, options));
   }
 
@@ -169,46 +114,28 @@ export class GamiumClient {
     return new ActionChain(this.gamiumService);
   }
 
-  async sendKey(
-    by: KeyBy,
-    options: Partial<SendKeyOptions> = DefaultSendKeyOptions()
-  ): Promise<void> {
+  async sendKey(by: KeyBy, options: Partial<SendKeyOptions> = DefaultSendKeyOptions()): Promise<void> {
     return await this.sendKeys([by], options);
   }
 
-  async sendKeys(
-    byList: KeyBy[],
-    options: Partial<SendKeyOptions> = DefaultSendKeyOptions()
-  ): Promise<void> {
+  async sendKeys(byList: KeyBy[], options: Partial<SendKeyOptions> = DefaultSendKeyOptions()): Promise<void> {
     this.logger.info(`GamiumClient.sendKeys codes:${stringify(byList)}`);
     await this.actions().sendKeys(byList, options).perform();
   }
 
   // execute
 
-  async executeRpc(
-    locator: RpcLocator,
-    option: Partial<ExecuteRpcOptions> = DefaultExecuteRpcOptions()
-  ): Promise<undefined | number | string | object> {
-    this.logger.info(
-      `GamiumClient.executeRpc By:${locator.by}, className:${
-        locator.className
-      }, targetName:${locator.targetName}, params:${stringifyAllProps(
-        locator.params
-      )}`
-    );
+  async executeRpc(locator: RpcLocator, option: Partial<ExecuteRpcOptions> = DefaultExecuteRpcOptions()): Promise<undefined | number | string | object> {
+    this.logger.info(`GamiumClient.executeRpc By:${locator.by}, className:${locator.className}, targetName:${locator.targetName}, params:${stringifyAllProps(locator.params)}`);
     const params = locator.params.map((p) => {
       const doc = JSON.stringify(p);
       if (option.castNumberToFloat) {
-        return doc.replace(
-          /(-?\d+)(\.\d+)?/g,
-          (match: string, p1: string, p2: string) => {
-            if (p2) {
-              return p1 + p2;
-            }
-            return p1 + ".0";
+        return doc.replace(/(-?\d+)(\.\d+)?/g, (match: string, p1: string, p2: string) => {
+          if (p2) {
+            return p1 + p2;
           }
-        );
+          return p1 + '.0';
+        });
       }
       return doc;
     });
@@ -218,9 +145,9 @@ export class GamiumClient {
         className: locator.className,
         targetName: locator.targetName,
         paramDocuments: params,
-      })
+      }),
     );
-    if (!res.document || res.document === "null") {
+    if (!res.document || res.document === 'null') {
       return undefined;
     }
     const parsed = JSON.parse(res.document.toString()) as unknown;
@@ -239,19 +166,12 @@ export class GamiumClient {
     }
     throw new GamiumError(
       ErrorCode.ExecuteRpcNotSupportedType,
-      `executeRpc By:${locator.by}, className:${
-        locator.className
-      }, targetName:${
-        locator.targetName
-      } result:${res.document.toString()} not supported type`
+      `executeRpc By:${locator.by}, className:${locator.className}, targetName:${locator.targetName} result:${res.document.toString()} not supported type`,
     );
   }
 
   // player
-  async player(
-    locator: Locator,
-    options: Partial<FindObjectOptions> = DefaultFindObjectOptions()
-  ): Promise<Player> {
+  async player(locator: Locator, options: Partial<FindObjectOptions> = DefaultFindObjectOptions()): Promise<Player> {
     const info = await this.find(locator, options);
     return new Player(this, this.gamiumService, info);
   }
@@ -273,17 +193,11 @@ export class GamiumClient {
     await this.actions().sleep(millseconds).perform();
   }
 
-  async wait<Type>(
-    condition: WaitCondition<Type>,
-    option: Partial<WaitOptions> = DefaultWaitOptions()
-  ): Promise<Type> {
+  async wait<Type>(condition: WaitCondition<Type>, option: Partial<WaitOptions> = DefaultWaitOptions()): Promise<Type> {
     return await waitGeneric(this, condition, option);
   }
 
-  async tryWait<Type>(
-    condition: WaitCondition<Type>,
-    option: Partial<WaitOptions> = DefaultWaitOptions()
-  ): Promise<TryResult<Type>> {
+  async tryWait<Type>(condition: WaitCondition<Type>, option: Partial<WaitOptions> = DefaultWaitOptions()): Promise<TryResult<Type>> {
     return tryify(this.wait(condition, option));
   }
 }

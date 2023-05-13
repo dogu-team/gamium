@@ -1,11 +1,11 @@
 ---
 sidebar_position: 5
-title: 메시지 처리 조작하기
+title: Custom Pakcet Handler
 toc_max_heading_level: 4
 ---
 
-특정 메시지에 대한 처리를 개발자가 직접 구현한 로직을 사용하고 싶은경우 Custom Packet 핸들러를 사용할 수 있습니다.  
-아래는 [findObjects](../../gamium-client/api/classes/gamium-client#findobjects-)와 [move](../../gamium-client/api/classes/player#move-) 요청에 대한 처리를 커스터마이즈하는 예시입니다.
+You can use the Custom Packet handler if you want to use logic that the developer has implemented the processing for a specific message.
+Below is an example of customizing the processing for [findObjects](../gamium-client/api/classes/gamium-client#findobjects-) and [move](..../gamium-client/api/classes/player#move-) requests.
 
 ```csharp
 Gamium.PacketTypes.findObjects.SetPreprocessor(PreprocessFindObjects);
@@ -52,9 +52,9 @@ private static async Task<ActionResultT> HandleMovePlayer(MovePlayerParamT param
 
 ### SetPreprocessor
 
-특정 메시지 요청이 `Gamium Engine`에 올 때, 먼저 실행되는 로직을 구현합니다. 예를 들어 특정 메시지에 대한 로그를 남길 수 있습니다.
+Implement logic that runs first when a specific message request comes to the `Gamium Engine`. For example, you can leave a log for a specific message.
 
 ### SetHandler
 
-특정 메시지에 대한 처리를 개발자가 직접 구현한 로직으로 대신합니다.  
-`SetHandler`로 Handler가 등록된 메시지는 더 이상 `Gamium Engine SDK`에서 처리하지 않고, 유저가 등록한 Handler에서 처리됩니다.
+Replaces the processing of specific messages with logic implemented by the user.
+Messages registered by Handler as `SetHandler` will no longer be processed by the `Gamium Engine SDK`, but will be processed by the Handler registered by the user.

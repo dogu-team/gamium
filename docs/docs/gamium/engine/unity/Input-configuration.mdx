@@ -1,0 +1,35 @@
+---
+sidebar_position: 4
+title: Configure Input
+toc_max_heading_level: 4
+---
+
+import unity_input_setting from '@site/static/img/gamium/unity_input_setting.png';
+
+Please refer to the picture below and check if you use [Input Manager](https://docs.unity3d.com/Manual/class-InputManager.html) or [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest).  
+Go to [`Project Settings`](https://docs.unity3d.com/Manual/comp-ManagerGroup.html) -> `Player` => `Other Settings` => `Active Input Handling` and you'll find out.
+
+<img src={unity_input_setting} style={{ width: 500 }} />
+
+## When using Input Manager
+
+Unity [`Input`](https://docs.unity3d.com/ScriptReference/Input.html) You need to modify where you use the class to use `Gamium.Input`.
+Please use [`using`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive) to `alias` at the top of the file as shown below.
+
+:::tip
+`Gamium.Input` provides the same API as UnityInput.
+The difference is that `Gamium.Input` also returns values entered through the function [`sendKey`](../../gamium-client/api/classes/gamium-client#sendkey-) of `Gamium Engine`.
+:::
+
+### Usage
+
+```csharp
+#if USE_GAMIUM
+using Input = Gamium.Input;
+#endif
+
+```
+
+## When using Input Manager
+
+There is no further action to be taken. However, there are not many games tested with Input System yet, so it may be unstable.

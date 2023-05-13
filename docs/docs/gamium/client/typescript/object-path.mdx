@@ -1,0 +1,33 @@
+---
+sidebar_position: 2
+title: Query Object Path
+toc_max_heading_level: 4
+---
+
+The 'Object path' is used by the 'Gamium Client' to query and manipulate the desired object.
+
+:::info
+The Object Path can be found using the methods below.
+
+- [`Console Inspector`](/host-and-device/device/streaming-and-remote-control/game-ui-inspector)
+- `Unity` - [`Gamium Editor`](../gamium-engine/unity/query-objects)
+
+:::
+
+<br />
+
+Below is an example of using 'Object path' in 'Gamium Client'.
+
+```ts
+const cameraObj = await gamium.findObject(By.path('/Main Camera[1]'));
+```
+
+In the example above, we are looking for a camera using the 'Object path' called '/Main Camera [1]'. The reason for using the function [`By.path()`](api/classes/by.mdx) is to inform you that you are searching through 'Object path' among the object search methods.
+
+<br />
+
+Alternatively, you can find it using the tag as shown below.
+
+```ts
+const cameraObj = await gamium.findObject(By.tag('MainCamera'));
+```

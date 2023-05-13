@@ -1,0 +1,28 @@
+---
+sidebar_position: 5
+title: Trigger Remote Procedure Call
+toc_max_heading_level: 4
+---
+
+The `Gamium Client`communicates with the`Gamium Engine` to remotely invoke the functions contained in the game.
+Before performing this action, check the supporting function through the guide first.
+
+> [Unity Rpc Calls](../gamium-engine/unity/rpc)
+
+<br />
+
+You can use [RpcBy](api/classes/rpc-by) by specifying the desired calling method.
+
+You can use it as below.
+
+```ts
+await gamium.executeRpc(
+  RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10),
+);
+const field = await gamium.executeRpc(
+  RpcBy.field('Gamium.Private.CodebaseSample', 'field'),
+);
+const property = await gamium.executeRpc(
+  RpcBy.property('Gamium.Private.CodebaseSample', 'property'),
+);
+```

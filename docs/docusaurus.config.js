@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Gamium documentation',
+  title: 'Gamium',
   tagline: 'Automate game testing sdk',
   url: 'https://docs.dogutech.io',
   baseUrl: '/',
@@ -73,9 +73,15 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'gamium/introduction',
+            docId: 'gamium/get-started/introduction',
             position: 'left',
             label: 'Docs',
+          },
+          {
+            type: 'doc',
+            docId: 'api/introduction',
+            position: 'left',
+            label: 'API',
           },
           {
             href: 'https://github.com/dogu-team/gamium',
@@ -96,10 +102,10 @@ const config = {
             items: [
               {
                 label: 'Get Started',
-                to: '/get-started/introduction',
+                to: '/gamium/get-started/introduction',
               },
               {
-                label: 'Gamium',
+                label: 'API Reference',
                 to: '/gamium/introduction',
               },
             ],

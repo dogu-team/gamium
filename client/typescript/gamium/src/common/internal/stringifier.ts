@@ -3,6 +3,8 @@
  */
 import { stringifyAllProps } from "./functions";
 
+import util from "util";
+
 /**
  * @reference nodejs util.inspect
  */
@@ -98,13 +100,13 @@ interface Stringifier {
 }
 
 class NodeStringifier implements Stringifier {
-  util: ReturnType<typeof require>;
+  util: any;
   // eslint-disable-next-line @typescript-eslint/ban-types
   inspect: Function;
 
   constructor() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
-    this.util = require("util");
+    this.util = util;
     if (typeof this.util !== "object") {
       throw new Error("Cannot load util");
     }

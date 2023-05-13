@@ -8,9 +8,10 @@
   "workspaces": {
     "packages": [
       "protocol",
-      "client/typescript/gamium-client",
+      "client/typescript/gamium",
       "utils/typescript/docs-gen",
       "docs"
     ]
-  }
+  },
+  "packageManager": "yarn@3.3.1"
 }

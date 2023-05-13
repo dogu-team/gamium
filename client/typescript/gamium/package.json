@@ -1,6 +1,6 @@
 {
   "name": "gamium",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "license": "MIT",
   "author": "dogu",
   "homepage": "https://github.com/dogu-team/gamium.git",
@@ -8,7 +8,7 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc -b",
+    "build": "ts-node scripts/build.ts",
     "clean": "shx rm -rf build generated .publish-github .publish-npm",
     "dev": "nodemon",
     "docs:mirror": "ts-node scripts/mirror-doc",
@@ -23,7 +23,10 @@
     "@types/assert": "1.5.6",
     "@types/node": "18.15.11",
     "@types/shelljs": "0.8.11",
+    "ansi-styles": "6.2.1",
     "cross-env": "7.0.3",
+    "glob": "10.2.3",
+    "mjscjs": "1.1.0",
     "nodemon": "2.0.22",
     "shelljs": "0.8.5",
     "shx": "0.3.4",
@@ -37,12 +40,26 @@
   "type": "commonjs",
   "exports": {
     ".": {
-      "default": "./build/src/index.js",
-      "types": "./build/src/index.d.ts"
+      "require": {
+        "types": "./build/cjs/index.d.ts",
+        "default": "./build/cjs/index.cjs"
+      },
+      "import": {
+        "types": "./build/esm/index.d.ts",
+        "default": "./build/esm/index.mjs"
+      }
     },
     "./common": {
-      "default": "./build/src/common/index.js",
-      "types": "./build/src/common/index.d.ts"
+      "require": {
+        "types": "./build/cjs/common/index.d.ts",
+        "default": "./build/cjs/common/index.cjs"
+      },
+      "import": {
+        "types": "./build/esm/common/index.d.ts",
+        "default": "./build/esm/common/index.mjs"
+      }
     }
-  }
+  },
+  "types": "./build/cjs/index.d.ts",
+  "main": "./build/cjs/index.cjs"
 }

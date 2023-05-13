@@ -3,14 +3,17 @@ name: ci-docs
 on:
   push:
     paths:
-      - docs/*
+      - docs/**
+  pull_request:
+    paths:
+      - 'docs/**'
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     env:
-          working-directory: ./docs
+      working-directory: ./docs
 
     steps:
       - uses: actions/checkout@v3

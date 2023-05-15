@@ -79,7 +79,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'api/introduction',
+            docId: 'api/index',
             position: 'left',
             label: 'API',
           },

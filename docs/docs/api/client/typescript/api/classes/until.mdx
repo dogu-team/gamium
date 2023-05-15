@@ -6,17 +6,21 @@ toc_max_heading_level: 4
 
 # Until <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ## Methods <s generated />
 
 ### elementInteractable <s generated />
 
-<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
-  generated
-/>
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
-- 인자로 받은 UIElement가 상호작용 가능할 때까지 기다립니다.
+- Wait until the UIElement received as a factor is interactive.
 
 ##### Usage
 
@@ -26,85 +30,126 @@ await gamium.wait(Until.elementInteractable(okButton));
 await okButton.click();
 ```
 
-<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
-  generated
-/>
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
 ##### Arguments <s generated />
 
-- param [`UIElement`]( ui-element) <s generated />
+- param [`UIElement`](ui-element) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`]( ../types/query-object-interactable-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`QueryObjectInteractableOptions`](../types/query-object-interactable-options)> <s generated />
 
 ##### Returns <s generated />
 
 - `UIElementCondition` <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### objectLocated <s generated />
 
-<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
-  generated
-/>
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
-- 인자로 받은 Locator에 해당하는 Object가 찾아질 때까지 기다립니다.
+- Wait until the object is found to the Locator, wait until the object is found.
 
 ##### Usage
 
 ```ts
-const okButton = await gamium.wait(Until.objectLocated(By.path('/Canvas[1]/Register[1]/OkBtn[1]')));
+const okButton = await gamium.wait(
+  Until.objectLocated(By.path('/Canvas[1]/Register[1]/OkBtn[1]')),
+);
 ```
 
-<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
-  generated
-/>
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
 ##### Arguments <s generated />
 
-- locator [`Locator`]( ../types/locator) <s generated />
+- locator [`Locator`](../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options)> <s generated />
 
 ##### Returns <s generated />
 
 - `ObjectInfoCondition` <s generated />
 
-<hr class="solid" />  <s generated />
+<hr class="solid" /> <s generated />
 
 ### objectsLocated <s generated />
 
-<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
-  generated
-/>
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
-- 인자로 받은 Locator에 해당하는 Objects가 찾아질 때까지 기다립니다.
+- Wait until the Objects corresponding to the Locator received as a factor are found.
 
 ##### Usage
 
 ```ts
-const products = await gamium.wait(Until.objectsLocated(By.path('/Canvas[1]/ShopView[1]//ProductSlot(Clone)')));
+const products = await gamium.wait(
+  Until.objectsLocated(By.path('/Canvas[1]/ShopView[1]//ProductSlot(Clone)')),
+);
 ```
 
-<s childtag /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="public" /> <code style={{ position: 'relative', top: '-20px', fontSize: '70%' }} children="static" /> <s
-  generated
-/>
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
-<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+<s childtag /> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="public"
+/> <code
+  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
+  children="static"
+/> <s generated />
 
 ##### Arguments <s generated />
 
-- locator [`Locator`]( ../types/locator) <s generated />
+- locator [`Locator`](../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
+- options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options)> <s generated />
 
 ##### Returns <s generated />
 
 - `ObjectInfosCondition` <s generated />
 
-<hr class="solid" />  <s generated />
-
+<hr class="solid" /> <s generated />

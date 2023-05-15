@@ -5,7 +5,8 @@
     "clean": "yarn workspaces foreach --jobs unlimited -ptvi run clean",
     "newbie": "yarn newbie:husky",
     "newbie:husky": "husky install",
-    "rebuild": "yarn clean && yarn build"
+    "rebuild": "yarn clean && yarn build",
+    "test": "yarn workspaces foreach --jobs unlimited -ptvi run test"
   },
   "workspaces": {
     "packages": [

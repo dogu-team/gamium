@@ -50,7 +50,7 @@ The interface we provide is inspired by Playwright, Selenium.
 
 ## Getting Started
 
-- Please refer to the [Introduction](Please refer to the Introduction document)
+- Please refer to the [Get Started](https://gamium.dogutech.io/gamium/get-started/introduction)
 
 ## Stay in touch
 

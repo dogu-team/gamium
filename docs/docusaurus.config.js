@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Gamium',
   tagline: 'Automate game testing sdk',
-  url: 'https://dogu-team.github.io',
+  url: 'https://gamium-docs.dogutech.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

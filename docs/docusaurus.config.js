@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Gamium',
   tagline: 'Automate game testing sdk',
-  url: 'https://docs.dogutech.io',
-  baseUrl: '/',
+  url: 'https://dogu-team.github.io',
+  baseUrl: '/gamium',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -18,7 +18,7 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'dogu-team', // Usually your GitHub org/user name.
   projectName: 'gamium', // Usually your repo name.
-  trailingSlash: false,
+  trailingSlash: true,
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want

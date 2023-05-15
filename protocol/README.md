@@ -6,12 +6,11 @@ This package defines the protocol for communication between the gamium engine an
 
 - [docker](https://www.docker.com/)
 - [nodejs](https://nodejs.org/ko) 16 or higher
-- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [yarn](https://yarnpkg.com/)
 
 ## Get started
 
 ```code
-npm install -g yarn
 yarn install
 yarn run export
 ```

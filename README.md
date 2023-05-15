@@ -2,7 +2,7 @@
 <img src=".github/resources/dogu-gamium-logo.png" width="100px" height="100px" title="Gamium_Logo"/>
 </p>
 <p align="center">
-Gamium
+  <b>Gamium</b>
 </p>
 <p align="center">
 Gamium is an SDK that allows you to automate gameplay

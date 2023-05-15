@@ -15,7 +15,7 @@ Include the `Gamium Engine` in your game build, and use the API provided by the 
 
 The `Gamium Engine` is responsible for executing the status of the game according to the request, such as virtual input. Start preparing to run the test, including the `Gamium Engine SDK` in the game build.
 
-The `Gamium Engine SDK` has an SDK for each engine and must use the SDK for the game you want to test.
+The following `Gamium Engine SDK` are currently supported.
 
 - [Unity](../engine/unity/project-configuration)
 
@@ -24,7 +24,7 @@ The `Gamium Engine SDK` has an SDK for each engine and must use the SDK for the 
 `Gamium Client` is a client that communicates with `Gamium Engine`.
 You can request virtual input such as a game status query, keyboard, mouse, etc. You can mix virtual inputs and conditional statement iterations to script the inputs in the flow you want. Create and run scripts to automate the tests you want.
 
-The `Gamium Client SDK` has an SDK for each language, and you must use the SDK that matches the language you want to create.
+The following `Gamium Client SDK` are currently supported.
 
 - [Typescript](../client/write-testscript)
 
@@ -40,3 +40,8 @@ graph RL;
 ```
 
 ### Getting Started
+To start gamium, you need a game project with gamium engine, and a code that uses gamium client.
+It can be difficult to proceed with this process at once.
+Therefore, if you are new to gamium, please refer to the [Quick Start](quick-start) guide.
+
+If you've used an automation library like [Selenium](https://www.selenium.dev/), [Appium](https://appium.io/), or [Playwright](https://playwright.dev/) beforehand, it's also a good idea to look around the [Client document](/gamium/client/write-testscript) to see what it does.

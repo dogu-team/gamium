@@ -1,4 +1,4 @@
-name: gamium-docs-cd
+name: cd-docs
 
 on:
   workflow_dispatch:
@@ -13,6 +13,9 @@ jobs:
         with:
           node-version: 16
           cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
       - name: Build website
         run: yarn workspace gamium-docs build

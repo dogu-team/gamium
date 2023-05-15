@@ -59,12 +59,12 @@ export default function Home(): JSX.Element {
               <Link to="/gamium/get-started/introduction">소개</Link>
             </li>
             <li className={styles.docsSectionListItem}>
-              <Link to="/gamium/gamium-engine/unity/project-configuration">
+              <Link to="/gamium/engine/unity/project-configuration">
                 Gamium Engine
               </Link>
             </li>
             <li className={styles.docsSectionListItem}>
-              <Link to="/gamium/gamium-client/write-testscript">
+              <Link to="/gamium/client/typescript/write-testscript">
                 Gamium Client
               </Link>
             </li>

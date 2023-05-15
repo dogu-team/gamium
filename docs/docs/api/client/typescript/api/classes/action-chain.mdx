@@ -6,7 +6,7 @@ toc_max_heading_level: 4
 
 # ActionChain <s generated />
 
-This class is used when you want to run multiple actions in a row in [`Game Controling`](../../game-control).
+This class is used when you want to run multiple actions in a row in [`Game Controling`](gamium/client/typescript/game-control).
 
 <hr class="solid" /> <s generated />
 
@@ -56,7 +56,7 @@ await gamium.actions().click({ x: 0, y: 0 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`](vector2) <s generated />
+- position [`Vector2`](../types/vector2) <s generated />
 
 - options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsClickOptions`](../types/actions-click-options)> <s generated />
 
@@ -83,9 +83,9 @@ await gamium.actions().drag({ x: 0, y: 0 }, { x: 0, y: 10 }).perform();
 
 ##### Arguments <s generated />
 
-- fromPosition [`Vector2`](vector2) <s generated />
+- fromPosition [`Vector2`](../types/vector2) <s generated />
 
-- toPosition [`Vector2`](vector2) <s generated />
+- toPosition [`Vector2`](../types/vector2) <s generated />
 
 - options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsDragOptions`](../types/actions-drag-options)> <s generated />
 
@@ -112,7 +112,7 @@ await gamium.actions().move({ x: 0, y: 0 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`](vector2) <s generated />
+- position [`Vector2`](../types/vector2) <s generated />
 
 - options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsMoveOptions`](../types/actions-move-options)> <s generated />
 
@@ -151,7 +151,7 @@ await gamium
 
 - cameraLocator [`Locator`](../types/locator) <s generated />
 
-- dest [`Vector3`](vector3) <s generated />
+- dest [`Vector3`](../types/vector3) <s generated />
 
 - options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`](../types/move-player-options)> <s generated />
 
@@ -172,7 +172,7 @@ Request actions registered in the AccrtionChain to 'Gamium Engine'.
 
 ##### Returns <s generated />
 
-- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ActionResult`](action-result)[]> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ActionResult`](../types/action-result)[]> <s generated />
 
 <hr class="solid" /> <s generated />
 
@@ -193,9 +193,9 @@ await gamium.actions().scroll({ x: 0, y: 0 }, { x: 0, y: 10 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`](vector2) <s generated />
+- position [`Vector2`](../types/vector2) <s generated />
 
-- delta [`Vector2`](vector2) <s generated />
+- delta [`Vector2`](../types/vector2) <s generated />
 
 - options <s generated />
 

@@ -31,7 +31,7 @@ const gamium = gamiumKit.gamium;
   children="public"
 /> <s generated />
 
-Create an [`ActionChain`](action-chain). You can check how to use it in ["Control The Game"](..//game-control).
+Create an [`ActionChain`](action-chain). You can check how to use it in ["Control The Game"](gamium/client/typescript/game-control).
 
 ##### Usage
 
@@ -52,7 +52,7 @@ await gamium.actions().click({ x: 0, y: 0 }).move({ x: 0, y: 0 }).perform();
   children="public"
 /> <s generated />
 
-You can call a specific function within the game. You can check the usage in [Remote Procedure Call](../../rpc).
+You can call a specific function within the game. You can check the usage in [Remote Procedure Call](gamium/client/typescript/rpc).
 
 ##### Usage
 
@@ -98,7 +98,7 @@ const cameraObj = await gamium.find(By.path('Object path'));
 
 ##### Returns <s generated />
 
-- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ObjectInfo`](object-info)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ObjectInfo`](../types/object-info)> <s generated />
 
 <hr class="solid" /> <s generated />
 
@@ -170,7 +170,7 @@ Collect performance indicators within the game. Returns the performance indicato
 
 ##### Returns <s generated />
 
-- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`QueryProfileResult`](query-profile-result)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`QueryProfileResult`](../types/query-profile-result)> <s generated />
 
 <hr class="solid" /> <s generated />
 
@@ -191,7 +191,7 @@ const screen = await gamium.screen();
 
 ##### Returns <s generated />
 
-- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`QueryScreenResult`](query-screen-result)> <s generated />
+- [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`QueryScreenResult`](../types/query-screen-result)> <s generated />
 
 <hr class="solid" /> <s generated />
 
@@ -202,7 +202,7 @@ const screen = await gamium.screen();
   children="public"
 /> <s generated />
 
-Enter the key that corresponds to [`KeyBy`](key-by). You can check how to use it in [`Control The Game`](..//game-control).
+Enter the key that corresponds to [`KeyBy`](key-by). You can check how to use it in [`Control The Game`](gmaium/client/typescript/game-control).
 
 ##### Usage
 
@@ -229,7 +229,7 @@ await gamium.sendKey(KeyBy.unityKeycode('E'));
   children="public"
 /> <s generated />
 
-Enter the key corresponding to the [`KeyBy`](key-by) array at the same time. You can check how to use it in [`Control the game`](..//game-control).
+Enter the key corresponding to the [`KeyBy`](key-by) array at the same time. You can check how to use it in [`Control the game`](gamium/client/typescript/game-control).
 
 ##### Usage
 

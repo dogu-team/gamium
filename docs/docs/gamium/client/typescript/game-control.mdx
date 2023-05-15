@@ -7,7 +7,7 @@ toc_max_heading_level: 4
 ## Key input
 
 User keystrokes can be simulated through `Gamium Client`.
-[KeyBy](api/classes/key-by) allows you to specify the key input method.
+[KeyBy](api/client/typescript/classes/key-by) allows you to specify the key input method.
 
 You can use it as below.
 
@@ -18,9 +18,9 @@ await gamium.sendKey(KeyBy.unityKeyboard('Space'));
 
 ## ActionChain
 
-When manipulating the game through the `Gamium Client`, if you want to perform multiple actions continuously, you can use the `Action Chain` (api/classes/action-chain) to perform the action at the most accurate time.
+When manipulating the game through the `Gamium Client`, if you want to perform multiple actions continuously, you can use the `Action Chain` (api/client/typescript/classes/action-chain) to perform the action at the most accurate time.
 
-You can add multiple actions to [`ActionChain`](api/classes/action-chain). When you call the performance() of [`ActionChain`](api/classes/action-chain), the added actions are performed sequentially.
+You can add multiple actions to [`ActionChain`](api/client/typescript/classes/action-chain). When you call the performance() of [`ActionChain`](api/client/typescript/classes/action-chain), the added actions are performed sequentially.
 
 You can combine several actions as shown below.
 

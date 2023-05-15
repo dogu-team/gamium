@@ -58,11 +58,11 @@ await ui.drag(By.path('Object path'), { x: 0, y: 0 });
 
 - locator [`Locator`](../types/locator) <s generated />
 
-- to [`Locator`](../types/locator) | [`Vector2`](vector2) <s generated />
+- to [`Locator`](../types/locator) | [`Vector2`](../types/vector2) <s generated />
 
   - Location to go to drag.
     - If you are using [`Locator`] (../types/locator), go to that location.
-    - If you use [`Vector2`] (vector2), move from the current location to that location. The screen coordinates.
+    - If you use [`Vector2`] (../types/vector2), move from the current location to that location. The screen coordinates.
 
 - options [`Partial`](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options) & [`ActionsDragOptions`](../types/actions-drag-options)> <s generated />
 
@@ -172,7 +172,7 @@ await ui.scroll(By.path('Object path'), { x: 0, y: -0.1 });
 
 - locator [`Locator`](../types/locator) <s generated />
 
-- delta [`Vector2`](vector2) <s generated />
+- delta [`Vector2`](../types/vector2) <s generated />
 
   - Delta value to scroll based on Obejct's screen coordinates searched by locator. The screen coordinates.
 

@@ -79,7 +79,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'api/index',
+            docId: 'api/api-reference',
             position: 'left',
             label: 'API',
           },
@@ -106,7 +106,7 @@ const config = {
               },
               {
                 label: 'API Reference',
-                to: '/api/index',
+                to: '/api/api-reference',
               },
             ],
           },

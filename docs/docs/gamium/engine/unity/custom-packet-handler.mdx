@@ -5,7 +5,7 @@ toc_max_heading_level: 4
 ---
 
 You can use the Custom Packet handler if you want to use logic that the developer has implemented the processing for a specific message.
-Below is an example of customizing the processing for [findObjects](../gamium-client/api/classes/gamium-client#findobjects-) and [move](..../gamium-client/api/classes/player#move-) requests.
+Below is an example of customizing the processing for [findObjects](../gamium-client/api/client/typescript/classes/gamium-client#findobjects-) and [move](..../gamium-client/api/client/typescript/classes/player#move-) requests.
 
 ```csharp
 Gamium.PacketTypes.findObjects.SetPreprocessor(PreprocessFindObjects);

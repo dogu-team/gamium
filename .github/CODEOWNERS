@@ -3,11 +3,4 @@
 # https://help.github.com/articles/about-codeowners
 # https://git-scm.com/docs/gitignore
 
-# Upgrades WG
-🚧 work in progress 🚧
-
-# Releases WG
-🚧 work in progress 🚧
-
-# Security WG
-🚧 work in progress 🚧
+*   @dogu-team/gamium-owner

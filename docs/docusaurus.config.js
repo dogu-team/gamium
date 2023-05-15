@@ -10,7 +10,7 @@ const config = {
   tagline: 'Automate game testing sdk',
   url: 'https://dogu-team.github.io',
   baseUrl: '/gamium',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 

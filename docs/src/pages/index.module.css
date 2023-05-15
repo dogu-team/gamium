@@ -30,6 +30,18 @@
   line-height: 1.2;
 }
 
+.primaryButton {
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 0.4rem;
+  background-color: var(--ifm-color-primary);
+  color: var(--ifm-color-white);
+  border: 0;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
 .buttons {
   display: flex;
   align-items: center;

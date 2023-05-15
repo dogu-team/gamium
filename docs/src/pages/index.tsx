@@ -5,19 +5,27 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 
 import styles from './index.module.css';
+import MainLogo from '@site/static/img/logo.svg';
 import RocketLogo from '@site/static/img/main/rocket.svg';
 import CodeLogo from '@site/static/img/main/code.svg';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
+
   return (
     <center>
       <section className={styles.headerBanner}>
         <div className={styles.headerBannerInner}>
           {/* <h1 className={styles.headerBannerTitle}>{siteConfig.title}</h1> */}
+          <MainLogo width={180} height={180} />
           <p className={styles.headerBannerDescription}>
             Automate game testing in android, ios, windows devices
           </p>
+          <div style={{marginTop: '2rem'}}>
+            <a href='/gamium/get-started/introduction'>
+              <button className={styles.primaryButton}>Get Started</button>
+            </a>
+          </div>
         </div>
       </section>
     </center>

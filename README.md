@@ -82,7 +82,7 @@ yarn build
 ## Stay in touch
 
 - Author - [Dogu Technologies](https://dogutech.io)
-- Documentation - [https://docs.dogutech.io/gamium/introduction](https://docs.dogutech.io/gamium/introduction)
+- Documentation - [https://docs.dogutech.io/gamium/get-started/introduction](https://docs.dogutech.io/gamium/get-started/introduction)
 
 ## License
 

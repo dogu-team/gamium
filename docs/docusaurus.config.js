@@ -106,7 +106,7 @@ const config = {
               },
               {
                 label: 'API Reference',
-                to: '/gamium/introduction',
+                to: '/api/index',
               },
             ],
           },

@@ -43,7 +43,7 @@ export default function Home(): JSX.Element {
           </h2>
           <ul className={styles.docsSectionListContainer}>
             <li className={styles.docsSectionListItem}>
-              <Link to="/get-started/introduction">About Gamium</Link>
+              <Link to="/gamium/get-started/introduction">About Gamium</Link>
             </li>
           </ul>
         </div>
@@ -56,7 +56,7 @@ export default function Home(): JSX.Element {
           </h2>
           <ul className={styles.docsSectionListContainer}>
             <li className={styles.docsSectionListItem}>
-              <Link to="/gamium/introduction">소개</Link>
+              <Link to="/gamium/get-started/introduction">소개</Link>
             </li>
             <li className={styles.docsSectionListItem}>
               <Link to="/gamium/gamium-engine/unity/project-configuration">

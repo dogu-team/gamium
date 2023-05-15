@@ -5,14 +5,14 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"#ansi-styles@npm:ansi-styles@6, ansi-styles@npm:6.2.1, ansi-styles@npm:^6.0.0, ansi-styles@npm:^6.1.0":
+"#ansi-styles@npm:ansi-styles@6.2.1, ansi-styles@npm:6.2.1, ansi-styles@npm:^6.0.0, ansi-styles@npm:^6.1.0":
   version: 6.2.1
   resolution: "ansi-styles@npm:6.2.1"
   checksum: ef940f2f0ced1a6347398da88a91da7930c33ecac3c77b72c5905f8b8fe402c52e6fde304ff5347f616e27a742da3f1dc76de98f6866c69251ad0b07a66776d9
   languageName: node
   linkType: hard
 
-"#supports-color@npm:supports-color@9":
+"#supports-color@npm:supports-color@9.3.1":
   version: 9.3.1
   resolution: "supports-color@npm:9.3.1"
   checksum: 00c4d1082a7ba0ee21cba1d4e4a466642635412e40476777b530aa5110d035e99a420cd048e1fb6811f2254c0946095fbb87a1eccf1af1d1ca45ab0a4535db93

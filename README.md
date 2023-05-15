@@ -50,7 +50,7 @@ The interface we provide is inspired by Playwright, Selenium.
 
 ## Getting Started
 
-- 🚧 set after get docs url
+- Please refer to the [Introduction](Please refer to the Introduction document)
 
 ## Stay in touch
 
@@ -58,7 +58,8 @@ The interface we provide is inspired by Playwright, Selenium.
 - [Documentation](https://gamium.dogutech.io/gamium/get-started/introduction)
 
 ## Game Test Automation Infra
-If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can use our TestOps service  
+
+If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can use our TestOps service
 
 ☁️ - [Dogu Cloud TestOps](https://dogutech.io)  
 📖 - [Dogu Docs](https://docs.dogutech.io)

@@ -8,13 +8,13 @@ toc_max_heading_level: 4
 
 This class is used when you want to run multiple actions in a row in [`Game Controling`](gamium/client/game-control).
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ## Methods <s generated />
 
 ### appQuit <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Quit the app.
 
@@ -26,19 +26,19 @@ await gamium.actions().appQuit().perform();
 
 ##### Arguments <s generated />
 
-- exitCode <s generated />
+- exitCode  <s generated />
 
-- delayMs <s generated />
+- delayMs  <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### click <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Add the action of clicking on the screen coordinates to the Action Chain.
 
@@ -50,19 +50,19 @@ await gamium.actions().click({ x: 0, y: 0 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`](../types/vector2) <s generated />
+- position [`Vector2`]( ../types/vector2) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsClickOptions`](../types/actions-click-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsClickOptions`]( ../types/actions-click-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### drag <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Adds an action to ActionChain that drags from one coordinate to another coordinate.
 
@@ -74,21 +74,21 @@ await gamium.actions().drag({ x: 0, y: 0 }, { x: 0, y: 10 }).perform();
 
 ##### Arguments <s generated />
 
-- fromPosition [`Vector2`](../types/vector2) <s generated />
+- fromPosition [`Vector2`]( ../types/vector2) <s generated />
 
-- toPosition [`Vector2`](../types/vector2) <s generated />
+- toPosition [`Vector2`]( ../types/vector2) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsDragOptions`](../types/actions-drag-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsDragOptions`]( ../types/actions-drag-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### move <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Add the action of moving the mouse to a specific coordinate to the Action Chain.
 
@@ -100,19 +100,19 @@ await gamium.actions().move({ x: 0, y: 0 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`](../types/vector2) <s generated />
+- position [`Vector2`]( ../types/vector2) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsMoveOptions`](../types/actions-move-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`ActionsMoveOptions`]( ../types/actions-move-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### movePlayer <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Adds an action to the Action Chain that moves the Player to a specific position.
 
@@ -132,35 +132,35 @@ await gamium
 
 ##### Arguments <s generated />
 
-- playerLocator [`Locator`](../types/locator) <s generated />
+- playerLocator [`Locator`]( ../types/locator) <s generated />
 
-- cameraLocator [`Locator`](../types/locator) <s generated />
+- cameraLocator [`Locator`]( ../types/locator) <s generated />
 
-- dest [`Vector3`](../types/vector3) <s generated />
+- dest [`Vector3`]( ../types/vector3) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`](../types/move-player-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`]( ../types/move-player-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### perform <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Request actions registered in the AccrtionChain to 'Gamium Engine'.
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ActionResult`](../types/action-result)[]> <s generated />
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`ActionResult`]( ../types/action-result)[]> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### scroll <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Adds an action to ActionChain that scrolls by delta from a specific coordinate.
 
@@ -172,21 +172,21 @@ await gamium.actions().scroll({ x: 0, y: 0 }, { x: 0, y: 10 }).perform();
 
 ##### Arguments <s generated />
 
-- position [`Vector2`](../types/vector2) <s generated />
+- position [`Vector2`]( ../types/vector2) <s generated />
 
-- delta [`Vector2`](../types/vector2) <s generated />
+- delta [`Vector2`]( ../types/vector2) <s generated />
 
-- options <s generated />
+- options  <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### sendKeys <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Adds an action to ActionChain that causes specific keystrokes to occur.
 
@@ -201,19 +201,19 @@ await game
 
 ##### Arguments <s generated />
 
-- byList [`KeyBy`](key-by)[] <s generated />
+- byList [`KeyBy`]( key-by)[] <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SendKeyOptions`](../types/send-key-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SendKeyOptions`]( ../types/send-key-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### setText <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Adds an action to ActionChain to enter text for a specific object.
 
@@ -228,21 +228,21 @@ await gamium
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
 - text [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SetTextOptions`](../types/set-text-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`SetTextOptions`]( ../types/set-text-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### sleep <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Add an empty time in the middle of the ActionChain.
 
@@ -258,6 +258,16 @@ await gamium.actions().sleep(300).setText(text1, 'Hello World').perform();
 
 ##### Returns <s generated />
 
-- [`ActionChain`](action-chain) <s generated />
+- [`ActionChain`]( action-chain) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
+
+### tryPerform <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Returns <s generated />
+
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`ActionResult`]( ../types/action-result)[]>> <s generated />
+
+<hr class="solid" />  <s generated />

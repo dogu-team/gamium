@@ -27,16 +27,16 @@ const gamiumProtocolPath = path.resolve(
   "src/common/protocols/generated/gamium/protocol"
 );
 const classesMdxDirectory = path.resolve(
-  docsPath,
-  "docs/gamium/gamium-client/api/classes"
+  docsApiPath,
+  "classes"
 );
 const typesMdxDirectory = path.resolve(
-  docsPath,
-  "docs/gamium/gamium-client/api/types"
+  docsApiPath,
+  "types"
 );
 const enumsMdxDirectory = path.resolve(
-  docsPath,
-  "docs/gamium/gamium-client/api/enums"
+  docsApiPath,
+  "enums"
 );
 
 const optionFiles = fs

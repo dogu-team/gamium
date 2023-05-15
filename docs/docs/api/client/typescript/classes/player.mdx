@@ -8,13 +8,13 @@ toc_max_heading_level: 4
 
 Indicates the player that the user plays.
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ## Methods <s generated />
 
 ### isNear <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Verify that the GameObject and other GameObject are within a certain distance.
 
@@ -27,7 +27,7 @@ await player.isNear(By.path('Another object path'), { epsilon: 10 });
 
 ##### Arguments <s generated />
 
-- otherLocator [`Locator`](../types/locator) <s generated />
+- otherLocator [`Locator`]( ../types/locator) <s generated />
 
 - option [`object`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) <s generated />
 
@@ -37,11 +37,11 @@ await player.isNear(By.path('Another object path'), { epsilon: 10 });
 
 - [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`boolean`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### move <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Move the Player to a specific position.
 
@@ -56,21 +56,21 @@ await player.move(By.path('Camera object path'), By.path('Dest Object path'), {
 
 ##### Arguments <s generated />
 
-- cameraLocator [`Locator`](../types/locator) <s generated />
+- cameraLocator [`Locator`]( ../types/locator) <s generated />
 
-- dest [`Vector3`](../types/vector3) | [`Locator`](../types/locator) <s generated />
+- dest [`Vector3`]( ../types/vector3) | [`Locator`]( ../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`](../types/move-player-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`MovePlayerOptions`]( ../types/move-player-options)> <s generated />
 
 ##### Returns <s generated />
 
 - [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### refresh <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Updates the information that the object has.
 
@@ -81,14 +81,16 @@ const player = await gamium.player(By.path('Object path'));
 await player.refresh();
 ```
 
+
 ##### Returns <s generated />
 
 - [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ## Properties <s generated />
 
-#### info [`ObjectInfo`](../types/object-info) <s generated />
+#### info [`ObjectInfo`]( ../types/object-info) <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
+

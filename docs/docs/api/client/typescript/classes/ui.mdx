@@ -6,7 +6,7 @@ toc_max_heading_level: 4
 
 # UI <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 [UI Controling](gamium/client/ui) has a description. Class for easy UI manipulation.
 
@@ -14,7 +14,7 @@ toc_max_heading_level: 4
 
 ### click <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Wait for the specified object to be found through [`Locator`](../types/locator). If the object is found, wait until interaction is possible. Click if interaction is possible.
 
@@ -26,19 +26,19 @@ await ui.click(By.path('Object path'));
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options) & [`ActionsClickOptions`](../types/actions-click-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options) & [`ActionsClickOptions`]( ../types/actions-click-options)> <s generated />
 
 ##### Returns <s generated />
 
 - [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### drag <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Wait for the specified object to be found through [`Locator`](../types/locator). If the object is found, wait until interaction is possible. If interaction is possible, start the drag.
 
@@ -50,25 +50,25 @@ await ui.drag(By.path('Object path'), { x: 0, y: 0 });
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
-- to [`Locator`](../types/locator) | [`Vector2`](../types/vector2) <s generated />
+- to [`Locator`]( ../types/locator) | [`Vector2`]( ../types/vector2) <s generated />
 
   - Location to go to drag.
     - If you are using [`Locator`] (../types/locator), go to that location.
     - If you use [`Vector2`] (../types/vector2), move from the current location to that location. The screen coordinates.
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options) & [`ActionsDragOptions`](../types/actions-drag-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options) & [`ActionsDragOptions`]( ../types/actions-drag-options)> <s generated />
 
 ##### Returns <s generated />
 
 - [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### find <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Wait for the specified object to be found through [`Locator`](../types/locator). If an object is found, it is considered to be [`UIElement`] (ui-element) and returns the object
 
@@ -80,19 +80,19 @@ const elem = await ui.find(By.path('Object path'));
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`UIElement`](ui-element)> <s generated />
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`UIElement`]( ui-element)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### finds <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Finds the objects specified through [`Locator`](../types/locator). If the objects are found, consider them as [`UIelement`](ui-element) and return the objects
 
@@ -104,19 +104,19 @@ const elems = await ui.finds(By.path('Object path'));
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`UIElement`](ui-element)[]> <s generated />
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`UIElement`]( ui-element)[]> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### getText <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Wait for the specified object to be found through [`Locator`](../types/locator). If the object is found, wait until interaction is possible. Returns Text if interaction is possible and Text exists.
 
@@ -128,19 +128,19 @@ const progress = await ui.getText(By.path('Object path'));
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
 
 ##### Returns <s generated />
 
 - [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### scroll <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Wait for the specified object to be found through ['Locator'](../types/locator). If the object is found, wait until interaction is possible. Start scrolling if interaction is possible.
 
@@ -152,23 +152,23 @@ await ui.scroll(By.path('Object path'), { x: 0, y: -0.1 });
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
-- delta [`Vector2`](../types/vector2) <s generated />
+- delta [`Vector2`]( ../types/vector2) <s generated />
 
   - Delta value to scroll based on Obejct's screen coordinates searched by locator. The screen coordinates.
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options) & [`ActionsScrollOptions`](../types/actions-scroll-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options) & [`ActionsScrollOptions`]( ../types/actions-scroll-options)> <s generated />
 
 ##### Returns <s generated />
 
 - [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### setText <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 Wait for the specified object to be found through ['Locator'](../types/locator). If the object is found, wait until interaction is possible. If you can interact and type Text, type Text.
 
@@ -180,46 +180,47 @@ await ui.setText(By.path('Object path'), 'Hello, World!');
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
 - text [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
 
 ##### Returns <s generated />
 
 - [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<[`void`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### tryFind <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`UIElement`](ui-element)>> <s generated />
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`UIElement`]( ui-element)>> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
 
 ### tryFinds <s generated />
 
-<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
 ##### Arguments <s generated />
 
-- locator [`Locator`](../types/locator) <s generated />
+- locator [`Locator`]( ../types/locator) <s generated />
 
-- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`](../types/find-object-options)> <s generated />
+- options [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)<[`FindObjectOptions`]( ../types/find-object-options)> <s generated />
 
 ##### Returns <s generated />
 
-- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`UIElement`](ui-element)[]>> <s generated />
+- [`Promise`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)<`TryResult`<[`UIElement`]( ui-element)[]>> <s generated />
 
-<hr class="solid" /> <s generated />
+<hr class="solid" />  <s generated />
+

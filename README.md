@@ -55,7 +55,13 @@ The interface we provide is inspired by Playwright, Selenium.
 ## Stay in touch
 
 - Author - [Dogu Technologies](https://dogutech.io)
-- Documentation - [https://docs.dogutech.io/gamium/get-started/introduction](https://docs.dogutech.io/gamium/get-started/introduction)
+- [Documentation](https://gamium.dogutech.io/gamium/get-started/introduction)
+
+## Game Test Automation Infra
+If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can use our TestOps service  
+
+☁️ - [Dogu Cloud TestOps](https://dogutech.io)  
+📖 - [Dogu Docs](https://docs.dogutech.io)
 
 ## License
 

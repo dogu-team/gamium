@@ -1,9 +1,0 @@
-namespace Gamium.Protocol.Packets;
-
-table QueryScreenParam {
-}
-
-table QueryScreenResult {
-  width: int;
-  height: int;
-}

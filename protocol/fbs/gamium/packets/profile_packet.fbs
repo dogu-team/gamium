@@ -1,8 +1,0 @@
-namespace Gamium.Protocol.Packets;
-
-table QueryProfileParam {
-}
-
-table QueryProfileResult {
-  fps: uint;
-}

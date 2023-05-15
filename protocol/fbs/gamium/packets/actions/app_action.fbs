@@ -1,6 +1,0 @@
-namespace Gamium.Protocol.Packets.Actions;
-
-table AppQuitParam {
-  exit_code: int;
-  delay_ms: uint;
-}

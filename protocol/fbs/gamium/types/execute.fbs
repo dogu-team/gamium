@@ -1,7 +1,0 @@
-namespace Gamium.Protocol.Types;
-
-enum ExecuteRpcBy: short {
-  Method = 0,
-  Field,
-  Property,
-}

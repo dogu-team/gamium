@@ -1,5 +1,0 @@
-namespace Gamium.Protocol.Packets.Actions;
-
-table SleepParam {
-  ms: uint;
-}

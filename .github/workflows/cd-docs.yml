@@ -17,6 +17,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Add CNAME
+        run: echo "gamium-docs.dogutech.io" > ./docs/static/CNAME
+
       - name: Build website
         run: yarn workspace gamium-docs build
 

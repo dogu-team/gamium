@@ -38,7 +38,7 @@ const config = {
           routeBasePath: '/',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/dogu-team/gamium',
+          editUrl: 'https://github.com/dogu-team/gamium/tree/main/docs',
         },
         // blog: {
         //   showReadingTime: true,

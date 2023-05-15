@@ -15,7 +15,7 @@ namespace Gamium.Private.Object
             {
                 Gamium.Private.Util.Logger.Warn("HierarchyPath.ctor path is null");
             }
-            if (!path.StartsWith('/'))
+            if (!path.StartsWith("/"))
             {
                 return;
             }

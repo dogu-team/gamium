@@ -53,6 +53,7 @@ namespace Gamium.Private.Object
 
         internal static IPanel GetVisualElementRootPanel()
         {
+#if UNITY_2021_OR_NEWER
             if (UIElementsUtilityType != null
                 && UIElementsUtility_GetPanelsIteratorMethodInfo != null)
             {
@@ -66,6 +67,8 @@ namespace Gamium.Private.Object
                     }
                 }
             }
+#endif
+
 
             return null;
         }
@@ -73,6 +76,8 @@ namespace Gamium.Private.Object
 
         internal static VisualElementGamiumObject[] GetVisualElementInGameObject(GameObject go)
         {
+#if UNITY_2021_OR_NEWER
+
             var document = go.GetComponent<UIDocument>();
             if (document == null)
             {
@@ -81,6 +86,9 @@ namespace Gamium.Private.Object
 
             return new VisualElementGamiumObject[]
                 { new VisualElementGamiumObject(document.rootVisualElement, document.rootVisualElement) };
+#else
+            throw new Exception("UIElements cannot be viewed below the 2021 version.");
+#endif
         }
     }
 }

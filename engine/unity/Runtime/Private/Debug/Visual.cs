@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using Gamium.Private.Util;
 using UnityEngine;
-using UnityEngine.UI;
-using Screen = UnityEngine.Device.Screen;
 
 namespace Gamium.Private.Debug
 {

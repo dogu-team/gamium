@@ -6,7 +6,7 @@ using Gamium.Private.Object;
 using Gamium.Private.Util;
 using Gamium.Protocol.Packets;
 using Gamium.Protocol.Types;
-using UnityEngine.Device;
+using UnityEngine;
 using GamiumVector3 = Gamium.Protocol.Types.Vector3;
 using Vector2 = UnityEngine.Vector2;
 

@@ -28,7 +28,7 @@ The interface we provide is inspired by Playwright, Selenium.
 
 ## Demo
 
-![example](.github/resources/demo.gif")
+<img src=".github/resources/demo.gif"  title="Demo"/>
 
 ## Support List
 

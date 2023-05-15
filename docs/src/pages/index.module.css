@@ -51,9 +51,9 @@
 .docsMain {
   max-width: 1440px;
   width: 100%;
-  padding: 3rem 1rem 0 1rem;
   display: flex;
   margin: 3rem auto;
+  padding: 0 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -89,6 +89,11 @@
   margin: 0.25rem 0;
 }
 
+.svg path {  
+  fill: var(--ifm-heading-color);
+}
+
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
@@ -102,5 +107,9 @@
 @media screen and (max-width: 767px) {
   .docsSection {
     width: 100%;
+  }
+
+  .docsMain {
+    flex-direction: column;
   }
 }

@@ -6,8 +6,10 @@ import Link from '@docusaurus/Link';
 
 import styles from './index.module.css';
 import MainLogo from '@site/static/img/logo.svg';
-import RocketLogo from '@site/static/img/main/rocket.svg';
-import CodeLogo from '@site/static/img/main/code.svg';
+import OpenSourceIcon from '@site/static/img/main/open-source.svg';
+import GameControllerIcon from '@site/static/img/main/game-controller.svg';
+import InspectIcon from '@site/static/img/main/inspect.svg';
+import FeatureCard from '../components/FeatureCard';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -21,8 +23,8 @@ function HomepageHeader() {
           <p className={styles.headerBannerDescription}>
             Automate game testing in android, ios, windows devices
           </p>
-          <div style={{marginTop: '2rem'}}>
-            <a href='/gamium/get-started/introduction'>
+          <div style={{ marginTop: '2rem' }}>
+            <a href="/gamium/get-started/introduction">
               <button className={styles.primaryButton}>Get Started</button>
             </a>
           </div>
@@ -41,7 +43,7 @@ export default function Home(): JSX.Element {
       description="Documentation for Dogu, game test automation service."
     >
       <HomepageHeader />
-      <main className={styles.docsMain}>
+      {/* <main className={styles.docsMain}>
         <div className={styles.docsSection}>
           <h2 className={styles.docsSectionTitle}>
             <div className={styles.logoWrapper}>
@@ -78,6 +80,23 @@ export default function Home(): JSX.Element {
             </li>
           </ul>
         </div>
+      </main> */}
+      <main className={styles.docsMain}>
+        <FeatureCard
+          icon={<OpenSourceIcon className={styles.svg} />}
+          title="Open source"
+          description="Gamium is open source project maintained by Dogu Technologies team."
+        />
+        <FeatureCard
+          icon={<GameControllerIcon className={styles.svg} />}
+          title="Test in real game"
+          description="Gamium allows you to run test in real game environment."
+        />
+        <FeatureCard
+          icon={<InspectIcon className={styles.svg} />}
+          title="Manipulating in-game UI"
+          description="Gamium can manipulate UI elements easily. It helps click game object, text input, etc."
+        />
       </main>
     </Layout>
   );

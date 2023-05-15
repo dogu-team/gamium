@@ -64,7 +64,7 @@ export default function Home(): JSX.Element {
               </Link>
             </li>
             <li className={styles.docsSectionListItem}>
-              <Link to="/gamium/client/typescript/write-testscript">
+              <Link to="/gamium/client/write-testscript">
                 Gamium Client
               </Link>
             </li>

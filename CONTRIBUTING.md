@@ -63,4 +63,4 @@ See [Coding Style](https://XXX/docs/development/coding-style) for information ab
 ## Further Reading
 
 For more in-depth guides on developing Gamium, see
-[/docs/development](/docs/development/README.md)
+[/docs/development](https://XXX/docs/development/README.md)

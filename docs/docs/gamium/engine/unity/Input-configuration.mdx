@@ -16,9 +16,11 @@ Go to [`Project Settings`](https://docs.unity3d.com/Manual/comp-ManagerGroup.htm
 Unity [`Input`](https://docs.unity3d.com/ScriptReference/Input.html) You need to modify where you use the class to use `Gamium.Input`.
 Please use [`using`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive) to `alias` at the top of the file as shown below.
 
-:::tip
-`Gamium.Input` provides the same API as UnityInput.
-The difference is that `Gamium.Input` also returns values entered through the function [`sendKey`](api/client/typescript/classes/gamium-client#sendkey-) of `Gamium Engine`.
+:::info
+Gamium.Input provides the same API as UnityInput.
+The difference is that Gamium.Input also process and simulate input requests sent by the Gamium Client.
+
+If you don't want this, you don't have to alias as Gamium.Input.
 :::
 
 ### Usage

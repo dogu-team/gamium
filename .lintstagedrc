@@ -1,0 +1,4 @@
+{
+  "*.ts": ["organize-imports-cli", "prettier --write"],
+  "package.json": "prettier-package-json --write"
+}

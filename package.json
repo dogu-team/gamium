@@ -1,8 +1,10 @@
 {
   "name": "gamium-workspace",
   "scripts": {
-    "clean": "yarn workspaces foreach --jobs unlimited -ptvi run clean",
     "build": "yarn workspaces foreach --exclude 'dogu' --jobs unlimited -ptvi run build",
+    "clean": "yarn workspaces foreach --jobs unlimited -ptvi run clean",
+    "newbie": "yarn newbie:husky",
+    "newbie:husky": "husky install",
     "rebuild": "yarn clean && yarn build"
   },
   "workspaces": {
@@ -13,10 +15,16 @@
       "docs"
     ]
   },
-  "packageManager": "yarn@3.3.1",
   "devDependencies": {
     "@types/node": "20.1.4",
+    "ansi-styles": "6.2.1",
+    "husky": "8.0.0",
+    "lint-staged": "13.2.2",
+    "organize-imports-cli": "0.10.0",
+    "pinst": "3.0.0",
     "prettier": "2.8.8",
+    "prettier-package-json": "2.8.0",
     "typescript": "4.7.4"
-  }
+  },
+  "packageManager": "yarn@3.3.1"
 }

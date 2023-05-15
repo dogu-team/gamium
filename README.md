@@ -1,5 +1,5 @@
 <p align="center">
-<img src=".github/resources/dogu-gamium-logo.png" width="100px" height="100px" title="Gamium_Logo"/>
+<img src="https://s3.ap-northeast-2.amazonaws.com/public.dogutech.io/dogu/gamium/dogu-gamium-logo.png" width="100px" height="100px" title="Gamium_Logo"/>
 </p>
 <p align="center">
 Gamium
@@ -28,7 +28,7 @@ The interface we provide is inspired by Playwright, Selenium.
 
 ## Demo
 
-<img src=".github/resources/demo.gif"  title="Demo"/>
+![demo](https://s3.ap-northeast-2.amazonaws.com/public.dogutech.io/dogu/gamium/gamium-dogurpgsample_demo.gif)
 
 ## Support List
 

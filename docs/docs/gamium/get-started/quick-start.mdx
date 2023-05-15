@@ -8,14 +8,26 @@ import unity_dogurpgsample_editor from '@site/static/img/gamium/unity_dogurpgsam
 This page will be based on Unity and TypeScript.
 
 ### Prerequisites
-In the case of Unity, there are [sample projects]((https://github.com/dogu-team/gamium-unity-samples)) prepared in advance. Please open [DoguRpgSample](https://github.com/dogu-team/gamium-unity-samples/tree/main/DoguRpgSample) during these projects
 
+#### Requirements
+
+- [Node.js](https://nodejs.org) >= 16.0.0
+- [yarn](https://yarnpkg.com/)
+
+#### DoguRpgSample project
+
+In the case of Unity, there are [
+gamium-unity-samples](https://github.com/dogu-team/gamium-unity-samples) prepared in advance. Please open [DoguRpgSample](https://github.com/dogu-team/gamium-unity-samples/tree/main/DoguRpgSample) during these projects
+with Unity Editor.
 
 ### Play DoguRpgSample
-- Clone the gamium-unity-samples git repository.
-- Please open the DoguRpgSample directory with Unity Editor.
+
+- Clone the [
+  gamium-unity-samples](https://github.com/dogu-team/gamium-unity-samples) git repository.
+- Open the
+  `gamium-unity-samples/DoguRpgSample` directory with Unity Editor.
 - Open Assets/Scenes/Login.unity
-- Please press the play button to confirm that the project is running normally.
+- Press the play button to confirm that the project is running normally.
 
 Well done if the game is playing as below.
 
@@ -23,5 +35,22 @@ Well done if the game is playing as below.
 
 The engine is now running without problems. Next, let's connect the client to the engine.
 
-
 ### Connect to the engine
+
+- Open the `gamium-unity-samples/client` directory with Visual Studio Code.
+- Open the terminal and execute the following command.
+  - This command initializes the automation script project, connects to the running gamium engine, and runs the automation script.
+
+```bash
+yarn install
+yarn run:DoguRpgSample
+```
+
+If the test proceeds as shown in the screen below, you followed the guide well.
+
+![demo](https://s3.ap-northeast-2.amazonaws.com/public.dogutech.io/dogu/gamium/gamium-dogurpgsample_demo.gif)
+
+### Next thing to look around
+
+- Take a look at [gamium-unity-samples/client/test/dogurpgsample-test.ts](https://github.com/dogu-team/gamium-unity-samples/blob/main/client/test/dogurpgsample-test.ts). See how the script clicks the button. Also, look at how to buy items.
+- You can learn what functions and how to control them with client scripts from [Client document](/gamium/client/write-testscript) and [API document](/api/api-reference).

@@ -5,7 +5,6 @@ title: Write Test Script
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import CodeBlock from '@theme/CodeBlock';
 
 The following elements are required to run the [`Gamium Client`](../introduction/#gamium-client).
 
@@ -17,11 +16,14 @@ When the executable is ready, you can connect `Gamium Client` to a program that 
 
 ## Connect with Gamium Engine
 
+<Tabs groupId="language" defaultValue="ts">
+<TabItem value="ts" label="TypeScript" default>
+
 ```ts
 import { GamiumClient } from '@dogu-tech/gamium-client/common';
 import { NodeGamiumService } from '@dogu-tech/gamium-client/node';
-
-const gamiumKit = await prepareGamium();
+const gamiumKit = await prepareGamium(); 
+  
 const gamiumService = new NodeGamiumService('127.0.0.1', port);
 const gamiumClient = new GamiumClient(gamiumService);
 await gamiumClient.connect();
@@ -29,10 +31,20 @@ const gamium = gamiumKit.gamium;
 const ui = gamium.ui();
 ```
 
+</TabItem>
+</Tabs>
+
+
 ## Click Buton
 
 Locate the Button Object you want to press, then write a script and click it.
 
+<Tabs groupId="language" defaultValue="ts">
+<TabItem value="ts" label="TypeScript" default>
+
 ```ts
 await ui.click(By.path('Object path'));
 ```
+
+</TabItem>
+</Tabs>

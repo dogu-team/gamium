@@ -4,6 +4,9 @@ title: Control The Game
 toc_max_heading_level: 4
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Key input
 
 User keystrokes can be simulated through `Gamium Client`.
@@ -11,10 +14,17 @@ User keystrokes can be simulated through `Gamium Client`.
 
 You can use it as below.
 
+
+<Tabs groupId="language" defaultValue="ts">
+<TabItem value="ts" label="TypeScript" default> 
+
 ```ts
 await gamium.sendKey(KeyBy.unityKeycode('Space'));
 await gamium.sendKey(KeyBy.unityKeyboard('Space'));
 ```
+
+</TabItem>
+</Tabs>
 
 ## ActionChain
 
@@ -25,6 +35,9 @@ You can add multiple actions to [`ActionChain`](api/client/typescript/classes/ac
 You can combine several actions as shown below.
 
 #### Usage
+
+<Tabs groupId="language" defaultValue="ts">
+<TabItem value="ts" label="TypeScript" default> 
 
 ```ts
 await gamium
@@ -39,3 +52,6 @@ await gamium
   .sendKeys([KeyBy.unityKeycode('Space')])
   .perform();
 ```
+
+</TabItem>
+</Tabs>

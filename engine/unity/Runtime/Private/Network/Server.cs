@@ -36,7 +36,36 @@ namespace Gamium.Private
             }
 
             Logger.Verbose($"Environments : {string.Join(", ", _envs.Select(pair => $" {pair.Key}={pair.Value}"))}");
-
+            
+            // config Default
+            _config.port = 50061;
+            if (_envs.ContainsKey("GAMIUM_SERVER_PORT"))
+            {
+                if (int.TryParse(_envs["GAMIUM_SERVER_PORT"], out var port))
+                {
+                    _config.port = port;
+                }
+            }
+            
+            // Input Default
+            Input.storage = new GamiumOldInputStorage(new InputMapping[]
+            {
+                new InputMapping()
+                {
+                    alias = "Horizontal", positiveCodes = new HashSet<KeyCode>() { KeyCode.D },
+                    negativeCodes = new HashSet<KeyCode>() { KeyCode.A }
+                },
+                new InputMapping()
+                {
+                    alias = "Vertical", positiveCodes = new HashSet<KeyCode>() { KeyCode.W },
+                    negativeCodes = new HashSet<KeyCode>() { KeyCode.S }
+                },
+                new InputMapping() { alias = "Jump", positiveCodes = new HashSet<KeyCode>() { KeyCode.Space } },
+                new InputMapping()
+                    { alias = "Fire1", positiveCodes = new HashSet<KeyCode>() { KeyCode.LeftControl } },
+                new InputMapping() { alias = "Fire2", positiveCodes = new HashSet<KeyCode>() { KeyCode.LeftAlt } }
+            });
+            
             _stateHandlers[0] = new InternalEventHandler();
         }
 
@@ -47,41 +76,9 @@ namespace Gamium.Private
 
         public void SetConfig(ServerConfig config)
         {
-            if (0 == config.port)
+            if (null != config.inputMappings)
             {
-                config.port = 50061;
-                if (_envs.ContainsKey("GAMIUM_SERVER_PORT"))
-                {
-                    if (int.TryParse(_envs["GAMIUM_SERVER_PORT"], out var port))
-                    {
-                        config.port = port;
-                    }
-                }
-            }
-
-            if (null == _config.inputMappings)
-            {
-                Input.storage = new GamiumOldInputStorage(new InputMapping[]
-                {
-                    new InputMapping()
-                    {
-                        alias = "Horizontal", positiveCodes = new HashSet<KeyCode>() { KeyCode.D },
-                        negativeCodes = new HashSet<KeyCode>() { KeyCode.A }
-                    },
-                    new InputMapping()
-                    {
-                        alias = "Vertical", positiveCodes = new HashSet<KeyCode>() { KeyCode.W },
-                        negativeCodes = new HashSet<KeyCode>() { KeyCode.S }
-                    },
-                    new InputMapping() { alias = "Jump", positiveCodes = new HashSet<KeyCode>() { KeyCode.Space } },
-                    new InputMapping()
-                        { alias = "Fire1", positiveCodes = new HashSet<KeyCode>() { KeyCode.LeftControl } },
-                    new InputMapping() { alias = "Fire2", positiveCodes = new HashSet<KeyCode>() { KeyCode.LeftAlt } }
-                });
-            }
-            else
-            {
-                Input.storage = new GamiumOldInputStorage(_config.inputMappings);
+                Input.storage = new GamiumOldInputStorage(config.inputMappings);
             }
 
             _config = config;

@@ -28,14 +28,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:protocol"\
       },\
       {\
-        "name": "docs-gen",\
-        "reference": "workspace:utils/typescript/docs-gen"\
+        "name": "docs-api-gen",\
+        "reference": "workspace:utils/typescript/docs-api-gen"\
       }\
     ],\
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
-      ["docs-gen", ["workspace:utils/typescript/docs-gen"]],\
+      ["docs-api-gen", ["workspace:utils/typescript/docs-api-gen"]],\
       ["gamium", ["workspace:client/typescript/gamium"]],\
       ["gamium-docs", ["workspace:docs"]],\
       ["gamium-workspace", ["workspace:."]],\
@@ -8867,11 +8867,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["docs-gen", [\
-        ["workspace:utils/typescript/docs-gen", {\
-          "packageLocation": "./utils/typescript/docs-gen/",\
+      ["docs-api-gen", [\
+        ["link:/../::locator=gamium%40workspace%3Aclient%2Ftypescript%2Fgamium", {\
+          "packageLocation": "../../../../",\
           "packageDependencies": [\
-            ["docs-gen", "workspace:utils/typescript/docs-gen"],\
+            ["docs-api-gen", "link:/../::locator=gamium%40workspace%3Aclient%2Ftypescript%2Fgamium"]\
+          ],\
+          "linkType": "SOFT",\
+          "discardFromLookup": true\
+        }],\
+        ["workspace:utils/typescript/docs-api-gen", {\
+          "packageLocation": "./utils/typescript/docs-api-gen/",\
+          "packageDependencies": [\
+            ["docs-api-gen", "workspace:utils/typescript/docs-api-gen"],\
             ["@types/glob", "npm:8.1.0"],\
             ["@types/node", "npm:18.15.11"],\
             ["chalk", "npm:4.1.2"],\
@@ -10051,6 +10059,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/shelljs", "npm:0.8.11"],\
             ["ansi-styles", "npm:6.2.1"],\
             ["cross-env", "npm:7.0.3"],\
+            ["docs-api-gen", "link:/../::locator=gamium%40workspace%3Aclient%2Ftypescript%2Fgamium"],\
             ["flatbuffers", "npm:22.10.26"],\
             ["gl-matrix", "npm:3.4.3"],\
             ["glob", "npm:10.2.3"],\

@@ -4,8 +4,8 @@ import {
   CodeGenTypeMdxMapper,
   CodeGenTypescript,
   TypescriptGenerateOption,
-} from "@dogu/docs-gen";
-import { buildTree } from "@dogu/docs-gen/build/src/codegen-elemtree";
+  buildTree,
+} from "../src";
 import fs from "fs";
 import path from "path";
 
@@ -13,77 +13,76 @@ interface FileToMd {
   codeFilePath: string;
   option?: Partial<TypescriptGenerateOption>;
 }
-if (!process.env.DOGU_DOCS_PATH) {
-  throw new Error("DOGU_DOCS_PATH is not defined");
-}
 
-const doguDocsPath = process.env.DOGU_DOCS_PATH as string;
-const doguDocsApiPath = path.resolve(
-  doguDocsPath,
-  "docs/gamium/gamium-client/api"
+const repoRootPath = path.resolve(__dirname, "..", "..", "..", "..");
+
+const docsPath = path.resolve(repoRootPath, "docs");
+const docsApiPath = path.resolve(
+  docsPath,
+  "docs/api/client/typescript"
 );
-const projectPath = path.resolve(__dirname, "..");
+const projectPath = path.resolve(repoRootPath, "client", "typescript", "gamium");
 const gamiumProtocolPath = path.resolve(
   projectPath,
-  "src/protocols/generated/gamium/protocol"
+  "src/common/protocols/generated/gamium/protocol"
 );
 const classesMdxDirectory = path.resolve(
-  doguDocsPath,
+  docsPath,
   "docs/gamium/gamium-client/api/classes"
 );
 const typesMdxDirectory = path.resolve(
-  doguDocsPath,
+  docsPath,
   "docs/gamium/gamium-client/api/types"
 );
 const enumsMdxDirectory = path.resolve(
-  doguDocsPath,
+  docsPath,
   "docs/gamium/gamium-client/api/enums"
 );
 
 const optionFiles = fs
-  .readdirSync(path.resolve(projectPath, "src/options"))
+  .readdirSync(path.resolve(projectPath, "src/common/options"))
   .filter((file) => file !== "index.ts");
 
 const fileToMdList: FileToMd[] = [
   {
-    codeFilePath: path.resolve(projectPath, "src/gamium-client.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/gamium-client.ts"),
     option: {
       methodsExlude: ["connect", "disconnect", "inspector", "hello", "sleep"],
       propertiesExlude: ["logger"],
     },
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/ui/ui.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/ui/ui.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/object/player.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/object/player.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/object/ui-element.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/object/ui-element.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/actions/action-chain.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/actions/action-chain.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/locator/locator.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/locator/locator.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/locator/rpc-locator.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/locator/rpc-locator.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/locator/by.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/locator/by.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/actions/key-by.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/actions/key-by.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/locator/rpc-by.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/locator/rpc-by.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/until.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/until.ts"),
   },
   {
-    codeFilePath: path.resolve(projectPath, "src/errors/gamium-error.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/errors/gamium-error.ts"),
     option: {
       classExlude: [],
       interfaceExlude: [],
@@ -92,10 +91,10 @@ const fileToMdList: FileToMd[] = [
   },
 
   ...optionFiles.map((file) => ({
-    codeFilePath: path.resolve(projectPath, "src/options", file),
+    codeFilePath: path.resolve(projectPath, "src/common/options", file),
   })),
   {
-    codeFilePath: path.resolve(projectPath, "src/protocols/types.ts"),
+    codeFilePath: path.resolve(projectPath, "src/common/protocols/types.ts"),
     option: {
       classExlude: [],
       interfaceExlude: [
@@ -172,7 +171,7 @@ const fileToMdList: FileToMd[] = [
       }
       const name = pascalToKebabCase(elemDatum.elems[0].text);
 
-      const mdFilePath = path.resolve(doguDocsApiPath, category, `${name}.mdx`);
+      const mdFilePath = path.resolve(docsApiPath, category, `${name}.mdx`);
 
       const md = new CodeGenMarkdown(mdFilePath);
       await md.parse();

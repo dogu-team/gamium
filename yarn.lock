@@ -6244,9 +6244,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docs-gen@workspace:utils/typescript/docs-gen":
+"docs-api-gen@link:/../::locator=gamium%40workspace%3Aclient%2Ftypescript%2Fgamium":
   version: 0.0.0-use.local
-  resolution: "docs-gen@workspace:utils/typescript/docs-gen"
+  resolution: "docs-api-gen@link:/../::locator=gamium%40workspace%3Aclient%2Ftypescript%2Fgamium"
+  languageName: node
+  linkType: soft
+
+"docs-api-gen@workspace:utils/typescript/docs-api-gen":
+  version: 0.0.0-use.local
+  resolution: "docs-api-gen@workspace:utils/typescript/docs-api-gen"
   dependencies:
     "@types/glob": 8
     "@types/node": 18.15.11
@@ -7274,6 +7280,7 @@ __metadata:
     "@types/shelljs": 0.8.11
     ansi-styles: 6.2.1
     cross-env: 7.0.3
+    docs-api-gen: "link:/../"
     flatbuffers: 22.10.26
     gl-matrix: 3.4.3
     glob: 10.2.3

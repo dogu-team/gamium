@@ -26,10 +26,7 @@ const gamium = gamiumKit.gamium;
 
 ### actions <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Create an [`ActionChain`](action-chain). You can check how to use it in ["Control The Game"](gamium/client/game-control).
 
@@ -47,10 +44,7 @@ await gamium.actions().click({ x: 0, y: 0 }).move({ x: 0, y: 0 }).perform();
 
 ### executeRpc <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 You can call a specific function within the game. You can check the usage in [Remote Procedure Call](gamium/client/rpc).
 
@@ -77,10 +71,7 @@ await gamium.executeRpc(RpcBy.method('Namespace', 'FunctionName', params));
 
 ### find <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Locate the object through [`Locator`](../types/locator).
 
@@ -104,10 +95,7 @@ const cameraObj = await gamium.find(By.path('Object path'));
 
 ### finds <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Locate the object through [`Locator`](../types/locator). Returns all objects that match the specified `Object path`.
 
@@ -133,10 +121,7 @@ A [GamiumError] (Gamium-error) of the code [ObjectNotFound] (../enums/error-code
 
 ### player <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Locate the object through [`Locator`](../types/locator). Returns the object by considering the object as [`Player`](player).
 This object allows you to manipulate `Player`.
@@ -161,10 +146,7 @@ const player = await gamium.player(By.path('Object path'));
 
 ### profile <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Collect performance indicators within the game. Returns the performance indicators collected at the time requested by Game.
 
@@ -176,10 +158,7 @@ Collect performance indicators within the game. Returns the performance indicato
 
 ### screen <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Get the screen information for the Game.
 
@@ -197,10 +176,7 @@ const screen = await gamium.screen();
 
 ### sendKey <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Enter the key that corresponds to [`KeyBy`](key-by). You can check how to use it in [`Control The Game`](gamium/client/game-control).
 
@@ -224,10 +200,7 @@ await gamium.sendKey(KeyBy.unityKeycode('E'));
 
 ### sendKeys <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Enter the key corresponding to the [`KeyBy`](key-by) array at the same time. You can check how to use it in [`Control the game`](gamium/client/game-control).
 
@@ -253,10 +226,7 @@ await gamium.sendKeys([KeyBy.unityKeycode('W'), KeyBy.unityKeycode('D')], {
 
 ### tryFind <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 ##### Arguments <s generated />
 
@@ -272,10 +242,7 @@ await gamium.sendKeys([KeyBy.unityKeycode('W'), KeyBy.unityKeycode('D')], {
 
 ### tryFinds <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 ##### Arguments <s generated />
 
@@ -291,10 +258,7 @@ await gamium.sendKeys([KeyBy.unityKeycode('W'), KeyBy.unityKeycode('D')], {
 
 ### tryWait <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Wait until the conditions are satisfied. If the condition is not satisfied, the [Gamium-error](../enums/error-code#timeout-) code returns.
 
@@ -323,10 +287,7 @@ if (buttonInfoOrError instanceof GamiumError) {
 
 ### ui <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Create [`UI`](ui) object. [`UI`](ui) Object makes it easy to manipulate UI objects.
 
@@ -344,10 +305,7 @@ const ui = gamium.ui();
 
 ### wait <s generated />
 
-<s childtag /> <code
-  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
-  children="public"
-/> <s generated />
+<s childtag /> <code  style={{ position: 'relative', top: '-20px', fontSize: '70%' }}  children="public"/> <s generated />
 
 Wait until the conditions are satisfied. If the conditions are not met, a [Gamium-error](../enums/error-code#timeout-) code is generated.
 

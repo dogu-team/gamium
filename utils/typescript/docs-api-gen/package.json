@@ -1,5 +1,5 @@
 {
-  "name": "docs-gen",
+  "name": "docs-api-gen",
   "version": "0.0.3",
   "description": "",
   "license": "ISC",
@@ -15,7 +15,8 @@
     "rebuild": "yarn run clean && yarn run build",
     "start": "ts-node src/index.ts",
     "test": "ts-node test/test-parse",
-    "watch": "clear; echo @dogu-dev-private/docs-gen Watching... && nodemon"
+    "watch": "clear; echo Watching... && nodemon",
+    "docs:typescript": "ts-node scripts/mirror-doc"
   },
   "types": "build/src/index.d.ts",
   "dependencies": {

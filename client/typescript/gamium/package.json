@@ -9,9 +9,8 @@
   ],
   "scripts": {
     "build": "ts-node scripts/build.ts",
-    "clean": "shx rm -rf build generated .publish-github .publish-npm",
+    "clean": "shx rm -rf build",
     "dev": "nodemon",
-    "docs:mirror": "ts-node scripts/mirror-doc",
     "rebuild": "yarn run clean && yarn run build",
     "watch": "clear; echo gamium Watching... && nodemon"
   },

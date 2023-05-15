@@ -1,5 +1,5 @@
 import { strict as assert } from 'node:assert';
-import { Uint8ArrayUtil } from '..';
+import { Uint8ArrayUtil } from './uint8-array-util';
 
 export class SizePrefixedRecvQueue {
   private buffer: Uint8Array;

@@ -3326,6 +3326,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:20.1.4":
+  version: 20.1.4
+  resolution: "@types/node@npm:20.1.4"
+  checksum: bffa6a6e92831cc805b13658c55be8e04abe3202d5e57ddd7fee4cfbe269656a1f475909a9f9514e1aff50310d0d90c516ac2c649cb6f1c77d4b1079c2fd1e88
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^17.0.5":
   version: 17.0.45
   resolution: "@types/node@npm:17.0.45"
@@ -6244,12 +6251,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docs-api-gen@link:/../::locator=gamium%40workspace%3Aclient%2Ftypescript%2Fgamium":
-  version: 0.0.0-use.local
-  resolution: "docs-api-gen@link:/../::locator=gamium%40workspace%3Aclient%2Ftypescript%2Fgamium"
-  languageName: node
-  linkType: soft
-
 "docs-api-gen@workspace:utils/typescript/docs-api-gen":
   version: 0.0.0-use.local
   resolution: "docs-api-gen@workspace:utils/typescript/docs-api-gen"
@@ -7217,7 +7218,7 @@ __metadata:
 
 "fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -7268,6 +7269,10 @@ __metadata:
 "gamium-workspace@workspace:.":
   version: 0.0.0-use.local
   resolution: "gamium-workspace@workspace:."
+  dependencies:
+    "@types/node": 20.1.4
+    prettier: 2.8.8
+    typescript: 4.7.4
   languageName: unknown
   linkType: soft
 
@@ -7280,7 +7285,6 @@ __metadata:
     "@types/shelljs": 0.8.11
     ansi-styles: 6.2.1
     cross-env: 7.0.3
-    docs-api-gen: "link:/../"
     flatbuffers: 22.10.26
     gl-matrix: 3.4.3
     glob: 10.2.3
@@ -10515,6 +10519,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:2.8.8":
+  version: 2.8.8
+  resolution: "prettier@npm:2.8.8"
+  bin:
+    prettier: bin-prettier.js
+  checksum: b49e409431bf129dd89238d64299ba80717b57ff5a6d1c1a8b1a28b590d998a34e083fa13573bc732bb8d2305becb4c9a4407f8486c81fa7d55100eb08263cf8
+  languageName: node
+  linkType: hard
+
 "pretty-error@npm:^4.0.0":
   version: 4.0.0
   resolution: "pretty-error@npm:4.0.0"
@@ -11285,7 +11298,7 @@ __metadata:
 
 "resolve@patch:resolve@^1.1.6#~builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#~builtin<compat/resolve>":
   version: 1.22.3
-  resolution: "resolve@patch:resolve@npm%3A1.22.3#~builtin<compat/resolve>::version=1.22.3&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.3#~builtin<compat/resolve>::version=1.22.3&hash=07638b"
   dependencies:
     is-core-module: ^2.12.0
     path-parse: ^1.0.7
@@ -12546,7 +12559,7 @@ __metadata:
 
 "typescript@patch:typescript@4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=a1c5e5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
@@ -12556,7 +12569,7 @@ __metadata:
 
 "typescript@patch:typescript@^3.0.3#~builtin<compat/typescript>":
   version: 3.9.10
-  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=3bd3d3"
+  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=a1c5e5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver

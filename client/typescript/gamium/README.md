@@ -1,1 +1,1 @@
-# @dogu-tech/gamium-client
+# gamium

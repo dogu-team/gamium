@@ -1,18 +1,18 @@
 ---
-sidebar_position: 11
-title: KeyBy
+sidebar_position: 10
+title: By
 toc_max_heading_level: 4
 ---
 
-# KeyBy <s generated />
+# By <s generated />
 
-The class used to request keystrokes in [Game Controling](../../game-control)
+Class used by [Identifying GamiumObject](gamium/client/object-path).
 
 <hr class="solid" /> <s generated />
 
 ## Methods <s generated />
 
-### unityKeyboard <s generated />
+### path <s generated />
 
 <s childtag /> <code
   style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
@@ -22,12 +22,12 @@ The class used to request keystrokes in [Game Controling](../../game-control)
   children="static"
 /> <s generated />
 
-The type used by projects with [Unity Input System]( https://docs.unity3d.com/Packages/com.unity.inputsystem@latest) to enter the keyboard.
+Use the Object Path to locate the object.
 
 ##### Usage
 
 ```ts
-await gamium.sendKey(KeyBy.unityKeyboard('Space'));
+const cameraObj = await gamium.findObject(By.path('/Main Camera[1]'));
 ```
 
 <s childtag /> <code
@@ -48,15 +48,17 @@ await gamium.sendKey(KeyBy.unityKeyboard('Space'));
 
 ##### Arguments <s generated />
 
-- key `keyof` `typeof` [`UnityKeyboard`](../enums/unity-keyboard) <s generated />
+- str [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+  - Enter 'Object path'.
 
 ##### Returns <s generated />
 
-- [`KeyBy`](key-by) <s generated />
+- [`By`](by) <s generated />
 
 <hr class="solid" /> <s generated />
 
-### unityKeycode <s generated />
+### tag <s generated />
 
 <s childtag /> <code
   style={{ position: 'relative', top: '-20px', fontSize: '70%' }}
@@ -66,12 +68,12 @@ await gamium.sendKey(KeyBy.unityKeyboard('Space'));
   children="static"
 /> <s generated />
 
-The type that is used for keyboard input in projects with [Unity Input Manager]( https://docs.unity3d.com/Manual/class-InputManager.html) .
+Use the Object Tag to locate the object.
 
 ##### Usage
 
 ```ts
-await gamium.sendKey(KeyBy.unityKeycode('Space'));
+const cameraObj = await gamium.findObject(By.tag('MainCamera'));
 ```
 
 <s childtag /> <code
@@ -92,17 +94,19 @@ await gamium.sendKey(KeyBy.unityKeycode('Space'));
 
 ##### Arguments <s generated />
 
-- code `keyof` `typeof` [`UnityKeyCode`](../enums/unity-key-code) <s generated />
+- str [`string`]( https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) <s generated />
+
+  - Enter 'Object Tag'.
 
 ##### Returns <s generated />
 
-- [`KeyBy`](key-by) <s generated />
+- [`By`](by) <s generated />
 
 <hr class="solid" /> <s generated />
 
 ## Properties <s generated />
 
-#### by [`InputKeyBy`](../enums/input-key-by) <s generated />
+#### by [`ObjectLocatorBy`](../enums/object-locator-by) <s generated />
 
 <hr class="solid" /> <s generated />
 

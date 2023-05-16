@@ -3,7 +3,7 @@
   "scripts": {
     "build": "yarn workspaces foreach --exclude 'dogu' --jobs unlimited -ptvi run build",
     "clean": "yarn workspaces foreach --jobs unlimited -ptvi run clean",
-    "newbie": "yarn && yarn newbie:husky",
+    "newbie": "yarn install && yarn newbie:husky",
     "newbie:husky": "husky install",
     "rebuild": "yarn clean && yarn build",
     "test": "yarn workspaces foreach --jobs unlimited -ptvi run test"

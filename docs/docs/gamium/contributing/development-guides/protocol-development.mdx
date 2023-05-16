@@ -5,4 +5,39 @@ title: Protocol Development
 
 # Protocol Development
 
-🚧 **work in progress** 🚧
+## Update protocol
+
+The Gamium protocol uses the Flatbuffer to create an interface for communication.
+
+:::info
+Flatbuffer is a binary serialization format that allows you to create a schema for your data and then compile it into a binary format that can be used in many different programming languages.  
+syntax is similar to JSON, but it is much more efficient in terms of size and speed.
+:::
+
+:::danger
+If you change the Gamium protocol, all engine and client interfaces must be checked.
+:::
+
+### Step 1: Define schema
+
+The schema files is located in the `protocol/fbs` folder.  
+Please refer to [**Flatbuffer official schema document**](https://flatbuffers.dev/flatbuffers_guide_writing_schema.html) for the grammar of flatbuffer.
+
+### Step 2: Export protocol
+
+```sh
+cd protocol
+yarn export
+```
+
+### Step 3: Update Unity meta files
+
+```sh
+cd utils/typescript/unity-meta-gen
+yarn export
+```
+
+### Step 4: Development Engine and Client
+
+- [Engine Development](engine-development/overview)
+- [Client Development](client-development/overview)

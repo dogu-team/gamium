@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "shx rm -rf build generated .export",
     "dev": "nodemon",
-    "export": "tsc -b && node scripts/export.ts"
+    "export": "tsc -b && ts-node scripts/export.ts"
   },
   "devDependencies": {
     "@types/eslint": "8",

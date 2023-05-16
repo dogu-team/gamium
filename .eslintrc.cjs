@@ -3,12 +3,8 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: [
-      './protocol/tsconfig.json',
-      './client/typescript/gamium-client/tsconfig.json',
-      './utils/typescript/docs-gen/tsconfig.json',
-    ],
-    sourceType: 'module'
+    project: ['./protocol/tsconfig.json', './client/typescript/*/tsconfig.json', './utils/typescript/*/tsconfig.json', './projects/*/tsconfig.json'],
+    sourceType: 'module',
   },
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:@typescript-eslint/recommended-requiring-type-checking'],
   root: true,

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.dogu.gamium.engine.unity.runtime", "com.dogu.gamium.engine.unity.runtime.csproj", "{ab099e1e-c4f1-3544-f3a4-5cb82fc6d076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.dogu.gamium.engine.unity.runtime.protocol", "com.dogu.gamium.engine.unity.runtime.protocol.csproj", "{25dfd808-f3d3-c578-82b7-6ff980385280}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.dogu.gamium.engine.unity.editor", "com.dogu.gamium.engine.unity.editor.csproj", "{3f6772f2-e688-2d62-8b8a-8779c8b4e4e6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{89c58a71-dfd2-7734-b8cb-8f7ae9d167dd}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.dogu.gamium.engine.unity.tests.runtime", "com.dogu.gamium.engine.unity.tests.runtime.csproj", "{f03d90f1-18b9-df5f-19be-2fa6dff75cc2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "com.dogu.gamium.engine.unity.tests.editor", "com.dogu.gamium.engine.unity.tests.editor.csproj", "{26121e19-e134-6de8-7791-73d34a34d673}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ab099e1e-c4f1-3544-f3a4-5cb82fc6d076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ab099e1e-c4f1-3544-f3a4-5cb82fc6d076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25dfd808-f3d3-c578-82b7-6ff980385280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25dfd808-f3d3-c578-82b7-6ff980385280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3f6772f2-e688-2d62-8b8a-8779c8b4e4e6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3f6772f2-e688-2d62-8b8a-8779c8b4e4e6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89c58a71-dfd2-7734-b8cb-8f7ae9d167dd}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89c58a71-dfd2-7734-b8cb-8f7ae9d167dd}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{f03d90f1-18b9-df5f-19be-2fa6dff75cc2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{f03d90f1-18b9-df5f-19be-2fa6dff75cc2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26121e19-e134-6de8-7791-73d34a34d673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26121e19-e134-6de8-7791-73d34a34d673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

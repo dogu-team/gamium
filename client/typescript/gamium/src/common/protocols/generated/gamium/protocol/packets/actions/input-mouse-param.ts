@@ -70,7 +70,12 @@ export class InputMouseParam implements flatbuffers.IUnpackableObject<InputMouse
   }
 
   unpack(): InputMouseParamT {
-    return new InputMouseParamT(this.press(), this.button(), this.position() !== null ? this.position()!.unpack() : null, this.delta() !== null ? this.delta()!.unpack() : null);
+    return new InputMouseParamT(
+      this.press(),
+      this.button(),
+      this.position() !== null ? this.position()!.unpack() : null,
+      this.delta() !== null ? this.delta()!.unpack() : null,
+    );
   }
 
   unpackTo(_o: InputMouseParamT): void {

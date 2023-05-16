@@ -1,8 +1,47 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Unity
 ---
 
-# Gamium Engine for Unity
+import unity_install_android from '@site/static/img/gamium/unity_install_android.png';
 
-🚧 **work in progress** 🚧
+# Gamium Engine Unity SDK
+
+## Preparation
+
+### Step 1. Prepare for the Unity Engine
+
+Please refer to [**Configure Project Requirements**](../../../engine/unity/project-configuration#requirements) for requirements.  
+install any version of Unity Hub and Unity 2020.3.47f1 with Android Build Support.
+
+<img src={unity_install_android} style={{ width: 800 }} />
+
+### Step 1. Prepare for the Unity project
+
+If there is no Unity project, please use the [**sample Gamium Unity project**](https://github.com/dogu-team/gamium-unity-samples).  
+or you can use your Unity project.
+
+### Step 2. Prepare for the Gamium Engine source code
+
+The Gamium Engine Unity SDK is located in the `engine/unity` folder from the source root.
+
+:::info
+Please refer to [**Pull Requests**](../../pull-requests) for how to check out the source code.
+:::
+
+### Step 3. Add the Gamium Engine Unity SDK to the Unity project
+
+Unity project manifest file (Packages/manifest.json) to use the local package.  
+replace `{your gamium source code}` with the path to the Gamium Engine source code.
+
+```json
+{
+  "dependencies": {
+    "com.dogu.gamium.engine.unity": "file:{your gamium source code}/engine/unity"
+  }
+}
+```
+
+:::info
+Please refer to [**Unity Package Manager**](https://docs.unity3d.com/Manual/upm-localpath.html) for more information.
+:::

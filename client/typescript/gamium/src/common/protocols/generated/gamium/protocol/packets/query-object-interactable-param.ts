@@ -58,7 +58,12 @@ export class QueryObjectInteractableParam implements flatbuffers.IUnpackableObje
     return offset;
   }
 
-  static createQueryObjectInteractableParam(builder: flatbuffers.Builder, objectIdOffset: flatbuffers.Offset, checkMoving: boolean, checkRaycast: boolean): flatbuffers.Offset {
+  static createQueryObjectInteractableParam(
+    builder: flatbuffers.Builder,
+    objectIdOffset: flatbuffers.Offset,
+    checkMoving: boolean,
+    checkRaycast: boolean,
+  ): flatbuffers.Offset {
     QueryObjectInteractableParam.startQueryObjectInteractableParam(builder);
     QueryObjectInteractableParam.addObjectId(builder, objectIdOffset);
     QueryObjectInteractableParam.addCheckMoving(builder, checkMoving);

@@ -64,6 +64,10 @@ If you want to build game test automation infra such as device farm, reporting t
 ☁️ - [Dogu Cloud TestOps](https://dogutech.io)  
 📖 - [Dogu Docs](https://docs.dogutech.io)
 
+## Contributing
+
+If you are interested in reporting/fixing issues and contributing directly to the code base, please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
+
 ## License
 
 Gamium is [MIT licensed](LICENSE)

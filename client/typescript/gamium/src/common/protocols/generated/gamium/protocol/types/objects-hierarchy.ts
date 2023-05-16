@@ -77,7 +77,10 @@ export class ObjectsHierarchy implements flatbuffers.IUnpackableObject<ObjectsHi
   }
 
   unpack(): ObjectsHierarchyT {
-    return new ObjectsHierarchyT(this.name(), this.bb!.createObjList<ObjectHierarchyNode, ObjectHierarchyNodeT>(this.children.bind(this), this.childrenLength()));
+    return new ObjectsHierarchyT(
+      this.name(),
+      this.bb!.createObjList<ObjectHierarchyNode, ObjectHierarchyNodeT>(this.children.bind(this), this.childrenLength()),
+    );
   }
 
   unpackTo(_o: ObjectsHierarchyT): void {

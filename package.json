@@ -12,8 +12,9 @@
     "packages": [
       "protocol",
       "client/typescript/gamium",
-      "utils/typescript/**",
-      "docs"
+      "utils/typescript/*",
+      "docs",
+      "projects/*"
     ]
   },
   "devDependencies": {

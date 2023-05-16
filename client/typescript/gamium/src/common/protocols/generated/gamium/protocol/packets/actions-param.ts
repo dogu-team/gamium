@@ -2,13 +2,13 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { ActionParam, unionToActionParam, unionListToActionParam } from '../../../gamium/protocol/packets/action-param.js';
-import { AppQuitParam, AppQuitParamT } from '../../../gamium/protocol/packets/actions/app-quit-param.js';
-import { InputKeyParam, InputKeyParamT } from '../../../gamium/protocol/packets/actions/input-key-param.js';
-import { InputMouseParam, InputMouseParamT } from '../../../gamium/protocol/packets/actions/input-mouse-param.js';
-import { InputSetTextParam, InputSetTextParamT } from '../../../gamium/protocol/packets/actions/input-set-text-param.js';
-import { MovePlayerParam, MovePlayerParamT } from '../../../gamium/protocol/packets/actions/move-player-param.js';
-import { SleepParam, SleepParamT } from '../../../gamium/protocol/packets/actions/sleep-param.js';
+import { ActionParam, unionListToActionParam } from '../../../gamium/protocol/packets/action-param.js';
+import { AppQuitParamT } from '../../../gamium/protocol/packets/actions/app-quit-param.js';
+import { InputKeyParamT } from '../../../gamium/protocol/packets/actions/input-key-param.js';
+import { InputMouseParamT } from '../../../gamium/protocol/packets/actions/input-mouse-param.js';
+import { InputSetTextParamT } from '../../../gamium/protocol/packets/actions/input-set-text-param.js';
+import { MovePlayerParamT } from '../../../gamium/protocol/packets/actions/move-player-param.js';
+import { SleepParamT } from '../../../gamium/protocol/packets/actions/sleep-param.js';
 
 export class ActionsParam implements flatbuffers.IUnpackableObject<ActionsParamT> {
   bb: flatbuffers.ByteBuffer | null = null;
@@ -41,7 +41,11 @@ export class ActionsParam implements flatbuffers.IUnpackableObject<ActionsParamT
   actionsTypeArray(): Uint8Array | null {
     const offset = this.bb!.__offset(this.bb_pos, 4);
     return offset
-      ? new Uint8Array(this.bb!.bytes().buffer, this.bb!.bytes().byteOffset + this.bb!.__vector(this.bb_pos + offset), this.bb!.__vector_len(this.bb_pos + offset))
+      ? new Uint8Array(
+          this.bb!.bytes().buffer,
+          this.bb!.bytes().byteOffset + this.bb!.__vector(this.bb_pos + offset),
+          this.bb!.__vector_len(this.bb_pos + offset),
+        )
       : null;
   }
 

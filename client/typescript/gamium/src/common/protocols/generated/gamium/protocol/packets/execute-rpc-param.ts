@@ -106,7 +106,12 @@ export class ExecuteRpcParam implements flatbuffers.IUnpackableObject<ExecuteRpc
   }
 
   unpack(): ExecuteRpcParamT {
-    return new ExecuteRpcParamT(this.by(), this.className(), this.targetName(), this.bb!.createScalarList<string>(this.paramDocuments.bind(this), this.paramDocumentsLength()));
+    return new ExecuteRpcParamT(
+      this.by(),
+      this.className(),
+      this.targetName(),
+      this.bb!.createScalarList<string>(this.paramDocuments.bind(this), this.paramDocumentsLength()),
+    );
   }
 
   unpackTo(_o: ExecuteRpcParamT): void {

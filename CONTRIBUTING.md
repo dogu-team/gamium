@@ -62,7 +62,8 @@ See [Coding Style](https://gamium.dogutech.io/gamium/contributing/development-gu
 
 ## Further Reading
 
-For more in-depth guides on developing Gamium, see
-[protocol development](https://gamium.dogutech.io/gamium/contributing/development-guides/protocol-development)
-[engine for unity development](https://gamium.dogutech.io/gamium/contributing/development-guides/engine-development/unity)
-[client for typescript development](https://gamium.dogutech.io/gamium/contributing/development-guides/client-development/typescript)
+For more in-depth guides on developing Gamium, see the following:
+
+- [protocol development](https://gamium.dogutech.io/gamium/contributing/development-guides/protocol-development)
+- [engine development](https://gamium.dogutech.io/gamium/contributing/development-guides/engine-development/overview)
+- [client development](https://gamium.dogutech.io/gamium/contributing/development-guides/client-development/overview)

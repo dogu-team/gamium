@@ -1,7 +1,7 @@
 {
   "index_name": "gamium-docs",
-  "start_urls": ["https://docs.dogutech.io/"],
-  "sitemap_urls": ["https://docs.dogutech.io/sitemap.xml"],
+  "start_urls": ["https://gamium.dogutech.io/"],
+  "sitemap_urls": ["https://gamium.dogutech.io/sitemap.xml"],
   "sitemap_alternate_links": true,
   "selectors": {
     "lvl0": {

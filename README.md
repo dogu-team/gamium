@@ -23,8 +23,8 @@ You can also call specific functions.
 
 As various platforms emerge, the number of things to test is increasing. Accordingly, the mobile app automation framework is used universally, but in the case of games, there are many projects where tests are not yet automated.
 
-We want to solve this problem and develop engine-agnostic automation libraries through the same interface.
-The interface we provide is inspired by Playwright, Selenium.
+We want to solve this problem and develop automation library with multi-engine support through the same interface.
+The interface we provide is inspired by Selenium and Playwright.
 
 ## Demo
 

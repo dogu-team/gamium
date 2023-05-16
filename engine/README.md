@@ -5,7 +5,7 @@ Start preparing to run your tests by including the Gamium Engine SDK in your gam
 
 Please refer to the document below
 
-- [Gamium Introduction](https://docs.dogutech.io/gamium/get-started/introduction)
+- [Gamium Introduction](https://docs.dogutech.io/docs/get-started/introduction)
 
 ## Supported Engine
 

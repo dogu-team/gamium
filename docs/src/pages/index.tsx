@@ -24,7 +24,7 @@ function HomepageHeader() {
             Automate game testing in android, ios, windows devices
           </p>
           <div style={{ marginTop: '2rem' }}>
-            <a href="/gamium/get-started/introduction">
+            <a href="/docs/get-started/introduction">
               <button className={styles.primaryButton}>Get Started</button>
             </a>
           </div>
@@ -53,7 +53,7 @@ export default function Home(): JSX.Element {
           </h2>
           <ul className={styles.docsSectionListContainer}>
             <li className={styles.docsSectionListItem}>
-              <Link to="/gamium/get-started/introduction">About Gamium</Link>
+              <Link to="/docs/get-started/introduction">About Gamium</Link>
             </li>
           </ul>
         </div>
@@ -66,7 +66,7 @@ export default function Home(): JSX.Element {
           </h2>
           <ul className={styles.docsSectionListContainer}>
             <li className={styles.docsSectionListItem}>
-              <Link to="/gamium/get-started/introduction">소개</Link>
+              <Link to="/docs/get-started/introduction">소개</Link>
             </li>
             <li className={styles.docsSectionListItem}>
               <Link to="/gamium/engine/unity/project-configuration">

@@ -13,7 +13,7 @@ The 'Object path' is used by the 'Gamium Client' to query and manipulate the des
 The Object Path can be found using the methods below.
 
 - [`Console Inspector`](https://docs.dogutech.io/host-and-device/device/streaming-and-remote-control/game-ui-inspector)
-- `Unity` - [`Gamium Editor`](gamium/engine/unity/query-objects)
+- `Unity` - [`Gamium Editor`](docs/engine/unity/query-objects)
 
 :::
 
@@ -22,7 +22,7 @@ The Object Path can be found using the methods below.
 Below is an example of using 'Object path' in 'Gamium Client'.
 
 <Tabs groupId="language" defaultValue="ts">
-<TabItem value="ts" label="TypeScript" default> 
+<TabItem value="ts" label="TypeScript" default>
 
 ```ts
 const cameraObj = await gamium.findObject(By.path('/Main Camera[1]'));
@@ -38,7 +38,7 @@ In the example above, we are looking for a camera using the 'Object path' called
 Alternatively, you can find it using the tag as shown below.
 
 <Tabs groupId="language" defaultValue="ts">
-<TabItem value="ts" label="TypeScript" default> 
+<TabItem value="ts" label="TypeScript" default>
 
 ```ts
 const cameraObj = await gamium.findObject(By.tag('MainCamera'));

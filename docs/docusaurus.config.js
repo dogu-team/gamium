@@ -74,7 +74,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'gamium/get-started/introduction',
+            docId: 'docs/get-started/introduction',
             position: 'left',
             label: 'Docs',
           },
@@ -103,7 +103,7 @@ const config = {
             items: [
               {
                 label: 'Get Started',
-                to: '/gamium/get-started/introduction',
+                to: '/docs/get-started/introduction',
               },
               {
                 label: 'API Reference',

@@ -6,7 +6,7 @@ There are SDKs for each language of the Gamium Client SDK, and you need to use t
 
 Please refer to the document below
 
-- [Gamium Introduction](https://docs.dogutech.io/gamium/get-started/introduction)
+- [Gamium Introduction](https://docs.dogutech.io/docs/get-started/introduction)
 
 ## Supported Language
 

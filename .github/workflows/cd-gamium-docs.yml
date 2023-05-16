@@ -1,4 +1,4 @@
-name: cd-docs
+name: cd-gamium-docs
 
 on:
   workflow_dispatch:

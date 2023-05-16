@@ -1,4 +1,4 @@
-name: ci-docs
+name: ci-gamium-docs
 
 on:
   push:

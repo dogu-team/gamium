@@ -1,0 +1,148 @@
+---
+sidebar_position: 3
+title: Real Device
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Details from '@theme/MDXComponents/Details';
+
+Gamium connection is possible not only on the editor but also on the actual built app.
+
+### Build
+
+First, build it with the gamium engine sdk included and make an executable file.
+For example, please create an executable file with the following file extension
+
+| Platform | File Extension |
+| -------- | -------------- |
+| Windows  | .exe           |
+| macOS    | .app           |
+| Android  | .apk .aab      |
+| iOS      | .ipa           |
+
+### Prepare connect
+
+#### Port forward
+
+In an environment where the gamium client and the app run on the same device, forward is not required. ( ex. Windows, macOS )
+
+However, mobile devices such as Android and iOS need port forwarding to connect to the network.
+This will be explained in the following sections.
+
+<Details>
+<summary mdxType="summary">Android</summary>
+
+#### Device to PC
+
+- Please connect the Android device and PC with a USB cable, and keep it connected.
+- Please use a USB cable that supports data transfer.
+- Enable Developer Options
+- Enable USB Debugging
+- When the message "Do you want to allow USB debugging?" appears on the Android device screen, always check Allow on this computer and click OK to accept it.
+
+#### Install [adb](https://developer.android.com/tools/adb)
+
+You need a tool called adb. If you already have adb installed, you can skip this course. If not please install [Android Platform Tools](https://developer.android.com/tools/releases/platform-tools) on your PC.
+
+- Run a shell such as CMD, Terminal, etc. on your PC.
+- Navigate to the decompressed platform tools folder
+- Please check if the connected device comes out when executing the command below
+
+  ```bash
+  ./adb devices
+  ```
+
+  If the output is as shown below, the device connection is successful.
+
+  ```bash
+  List of devices attached
+  SOMETHING_LIKE_ID    device
+  ```
+
+#### adb forward
+
+- Please execute the command below to port forward.
+  ```bash
+  ./adb forward tcp:50061 tcp:50061
+  ```
+- Please check whether port forward is completed
+
+  ```bash
+  ./adb forward --list
+  ```
+
+  If it's printed as below, it's done.
+
+  ```bash
+  SOMETHING_LIKE_ID tcp:50061 tcp:50061
+  ```
+
+</Details>
+
+<Details>
+<summary mdxType="summary">iOS</summary>
+
+:::caution
+iOS devices can only be connected if the PC is macOS.
+:::
+
+#### Device to PC
+
+- Please connect the iOS device and macOS PC with a USB cable, and keep it connected.
+- Please use a USB cable that supports data transfer.
+
+#### Install [mobiledevice](https://github.com/imkira/mobiledevice)
+
+There may be various methods for iOS port forwarding, but we prefer to use the [mobiledevice](https://github.com/imkira/mobiledevice).
+If you already have mobiledevice installed, you can skip this course. If not please install [mobiledevice](https://github.com/imkira/mobiledevice) on your PC.
+
+- Run a shell such as Terminal, etc. on your PC.
+- Please check if the connected device comes out when executing the command below
+
+  ```bash
+  mobiledevice list_devices
+  ```
+
+  If the output is as shown below, the device connection is successful.
+
+  ```bash
+  SOMETHING_LIKE_ID
+  ```
+
+#### mobiledevice forward
+
+- Please execute the command below to port forward.
+
+  ```bash
+  ./mobiledevice tunnel 50061 50061
+  ```
+
+  If it is printed as below, the forwarding is in progress. `Please keep the window without closing the terminal`. Closing the window interrupts forwarding.
+
+  ```bash
+  Tunneling from local port 50061 to device port 50061...
+  ```
+
+</Details>
+
+### Connect to the engine
+
+Install the built executables and run them on the machine. (For example, run .exe for Windows, and run the app after installing .apk for Android)
+
+After that, it's the same process that we did at [Quickstart](quick-start#connect-to-the-engine)
+
+- Clone the [gamium-unity-samples](https://github.com/dogu-team/gamium-unity-samples) git repository.
+- Open the `gamium-unity-samples/client/typescript` directory with Visual Studio Code.
+- Open the terminal and execute the following command.
+  - This command initializes the automation script project, connects to the running gamium engine, and runs the automation script.
+
+```bash
+yarn install
+yarn run:DoguRpgSample
+```
+
+:::tip
+If the connection is not working properly. Please check the log. The message `"Gamium Engine Update Running"` should be printed.  
+The log path for programs built through Unity can be found in [here](https://docs.unity3d.com/2021.3/Documentation/Manual/LogFiles.html). Check out "Player-related log locations" section
+:::

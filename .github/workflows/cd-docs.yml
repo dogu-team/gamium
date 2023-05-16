@@ -31,3 +31,19 @@ jobs:
           publish_branch: gh-docs
           user_name: github-actions[bot]
           user_email: 41898282+github-actions[bot]@users.noreply.github.com
+
+  send-slack:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: ${{ always() }}
+
+    steps:
+      - name: Send Slack
+        uses: dogu-team/slack@v1.0
+        with:
+          template: 'CD'
+          slack-channel-id: 'C057ML9UH34'
+          result-status: ${{ needs.deploy.result }}
+          ignore-notify: false
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

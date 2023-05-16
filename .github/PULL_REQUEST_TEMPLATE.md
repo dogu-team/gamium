@@ -13,7 +13,7 @@ Contributors guide: https://github.com/dogu-team/gamium/blob/main/CONTRIBUTING.m
 
 - [ ] PR description included and stakeholders cc'd
 - [ ] `yarn test` passes
-- [ ] tests are [changed or added](https://XXX/gamium/gamium/contributing/development-guides/testing)
+- [ ] tests are [changed or added](https://gamium.dogutech.io/docs/contributing/development-guides/testing)
 - [ ] relevant documentation, tutorials, templates and examples are changed or added
 
 #### Release Notes

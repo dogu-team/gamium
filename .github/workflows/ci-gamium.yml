@@ -68,6 +68,7 @@ jobs:
           DOGU_GAMIUM_ENGINE_VERSION: ${{ github.event.inputs.version == '' && 'main' || github.event.inputs.version }}
           DOGU_UNITY_BUILD_TARGET: ${{ matrix.unity_buildtarget }}
           DOGU_GITHUB_TOKEN: ${{ secrets.DOGU_GITHUB_TOKEN }}
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false
         working-directory: ./gamium-unity-samples/scripts/build-script
 
       # - name: Run ${{ matrix.project }}

@@ -47,7 +47,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: dogu-team/gamium-unity-samples
-          token: ${{ secrets.UPLOAD_GITHUB_TOKEN }}
+          token: ${{ secrets.DOGU_GITHUB_TOKEN }}
           clean: false
           path: gamium-unity-samples
 
@@ -67,7 +67,7 @@ jobs:
           DOGU_GAMIUM_ENGINE_UNITY_SAMPLE_NAME: ${{ matrix.project }}
           DOGU_GAMIUM_ENGINE_VERSION: ${{ github.event.inputs.version == '' && 'main' || github.event.inputs.version }}
           DOGU_UNITY_BUILD_TARGET: ${{ matrix.unity_buildtarget }}
-          DOGU_GITHUB_TOKEN: ${{ secrets.UPLOAD_GITHUB_TOKEN }}
+          DOGU_GITHUB_TOKEN: ${{ secrets.DOGU_GITHUB_TOKEN }}
         working-directory: ./gamium-unity-samples/scripts/build-script
 
       # - name: Run ${{ matrix.project }}

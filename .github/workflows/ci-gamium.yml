@@ -1,0 +1,96 @@
+name: 🔄🎮ci-gamium
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        description: 'Gamium revision (tag, branch, commit)'
+        default: 'main'
+
+jobs:
+  build:
+    strategy:
+      max-parallel: 10
+      fail-fast: false
+      matrix:
+        project: [DoguRpgSample, DragonCrashers, DypThePenguin, UnityUISamples, InputSystemWarriors]
+        platform: [windows, android, ios]
+        include:
+          - platform: windows
+            runner_os: Windows
+            unity_buildtarget: standalonewindows64
+            build_ext: .exe
+            do_test: true
+          - platform: android
+            runner_os: Windows
+            unity_buildtarget: android
+            build_ext: .apk
+            do_test: true
+          - platform: ios
+            runner_os: macOS
+            unity_buildtarget: ios
+            build_ext: .ipa
+            do_test: true
+    runs-on: [gamium, '${{ matrix.runner_os }}']
+
+    steps:
+      - name: Output Inputs
+        run: echo "${{ toJSON(github.event.inputs) }}"
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          clean: false
+
+      - name: Clone gamium-unity-samples
+        uses: actions/checkout@v3
+        with:
+          repository: dogu-team/gamium-unity-samples
+          token: ${{ secrets.UPLOAD_GITHUB_TOKEN }}
+          clean: false
+          path: gamium-unity-samples
+
+      - name: Run newbie
+        run: |
+          yarn workspace dogu run newbie
+
+      - name: Build
+        run: |
+          yarn build
+
+      - name: Build ${{ matrix.project }} ${{ matrix.unity_buildtarget }}
+        run: |
+          yarn && yarn workspace gamium-engine-userproject run build:sample
+        env:
+          DOGU_GAMIUM_ENGINE_UNITY_SAMPLES_PATH: '${{ github.workspace }}/gamium-unity-samples'
+          DOGU_GAMIUM_ENGINE_UNITY_SAMPLE_NAME: ${{ matrix.project }}
+          DOGU_GAMIUM_ENGINE_VERSION: ${{ github.event.inputs.version == '' && 'main' || github.event.inputs.version }}
+          DOGU_UNITY_BUILD_TARGET: ${{ matrix.unity_buildtarget }}
+          DOGU_GITHUB_TOKEN: ${{ secrets.UPLOAD_GITHUB_TOKEN }}
+        working-directory: ./gamium-unity-samples/scripts/build-script
+
+      # - name: Run ${{ matrix.project }}
+      #   if: ${{ matrix.do_test }}
+      #   run: |
+      #     yarn && yarn run:${{ matrix.project }}
+      #   env:
+      #     DOGU_DEVICE_PLATFORM: ${{ matrix.platform }}
+      #     DOGU_APP_PATH: '${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/**/${{ matrix.project }}${{ matrix.build_ext }}'
+      #   working-directory: ./gamium-unity-samples/client/typescript
+
+  send-slack:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: ${{ always() }}
+
+    steps:
+      - name: Send Slack
+        uses: dogu-team/slack@v1.0
+        with:
+          template: 'CI'
+          slack-channel-id: 'C03PL9TC44Q'
+          result-status: ${{ needs.build.result }}
+          ignore-notify: ${{ needs.build.result == 'success' }}
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

@@ -32,7 +32,7 @@ jobs:
             unity_buildtarget: ios
             build_ext: .ipa
             do_test: true
-    runs-on: [gamium, '${{ matrix.runner_os }}']
+    runs-on: [self-hosted, '${{ matrix.runner_os }}']
 
     steps:
       - name: Output Inputs

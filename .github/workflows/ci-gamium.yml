@@ -53,7 +53,7 @@ jobs:
 
       - name: Run newbie
         run: |
-          yarn workspace dogu run newbie
+          yarn run newbie
 
       - name: Build
         run: |
@@ -61,7 +61,7 @@ jobs:
 
       - name: Build ${{ matrix.project }} ${{ matrix.unity_buildtarget }}
         run: |
-          yarn && yarn workspace gamium-engine-userproject run build:sample
+          yarn && yarn run build:unity:sample
         env:
           DOGU_GAMIUM_ENGINE_UNITY_SAMPLES_PATH: '${{ github.workspace }}/gamium-unity-samples'
           DOGU_GAMIUM_ENGINE_UNITY_SAMPLE_NAME: ${{ matrix.project }}

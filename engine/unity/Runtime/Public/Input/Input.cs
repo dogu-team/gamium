@@ -9,8 +9,10 @@ namespace Gamium
     [Preserve]
     public class Input
     {
+        [Preserve]
         public static int touchCount => UnityEngine.Input.touchCount;
 
+        [Preserve]
         public static float GetAxis(string axisName)
         {
             var val = UnityEngine.Input.GetAxis(axisName);
@@ -18,6 +20,7 @@ namespace Gamium
             return storage.GetAxis(axisName).value;
         }
 
+        [Preserve]
         public static float GetAxisRaw(string axisName)
         {
             var val = UnityEngine.Input.GetAxisRaw(axisName);
@@ -25,6 +28,7 @@ namespace Gamium
             return storage.GetAxis(axisName).value;
         }
 
+        [Preserve]
         public static bool GetButton(string buttonName)
         {
             var val = UnityEngine.Input.GetButton(buttonName);
@@ -32,6 +36,7 @@ namespace Gamium
             return 1 == storage.GetAxis(buttonName).value;
         }
 
+        [Preserve]
         public static bool GetButtonDown(string buttonName)
         {
             var val = UnityEngine.Input.GetButtonDown(buttonName);
@@ -40,6 +45,7 @@ namespace Gamium
             return 1 == state.value && Time.frameCount == state.downFrame;
         }
 
+        [Preserve]
         public static bool GetButtonUp(string buttonName)
         {
             var val = UnityEngine.Input.GetButtonUp(buttonName);
@@ -48,6 +54,7 @@ namespace Gamium
             return 0 == state.value && Time.frameCount == state.upFrame;
         }
 
+        [Preserve]
         public static bool GetMouseButton(int button)
         {
             var val = UnityEngine.Input.GetMouseButton(button);
@@ -56,6 +63,7 @@ namespace Gamium
             return 1 == storage.GetKeyFloat(buttonName).value;
         }
 
+        [Preserve]
         public static bool GetMouseButtonDown(int button)
         {
             var val = UnityEngine.Input.GetMouseButtonDown(button);
@@ -65,6 +73,7 @@ namespace Gamium
             return 1 == state.value && Time.frameCount == state.downFrame;
         }
 
+        [Preserve]
         public static bool GetMouseButtonUp(int button)
         {
             var val = UnityEngine.Input.GetMouseButtonUp(button);
@@ -74,24 +83,28 @@ namespace Gamium
             return 0 == state.value && Time.frameCount == state.upFrame;
         }
 
+        [Preserve]
         public static Touch GetTouch(int index)
         {
             return UnityEngine.Input.GetTouch(index);
         }
 
         // public static AccelerationEvent GetAccelerationEvent(int index){ return new AccelerationEvent();}
+        [Preserve]
         public static bool GetKey(KeyCode key)
         {
             if (UnityEngine.Input.GetKey(key)) return UnityEngine.Input.GetKey(key);
             return GetKeyDown(key);
         }
 
+        [Preserve]
         public static bool GetKey(string name)
         {
             if (UnityEngine.Input.GetKey(name)) return UnityEngine.Input.GetKey(name);
             return GetKeyDown(name);
         }
 
+        [Preserve]
         public static bool GetKeyDown(KeyCode key)
         {
             if (UnityEngine.Input.GetKeyDown(key)) return UnityEngine.Input.GetKeyDown(key);
@@ -99,6 +112,7 @@ namespace Gamium
             return 1 == state.value && Time.frameCount == state.downFrame;
         }
 
+        [Preserve]
         public static bool GetKeyDown(string name)
         {
             if (UnityEngine.Input.GetKeyDown(name)) return UnityEngine.Input.GetKeyDown(name);
@@ -106,6 +120,7 @@ namespace Gamium
             return 1 == state.value && Time.frameCount == state.downFrame;
         }
 
+        [Preserve]
         public static bool GetKeyUp(KeyCode key)
         {
             if (UnityEngine.Input.GetKeyUp(key)) return UnityEngine.Input.GetKeyUp(key);
@@ -113,6 +128,7 @@ namespace Gamium
             return 0 == state.value && Time.frameCount == state.upFrame;
         }
 
+        [Preserve]
         public static bool GetKeyUp(string name)
         {
             if (UnityEngine.Input.GetKeyUp(name)) return UnityEngine.Input.GetKeyUp(name);
@@ -120,6 +136,7 @@ namespace Gamium
             return 0 == state.value && Time.frameCount == state.upFrame;
         }
 
+        [Preserve]
         public static Vector3 mousePosition
         {
             get
@@ -133,6 +150,7 @@ namespace Gamium
             }
         }
 
+        [Preserve]
         public static Vector2 mouseScrollDelta
         {
             get
@@ -146,6 +164,7 @@ namespace Gamium
             }
         }
 
+        [Preserve]
         internal static GamiumOldInputStorage storage = new GamiumOldInputStorage(new InputMapping[]
             {
                 new InputMapping()

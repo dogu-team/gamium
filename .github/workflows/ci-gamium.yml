@@ -26,12 +26,12 @@ jobs:
             runner_os: Windows
             unity_buildtarget: android
             build_ext: .apk
-            do_test: true
+            do_test: false
           - platform: ios
             runner_os: macOS
             unity_buildtarget: ios
             build_ext: .ipa
-            do_test: true
+            do_test: false
     runs-on: [self-hosted, '${{ matrix.runner_os }}']
 
     steps:
@@ -71,14 +71,19 @@ jobs:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
         working-directory: ./gamium-unity-samples/scripts/build-script
 
-      # - name: Run ${{ matrix.project }}
-      #   if: ${{ matrix.do_test }}
-      #   run: |
-      #     yarn && yarn run:${{ matrix.project }}
-      #   env:
-      #     DOGU_DEVICE_PLATFORM: ${{ matrix.platform }}
-      #     DOGU_APP_PATH: '${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/**/${{ matrix.project }}${{ matrix.build_ext }}'
-      #   working-directory: ./gamium-unity-samples/client/typescript
+      - name: Build
+        id: project-lower
+        uses: ASzc/change-string-case-action@v5
+        with:
+          string: ${{ matrix.project }}
+
+      - name: Run ${{ matrix.project }}
+        if: ${{ matrix.do_test }}
+        run: |
+          yarn && ${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/${{ steps.project-lower.outputs.lowercase }}${{ matrix.build_ext }} && yarn run:${{ matrix.project }}
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: false
+        working-directory: ./gamium-unity-samples/client/typescript
 
   send-slack:
     runs-on: ubuntu-latest

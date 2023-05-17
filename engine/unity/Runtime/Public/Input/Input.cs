@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using Gamium.Private;
 using UnityEngine;
 using UnityEngine.Scripting;
@@ -145,7 +146,23 @@ namespace Gamium
             }
         }
 
-        internal static GamiumOldInputStorage storage;
+        internal static GamiumOldInputStorage storage = new GamiumOldInputStorage(new InputMapping[]
+            {
+                new InputMapping()
+                {
+                    alias = "Horizontal", positiveCodes = new HashSet<KeyCode>() { KeyCode.D },
+                    negativeCodes = new HashSet<KeyCode>() { KeyCode.A }
+                },
+                new InputMapping()
+                {
+                    alias = "Vertical", positiveCodes = new HashSet<KeyCode>() { KeyCode.W },
+                    negativeCodes = new HashSet<KeyCode>() { KeyCode.S }
+                },
+                new InputMapping() { alias = "Jump", positiveCodes = new HashSet<KeyCode>() { KeyCode.Space } },
+                new InputMapping()
+                    { alias = "Fire1", positiveCodes = new HashSet<KeyCode>() { KeyCode.LeftControl } },
+                new InputMapping() { alias = "Fire2", positiveCodes = new HashSet<KeyCode>() { KeyCode.LeftAlt } }
+            });
 
         #region UnSupported
 

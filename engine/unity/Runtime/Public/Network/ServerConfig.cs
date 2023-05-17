@@ -4,7 +4,7 @@ namespace Gamium
 {
     public class ServerConfig
     {
-        public int port = 0;
+        public int port = 50061;
         public bool isVerbose = true;
         public InputMapping[] inputMappings;
     }

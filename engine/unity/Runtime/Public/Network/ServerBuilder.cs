@@ -1,4 +1,5 @@
-﻿using Gamium.Private;
+﻿using System;
+using Gamium.Private;
 using Gamium.Private.Debug;
 using Gamium.Private.Object;
 using Gamium.Private.Util;
@@ -51,14 +52,16 @@ namespace Gamium
             ActionsHandler.Setup();
             InternalCommandHandler.Setup();
 
-            _instance.Run(_server).ContinueWith(task =>
+            try
             {
-                if (task.IsFaulted || task.IsCanceled || null != task.Exception)
-                {
-                    Gamium.Private.Util.Logger.Error(
-                        $"GamiumEngine Start failed. fault:{task.IsFaulted}, cancel:{task.IsCanceled}, exception:{task.Exception}");
-                }
-            });
+
+                _instance.RequestRun(_server);
+            }
+            catch (Exception e)
+            {
+                Gamium.Private.Util.Logger.Error(
+                    $"GamiumEngine Start failed. exception:{e}");
+            }
 #endif
         }
 

@@ -11,12 +11,11 @@ namespace Gamium
         {
             private float logTime = 0;
 
-            internal async Task Run(Server server)
+            internal void RequestRun(Server server)
             {
                 DontDestroyOnLoad(gameObject);
                 GameObjectInstance = gameObject;
                 Logger.isVerbose = server._config.isVerbose;
-
 
                 _server = server;
             }

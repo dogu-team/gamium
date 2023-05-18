@@ -85,6 +85,11 @@ const config = {
             label: 'API',
           },
           {
+            href: 'https://blog.dogutech.io/tag/gamium/',
+            label: 'Blog',
+            position: 'left',
+          },
+          {
             href: 'https://github.com/dogu-team/gamium',
             label: 'GitHub',
             position: 'right',
@@ -126,6 +131,10 @@ const config = {
               {
                 label: 'GitHub',
                 href: 'https://github.com/dogu-team/gamium',
+              },
+              {
+                label: 'Blog',
+                href: 'https://blog.dogutech.io/tag/gamium/',
               },
             ],
           },

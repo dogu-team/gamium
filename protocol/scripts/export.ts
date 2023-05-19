@@ -12,24 +12,36 @@ const PROTOCOL_DIR = path.resolve(REPO_DIR, 'protocol');
 const FBS_DIR = 'fbs';
 
 const EXPORT_DIR = '.export';
-const EXPORT_CPP_DIR = `${EXPORT_DIR}/cpp`;
-const EXPORT_CSHARP_DIR = `${EXPORT_DIR}/csharp`;
-const EXPORT_TS_DIR = `${EXPORT_DIR}/typescript`;
+const FLATC_COMMON_OPTION = [
+  '--gen-object-api',
+  '--no-cpp-direct-copy',
+  '--no-prefix',
+  '--scoped-enums',
+  '--natural-utf8',
+  '--reflect-types',
+  '--force-empty',
+  '--force-empty-vectors',
+].join(' ');
+
+const LANGUAGES = {
+  cpp: { export_dir: `${EXPORT_DIR}/cpp`, protocol_dir: `${REPO_DIR}/engine/cpp/src/include/Internal/Protocol` },
+  csharp: { export_dir: `${EXPORT_DIR}/csharp`, protocol_dir: `${REPO_DIR}/engine/unity/Runtime/Public/Protocol/FlatBufferGenerated` },
+  typescript: { export_dir: `${EXPORT_DIR}/typescript`, protocol_dir: `${REPO_DIR}/client/typescript/gamium/src/common/protocols/generated` },
+  python: { export_dir: `${EXPORT_DIR}/python`, protocol_dir: `${REPO_DIR}/client/python/gamium/protocols/generated` },
+};
 
 const DOCKER_WORK_DIR = '/app/host';
 const DOCKER_IMAGE_NAME = 'flatbuffer-exporter';
 const DOCKER_CONTAINER_NAME = 'flatbuffer-exporter-container';
 
-// const DEST_CPP_GAMIUM_PROTOCOL_DIR = `${CURRENT_DIR}/../../packages/cpp/gamium-engine/src/include/Internal/Protocol`;
-const DEST_CSHARP_GAMIUM_PROTOCOL_DIR = `${REPO_DIR}/engine/unity/Runtime/Public/Protocol/FlatBufferGenerated`;
-const DEST_TS_GAMIUM_PROTOCOL_DIR = `${REPO_DIR}/client/typescript/gamium/src/common/protocols/generated`;
-
-const FLATC_COMMON_OPTION =
-  ' --gen-object-api' + ' --no-cpp-direct-copy --no-prefix --scoped-enums' + ' --natural-utf8 --reflect-types --force-empty --force-empty-vectors';
-
 async function prepare(): Promise<void> {
-  await filesystem.deleteDirs([EXPORT_DIR, EXPORT_CPP_DIR, EXPORT_CSHARP_DIR, EXPORT_TS_DIR, DEST_CSHARP_GAMIUM_PROTOCOL_DIR, DEST_TS_GAMIUM_PROTOCOL_DIR]);
-  await filesystem.createDirs([EXPORT_CPP_DIR, EXPORT_CSHARP_DIR, EXPORT_TS_DIR]);
+  for (const lang of Object.keys(LANGUAGES)) {
+    const prop = LANGUAGES[lang as keyof typeof LANGUAGES];
+    await filesystem.deleteDirs([prop.export_dir]);
+    await filesystem.createDirs([prop.export_dir]);
+
+    await filesystem.deleteDirs([prop.protocol_dir]);
+  }
 }
 
 function buildExporter(): Promise<void> {
@@ -57,31 +69,38 @@ function formatFbslist(fbslist: string[]): Promise<void> {
 async function exportCpp(fbslist: string[]): Promise<void> {
   return buildToolsProcess.createProcess(
     `docker exec ${DOCKER_CONTAINER_NAME} /bin/bash --login -c ` +
-      `"source /root/.bashrc && flatc --cpp -I ${FBS_DIR} -o ${EXPORT_CPP_DIR} ${FLATC_COMMON_OPTION} ${fbslist.join(' ')}"`,
+      `"source /root/.bashrc && flatc --cpp -I ${FBS_DIR} -o ${LANGUAGES.cpp.export_dir} ${FLATC_COMMON_OPTION} ${fbslist.join(' ')}"`,
   );
 }
 
 async function exportCsharp(fbslist: string[]): Promise<void> {
   return buildToolsProcess.createProcess(
     `docker exec ${DOCKER_CONTAINER_NAME} /bin/bash --login -c ` +
-      `"source /root/.bashrc && flatc --csharp -I ${FBS_DIR} -o ${EXPORT_CSHARP_DIR} ${FLATC_COMMON_OPTION} ${fbslist.join(' ')}"`,
+      `"source /root/.bashrc && flatc --csharp -I ${FBS_DIR} -o ${LANGUAGES.csharp.export_dir} ${FLATC_COMMON_OPTION} ${fbslist.join(' ')}"`,
   );
 }
 
 async function exportTypescript(fbslist: string[]): Promise<void> {
   await buildToolsProcess.createProcess(
     `docker exec ${DOCKER_CONTAINER_NAME} /bin/bash --login -c ` +
-      `"source /root/.bashrc &&flatc --ts -I ${FBS_DIR} -o ${EXPORT_TS_DIR} ${FLATC_COMMON_OPTION} ${fbslist.join(' ')}"`,
+      `"source /root/.bashrc &&flatc --ts -I ${FBS_DIR} -o ${LANGUAGES.typescript.export_dir} ${FLATC_COMMON_OPTION} ${fbslist.join(' ')}"`,
   );
-  return buildToolsProcess.createProcess(`prettier --loglevel warn --write ${EXPORT_TS_DIR}`);
+  return buildToolsProcess.createProcess(`prettier --loglevel warn --write ${LANGUAGES.typescript.export_dir}`);
+}
+
+async function exportPython(fbslist: string[]): Promise<void> {
+  return buildToolsProcess.createProcess(
+    `docker exec ${DOCKER_CONTAINER_NAME} /bin/bash --login -c ` +
+      `"source /root/.bashrc && flatc --python -I ${FBS_DIR} -o ${LANGUAGES.python.export_dir} ${FLATC_COMMON_OPTION} ${fbslist.join(' ')}"`,
+  );
 }
 
 async function formatTypescriptNamespace(): Promise<void> {
-  shelljs.ls(`${EXPORT_TS_DIR}/*.ts`).forEach((file) => {
+  shelljs.ls(`${LANGUAGES.typescript.export_dir}/*.ts`).forEach((file) => {
     shelljs.rm(file);
   });
 
-  await typescript.createIndexTsInternal(EXPORT_TS_DIR, {
+  await typescript.createIndexTsInternal(LANGUAGES.typescript.export_dir, {
     dirPostFixExclude: [],
     filePostFixExclude: ['.d.ts'],
   });
@@ -89,12 +108,12 @@ async function formatTypescriptNamespace(): Promise<void> {
 }
 
 async function copyToProjects(): Promise<void> {
-  await fsPromises.cp(EXPORT_CSHARP_DIR, DEST_CSHARP_GAMIUM_PROTOCOL_DIR, {
-    recursive: true,
-  });
-  await fsPromises.cp(EXPORT_TS_DIR, DEST_TS_GAMIUM_PROTOCOL_DIR, {
-    recursive: true,
-  });
+  for (const lang of Object.keys(LANGUAGES)) {
+    const prop = LANGUAGES[lang as keyof typeof LANGUAGES];
+    await fsPromises.cp(prop.export_dir, prop.protocol_dir, {
+      recursive: true,
+    });
+  }
 }
 
 async function run(): Promise<void> {
@@ -107,6 +126,7 @@ async function run(): Promise<void> {
     time.checkTime('exportCpp', exportCpp(fbslist)),
     time.checkTime('exportTypescript', exportTypescript(fbslist)),
     time.checkTime('exportCsharp', exportCsharp(fbslist)),
+    time.checkTime('exportPython', exportPython(fbslist)),
   ]);
 
   await time.checkTime('createIndexTs', formatTypescriptNamespace());

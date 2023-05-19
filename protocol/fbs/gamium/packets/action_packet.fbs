@@ -21,9 +21,9 @@ table ActionResult {
 }
 
 table ActionsParam {
-  actions: [ActionParam];
+  actions: [byte];
 }
 
 table ActionsResult {
-  results: [ActionResult] (native_inline);
+  results: [ActionResult](native_inline);
 }

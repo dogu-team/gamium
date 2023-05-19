@@ -32,6 +32,8 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length", "100"],
   "debug.javascript.autoAttachFilter": "onlyWithFlag",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
@@ -48,23 +50,11 @@
   "eslint.lintTask.options": ".ts",
   "eslint.nodePath": ".yarn/sdks",
   "eslint.packageManager": "yarn",
-  "eslint.probe": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "html",
-    "vue",
-    "markdown"
-  ],
-  "eslint.workingDirectories": [
-    "."
-  ],
+  "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact", "html", "vue", "markdown"],
+  "eslint.workingDirectories": ["."],
   "git.rebaseWhenSync": true,
   "javascript.preferences.importModuleSpecifier": "relative",
-  "prettier.documentSelectors": [
-    "*.ts, *.json"
-  ],
+  "prettier.documentSelectors": ["*.ts, *.json"],
   "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
   "sourcekit-lsp.trace.server": "messages",
   "typescript.inlayHints.variableTypes.enabled": true,

@@ -24,10 +24,26 @@ const FLATC_COMMON_OPTION = [
 ].join(' ');
 
 const LANGUAGES = {
-  cpp: { export_dir: `${EXPORT_DIR}/cpp`, protocol_dir: `${REPO_DIR}/engine/cpp/src/include/Internal/Protocol` },
-  csharp: { export_dir: `${EXPORT_DIR}/csharp`, protocol_dir: `${REPO_DIR}/engine/unity/Runtime/Public/Protocol/FlatBufferGenerated` },
-  typescript: { export_dir: `${EXPORT_DIR}/typescript`, protocol_dir: `${REPO_DIR}/client/typescript/gamium/src/common/protocols/generated` },
-  python: { export_dir: `${EXPORT_DIR}/python`, protocol_dir: `${REPO_DIR}/client/python/gamium/protocols/generated` },
+  cpp: {
+    export_dir: `${EXPORT_DIR}/cpp`,
+    protocol_dir: `${REPO_DIR}/engine/cpp/src/include/Internal/Protocol`,
+    protocol_delete_dir: `${REPO_DIR}/engine/cpp/src/include/Internal/Protocol`,
+  },
+  csharp: {
+    export_dir: `${EXPORT_DIR}/csharp`,
+    protocol_dir: `${REPO_DIR}/engine/unity/Runtime/Public/Protocol/FlatBufferGenerated`,
+    protocol_delete_dir: `${REPO_DIR}/engine/unity/Runtime/Public/Protocol/FlatBufferGenerated`,
+  },
+  typescript: {
+    export_dir: `${EXPORT_DIR}/typescript`,
+    protocol_dir: `${REPO_DIR}/client/typescript/gamium/src/common/protocols/generated`,
+    protocol_delete_dir: `${REPO_DIR}/client/typescript/gamium/src/common/protocols/generated`,
+  },
+  python: {
+    export_dir: `${EXPORT_DIR}/python`,
+    protocol_dir: `${REPO_DIR}/client/python/gamium`,
+    protocol_delete_dir: `${REPO_DIR}/client/python/gamium/Protocol`,
+  },
 };
 
 const DOCKER_WORK_DIR = '/app/host';
@@ -40,7 +56,7 @@ async function prepare(): Promise<void> {
     await filesystem.deleteDirs([prop.export_dir]);
     await filesystem.createDirs([prop.export_dir]);
 
-    await filesystem.deleteDirs([prop.protocol_dir]);
+    await filesystem.deleteDirs([prop.protocol_delete_dir]);
   }
 }
 

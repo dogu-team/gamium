@@ -131,3 +131,6 @@ build
 # Misc
 .DS_Store
 .yarn/install-state.gz
+
+## Python
+__pycache__/

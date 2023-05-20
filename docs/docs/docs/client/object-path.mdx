@@ -7,19 +7,19 @@ toc_max_heading_level: 4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The 'Object path' is used by the 'Gamium Client' to query and manipulate the desired object.
+The `Object path` is used by the `Gamium Client` to query and manipulate the desired object.
 
 :::info
 The Object Path can be found using the methods below.
 
 - [`Console Inspector`](https://docs.dogutech.io/host-and-device/device/streaming-and-remote-control/game-ui-inspector)
-- `Unity` - [`Gamium Editor`](/docs/engine/unity/query-objects)
+- `Unity` - [`Gamium Editor`](../../docs/engine/unity/query-objects)
 
 :::
 
 <br />
 
-Below is an example of using 'Object path' in 'Gamium Client'.
+Below is an example of using `Object path` in `Gamium Client`.
 
 <Tabs groupId="language" defaultValue="ts">
 <TabItem value="ts" label="TypeScript" default>
@@ -31,7 +31,7 @@ const cameraObj = await gamium.findObject(By.path('/Main Camera[1]'));
 </TabItem>
 </Tabs>
 
-In the example above, we are looking for a camera using the 'Object path' called '/Main Camera [1]'. The reason for using the function [`By.path()`](api/client/typescript/classes/by) is to inform you that you are searching through 'Object path' among the object search methods.
+In the example above, we are looking for a camera using the `Object path` called '/Main Camera [1]'. The reason for using the function [`By.path()`](../../api/client/typescript/classes/by) is to inform you that you are searching through `Object path` among the object search methods.
 
 <br />
 

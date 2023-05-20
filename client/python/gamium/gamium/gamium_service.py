@@ -8,7 +8,7 @@ from gamium.Protocol.Request import RequestT
 from gamium.Protocol.Response import Response, ResponseT
 from gamium.Protocol.Types.ErrorCode import ErrorCode
 
-from gamium.internal import Logger, DefaultLogger
+from gamium.internal import Logger, DefaultLogger, SizePrefixedRecvQueue
 
 
 class GamiumService:
@@ -26,16 +26,17 @@ class GamiumService:
         self._reader = None
         self._writer = None
         self._seq = 0
+        self._recv_queue = SizePrefixedRecvQueue()
 
     async def connect(self, try_count: int = 30):
         self._logger.info(f"Connecting to {self._host}:{self._port}")
 
         for i in range(try_count):
             try:
-                self._reader, self._writer = await asyncio.open_connection(self.host, self.port)
+                self._reader, self._writer = await asyncio.open_connection(self._host, self._port)
             except Exception as e:
                 self._logger.info(
-                    f"Failed to connect to {self._host}:{self._port} ({i + 1}/{try_count})"
+                    f"Failed to connect to {self._host}:{self._port} ({i + 1}/{try_count}) {e}"
                 )
                 await asyncio.sleep(1)
                 continue
@@ -57,7 +58,7 @@ class GamiumService:
 
         builder = flatbuffers.Builder()
         request_offset = packet.Pack(builder)
-        builder.Finish(request_offset)
+        builder.FinishSizePrefixed(request_offset)
 
         try:
             self._writer.write(builder.Output())
@@ -67,11 +68,14 @@ class GamiumService:
             raise e
 
         try:
-            data = await asyncio.wait_for(
-                self._reader.read(1024), timeout
-            )  #  todo check prefixed Size and buffering
+            while True:
+                data = await asyncio.wait_for(self._reader.read(1024), timeout)
+                self._recv_queue.pushBuffer(data)
+                if self._recv_queue.has():
+                    break
+            buf = self._recv_queue.pop()
 
-            response = ResponseT.InitFromBuf(data, 0)
+            response = ResponseT.InitFromPackedBuf(buf, 0)
             if response.resultType != packet.paramType:
                 raise GamiumError(
                     ErrorCode.InternalError,
@@ -82,15 +86,15 @@ class GamiumService:
                     ErrorCode.InternalError,
                     f"Invalid response seq: {response.seq} != {packet.seq}",
                 )
-            if response.error:
+            if None == response.error:
                 raise GamiumError(
                     ErrorCode.InternalError, f"request response error is null {response.error}"
                 )
             if response.error.code != ErrorCode.None_:
                 raise GamiumError(
-                    response.error.code, f"request response error is null {response.error.message}"
+                    response.error.code, f"request response error {response.error.message}"
                 )
-            self._logger.verbose(f"request: {packet.seq}, ${packet.paramType} done")
+            self._logger.verbose(f"request: {packet.seq}, {packet.paramType} done")
 
             return response.result
 

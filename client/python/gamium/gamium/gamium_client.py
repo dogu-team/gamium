@@ -1,3 +1,7 @@
+from gamium.Protocol.Packets.HelloResult import HelloResultT
+from gamium.Protocol.Packets.HelloParam import HelloParamT
+from gamium.Protocol.Request import RequestT
+from gamium.Protocol.Param import Param
 from gamium.gamium_service import GamiumService
 
 
@@ -6,4 +10,10 @@ class GamiumClient:
         self._service = GamiumService(host, port)
 
     async def connect(self):
-        self._service.connect()
+        await self._service.connect()
+
+    async def hello(self) -> HelloResultT:
+        req = RequestT()
+        req.paramType = Param.Packets_HelloParam
+        req.param = HelloParamT()
+        return await self._service.request(req)

@@ -1,4 +1,4 @@
-from Gamium.gamium_service import GamiumService
+from gamium.gamium_service import GamiumService
 
 
 class GamiumClient:

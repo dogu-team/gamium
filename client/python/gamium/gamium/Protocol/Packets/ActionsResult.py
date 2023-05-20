@@ -31,7 +31,7 @@ class ActionsResult(object):
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            from Gamium.Protocol.Packets.ActionResult import ActionResult
+            from gamium.Protocol.Packets.ActionResult import ActionResult
             obj = ActionResult()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -61,7 +61,7 @@ def StartResultsVector(builder, numElems):
 def ActionsResultEnd(builder): return builder.EndObject()
 def End(builder):
     return ActionsResultEnd(builder)
-import Gamium.Protocol.Packets.ActionResult
+import gamium.Protocol.Packets.ActionResult
 try:
     from typing import List
 except:
@@ -71,7 +71,7 @@ class ActionsResultT(object):
 
     # ActionsResultT
     def __init__(self):
-        self.results = None  # type: List[Gamium.Protocol.Packets.ActionResult.ActionResultT]
+        self.results = None  # type: List[gamium.Protocol.Packets.ActionResult.ActionResultT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -100,7 +100,7 @@ class ActionsResultT(object):
                 if actionsResult.Results(i) is None:
                     self.results.append(None)
                 else:
-                    actionResult_ = Gamium.Protocol.Packets.ActionResult.ActionResultT.InitFromObj(actionsResult.Results(i))
+                    actionResult_ = gamium.Protocol.Packets.ActionResult.ActionResultT.InitFromObj(actionsResult.Results(i))
                     self.results.append(actionResult_)
 
     # ActionsResultT

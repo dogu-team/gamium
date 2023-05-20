@@ -16,21 +16,21 @@ def ActionParamCreator(unionType, table):
     if not isinstance(table, Table):
         return None
     if unionType == ActionParam().Actions_SleepParam:
-        import Gamium.Protocol.Packets.Actions.SleepParam
-        return Gamium.Protocol.Packets.Actions.SleepParam.SleepParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.Actions.SleepParam
+        return gamium.Protocol.Packets.Actions.SleepParam.SleepParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == ActionParam().Actions_InputKeyParam:
-        import Gamium.Protocol.Packets.Actions.InputKeyParam
-        return Gamium.Protocol.Packets.Actions.InputKeyParam.InputKeyParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.Actions.InputKeyParam
+        return gamium.Protocol.Packets.Actions.InputKeyParam.InputKeyParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == ActionParam().Actions_InputMouseParam:
-        import Gamium.Protocol.Packets.Actions.InputMouseParam
-        return Gamium.Protocol.Packets.Actions.InputMouseParam.InputMouseParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.Actions.InputMouseParam
+        return gamium.Protocol.Packets.Actions.InputMouseParam.InputMouseParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == ActionParam().Actions_InputSetTextParam:
-        import Gamium.Protocol.Packets.Actions.InputSetTextParam
-        return Gamium.Protocol.Packets.Actions.InputSetTextParam.InputSetTextParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.Actions.InputSetTextParam
+        return gamium.Protocol.Packets.Actions.InputSetTextParam.InputSetTextParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == ActionParam().Actions_MovePlayerParam:
-        import Gamium.Protocol.Packets.Actions.MovePlayerParam
-        return Gamium.Protocol.Packets.Actions.MovePlayerParam.MovePlayerParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.Actions.MovePlayerParam
+        return gamium.Protocol.Packets.Actions.MovePlayerParam.MovePlayerParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == ActionParam().Actions_AppQuitParam:
-        import Gamium.Protocol.Packets.Actions.AppQuitParam
-        return Gamium.Protocol.Packets.Actions.AppQuitParam.AppQuitParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.Actions.AppQuitParam
+        return gamium.Protocol.Packets.Actions.AppQuitParam.AppQuitParamT.InitFromBuf(table.Bytes, table.Pos)
     return None

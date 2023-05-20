@@ -29,7 +29,7 @@ class ActionResult(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            from Gamium.Protocol.Types.ErrorResult import ErrorResult
+            from gamium.Protocol.Types.ErrorResult import ErrorResult
             obj = ErrorResult()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -44,7 +44,7 @@ def AddError(builder, error):
 def ActionResultEnd(builder): return builder.EndObject()
 def End(builder):
     return ActionResultEnd(builder)
-import Gamium.Protocol.Types.ErrorResult
+import gamium.Protocol.Types.ErrorResult
 try:
     from typing import Optional
 except:
@@ -54,7 +54,7 @@ class ActionResultT(object):
 
     # ActionResultT
     def __init__(self):
-        self.error = None  # type: Optional[Gamium.Protocol.Types.ErrorResult.ErrorResultT]
+        self.error = None  # type: Optional[gamium.Protocol.Types.ErrorResult.ErrorResultT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -78,7 +78,7 @@ class ActionResultT(object):
         if actionResult is None:
             return
         if actionResult.Error() is not None:
-            self.error = Gamium.Protocol.Types.ErrorResult.ErrorResultT.InitFromObj(actionResult.Error())
+            self.error = gamium.Protocol.Types.ErrorResult.ErrorResultT.InitFromObj(actionResult.Error())
 
     # ActionResultT
     def Pack(self, builder):

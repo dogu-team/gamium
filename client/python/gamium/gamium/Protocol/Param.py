@@ -21,36 +21,36 @@ def ParamCreator(unionType, table):
     if not isinstance(table, Table):
         return None
     if unionType == Param().Packets_HelloParam:
-        import Gamium.Protocol.Packets.HelloParam
-        return Gamium.Protocol.Packets.HelloParam.HelloParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.HelloParam
+        return gamium.Protocol.Packets.HelloParam.HelloParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_QueryScreenParam:
-        import Gamium.Protocol.Packets.QueryScreenParam
-        return Gamium.Protocol.Packets.QueryScreenParam.QueryScreenParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.QueryScreenParam
+        return gamium.Protocol.Packets.QueryScreenParam.QueryScreenParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_FindObjectsParam:
-        import Gamium.Protocol.Packets.FindObjectsParam
-        return Gamium.Protocol.Packets.FindObjectsParam.FindObjectsParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.FindObjectsParam
+        return gamium.Protocol.Packets.FindObjectsParam.FindObjectsParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_QueryObjectInteractableParam:
-        import Gamium.Protocol.Packets.QueryObjectInteractableParam
-        return Gamium.Protocol.Packets.QueryObjectInteractableParam.QueryObjectInteractableParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.QueryObjectInteractableParam
+        return gamium.Protocol.Packets.QueryObjectInteractableParam.QueryObjectInteractableParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_ActionsParam:
-        import Gamium.Protocol.Packets.ActionsParam
-        return Gamium.Protocol.Packets.ActionsParam.ActionsParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.ActionsParam
+        return gamium.Protocol.Packets.ActionsParam.ActionsParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_ExecuteRpcParam:
-        import Gamium.Protocol.Packets.ExecuteRpcParam
-        return Gamium.Protocol.Packets.ExecuteRpcParam.ExecuteRpcParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.ExecuteRpcParam
+        return gamium.Protocol.Packets.ExecuteRpcParam.ExecuteRpcParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_InspectObjectOnScreenParam:
-        import Gamium.Protocol.Packets.InspectObjectOnScreenParam
-        return Gamium.Protocol.Packets.InspectObjectOnScreenParam.InspectObjectOnScreenParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.InspectObjectOnScreenParam
+        return gamium.Protocol.Packets.InspectObjectOnScreenParam.InspectObjectOnScreenParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_InspectObjectWithIdParam:
-        import Gamium.Protocol.Packets.InspectObjectWithIdParam
-        return Gamium.Protocol.Packets.InspectObjectWithIdParam.InspectObjectWithIdParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.InspectObjectWithIdParam
+        return gamium.Protocol.Packets.InspectObjectWithIdParam.InspectObjectWithIdParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_DumpObjectsHierarchyParam:
-        import Gamium.Protocol.Packets.DumpObjectsHierarchyParam
-        return Gamium.Protocol.Packets.DumpObjectsHierarchyParam.DumpObjectsHierarchyParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.DumpObjectsHierarchyParam
+        return gamium.Protocol.Packets.DumpObjectsHierarchyParam.DumpObjectsHierarchyParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_ChangeConfigurationParam:
-        import Gamium.Protocol.Packets.ChangeConfigurationParam
-        return Gamium.Protocol.Packets.ChangeConfigurationParam.ChangeConfigurationParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.ChangeConfigurationParam
+        return gamium.Protocol.Packets.ChangeConfigurationParam.ChangeConfigurationParamT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Param().Packets_QueryProfileParam:
-        import Gamium.Protocol.Packets.QueryProfileParam
-        return Gamium.Protocol.Packets.QueryProfileParam.QueryProfileParamT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.QueryProfileParam
+        return gamium.Protocol.Packets.QueryProfileParam.QueryProfileParamT.InitFromBuf(table.Bytes, table.Pos)
     return None

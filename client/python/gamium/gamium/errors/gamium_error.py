@@ -1,4 +1,4 @@
-from Gamium.Protocol.Types import ErrorCode
+from gamium.Protocol.Types import ErrorCode
 
 
 class GamiumError(Exception):

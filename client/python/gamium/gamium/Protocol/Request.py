@@ -63,18 +63,18 @@ def AddParam(builder, param):
 def RequestEnd(builder): return builder.EndObject()
 def End(builder):
     return RequestEnd(builder)
-import Gamium.Protocol.Packets.ActionsParam
-import Gamium.Protocol.Packets.ChangeConfigurationParam
-import Gamium.Protocol.Packets.DumpObjectsHierarchyParam
-import Gamium.Protocol.Packets.ExecuteRpcParam
-import Gamium.Protocol.Packets.FindObjectsParam
-import Gamium.Protocol.Packets.HelloParam
-import Gamium.Protocol.Packets.InspectObjectOnScreenParam
-import Gamium.Protocol.Packets.InspectObjectWithIdParam
-import Gamium.Protocol.Packets.QueryObjectInteractableParam
-import Gamium.Protocol.Packets.QueryProfileParam
-import Gamium.Protocol.Packets.QueryScreenParam
-import Gamium.Protocol.Param
+import gamium.Protocol.Packets.ActionsParam
+import gamium.Protocol.Packets.ChangeConfigurationParam
+import gamium.Protocol.Packets.DumpObjectsHierarchyParam
+import gamium.Protocol.Packets.ExecuteRpcParam
+import gamium.Protocol.Packets.FindObjectsParam
+import gamium.Protocol.Packets.HelloParam
+import gamium.Protocol.Packets.InspectObjectOnScreenParam
+import gamium.Protocol.Packets.InspectObjectWithIdParam
+import gamium.Protocol.Packets.QueryObjectInteractableParam
+import gamium.Protocol.Packets.QueryProfileParam
+import gamium.Protocol.Packets.QueryScreenParam
+import gamium.Protocol.Param
 try:
     from typing import Union
 except:
@@ -86,7 +86,7 @@ class RequestT(object):
     def __init__(self):
         self.seq = 0  # type: int
         self.paramType = 0  # type: int
-        self.param = None  # type: Union[None, Gamium.Protocol.Packets.HelloParam.HelloParamT, Gamium.Protocol.Packets.QueryScreenParam.QueryScreenParamT, Gamium.Protocol.Packets.FindObjectsParam.FindObjectsParamT, Gamium.Protocol.Packets.QueryObjectInteractableParam.QueryObjectInteractableParamT, Gamium.Protocol.Packets.ActionsParam.ActionsParamT, Gamium.Protocol.Packets.ExecuteRpcParam.ExecuteRpcParamT, Gamium.Protocol.Packets.InspectObjectOnScreenParam.InspectObjectOnScreenParamT, Gamium.Protocol.Packets.InspectObjectWithIdParam.InspectObjectWithIdParamT, Gamium.Protocol.Packets.DumpObjectsHierarchyParam.DumpObjectsHierarchyParamT, Gamium.Protocol.Packets.ChangeConfigurationParam.ChangeConfigurationParamT, Gamium.Protocol.Packets.QueryProfileParam.QueryProfileParamT]
+        self.param = None  # type: Union[None, gamium.Protocol.Packets.HelloParam.HelloParamT, gamium.Protocol.Packets.QueryScreenParam.QueryScreenParamT, gamium.Protocol.Packets.FindObjectsParam.FindObjectsParamT, gamium.Protocol.Packets.QueryObjectInteractableParam.QueryObjectInteractableParamT, gamium.Protocol.Packets.ActionsParam.ActionsParamT, gamium.Protocol.Packets.ExecuteRpcParam.ExecuteRpcParamT, gamium.Protocol.Packets.InspectObjectOnScreenParam.InspectObjectOnScreenParamT, gamium.Protocol.Packets.InspectObjectWithIdParam.InspectObjectWithIdParamT, gamium.Protocol.Packets.DumpObjectsHierarchyParam.DumpObjectsHierarchyParamT, gamium.Protocol.Packets.ChangeConfigurationParam.ChangeConfigurationParamT, gamium.Protocol.Packets.QueryProfileParam.QueryProfileParamT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -111,7 +111,7 @@ class RequestT(object):
             return
         self.seq = request.Seq()
         self.paramType = request.ParamType()
-        self.param = Gamium.Protocol.Param.ParamCreator(self.paramType, request.Param())
+        self.param = gamium.Protocol.Param.ParamCreator(self.paramType, request.Param())
 
     # RequestT
     def Pack(self, builder):

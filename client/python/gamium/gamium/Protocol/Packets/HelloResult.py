@@ -73,7 +73,7 @@ class HelloResult(object):
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            from Gamium.Protocol.Packets.Env import Env
+            from gamium.Protocol.Packets.Env import Env
             obj = Env()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -121,7 +121,7 @@ def StartEnvsVector(builder, numElems):
 def HelloResultEnd(builder): return builder.EndObject()
 def End(builder):
     return HelloResultEnd(builder)
-import Gamium.Protocol.Packets.Env
+import gamium.Protocol.Packets.Env
 try:
     from typing import List
 except:
@@ -137,7 +137,7 @@ class HelloResultT(object):
         self.framesFromStart = 0  # type: int
         self.secondsFromStart = 0.0  # type: float
         self.clientSequence = 0  # type: int
-        self.envs = None  # type: List[Gamium.Protocol.Packets.Env.EnvT]
+        self.envs = None  # type: List[gamium.Protocol.Packets.Env.EnvT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -172,7 +172,7 @@ class HelloResultT(object):
                 if helloResult.Envs(i) is None:
                     self.envs.append(None)
                 else:
-                    env_ = Gamium.Protocol.Packets.Env.EnvT.InitFromObj(helloResult.Envs(i))
+                    env_ = gamium.Protocol.Packets.Env.EnvT.InitFromObj(helloResult.Envs(i))
                     self.envs.append(env_)
 
     # HelloResultT

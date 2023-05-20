@@ -21,36 +21,36 @@ def ResultCreator(unionType, table):
     if not isinstance(table, Table):
         return None
     if unionType == Result().Packets_HelloResult:
-        import Gamium.Protocol.Packets.HelloResult
-        return Gamium.Protocol.Packets.HelloResult.HelloResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.HelloResult
+        return gamium.Protocol.Packets.HelloResult.HelloResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_QueryScreenResult:
-        import Gamium.Protocol.Packets.QueryScreenResult
-        return Gamium.Protocol.Packets.QueryScreenResult.QueryScreenResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.QueryScreenResult
+        return gamium.Protocol.Packets.QueryScreenResult.QueryScreenResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_FindObjectsResult:
-        import Gamium.Protocol.Packets.FindObjectsResult
-        return Gamium.Protocol.Packets.FindObjectsResult.FindObjectsResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.FindObjectsResult
+        return gamium.Protocol.Packets.FindObjectsResult.FindObjectsResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_QueryObjectInteractableResult:
-        import Gamium.Protocol.Packets.QueryObjectInteractableResult
-        return Gamium.Protocol.Packets.QueryObjectInteractableResult.QueryObjectInteractableResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.QueryObjectInteractableResult
+        return gamium.Protocol.Packets.QueryObjectInteractableResult.QueryObjectInteractableResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_ActionsResult:
-        import Gamium.Protocol.Packets.ActionsResult
-        return Gamium.Protocol.Packets.ActionsResult.ActionsResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.ActionsResult
+        return gamium.Protocol.Packets.ActionsResult.ActionsResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_ExecuteRpcResult:
-        import Gamium.Protocol.Packets.ExecuteRpcResult
-        return Gamium.Protocol.Packets.ExecuteRpcResult.ExecuteRpcResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.ExecuteRpcResult
+        return gamium.Protocol.Packets.ExecuteRpcResult.ExecuteRpcResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_InspectObjectOnScreenResult:
-        import Gamium.Protocol.Packets.InspectObjectOnScreenResult
-        return Gamium.Protocol.Packets.InspectObjectOnScreenResult.InspectObjectOnScreenResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.InspectObjectOnScreenResult
+        return gamium.Protocol.Packets.InspectObjectOnScreenResult.InspectObjectOnScreenResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_InspectObjectWithIdResult:
-        import Gamium.Protocol.Packets.InspectObjectWithIdResult
-        return Gamium.Protocol.Packets.InspectObjectWithIdResult.InspectObjectWithIdResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.InspectObjectWithIdResult
+        return gamium.Protocol.Packets.InspectObjectWithIdResult.InspectObjectWithIdResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_DumpObjectsHierarchyResult:
-        import Gamium.Protocol.Packets.DumpObjectsHierarchyResult
-        return Gamium.Protocol.Packets.DumpObjectsHierarchyResult.DumpObjectsHierarchyResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.DumpObjectsHierarchyResult
+        return gamium.Protocol.Packets.DumpObjectsHierarchyResult.DumpObjectsHierarchyResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_ChangeConfigurationResult:
-        import Gamium.Protocol.Packets.ChangeConfigurationResult
-        return Gamium.Protocol.Packets.ChangeConfigurationResult.ChangeConfigurationResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.ChangeConfigurationResult
+        return gamium.Protocol.Packets.ChangeConfigurationResult.ChangeConfigurationResultT.InitFromBuf(table.Bytes, table.Pos)
     if unionType == Result().Packets_QueryProfileResult:
-        import Gamium.Protocol.Packets.QueryProfileResult
-        return Gamium.Protocol.Packets.QueryProfileResult.QueryProfileResultT.InitFromBuf(table.Bytes, table.Pos)
+        import gamium.Protocol.Packets.QueryProfileResult
+        return gamium.Protocol.Packets.QueryProfileResult.QueryProfileResultT.InitFromBuf(table.Bytes, table.Pos)
     return None

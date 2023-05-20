@@ -29,7 +29,7 @@ class ChangeConfigurationParam(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            from Gamium.Protocol.Types.Configuration import Configuration
+            from gamium.Protocol.Types.Configuration import Configuration
             obj = Configuration()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -44,7 +44,7 @@ def AddConfig(builder, config):
 def ChangeConfigurationParamEnd(builder): return builder.EndObject()
 def End(builder):
     return ChangeConfigurationParamEnd(builder)
-import Gamium.Protocol.Types.Configuration
+import gamium.Protocol.Types.Configuration
 try:
     from typing import Optional
 except:
@@ -54,7 +54,7 @@ class ChangeConfigurationParamT(object):
 
     # ChangeConfigurationParamT
     def __init__(self):
-        self.config = None  # type: Optional[Gamium.Protocol.Types.Configuration.ConfigurationT]
+        self.config = None  # type: Optional[gamium.Protocol.Types.Configuration.ConfigurationT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -78,7 +78,7 @@ class ChangeConfigurationParamT(object):
         if changeConfigurationParam is None:
             return
         if changeConfigurationParam.Config() is not None:
-            self.config = Gamium.Protocol.Types.Configuration.ConfigurationT.InitFromObj(changeConfigurationParam.Config())
+            self.config = gamium.Protocol.Types.Configuration.ConfigurationT.InitFromObj(changeConfigurationParam.Config())
 
     # ChangeConfigurationParamT
     def Pack(self, builder):

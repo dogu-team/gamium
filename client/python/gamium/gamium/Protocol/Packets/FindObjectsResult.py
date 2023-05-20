@@ -31,7 +31,7 @@ class FindObjectsResult(object):
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            from Gamium.Protocol.Types.ObjectInfo import ObjectInfo
+            from gamium.Protocol.Types.ObjectInfo import ObjectInfo
             obj = ObjectInfo()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -61,7 +61,7 @@ def StartInfosVector(builder, numElems):
 def FindObjectsResultEnd(builder): return builder.EndObject()
 def End(builder):
     return FindObjectsResultEnd(builder)
-import Gamium.Protocol.Types.ObjectInfo
+import gamium.Protocol.Types.ObjectInfo
 try:
     from typing import List
 except:
@@ -71,7 +71,7 @@ class FindObjectsResultT(object):
 
     # FindObjectsResultT
     def __init__(self):
-        self.infos = None  # type: List[Gamium.Protocol.Types.ObjectInfo.ObjectInfoT]
+        self.infos = None  # type: List[gamium.Protocol.Types.ObjectInfo.ObjectInfoT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -100,7 +100,7 @@ class FindObjectsResultT(object):
                 if findObjectsResult.Infos(i) is None:
                     self.infos.append(None)
                 else:
-                    objectInfo_ = Gamium.Protocol.Types.ObjectInfo.ObjectInfoT.InitFromObj(findObjectsResult.Infos(i))
+                    objectInfo_ = gamium.Protocol.Types.ObjectInfo.ObjectInfoT.InitFromObj(findObjectsResult.Infos(i))
                     self.infos.append(objectInfo_)
 
     # FindObjectsResultT

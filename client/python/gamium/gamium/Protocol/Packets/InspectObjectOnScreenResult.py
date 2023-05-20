@@ -31,7 +31,7 @@ class InspectObjectOnScreenResult(object):
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            from Gamium.Protocol.Types.ObjectInfo import ObjectInfo
+            from gamium.Protocol.Types.ObjectInfo import ObjectInfo
             obj = ObjectInfo()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -54,7 +54,7 @@ class InspectObjectOnScreenResult(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = o + self._tab.Pos
-            from Gamium.Protocol.Types.Vector3 import Vector3
+            from gamium.Protocol.Types.Vector3 import Vector3
             obj = Vector3()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -75,8 +75,8 @@ def AddHitPoint(builder, hitPoint):
 def InspectObjectOnScreenResultEnd(builder): return builder.EndObject()
 def End(builder):
     return InspectObjectOnScreenResultEnd(builder)
-import Gamium.Protocol.Types.ObjectInfo
-import Gamium.Protocol.Types.Vector3
+import gamium.Protocol.Types.ObjectInfo
+import gamium.Protocol.Types.Vector3
 try:
     from typing import List, Optional
 except:
@@ -86,8 +86,8 @@ class InspectObjectOnScreenResultT(object):
 
     # InspectObjectOnScreenResultT
     def __init__(self):
-        self.infos = None  # type: List[Gamium.Protocol.Types.ObjectInfo.ObjectInfoT]
-        self.hitPoint = None  # type: Optional[Gamium.Protocol.Types.Vector3.Vector3T]
+        self.infos = None  # type: List[gamium.Protocol.Types.ObjectInfo.ObjectInfoT]
+        self.hitPoint = None  # type: Optional[gamium.Protocol.Types.Vector3.Vector3T]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -116,10 +116,10 @@ class InspectObjectOnScreenResultT(object):
                 if inspectObjectOnScreenResult.Infos(i) is None:
                     self.infos.append(None)
                 else:
-                    objectInfo_ = Gamium.Protocol.Types.ObjectInfo.ObjectInfoT.InitFromObj(inspectObjectOnScreenResult.Infos(i))
+                    objectInfo_ = gamium.Protocol.Types.ObjectInfo.ObjectInfoT.InitFromObj(inspectObjectOnScreenResult.Infos(i))
                     self.infos.append(objectInfo_)
         if inspectObjectOnScreenResult.HitPoint() is not None:
-            self.hitPoint = Gamium.Protocol.Types.Vector3.Vector3T.InitFromObj(inspectObjectOnScreenResult.HitPoint())
+            self.hitPoint = gamium.Protocol.Types.Vector3.Vector3T.InitFromObj(inspectObjectOnScreenResult.HitPoint())
 
     # InspectObjectOnScreenResultT
     def Pack(self, builder):

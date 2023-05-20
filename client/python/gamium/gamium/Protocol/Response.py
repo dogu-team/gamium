@@ -36,7 +36,7 @@ class Response(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            from Gamium.Protocol.Types.ErrorResult import ErrorResult
+            from gamium.Protocol.Types.ErrorResult import ErrorResult
             obj = ErrorResult()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -77,19 +77,19 @@ def AddResult(builder, result):
 def ResponseEnd(builder): return builder.EndObject()
 def End(builder):
     return ResponseEnd(builder)
-import Gamium.Protocol.Packets.ActionsResult
-import Gamium.Protocol.Packets.ChangeConfigurationResult
-import Gamium.Protocol.Packets.DumpObjectsHierarchyResult
-import Gamium.Protocol.Packets.ExecuteRpcResult
-import Gamium.Protocol.Packets.FindObjectsResult
-import Gamium.Protocol.Packets.HelloResult
-import Gamium.Protocol.Packets.InspectObjectOnScreenResult
-import Gamium.Protocol.Packets.InspectObjectWithIdResult
-import Gamium.Protocol.Packets.QueryObjectInteractableResult
-import Gamium.Protocol.Packets.QueryProfileResult
-import Gamium.Protocol.Packets.QueryScreenResult
-import Gamium.Protocol.Result
-import Gamium.Protocol.Types.ErrorResult
+import gamium.Protocol.Packets.ActionsResult
+import gamium.Protocol.Packets.ChangeConfigurationResult
+import gamium.Protocol.Packets.DumpObjectsHierarchyResult
+import gamium.Protocol.Packets.ExecuteRpcResult
+import gamium.Protocol.Packets.FindObjectsResult
+import gamium.Protocol.Packets.HelloResult
+import gamium.Protocol.Packets.InspectObjectOnScreenResult
+import gamium.Protocol.Packets.InspectObjectWithIdResult
+import gamium.Protocol.Packets.QueryObjectInteractableResult
+import gamium.Protocol.Packets.QueryProfileResult
+import gamium.Protocol.Packets.QueryScreenResult
+import gamium.Protocol.Result
+import gamium.Protocol.Types.ErrorResult
 try:
     from typing import Optional, Union
 except:
@@ -100,9 +100,9 @@ class ResponseT(object):
     # ResponseT
     def __init__(self):
         self.seq = 0  # type: int
-        self.error = None  # type: Optional[Gamium.Protocol.Types.ErrorResult.ErrorResultT]
+        self.error = None  # type: Optional[gamium.Protocol.Types.ErrorResult.ErrorResultT]
         self.resultType = 0  # type: int
-        self.result = None  # type: Union[None, Gamium.Protocol.Packets.HelloResult.HelloResultT, Gamium.Protocol.Packets.QueryScreenResult.QueryScreenResultT, Gamium.Protocol.Packets.FindObjectsResult.FindObjectsResultT, Gamium.Protocol.Packets.QueryObjectInteractableResult.QueryObjectInteractableResultT, Gamium.Protocol.Packets.ActionsResult.ActionsResultT, Gamium.Protocol.Packets.ExecuteRpcResult.ExecuteRpcResultT, Gamium.Protocol.Packets.InspectObjectOnScreenResult.InspectObjectOnScreenResultT, Gamium.Protocol.Packets.InspectObjectWithIdResult.InspectObjectWithIdResultT, Gamium.Protocol.Packets.DumpObjectsHierarchyResult.DumpObjectsHierarchyResultT, Gamium.Protocol.Packets.ChangeConfigurationResult.ChangeConfigurationResultT, Gamium.Protocol.Packets.QueryProfileResult.QueryProfileResultT]
+        self.result = None  # type: Union[None, gamium.Protocol.Packets.HelloResult.HelloResultT, gamium.Protocol.Packets.QueryScreenResult.QueryScreenResultT, gamium.Protocol.Packets.FindObjectsResult.FindObjectsResultT, gamium.Protocol.Packets.QueryObjectInteractableResult.QueryObjectInteractableResultT, gamium.Protocol.Packets.ActionsResult.ActionsResultT, gamium.Protocol.Packets.ExecuteRpcResult.ExecuteRpcResultT, gamium.Protocol.Packets.InspectObjectOnScreenResult.InspectObjectOnScreenResultT, gamium.Protocol.Packets.InspectObjectWithIdResult.InspectObjectWithIdResultT, gamium.Protocol.Packets.DumpObjectsHierarchyResult.DumpObjectsHierarchyResultT, gamium.Protocol.Packets.ChangeConfigurationResult.ChangeConfigurationResultT, gamium.Protocol.Packets.QueryProfileResult.QueryProfileResultT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -127,9 +127,9 @@ class ResponseT(object):
             return
         self.seq = response.Seq()
         if response.Error() is not None:
-            self.error = Gamium.Protocol.Types.ErrorResult.ErrorResultT.InitFromObj(response.Error())
+            self.error = gamium.Protocol.Types.ErrorResult.ErrorResultT.InitFromObj(response.Error())
         self.resultType = response.ResultType()
-        self.result = Gamium.Protocol.Result.ResultCreator(self.resultType, response.Result())
+        self.result = gamium.Protocol.Result.ResultCreator(self.resultType, response.Result())
 
     # ResponseT
     def Pack(self, builder):

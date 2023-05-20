@@ -43,7 +43,7 @@ class InputMouseParam(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = o + self._tab.Pos
-            from Gamium.Protocol.Types.Vector2 import Vector2
+            from gamium.Protocol.Types.Vector2 import Vector2
             obj = Vector2()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -54,7 +54,7 @@ class InputMouseParam(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             x = o + self._tab.Pos
-            from Gamium.Protocol.Types.Vector2 import Vector2
+            from gamium.Protocol.Types.Vector2 import Vector2
             obj = Vector2()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -78,7 +78,7 @@ def AddDelta(builder, delta):
 def InputMouseParamEnd(builder): return builder.EndObject()
 def End(builder):
     return InputMouseParamEnd(builder)
-import Gamium.Protocol.Types.Vector2
+import gamium.Protocol.Types.Vector2
 try:
     from typing import Optional
 except:
@@ -90,8 +90,8 @@ class InputMouseParamT(object):
     def __init__(self):
         self.press = 0  # type: int
         self.button = 0  # type: int
-        self.position = None  # type: Optional[Gamium.Protocol.Types.Vector2.Vector2T]
-        self.delta = None  # type: Optional[Gamium.Protocol.Types.Vector2.Vector2T]
+        self.position = None  # type: Optional[gamium.Protocol.Types.Vector2.Vector2T]
+        self.delta = None  # type: Optional[gamium.Protocol.Types.Vector2.Vector2T]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -117,9 +117,9 @@ class InputMouseParamT(object):
         self.press = inputMouseParam.Press()
         self.button = inputMouseParam.Button()
         if inputMouseParam.Position() is not None:
-            self.position = Gamium.Protocol.Types.Vector2.Vector2T.InitFromObj(inputMouseParam.Position())
+            self.position = gamium.Protocol.Types.Vector2.Vector2T.InitFromObj(inputMouseParam.Position())
         if inputMouseParam.Delta() is not None:
-            self.delta = Gamium.Protocol.Types.Vector2.Vector2T.InitFromObj(inputMouseParam.Delta())
+            self.delta = gamium.Protocol.Types.Vector2.Vector2T.InitFromObj(inputMouseParam.Delta())
 
     # InputMouseParamT
     def Pack(self, builder):

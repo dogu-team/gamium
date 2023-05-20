@@ -43,7 +43,7 @@ class MovePlayerParam(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = o + self._tab.Pos
-            from Gamium.Protocol.Types.Vector3 import Vector3
+            from gamium.Protocol.Types.Vector3 import Vector3
             obj = Vector3()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -94,7 +94,7 @@ def AddCheckHeight(builder, checkHeight):
 def MovePlayerParamEnd(builder): return builder.EndObject()
 def End(builder):
     return MovePlayerParamEnd(builder)
-import Gamium.Protocol.Types.Vector3
+import gamium.Protocol.Types.Vector3
 try:
     from typing import Optional
 except:
@@ -106,7 +106,7 @@ class MovePlayerParamT(object):
     def __init__(self):
         self.playerObjectId = None  # type: str
         self.cameraObjectId = None  # type: str
-        self.position = None  # type: Optional[Gamium.Protocol.Types.Vector3.Vector3T]
+        self.position = None  # type: Optional[gamium.Protocol.Types.Vector3.Vector3T]
         self.by = 0  # type: int
         self.epsilon = 0.0  # type: float
         self.checkHeight = False  # type: bool
@@ -135,7 +135,7 @@ class MovePlayerParamT(object):
         self.playerObjectId = movePlayerParam.PlayerObjectId()
         self.cameraObjectId = movePlayerParam.CameraObjectId()
         if movePlayerParam.Position() is not None:
-            self.position = Gamium.Protocol.Types.Vector3.Vector3T.InitFromObj(movePlayerParam.Position())
+            self.position = gamium.Protocol.Types.Vector3.Vector3T.InitFromObj(movePlayerParam.Position())
         self.by = movePlayerParam.By()
         self.epsilon = movePlayerParam.Epsilon()
         self.checkHeight = movePlayerParam.CheckHeight()

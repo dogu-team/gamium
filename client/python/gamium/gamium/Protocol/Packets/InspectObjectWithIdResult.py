@@ -29,7 +29,7 @@ class InspectObjectWithIdResult(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            from Gamium.Protocol.Types.ObjectInfo import ObjectInfo
+            from gamium.Protocol.Types.ObjectInfo import ObjectInfo
             obj = ObjectInfo()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -44,7 +44,7 @@ def AddInfo(builder, info):
 def InspectObjectWithIdResultEnd(builder): return builder.EndObject()
 def End(builder):
     return InspectObjectWithIdResultEnd(builder)
-import Gamium.Protocol.Types.ObjectInfo
+import gamium.Protocol.Types.ObjectInfo
 try:
     from typing import Optional
 except:
@@ -54,7 +54,7 @@ class InspectObjectWithIdResultT(object):
 
     # InspectObjectWithIdResultT
     def __init__(self):
-        self.info = None  # type: Optional[Gamium.Protocol.Types.ObjectInfo.ObjectInfoT]
+        self.info = None  # type: Optional[gamium.Protocol.Types.ObjectInfo.ObjectInfoT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -78,7 +78,7 @@ class InspectObjectWithIdResultT(object):
         if inspectObjectWithIdResult is None:
             return
         if inspectObjectWithIdResult.Info() is not None:
-            self.info = Gamium.Protocol.Types.ObjectInfo.ObjectInfoT.InitFromObj(inspectObjectWithIdResult.Info())
+            self.info = gamium.Protocol.Types.ObjectInfo.ObjectInfoT.InitFromObj(inspectObjectWithIdResult.Info())
 
     # InspectObjectWithIdResultT
     def Pack(self, builder):

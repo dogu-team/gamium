@@ -3,12 +3,12 @@ import socket
 import sys
 import flatbuffers
 
-from Gamium.errors.gamium_error import GamiumError
-from Gamium.Protocol.Request import RequestT
-from Gamium.Protocol.Response import Response, ResponseT
-from Gamium.Protocol.Types.ErrorCode import ErrorCode
+from gamium.errors.gamium_error import GamiumError
+from gamium.Protocol.Request import RequestT
+from gamium.Protocol.Response import Response, ResponseT
+from gamium.Protocol.Types.ErrorCode import ErrorCode
 
-from Gamium.internal import Logger, DefaultLogger
+from gamium.internal import Logger, DefaultLogger
 
 
 class GamiumService:

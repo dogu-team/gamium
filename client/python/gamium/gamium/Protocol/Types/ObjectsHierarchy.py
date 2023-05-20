@@ -38,7 +38,7 @@ class ObjectsHierarchy(object):
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            from Gamium.Protocol.Types.ObjectHierarchyNode import ObjectHierarchyNode
+            from gamium.Protocol.Types.ObjectHierarchyNode import ObjectHierarchyNode
             obj = ObjectHierarchyNode()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -71,7 +71,7 @@ def StartChildrenVector(builder, numElems):
 def ObjectsHierarchyEnd(builder): return builder.EndObject()
 def End(builder):
     return ObjectsHierarchyEnd(builder)
-import Gamium.Protocol.Types.ObjectHierarchyNode
+import gamium.Protocol.Types.ObjectHierarchyNode
 try:
     from typing import List
 except:
@@ -82,7 +82,7 @@ class ObjectsHierarchyT(object):
     # ObjectsHierarchyT
     def __init__(self):
         self.name = None  # type: str
-        self.children = None  # type: List[Gamium.Protocol.Types.ObjectHierarchyNode.ObjectHierarchyNodeT]
+        self.children = None  # type: List[gamium.Protocol.Types.ObjectHierarchyNode.ObjectHierarchyNodeT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -112,7 +112,7 @@ class ObjectsHierarchyT(object):
                 if objectsHierarchy.Children(i) is None:
                     self.children.append(None)
                 else:
-                    objectHierarchyNode_ = Gamium.Protocol.Types.ObjectHierarchyNode.ObjectHierarchyNodeT.InitFromObj(objectsHierarchy.Children(i))
+                    objectHierarchyNode_ = gamium.Protocol.Types.ObjectHierarchyNode.ObjectHierarchyNodeT.InitFromObj(objectsHierarchy.Children(i))
                     self.children.append(objectHierarchyNode_)
 
     # ObjectsHierarchyT

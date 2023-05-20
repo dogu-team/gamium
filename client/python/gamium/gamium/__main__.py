@@ -1,2 +1,2 @@
-from Gamium.gamium_client import *
-from Gamium.gamium_service import *
+from gamium.gamium_client import *
+from gamium.gamium_service import *

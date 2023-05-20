@@ -1,32 +1,33 @@
 class Logger:
-    def __init__(self, some_duck: any):
-        self.some_duck = some_duck
-        pass
+    def __init__(self):
+        self._printable = ConsolePrintable()
+
+    def set_handler(self, handler):
+        self._printable = handler
 
     def error(self, message):
-        if self.some_duck.hasattr("error"):
-            self.some_duck.error(message)
+        if hasattr(self._printable, "error"):
+            self._printable.error(message)
 
     def warn(self, message):
-        if self.some_duck.hasattr("warn"):
-            self.some_duck.warn(message)
+        if hasattr(self._printable, "warn"):
+            self._printable.warn(message)
 
     def info(self, message):
-        if self.some_duck.hasattr("info"):
-            self.some_duck.info(message)
+        if hasattr(self._printable, "info"):
+            self._printable.info(message)
 
     def debug(self, message):
-        if self.some_duck.hasattr("debug"):
-            self.some_duck.debug(message)
+        if hasattr(self._printable, "debug"):
+            self._printable.debug(message)
 
     def verbose(self, message):
-        if self.some_duck.hasattr("verbose"):
-            self.some_duck.verbose(message)
+        if hasattr(self._printable, "verbose"):
+            self._printable.verbose(message)
 
 
-class DefaultLogger(Logger):
+class ConsolePrintable:
     def __init__(self):
-        super().__init__(self)
         pass
 
     def error(self, message):

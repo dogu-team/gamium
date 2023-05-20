@@ -21,7 +21,7 @@ table ActionResult {
 }
 
 table ActionsParam {
-  actions: [byte];
+  actions: string;
 }
 
 table ActionsResult {

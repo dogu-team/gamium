@@ -25,31 +25,11 @@ class ActionsParam(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # ActionsParam
-    def Actions(self, j):
+    def Actions(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.Get(flatbuffers.number_types.Int8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
-        return 0
-
-    # ActionsParam
-    def ActionsAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Int8Flags, o)
-        return 0
-
-    # ActionsParam
-    def ActionsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # ActionsParam
-    def ActionsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
 def ActionsParamStart(builder): builder.StartObject(1)
 def Start(builder):
@@ -57,22 +37,15 @@ def Start(builder):
 def ActionsParamAddActions(builder, actions): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(actions), 0)
 def AddActions(builder, actions):
     return ActionsParamAddActions(builder, actions)
-def ActionsParamStartActionsVector(builder, numElems): return builder.StartVector(1, numElems, 1)
-def StartActionsVector(builder, numElems):
-    return ActionsParamStartActionsVector(builder, numElems)
 def ActionsParamEnd(builder): return builder.EndObject()
 def End(builder):
     return ActionsParamEnd(builder)
-try:
-    from typing import List
-except:
-    pass
 
 class ActionsParamT(object):
 
     # ActionsParamT
     def __init__(self):
-        self.actions = None  # type: List[int]
+        self.actions = None  # type: str
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -95,24 +68,12 @@ class ActionsParamT(object):
     def _UnPack(self, actionsParam):
         if actionsParam is None:
             return
-        if not actionsParam.ActionsIsNone():
-            if np is None:
-                self.actions = []
-                for i in range(actionsParam.ActionsLength()):
-                    self.actions.append(actionsParam.Actions(i))
-            else:
-                self.actions = actionsParam.ActionsAsNumpy()
+        self.actions = actionsParam.Actions()
 
     # ActionsParamT
     def Pack(self, builder):
         if self.actions is not None:
-            if np is not None and type(self.actions) is np.ndarray:
-                actions = builder.CreateNumpyVector(self.actions)
-            else:
-                ActionsParamStartActionsVector(builder, len(self.actions))
-                for i in reversed(range(len(self.actions))):
-                    builder.PrependByte(self.actions[i])
-                actions = builder.EndVector()
+            actions = builder.CreateString(self.actions)
         ActionsParamStart(builder)
         if self.actions is not None:
             ActionsParamAddActions(builder, actions)

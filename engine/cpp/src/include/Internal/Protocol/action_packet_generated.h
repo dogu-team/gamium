@@ -287,7 +287,7 @@ flatbuffers::Offset<ActionResult> CreateActionResult(flatbuffers::FlatBufferBuil
 
 struct ActionsParamT : public flatbuffers::NativeTable {
   typedef ActionsParam TableType;
-  std::vector<int8_t> actions{};
+  std::string actions{};
 };
 
 struct ActionsParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
@@ -299,13 +299,13 @@ struct ActionsParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
     VT_ACTIONS = 4
   };
-  const flatbuffers::Vector<int8_t> *actions() const {
-    return GetPointer<const flatbuffers::Vector<int8_t> *>(VT_ACTIONS);
+  const flatbuffers::String *actions() const {
+    return GetPointer<const flatbuffers::String *>(VT_ACTIONS);
   }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_ACTIONS) &&
-           verifier.VerifyVector(actions()) &&
+           verifier.VerifyString(actions()) &&
            verifier.EndTable();
   }
   ActionsParamT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
@@ -317,7 +317,7 @@ struct ActionsParamBuilder {
   typedef ActionsParam Table;
   flatbuffers::FlatBufferBuilder &fbb_;
   flatbuffers::uoffset_t start_;
-  void add_actions(flatbuffers::Offset<flatbuffers::Vector<int8_t>> actions) {
+  void add_actions(flatbuffers::Offset<flatbuffers::String> actions) {
     fbb_.AddOffset(ActionsParam::VT_ACTIONS, actions);
   }
   explicit ActionsParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
@@ -333,7 +333,7 @@ struct ActionsParamBuilder {
 
 inline flatbuffers::Offset<ActionsParam> CreateActionsParam(
     flatbuffers::FlatBufferBuilder &_fbb,
-    flatbuffers::Offset<flatbuffers::Vector<int8_t>> actions = 0) {
+    flatbuffers::Offset<flatbuffers::String> actions = 0) {
   ActionsParamBuilder builder_(_fbb);
   builder_.add_actions(actions);
   return builder_.Finish();
@@ -442,7 +442,7 @@ inline ActionsParamT *ActionsParam::UnPack(const flatbuffers::resolver_function_
 inline void ActionsParam::UnPackTo(ActionsParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
   (void)_o;
   (void)_resolver;
-  { auto _e = actions(); if (_e) { _o->actions.resize(_e->size()); std::copy(_e->begin(), _e->end(), _o->actions.begin()); } }
+  { auto _e = actions(); if (_e) _o->actions = _e->str(); }
 }
 
 inline flatbuffers::Offset<ActionsParam> ActionsParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const ActionsParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
@@ -453,7 +453,7 @@ inline flatbuffers::Offset<ActionsParam> CreateActionsParam(flatbuffers::FlatBuf
   (void)_rehasher;
   (void)_o;
   struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const ActionsParamT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
-  auto _actions = _fbb.CreateVector(_o->actions);
+  auto _actions = _o->actions.empty() ? _fbb.CreateSharedString("") : _fbb.CreateString(_o->actions);
   return Gamium::Protocol::Packets::CreateActionsParam(
       _fbb,
       _actions);
@@ -700,7 +700,7 @@ inline const flatbuffers::TypeTable *ActionResultTypeTable() {
 
 inline const flatbuffers::TypeTable *ActionsParamTypeTable() {
   static const flatbuffers::TypeCode type_codes[] = {
-    { flatbuffers::ET_CHAR, 1, -1 }
+    { flatbuffers::ET_STRING, 0, -1 }
   };
   static const flatbuffers::TypeTable tt = {
     flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, nullptr

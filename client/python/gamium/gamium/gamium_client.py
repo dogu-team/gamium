@@ -76,3 +76,5 @@ class GamiumClient:
         await asyncio.sleep(options.delay_ms / 1000)
 
         return res.infos
+
+    

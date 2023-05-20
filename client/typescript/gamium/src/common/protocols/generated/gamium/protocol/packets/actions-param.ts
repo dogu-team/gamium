@@ -20,25 +20,11 @@ export class ActionsParam implements flatbuffers.IUnpackableObject<ActionsParamT
     return (obj || new ActionsParam()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
   }
 
-  actions(index: number): number | null {
+  actions(): string | null;
+  actions(optionalEncoding: flatbuffers.Encoding): string | Uint8Array | null;
+  actions(optionalEncoding?: any): string | Uint8Array | null {
     const offset = this.bb!.__offset(this.bb_pos, 4);
-    return offset ? this.bb!.readInt8(this.bb!.__vector(this.bb_pos + offset) + index) : 0;
-  }
-
-  actionsLength(): number {
-    const offset = this.bb!.__offset(this.bb_pos, 4);
-    return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
-  }
-
-  actionsArray(): Int8Array | null {
-    const offset = this.bb!.__offset(this.bb_pos, 4);
-    return offset
-      ? new Int8Array(
-          this.bb!.bytes().buffer,
-          this.bb!.bytes().byteOffset + this.bb!.__vector(this.bb_pos + offset),
-          this.bb!.__vector_len(this.bb_pos + offset),
-        )
-      : null;
+    return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
   }
 
   static startActionsParam(builder: flatbuffers.Builder) {
@@ -47,23 +33,6 @@ export class ActionsParam implements flatbuffers.IUnpackableObject<ActionsParamT
 
   static addActions(builder: flatbuffers.Builder, actionsOffset: flatbuffers.Offset) {
     builder.addFieldOffset(0, actionsOffset, 0);
-  }
-
-  static createActionsVector(builder: flatbuffers.Builder, data: number[] | Int8Array): flatbuffers.Offset;
-  /**
-   * @deprecated This Uint8Array overload will be removed in the future.
-   */
-  static createActionsVector(builder: flatbuffers.Builder, data: number[] | Uint8Array): flatbuffers.Offset;
-  static createActionsVector(builder: flatbuffers.Builder, data: number[] | Int8Array | Uint8Array): flatbuffers.Offset {
-    builder.startVector(1, data.length, 1);
-    for (let i = data.length - 1; i >= 0; i--) {
-      builder.addInt8(data[i]!);
-    }
-    return builder.endVector();
-  }
-
-  static startActionsVector(builder: flatbuffers.Builder, numElems: number) {
-    builder.startVector(1, numElems, 1);
   }
 
   static endActionsParam(builder: flatbuffers.Builder): flatbuffers.Offset {
@@ -78,19 +47,19 @@ export class ActionsParam implements flatbuffers.IUnpackableObject<ActionsParamT
   }
 
   unpack(): ActionsParamT {
-    return new ActionsParamT(this.bb!.createScalarList<number>(this.actions.bind(this), this.actionsLength()));
+    return new ActionsParamT(this.actions());
   }
 
   unpackTo(_o: ActionsParamT): void {
-    _o.actions = this.bb!.createScalarList<number>(this.actions.bind(this), this.actionsLength());
+    _o.actions = this.actions();
   }
 }
 
 export class ActionsParamT implements flatbuffers.IGeneratedObject {
-  constructor(public actions: number[] = []) {}
+  constructor(public actions: string | Uint8Array | null = null) {}
 
   pack(builder: flatbuffers.Builder): flatbuffers.Offset {
-    const actions = ActionsParam.createActionsVector(builder, this.actions);
+    const actions = this.actions !== null ? builder.createString(this.actions!) : 0;
 
     return ActionsParam.createActionsParam(builder, actions);
   }

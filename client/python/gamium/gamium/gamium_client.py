@@ -42,6 +42,22 @@ class GamiumClient:
         self._logger.info("GamiumClient.profile")
         return await self._service.request(create_profile())
 
+    async def find(
+        self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
+    ) -> ObjectInfoT:
+        infos = await self.finds(locator, options)
+        if 0 == len(infos):
+            raise GamiumError(
+                ErrorCode.NotFound,
+                f"GamiumClient.find By: {locator.by}, str: {locator.str} not found",
+            )
+        if None == infos[0]:
+            raise GamiumError(
+                ErrorCode.NotFound,
+                f"GamiumClient.find By: {locator.by}, str: {locator.str} not found",
+            )
+        return infos[0]
+
     async def finds(
         self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
     ) -> List[ObjectInfoT]:

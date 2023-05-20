@@ -59,6 +59,7 @@ def create_find_objects(
     locator: ObjectLocatorT,
 ) -> PacketTypes[FindObjectsParamT, FindObjectsResultT]:
     param = FindObjectsParamT()
+    param.locator = locator
     return PacketTypes(Param.Packets_FindObjectsParam, Result.Packets_FindObjectsResult, param)
 
 
@@ -169,13 +170,31 @@ class GamiumService:
                 ErrorCode.InternalError, f"request response error is null {response.error}"
             )
         if response.error.code != ErrorCode.None_:
-            raise GamiumError(
-                response.error.code, f"request response error {response.error.message}"
-            )
+            reason = response.error.reason.decode("utf-8")
+            raise GamiumError(response.error.code, f"request response error {reason}")
         self._logger.verbose(f"request: seq: {req.seq}, type: {req.paramType} done")
+
+        ret = response.result
+        # convert all properties of ret to str if bytes type
+        ret = self.__bytes_to_str_recursive(ret)
 
         return response.result
 
     def __get_seq(self):
         self._seq += 1
         return self._seq
+
+    @staticmethod
+    def __bytes_to_str_recursive(any):
+        if isinstance(any, bytes):
+            return any.decode("utf-8")
+        if hasattr(any, "__dict__"):
+            for key, value in any.__dict__.items():
+                any.__dict__[key] = GamiumService.__bytes_to_str_recursive(value)
+        if isinstance(any, dict):
+            for key, value in any.items():
+                any[key] = GamiumService.__bytes_to_str_recursive(value)
+        if isinstance(any, list):
+            for i, value in enumerate(any):
+                any[i] = GamiumService.__bytes_to_str_recursive(value)
+        return any

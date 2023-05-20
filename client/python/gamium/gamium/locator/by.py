@@ -8,9 +8,9 @@ class By:
         self.str = str
 
     @staticmethod
-    def path(self, str: str):
+    def path(str: str):
         return By(ObjectLocatorBy.Path, str)
 
     @staticmethod
-    def tag(self, str: str):
+    def tag(str: str):
         return By(ObjectLocatorBy.Tag, str)

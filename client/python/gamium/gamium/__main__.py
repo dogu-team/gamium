@@ -1,3 +1,4 @@
+from gamium.locator.by import By
 from gamium.gamium_client import *
 from gamium.gamium_service import *
 
@@ -14,6 +15,9 @@ async def main():
 
     res = await gamium.profile()
     print(res.fps)
+
+    res = await gamium.find(By.path("/Canvas[1]/Start[1]/DeleteAccountButton[1]"))
+    print(res.screenPosition)
 
 
 asyncio.run(main())

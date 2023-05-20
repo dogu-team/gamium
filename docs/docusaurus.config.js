@@ -146,6 +146,12 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ['csharp'],
       },
+      algolia: {
+        appId: 'Z64JW7L04L',
+        apiKey: '4e59d4bed7018a2b2130676ec6f82a9f',
+        indexName: 'gamium-dogutech',
+        
+      },
     }),
   markdown: {
     mermaid: true,

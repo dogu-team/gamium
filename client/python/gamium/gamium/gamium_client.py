@@ -1,10 +1,10 @@
 import asyncio
 from typing import List, Optional
 from gamium.Protocol.Types.ObjectInfo import ObjectInfoT
+from gamium.Protocol.Types.ErrorCode import ErrorCode
 from gamium.Protocol.Packets.QueryProfileResult import QueryProfileResultT
 from gamium.Protocol.Packets.QueryScreenResult import QueryScreenResultT
 from gamium.Protocol.Packets.HelloResult import HelloResultT
-from gamium.Protocol.Types.ErrorCode import ErrorCode
 
 from gamium.gamium_service import *
 from gamium.errors.gamium_error import GamiumError

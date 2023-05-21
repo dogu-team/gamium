@@ -25,11 +25,24 @@ class ActionsParam(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # ActionsParam
-    def Actions(self):
+    def Actions(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # ActionsParam
+    def ActionsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # ActionsParam
+    def ActionsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
 
 def ActionsParamStart(builder): builder.StartObject(1)
 def Start(builder):
@@ -37,15 +50,22 @@ def Start(builder):
 def ActionsParamAddActions(builder, actions): builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(actions), 0)
 def AddActions(builder, actions):
     return ActionsParamAddActions(builder, actions)
+def ActionsParamStartActionsVector(builder, numElems): return builder.StartVector(4, numElems, 4)
+def StartActionsVector(builder, numElems):
+    return ActionsParamStartActionsVector(builder, numElems)
 def ActionsParamEnd(builder): return builder.EndObject()
 def End(builder):
     return ActionsParamEnd(builder)
+try:
+    from typing import List
+except:
+    pass
 
 class ActionsParamT(object):
 
     # ActionsParamT
     def __init__(self):
-        self.actions = None  # type: str
+        self.actions = None  # type: List[str]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -68,12 +88,21 @@ class ActionsParamT(object):
     def _UnPack(self, actionsParam):
         if actionsParam is None:
             return
-        self.actions = actionsParam.Actions()
+        if not actionsParam.ActionsIsNone():
+            self.actions = []
+            for i in range(actionsParam.ActionsLength()):
+                self.actions.append(actionsParam.Actions(i))
 
     # ActionsParamT
     def Pack(self, builder):
         if self.actions is not None:
-            actions = builder.CreateString(self.actions)
+            actionslist = []
+            for i in range(len(self.actions)):
+                actionslist.append(builder.CreateString(self.actions[i]))
+            ActionsParamStartActionsVector(builder, len(self.actions))
+            for i in reversed(range(len(self.actions))):
+                builder.PrependUOffsetTRelative(actionslist[i])
+            actions = builder.EndVector()
         ActionsParamStart(builder)
         if self.actions is not None:
             ActionsParamAddActions(builder, actions)

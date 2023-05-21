@@ -19,23 +19,23 @@ public struct ActionsParam : IFlatbufferObject
   public void __init(int _i, ByteBuffer _bb) { __p = new Table(_i, _bb); }
   public ActionsParam __assign(int _i, ByteBuffer _bb) { __init(_i, _bb); return this; }
 
-  public string Actions { get { int o = __p.__offset(4); return o != 0 ? __p.__string(o + __p.bb_pos) : null; } }
-#if ENABLE_SPAN_T
-  public Span<byte> GetActionsBytes() { return __p.__vector_as_span<byte>(4, 1); }
-#else
-  public ArraySegment<byte>? GetActionsBytes() { return __p.__vector_as_arraysegment(4); }
-#endif
-  public byte[] GetActionsArray() { return __p.__vector_as_array<byte>(4); }
+  public string Actions(int j) { int o = __p.__offset(4); return o != 0 ? __p.__string(__p.__vector(o) + j * 4) : null; }
+  public int ActionsLength { get { int o = __p.__offset(4); return o != 0 ? __p.__vector_len(o) : 0; } }
 
   public static Offset<Gamium.Protocol.Packets.ActionsParam> CreateActionsParam(FlatBufferBuilder builder,
-      StringOffset actionsOffset = default(StringOffset)) {
+      VectorOffset actionsOffset = default(VectorOffset)) {
     builder.StartTable(1);
     ActionsParam.AddActions(builder, actionsOffset);
     return ActionsParam.EndActionsParam(builder);
   }
 
   public static void StartActionsParam(FlatBufferBuilder builder) { builder.StartTable(1); }
-  public static void AddActions(FlatBufferBuilder builder, StringOffset actionsOffset) { builder.AddOffset(0, actionsOffset.Value, 0); }
+  public static void AddActions(FlatBufferBuilder builder, VectorOffset actionsOffset) { builder.AddOffset(0, actionsOffset.Value, 0); }
+  public static VectorOffset CreateActionsVector(FlatBufferBuilder builder, StringOffset[] data) { builder.StartVector(4, data.Length, 4); for (int i = data.Length - 1; i >= 0; i--) builder.AddOffset(data[i].Value); return builder.EndVector(); }
+  public static VectorOffset CreateActionsVectorBlock(FlatBufferBuilder builder, StringOffset[] data) { builder.StartVector(4, data.Length, 4); builder.Add(data); return builder.EndVector(); }
+  public static VectorOffset CreateActionsVectorBlock(FlatBufferBuilder builder, ArraySegment<StringOffset> data) { builder.StartVector(4, data.Count, 4); builder.Add(data); return builder.EndVector(); }
+  public static VectorOffset CreateActionsVectorBlock(FlatBufferBuilder builder, IntPtr dataPtr, int sizeInBytes) { builder.StartVector(1, sizeInBytes, 1); builder.Add<StringOffset>(dataPtr, sizeInBytes); return builder.EndVector(); }
+  public static void StartActionsVector(FlatBufferBuilder builder, int numElems) { builder.StartVector(4, numElems, 4); }
   public static Offset<Gamium.Protocol.Packets.ActionsParam> EndActionsParam(FlatBufferBuilder builder) {
     int o = builder.EndTable();
     return new Offset<Gamium.Protocol.Packets.ActionsParam>(o);
@@ -46,11 +46,17 @@ public struct ActionsParam : IFlatbufferObject
     return _o;
   }
   public void UnPackTo(ActionsParamT _o) {
-    _o.Actions = this.Actions;
+    _o.Actions = new List<string>();
+    for (var _j = 0; _j < this.ActionsLength; ++_j) {_o.Actions.Add(this.Actions(_j));}
   }
   public static Offset<Gamium.Protocol.Packets.ActionsParam> Pack(FlatBufferBuilder builder, ActionsParamT _o) {
     if (_o == null) return default(Offset<Gamium.Protocol.Packets.ActionsParam>);
-    var _actions = _o.Actions == null ? default(StringOffset) : builder.CreateString(_o.Actions);
+    var _actions = default(VectorOffset);
+    if (_o.Actions != null) {
+      var __actions = new StringOffset[_o.Actions.Count];
+      for (var _j = 0; _j < __actions.Length; ++_j) { __actions[_j] = builder.CreateString(_o.Actions[_j]); }
+      _actions = CreateActionsVector(builder, __actions);
+    }
     return CreateActionsParam(
       builder,
       _actions);
@@ -59,7 +65,7 @@ public struct ActionsParam : IFlatbufferObject
 
 public class ActionsParamT
 {
-  public string Actions { get; set; }
+  public List<string> Actions { get; set; }
 
   public ActionsParamT() {
     this.Actions = null;

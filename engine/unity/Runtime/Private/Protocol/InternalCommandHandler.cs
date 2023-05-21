@@ -8,6 +8,7 @@ using Gamium.Private.Object;
 using Gamium.Private.Util;
 using Gamium.Protocol.Packets;
 using Gamium.Protocol.Types;
+using Google.FlatBuffers;
 using Private.Profile;
 using UnityEngine;
 using GamiumVector3 = Gamium.Protocol.Types.Vector3;
@@ -119,13 +120,20 @@ namespace Gamium
 
             for (var i = 0; i < req.Actions.Count; i++)
             {
-                var action = req.Actions[i];
+                var str = req.Actions[i];
+                var bytes = new byte[str.Length];
+                for (var j = 0; j < bytes.Length; j++)
+                {
+                    bytes[j] = (byte) str[j];
+                }
+                var byteBuffer = new ByteBuffer(bytes);
+                
+                var action = ActionParamSingle.GetRootAsActionParamSingle(byteBuffer).UnPack().Action;
                 if (!ActionsTypes.mappings.ContainsKey(action.Type))
                 {
                     return new PacketResult<ActionsResultT>(ErrorCode.InternalError,
                         $"Actions failed. ${action.Type} not handleable");
                 }
-
                 var mapping = ActionsTypes.mappings[action.Type];
                 var actionResult = await mapping.HandleInternal(action);
                 if (null == actionResult.Error)

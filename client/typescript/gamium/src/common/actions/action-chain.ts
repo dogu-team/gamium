@@ -247,7 +247,7 @@ export class ActionChain {
 
   async perform(): Promise<ActionResult[]> {
     if (this.actions.length === 0) {
-      throw new GamiumError(ErrorCode.InvalidParameter, 'ActionChains.perform actions is empty');
+      throw new GamiumError(ErrorCode.InvalidParameter, 'ActionChains.perform actions shoult not be empty');
     }
     const actionsArray: string[] = [];
     for (const action of this.actions) {
@@ -286,10 +286,13 @@ export class ActionChain {
         throw new GamiumError(ErrorCode.InternalError, `ActionChains.perform action ${i} return undefined`);
       }
       if (!actRes.error) {
-        throw new GamiumError(ErrorCode.InternalError, 'pressKey action result error is null');
+        throw new GamiumError(ErrorCode.InternalError, 'ActionChains.perform action result error is null');
       }
       if (actRes.error.code !== ErrorCode.None) {
-        throw new GamiumError(ErrorCode.InternalError, `pressKey action[${i}] result error code:${String(actRes.error)}}, msg:${String(actRes.error.reason)}`);
+        throw new GamiumError(
+          ErrorCode.InternalError,
+          `ActionChains.perform action[${i}] result error code:${String(actRes.error)}}, msg:${String(actRes.error.reason)}`,
+        );
       }
     }
   }

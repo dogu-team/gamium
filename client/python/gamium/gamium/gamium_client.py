@@ -1,5 +1,8 @@
 import asyncio
 from typing import List, Optional
+from gamium.actions.key_by import KeyBy
+from gamium.options.send_key_options import SendKeyOptions
+from gamium.actions.action_chain import ActionChain
 from gamium.Protocol.Types.ObjectInfo import ObjectInfoT
 from gamium.Protocol.Types.ErrorCode import ErrorCode
 from gamium.Protocol.Packets.QueryProfileResult import QueryProfileResultT
@@ -77,4 +80,11 @@ class GamiumClient:
 
         return res.infos
 
-    
+    def actions(self) -> ActionChain:
+        return ActionChain(self._service)
+
+    async def send_keys(
+        self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()
+    ) -> None:
+        self._logger.info(f"GamiumClient.send_keys {by_list}")
+        await self.actions().send_keys(by_list, options).perform()

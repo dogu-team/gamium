@@ -1,7 +1,9 @@
 import asyncio
 import socket
-from typing import Generic, Optional, TypeVar
+from typing import Generic, List, Optional, TypeVar
 import flatbuffers
+from gamium.Protocol.Packets.ActionsParam import ActionsParamT
+from gamium.Protocol.Packets.ActionsResult import ActionsResultT
 from gamium.Protocol.Param import Param
 from gamium.Protocol.Result import Result
 from gamium.Protocol.Request import RequestT
@@ -26,18 +28,9 @@ R = TypeVar("R")
 
 class PacketTypes(Generic[P, R]):
     def __init__(self, param_type: Param, result_type: Result, param: P):
-        self._param_type = param_type
-        self._result_type = result_type
-        self._param = param
-
-    def param(self) -> P:
-        return self._param
-
-    def param_type(self) -> Param:
-        return self._param_type
-
-    def result_type(self) -> Result:
-        return self._result_type
+        self.param_type: Param = param_type
+        self.result_type: Result = result_type
+        self.param: P = param
 
 
 def create_hello() -> PacketTypes[HelloParamT, HelloResultT]:
@@ -61,6 +54,12 @@ def create_find_objects(
     param = FindObjectsParamT()
     param.locator = locator
     return PacketTypes(Param.Packets_FindObjectsParam, Result.Packets_FindObjectsResult, param)
+
+
+def create_actions(actions: List[str]) -> PacketTypes[ActionsParamT, ActionsResultT]:
+    param = ActionsParamT()
+    param.actions = actions
+    return PacketTypes(Param.Packets_ActionsParam, Result.Packets_ActionsResult, param)
 
 
 class GamiumService:
@@ -123,8 +122,8 @@ class GamiumService:
 
         req = RequestT()
         req.seq = self.__get_seq()
-        req.paramType = packet.param_type()
-        req.param = packet.param()
+        req.paramType = packet.param_type
+        req.param = packet.param
 
         builder = flatbuffers.Builder()
         request_offset = req.Pack(builder)

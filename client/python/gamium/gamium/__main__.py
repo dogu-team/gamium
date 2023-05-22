@@ -19,5 +19,7 @@ async def main():
     res = await gamium.find(By.path("/Canvas[1]/Start[1]/DeleteAccountButton[1]"))
     print(res.screenPosition)
 
+    await gamium.send_keys([KeyBy.unity_keycode("Space")])
+
 
 asyncio.run(main())

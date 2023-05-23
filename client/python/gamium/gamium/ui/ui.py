@@ -1,4 +1,4 @@
-from gamium.Protocol.Types.ObjectInfo import ObjectInfoT
+from gamium.protocol_util.types import ObjectInfo
 from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import GamiumService
 from gamium.internal.logger import Logger
@@ -13,5 +13,5 @@ class UI:
 
     async def find(
         self, locator: Locator, options: FindObjectOptions = FindObjectOptions()
-    ) -> ObjectInfoT:
+    ) -> ObjectInfo:
         return await self._client.find(locator, options)

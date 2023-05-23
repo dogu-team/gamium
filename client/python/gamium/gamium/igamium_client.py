@@ -6,7 +6,7 @@ from gamium.Protocol import (
     QueryScreenResultT,
     HelloResultT,
     QueryProfileResultT,
-    ObjectInfoT,
+    ObjectInfo,
 )
 from gamium.options import FindObjectOptions, SendKeyOptions
 
@@ -15,7 +15,7 @@ from gamium.options import FindObjectOptions, SendKeyOptions
 class IGamiumClient:
     async def find(
         self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
-    ) -> ObjectInfoT:
+    ) -> ObjectInfo:
         pass
 
     def actions(self) -> ActionChain:

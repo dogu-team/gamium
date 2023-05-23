@@ -8,3 +8,4 @@ from .move_player_options import *
 from .query_object_interactable_options import *
 from .send_key_options import *
 from .set_text_options import *
+from .wait_options import *

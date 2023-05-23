@@ -1,7 +1,8 @@
 from typing import Optional, Union
 
 import numpy as np
-from gamium.Protocol import Vector3, ObjectInfoT
+from gamium.protocol_util.types import ObjectInfo
+from gamium.Protocol import Vector3
 from gamium.actions.action_chain import create_move_player
 from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import GamiumService
@@ -16,7 +17,7 @@ class Player:
         self,
         client: IGamiumClient,
         service: GamiumService,
-        info: ObjectInfoT,
+        info: ObjectInfo,
     ) -> None:
         self._client = client
         self._service = service

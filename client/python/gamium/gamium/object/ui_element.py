@@ -1,6 +1,7 @@
 from typing import Optional
+from gamium.protocol_util.types import ObjectInfo
 
-from gamium.Protocol import ObjectInfoT, Vector2T
+from gamium.Protocol import Vector2T
 from gamium.gamium_client import GamiumClient
 from gamium.gamium_service import (
     GamiumService,
@@ -17,7 +18,7 @@ from gamium.options.set_text_options import SetTextOptions
 
 
 class UIElement:
-    def __init__(self, client: GamiumClient, service: GamiumService, info: ObjectInfoT):
+    def __init__(self, client: GamiumClient, service: GamiumService, info: ObjectInfo):
         self._client = client
         self._service = service
         self._info = info

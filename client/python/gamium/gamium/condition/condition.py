@@ -1,15 +1,13 @@
-from typing import Generic, TypeVar
-from gamium.Protocol.Types.ObjectInfo import ObjectInfoT
+from typing import Awaitable, Callable, Generic, List, TypeVar
+from gamium.object.ui_element import UIElement
+
+from gamium.Protocol.Types.ObjectInfo import ObjectInfo
 
 from gamium.gamium_client import GamiumClient
 
 
 T = TypeVar("T")
-
-
-class ConditionFn(Generic[T]):
-    def __init__(self, client: GamiumClient):
-        self.client = client
+ConditionFn = Callable[[GamiumClient], Awaitable[T]]
 
 
 class Condition(Generic[T]):
@@ -18,5 +16,6 @@ class Condition(Generic[T]):
         self.func = func
 
 
-ObjectInfoCondition = ConditionFn[ObjectInfoT]
-ObjectInfosCondition = ConditionFn[ObjectInfoT[]]
+ObjectInfoCondition = Condition[ObjectInfo]
+ObjectInfosCondition = Condition[List[ObjectInfo]]
+UIElementCondition = Condition[UIElement]

@@ -1,6 +1,9 @@
 import asyncio
 import json
 from typing import List, Optional
+from client.python.gamium.gamium.condition.wait_condition import WaitCondition
+from client.python.gamium.gamium.options.wait_options import WaitOptions
+from gamium.protocol_util.types import ObjectInfo
 
 from gamium.Protocol import (
     ObjectInfoT,
@@ -21,6 +24,8 @@ from gamium.gamium_service import *
 from gamium.errors.gamium_error import GamiumError
 from gamium.internal.logger import Logger
 from gamium.locator.locator import Locator
+
+T = TypeVar("T")
 
 
 class GamiumClient(IGamiumClient):
@@ -54,7 +59,7 @@ class GamiumClient(IGamiumClient):
 
     async def find(
         self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
-    ) -> ObjectInfoT:
+    ) -> ObjectInfo:
         infos = await self.finds(locator, options)
         if 0 == len(infos):
             raise GamiumError(
@@ -70,7 +75,7 @@ class GamiumClient(IGamiumClient):
 
     async def finds(
         self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
-    ) -> List[ObjectInfoT]:
+    ) -> List[ObjectInfo]:
         self._logger.info(f"GamiumClient.finds By: {locator.by}, str: {locator.str}")
         if locator.str is None or 0 == len(locator.str):
             raise GamiumError(
@@ -134,3 +139,9 @@ class GamiumClient(IGamiumClient):
     async def sleep(self, ms: int) -> None:
         self._logger.info(f"GamiumClient.sleep {ms} ms")
         await self.actions().sleep(ms).perform()
+
+    async def wait(
+        condition: WaitCondition[T], options: Optional[WaitOptions] = WaitOptions()
+    ) -> T:
+        # TODO
+        pass

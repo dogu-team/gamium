@@ -11,16 +11,8 @@ from gamium.Protocol import (
 from gamium.options import FindObjectOptions, SendKeyOptions
 
 
+# used internally to prevent circular imports
 class IGamiumClient:
-    async def screen(self) -> QueryScreenResultT:
-        pass
-
-    async def hello(self) -> HelloResultT:
-        pass
-
-    async def profile(self) -> QueryProfileResultT:
-        pass
-
     async def find(
         self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
     ) -> ObjectInfoT:

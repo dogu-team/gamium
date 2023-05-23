@@ -6,6 +6,7 @@ import { formatFbs, lowerGamiumNamespace } from './lang/flatbufferFormatter';
 import * as buildToolsProcess from './util/process';
 import * as time from './util/time';
 import * as typescript from './lang/typescript';
+import * as python from './lang/python';
 
 const REPO_PATH = path.resolve(__dirname, '..', '..');
 const PROTOCOL_PATH = path.resolve(REPO_PATH, 'protocol');
@@ -149,6 +150,18 @@ async function formatTypescriptNamespace(): Promise<void> {
   return Promise.resolve();
 }
 
+async function formatPythonNamespace(): Promise<void> {
+  shelljs.ls(`${LANGUAGES.python.export_dir}/*.py`).forEach((file) => {
+    shelljs.rm(file);
+  });
+
+  await python.createInitPyInternal(LANGUAGES.python.export_dir, {
+    dirPostFixExclude: [],
+    filePostFixExclude: ['__init__.py'],
+  });
+  return Promise.resolve();
+}
+
 async function copyToProjects(): Promise<void> {
   for (const lang of Object.keys(LANGUAGES)) {
     const prop = LANGUAGES[lang as keyof typeof LANGUAGES];
@@ -172,7 +185,8 @@ async function run(): Promise<void> {
     time.checkTime('exportPython', exportPython(fbslist)),
   ]);
 
-  await time.checkTime('createIndexTs', formatTypescriptNamespace());
+  await Promise.all([time.checkTime('createIndexTs', formatTypescriptNamespace()), time.checkTime('createInitPy', formatPythonNamespace())]);
+
   await time.checkTime('copyToProjects', copyToProjects());
 }
 

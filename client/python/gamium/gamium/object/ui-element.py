@@ -1,20 +1,19 @@
 from typing import Optional
 
-from client.python.gamium.gamium.Protocol.Types.ObjectInfo import ObjectInfoT
-from client.python.gamium.gamium.Protocol.Types.Vector2 import Vector2T
-from client.python.gamium.gamium.gamium_client import GamiumClient
-from client.python.gamium.gamium.gamium_service import (
+from gamium.Protocol import ObjectInfoT, Vector2T
+from gamium.gamium_client import GamiumClient
+from gamium.gamium_service import (
     GamiumService,
     create_query_object_interactable,
 )
-from client.python.gamium.gamium.internal.logger import Logger
-from client.python.gamium.gamium.locator.by import By
-from client.python.gamium.gamium.options.action_click_options import ActionClickOptions
-from client.python.gamium.gamium.options.action_scroll_options import ActionScrollOptions
-from client.python.gamium.gamium.options.query_object_interactable_options import (
+from gamium.internal.logger import Logger
+from gamium.locator.by import By
+from gamium.options.action_click_options import ActionClickOptions
+from gamium.options.action_scroll_options import ActionScrollOptions
+from gamium.options.query_object_interactable_options import (
     QueryObjectInteractableOptions,
 )
-from client.python.gamium.gamium.options.set_text_options import SetTextOptions
+from gamium.options.set_text_options import SetTextOptions
 
 
 class UIElement:

@@ -1,5 +1,5 @@
 from typing import List, Tuple
-from client.python.gamium.gamium.Protocol.Packets.ExecuteRpcParam import ExecuteRpcParam
+from gamium.Protocol.Packets.ExecuteRpcParam import ExecuteRpcParam
 
 
 class RpcBy:

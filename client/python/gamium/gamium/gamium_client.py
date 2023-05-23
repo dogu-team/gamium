@@ -1,26 +1,29 @@
 import asyncio
 import json
 from typing import List, Optional
-from client.python.gamium.gamium.locator.rpc_locator import RpcLocator
-from client.python.gamium.gamium.object.player import Player
-from client.python.gamium.gamium.options.execute_rpc_options import ExecuteRpcOptions
-from gamium.actions.key_by import KeyBy
-from gamium.options.send_key_options import SendKeyOptions
-from gamium.actions.action_chain import ActionChain
-from gamium.Protocol.Types.ObjectInfo import ObjectInfoT
-from gamium.Protocol.Types.ErrorCode import ErrorCode
-from gamium.Protocol.Packets.QueryProfileResult import QueryProfileResultT
-from gamium.Protocol.Packets.QueryScreenResult import QueryScreenResultT
-from gamium.Protocol.Packets.HelloResult import HelloResultT
 
+from gamium.Protocol import (
+    ObjectInfoT,
+    ErrorCode,
+    QueryProfileResultT,
+    QueryScreenResultT,
+    HelloResultT,
+)
+from gamium.options import FindObjectOptions, ExecuteRpcOptions, SendKeyOptions
+
+from gamium.igamium_client import IGamiumClient
+from gamium.locator.rpc_locator import RpcLocator
+from gamium.object.player import Player
+from gamium.ui.ui import UI
+from gamium.actions.key_by import KeyBy
+from gamium.actions.action_chain import ActionChain
 from gamium.gamium_service import *
 from gamium.errors.gamium_error import GamiumError
 from gamium.internal.logger import Logger
 from gamium.locator.locator import Locator
-from gamium.options.find_objects_options import FindObjectOptions
 
 
-class GamiumClient:
+class GamiumClient(IGamiumClient):
     def __init__(
         self,
         host: str,
@@ -117,3 +120,17 @@ class GamiumClient:
     ) -> Player:
         info = await self.find(locator, options)
         return Player(self, self._service, info)
+
+    def ui(self) -> UI:
+        return UI(
+            self,
+            self._service,
+        )
+
+    def inspector(self):
+        # TODO
+        pass
+
+    async def sleep(self, ms: int) -> None:
+        self._logger.info(f"GamiumClient.sleep {ms} ms")
+        await self.actions().sleep(ms).perform()

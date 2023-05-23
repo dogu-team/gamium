@@ -1,33 +1,35 @@
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
-from gamium.Protocol.Packets.ActionResult import ActionResultT
 from gamium.gamium_service import create_actions
-from gamium.Protocol.Packets.ActionParamSingle import ActionParamSingleT
-from gamium.Protocol.Packets.Actions.AppQuitParam import AppQuitParamT
-from gamium.Protocol.Packets.Actions.InputMouseParam import InputMouseParamT
-from gamium.Protocol.Packets.Actions.InputSetTextParam import (
+from gamium.Protocol import (
+    ActionResultT,
+    ActionParamSingleT,
+    AppQuitParamT,
+    InputMouseParamT,
     InputSetTextParamT,
+    MovePlayerParamT,
+    ErrorCode,
+    InputMouseButtonCode,
+    ObjectLocatorBy,
+    Vector2T,
+    Vector3T,
+    InputKeyParamT,
+    InputKeyPressType,
+    SleepParamT,
+    ActionParam,
 )
-from gamium.Protocol.Packets.Actions.MovePlayerParam import MovePlayerParamT
-from gamium.Protocol.Types.ErrorCode import ErrorCode
-from gamium.Protocol.Types.InputMouseButtonCode import InputMouseButtonCode
-from gamium.Protocol.Types.ObjectLocatorBy import ObjectLocatorBy
-from gamium.Protocol.Types.Vector2 import Vector2T
-from gamium.Protocol.Types.Vector3 import Vector3T
+from gamium.options import (
+    ActionClickOptions,
+    ActionDragOptions,
+    ActionMoveOptions,
+    ActionScrollOptions,
+    MovePlayerOptions,
+    SendKeyOptions,
+    SetTextOptions,
+)
 from gamium.actions.key_by import KeyBy
 from gamium.errors.gamium_error import GamiumError
 from gamium.locator.locator import Locator
-from gamium.options.action_click_options import ActionClickOptions
-from gamium.options.action_drag_options import ActionDragOptions
-from gamium.options.action_move_options import ActionMoveOptions
-from gamium.options.action_scroll_options import ActionScrollOptions
-from gamium.options.move_player_options import MovePlayerOptions
-from gamium.options.send_key_options import SendKeyOptions
-from gamium.options.set_text_options import SetTextOptions
-from gamium.Protocol.Packets.Actions.InputKeyParam import InputKeyParamT
-from gamium.Protocol.Types.InputKeyPressType import InputKeyPressType
-from gamium.Protocol.Packets.Actions.SleepParam import SleepParamT
-from gamium.Protocol.Packets.ActionParam import ActionParam
 from gamium.gamium_service import GamiumService
 
 P = TypeVar("P")

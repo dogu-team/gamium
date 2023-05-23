@@ -1,21 +1,20 @@
 from typing import Optional, Union
 
 import numpy as np
-from client.python.gamium.gamium.Protocol.Types.Vector3 import Vector3
-from client.python.gamium.gamium.Protocol.Types.ObjectInfo import ObjectInfoT
-from client.python.gamium.gamium.actions.action_chain import create_move_player
-from client.python.gamium.gamium.gamium_client import GamiumClient
-from client.python.gamium.gamium.gamium_service import GamiumService
-from client.python.gamium.gamium.internal.logger import Logger
-from client.python.gamium.gamium.locator.by import By
-from client.python.gamium.gamium.locator.locator import Locator
-from client.python.gamium.gamium.options.move_player_options import MovePlayerOptions
+from gamium.Protocol import Vector3, ObjectInfoT
+from gamium.actions.action_chain import create_move_player
+from gamium.igamium_client import IGamiumClient
+from gamium.gamium_service import GamiumService
+from gamium.internal.logger import Logger
+from gamium.locator.by import By
+from gamium.locator.locator import Locator
+from gamium.options.move_player_options import MovePlayerOptions
 
 
 class Player:
     def __init__(
         self,
-        client: GamiumClient,
+        client: IGamiumClient,
         service: GamiumService,
         info: ObjectInfoT,
     ) -> None:

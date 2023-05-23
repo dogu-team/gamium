@@ -2,30 +2,28 @@ import asyncio
 import socket
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
-from client.python.gamium.gamium.Protocol.Packets.ExecuteRpcParam import ExecuteRpcParamT
-from client.python.gamium.gamium.Protocol.Packets.ExecuteRpcResult import ExecuteRpcResultT
-from client.python.gamium.gamium.Protocol.Packets.QueryObjectInteractableParam import (
+from gamium.Protocol import (
+    ExecuteRpcParamT,
+    ExecuteRpcResultT,
     QueryObjectInteractableParamT,
-)
-from client.python.gamium.gamium.Protocol.Packets.QueryObjectInteractableResult import (
     QueryObjectInteractableResultT,
+    ActionsParamT,
+    ActionsResultT,
+    Param,
+    Result,
+    RequestT,
+    ResponseT,
+    ErrorCode,
+    ObjectLocatorT,
+    HelloResultT,
+    FindObjectsResultT,
+    QueryProfileParamT,
+    QueryProfileResultT,
+    QueryScreenParamT,
+    QueryScreenResultT,
+    FindObjectsParamT,
+    HelloParamT,
 )
-from gamium.Protocol.Packets.ActionsParam import ActionsParamT
-from gamium.Protocol.Packets.ActionsResult import ActionsResultT
-from gamium.Protocol.Param import Param
-from gamium.Protocol.Result import Result
-from gamium.Protocol.Request import RequestT
-from gamium.Protocol.Response import ResponseT
-from gamium.Protocol.Types.ErrorCode import ErrorCode
-from gamium.Protocol.Types.ObjectLocator import ObjectLocatorT
-from gamium.Protocol.Packets.HelloResult import HelloResultT
-from gamium.Protocol.Packets.FindObjectsResult import FindObjectsResultT
-from gamium.Protocol.Packets.QueryProfileParam import QueryProfileParamT
-from gamium.Protocol.Packets.QueryProfileResult import QueryProfileResultT
-from gamium.Protocol.Packets.QueryScreenParam import QueryScreenParamT
-from gamium.Protocol.Packets.QueryScreenResult import QueryScreenResultT
-from gamium.Protocol.Packets.FindObjectsParam import FindObjectsParamT
-from gamium.Protocol.Packets.HelloParam import HelloParamT
 from gamium.internal import Logger, SizePrefixedRecvQueue
 from gamium.errors.gamium_error import GamiumError
 

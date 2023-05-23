@@ -1,5 +1,9 @@
 import asyncio
+import json
 from typing import List, Optional
+from client.python.gamium.gamium.locator.rpc_locator import RpcLocator
+from client.python.gamium.gamium.object.player import Player
+from client.python.gamium.gamium.options.execute_rpc_options import ExecuteRpcOptions
 from gamium.actions.key_by import KeyBy
 from gamium.options.send_key_options import SendKeyOptions
 from gamium.actions.action_chain import ActionChain
@@ -83,8 +87,33 @@ class GamiumClient:
     def actions(self) -> ActionChain:
         return ActionChain(self._service)
 
+    async def send_key(
+        self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()
+    ) -> None:
+        await self.send_keys([by], options)
+
     async def send_keys(
         self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()
     ) -> None:
         self._logger.info(f"GamiumClient.send_keys {by_list}")
         await self.actions().send_keys(by_list, options).perform()
+
+    async def execute_rpc(
+        self, locator: RpcLocator, option: Optional[ExecuteRpcOptions] = ExecuteRpcOptions()
+    ) -> any:
+        self._logger.info(
+            f"GamiumClient.execute_rpc By: {locator.by}, class: {locator.class_name}, target: {locator.target_name}"
+        )
+        res = await self._service.request(
+            create_execute_rpc(locator.by, locator.class_name, locator.target_name, locator.params)
+        )
+        if res.document is None:
+            return None
+        parsed = json.loads(res.document)
+        return parsed
+
+    async def player(
+        self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
+    ) -> Player:
+        info = await self.find(locator, options)
+        return Player(self, self._service, info)

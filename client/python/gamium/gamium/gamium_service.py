@@ -2,6 +2,14 @@ import asyncio
 import socket
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
+from client.python.gamium.gamium.Protocol.Packets.ExecuteRpcParam import ExecuteRpcParamT
+from client.python.gamium.gamium.Protocol.Packets.ExecuteRpcResult import ExecuteRpcResultT
+from client.python.gamium.gamium.Protocol.Packets.QueryObjectInteractableParam import (
+    QueryObjectInteractableParamT,
+)
+from client.python.gamium.gamium.Protocol.Packets.QueryObjectInteractableResult import (
+    QueryObjectInteractableResultT,
+)
 from gamium.Protocol.Packets.ActionsParam import ActionsParamT
 from gamium.Protocol.Packets.ActionsResult import ActionsResultT
 from gamium.Protocol.Param import Param
@@ -62,6 +70,31 @@ def create_actions(actions: List[str]) -> PacketTypes[ActionsParamT, ActionsResu
     return PacketTypes(Param.Packets_ActionsParam, Result.Packets_ActionsResult, param)
 
 
+def create_execute_rpc(
+    by: int, class_name: str, target: str, params: List[str]
+) -> PacketTypes[ExecuteRpcParamT, ExecuteRpcResultT]:
+    param = ExecuteRpcParamT()
+    param.by = by
+    param.className = class_name
+    param.targetName = target
+    param.paramDocuments = params
+    return PacketTypes(Param.Packets_ExecuteRpcParam, Result.Packets_ExecuteRpcResult, param)
+
+
+def create_query_object_interactable(
+    object_id: str, check_moving: bool, check_raycast: bool
+) -> PacketTypes[QueryObjectInteractableParamT, QueryObjectInteractableResultT]:
+    param = QueryObjectInteractableParamT()
+    param.objectId = object_id
+    param.checkMoving = check_moving
+    param.checkRaycast = check_raycast
+    return PacketTypes(
+        Param.Packets_QueryObjectInteractableParam,
+        Result.Packets_QueryObjectInteractableResult,
+        param,
+    )
+
+
 class GamiumService:
     def __init__(
         self,
@@ -108,11 +141,6 @@ class GamiumService:
     def disconnect(self):
         if self._writer:
             self._writer.close()
-
-    # async def request_generic(
-    #     self, packet: PacketTypes[P, R], timeout_ms: Optional[int] = None
-    # ) -> R:
-    #     pass
 
     async def request(self, packet: PacketTypes[P, R], timeout_ms: Optional[int] = None) -> R:
         if not self._writer:

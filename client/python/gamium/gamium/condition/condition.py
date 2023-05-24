@@ -1,8 +1,8 @@
-from typing import Awaitable, Callable, Generic, List, TypeVar
+from typing import Callable, Generic, List, TypeVar
 from gamium.protocol.generated.Types.ObjectInfo import ObjectInfo
 
 T = TypeVar("T")
-ConditionFn = Callable[[object], Awaitable[T]]  # Callable[[IGamiumClient], Awaitable[T]]
+ConditionFn = Callable[[object], T]  # Callable[[IGamiumClient], T]
 
 
 class Condition(Generic[T]):

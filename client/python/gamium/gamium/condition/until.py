@@ -20,15 +20,15 @@ T = TypeVar("T")
 class Until:
     @staticmethod
     def object_located(locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()) -> ObjectInfoCondition:
-        async def func(client: IGamiumClient):
-            return await client.find(locator, options)
+        def func(client: IGamiumClient):
+            return client.find(locator, options)
 
         return ObjectInfoCondition(f"locate element locator {locator.str}", func)
 
     @staticmethod
     def objects_located(locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()) -> ObjectInfosCondition:
-        async def func(client: IGamiumClient):
-            return await client.finds(locator, options)
+        def func(client: IGamiumClient):
+            return client.finds(locator, options)
 
         return ObjectInfosCondition(f"locate element locator {locator.str}", func)
 
@@ -37,8 +37,8 @@ class Until:
         param: T,  # UIElement
         options: Optional[QueryObjectInteractableOptions] = QueryObjectInteractableOptions(),
     ) -> Condition[T]:  # Condition[UIElement]
-        async def func(client: IGamiumClient):
-            res = await param.is_interactable(options)
+        def func(client: IGamiumClient):
+            res = param.is_interactable(options)
             if True == res:
                 return param
             else:

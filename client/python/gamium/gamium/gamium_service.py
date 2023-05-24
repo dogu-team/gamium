@@ -1,5 +1,5 @@
-import asyncio
 import socket
+import time
 import traceback
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
@@ -121,39 +121,37 @@ class GamiumService:
         self._port = port
         self._request_timeout_ms = request_timeout_ms
         self._logger = logger
+        self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._seq = 0
         self._recv_queue = SizePrefixedRecvQueue()
 
-    async def connect(self, try_count: int = 30) -> HelloResultT:
+    def connect(self, try_count: int = 30) -> HelloResultT:
         self._logger.info(f"Connecting to {self._host}:{self._port}")
 
         for i in range(try_count):
             try:
-                self._reader, self._writer = await asyncio.open_connection(self._host, self._port)
+                self._socket.connect((self._host, self._port))
             except Exception as e:
                 self._logger.info(f"Failed to connect to {self._host}:{self._port}. countt: ({i + 1}/{try_count}), error: {e}")
-                await asyncio.sleep(1)
+                time.sleep(1)
                 continue
 
             try:
-                res = await self.request(create_hello())
+                res = self.request(create_hello())
                 return res
             except Exception as e:
-                self._writer.close()
+                self._socket.close()
                 stack_trace = "".join(traceback.format_tb(e.__traceback__))
                 self._logger.info(f"Failed to say hello to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}. {stack_trace}")
-                await asyncio.sleep(1)
+                time.sleep(1)
                 continue
 
         raise Exception(f"Failed to connect to {self._host}:{self._port}")
 
     def disconnect(self):
-        if self._writer:
-            self._writer.close()
+        self._socket.close()
 
-    async def request(self, packet: PacketTypes[P, R], timeout_ms: Optional[int] = 0) -> R:
-        if not self._writer:
-            raise Exception("Not connected")
+    def request(self, packet: PacketTypes[P, R], timeout_ms: Optional[int] = 0) -> R:
         if 0 == timeout_ms:
             timeout_ms = self._request_timeout_ms
 
@@ -167,21 +165,20 @@ class GamiumService:
         builder.FinishSizePrefixed(request_offset)
 
         try:
-            self._writer.write(builder.Output())
-            await self._writer.drain()
+            self._socket.sendall(builder.Output())
         except socket.error as e:
             self._logger.error(f"Failed to send request: {e}")
             raise e
 
         try:
             while True:
-                data = await asyncio.wait_for(self._reader.read(1024), timeout_ms / 1000)
+                data = self._socket.recv(1024)
                 self._recv_queue.pushBuffer(data)
                 if self._recv_queue.has():
                     break
             return self.pop_message(req)
 
-        except asyncio.TimeoutError as e:
+        except Exception as e:
             self._logger.error(f"Failed to receive response: {e}")
             raise e
 

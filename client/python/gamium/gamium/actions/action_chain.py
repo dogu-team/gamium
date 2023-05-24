@@ -297,7 +297,7 @@ class ActionChain:
         self.__add_action(create_app_quit(exit_code, delay_ms))
         return self
 
-    async def perform(self) -> List[ActionResultT]:
+    def perform(self) -> List[ActionResultT]:
         if len(self.actions) == 0:
             raise GamiumError(
                 ErrorCode.InvalidParameter,
@@ -318,7 +318,7 @@ class ActionChain:
             param_str = "".join(chr(byte) for byte in param_bytes)
             actions_array.append(param_str)
 
-        res = await self._service.request(create_actions(actions_array))
+        res = self._service.request(create_actions(actions_array))
         self.__check_action_return(res.results)
         return res.results
 

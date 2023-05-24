@@ -1,4 +1,4 @@
-from typing import Awaitable, Generic, TypeVar
+from typing import Callable, Generic, TypeVar
 
 from gamium.errors.gamium_error import GamiumError
 
@@ -6,9 +6,9 @@ from gamium.errors.gamium_error import GamiumError
 T = TypeVar("T")
 
 
-async def tryify(awaitable: Awaitable[T]) -> "TryResult[T]":
+def tryify(func: Callable[[], T]) -> "TryResult[T]":
     try:
-        return TryResult(True, await awaitable, GamiumError.default())
+        return TryResult(True, func(), GamiumError.default())
     except GamiumError as e:
         return TryResult(False, None, e)
 

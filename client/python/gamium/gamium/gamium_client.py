@@ -1,4 +1,4 @@
-import asyncio
+import functools
 import json
 from typing import List, Optional
 from gamium.condition.wait_condition import WaitCondition
@@ -36,28 +36,28 @@ class GamiumClient(IGamiumClient):
             self._logger.set_handler(printable)
         self._service = GamiumService(host, port, request_timeout_ms, self._logger)
 
-    async def connect(self) -> None:
+    def connect(self) -> None:
         self._logger.info("GamiumClient.connect")
-        await self._service.connect()
+        self._service.connect()
 
-    async def screen(self) -> QueryScreenResultT:
+    def screen(self) -> QueryScreenResultT:
         self._logger.info("GamiumClient.screen")
-        return await self._service.request(create_query_screen())
+        return self._service.request(create_query_screen())
 
-    async def hello(self) -> HelloResultT:
+    def hello(self) -> HelloResultT:
         self._logger.info("GamiumClient.hello")
-        return await self._service.request(create_hello())
+        return self._service.request(create_hello())
 
-    async def profile(self) -> QueryProfileResultT:
+    def profile(self) -> QueryProfileResultT:
         self._logger.info("GamiumClient.profile")
-        return await self._service.request(create_profile())
+        return self._service.request(create_profile())
 
-    async def find(
+    def find(
         self,
         locator: Locator,
         options: Optional[FindObjectOptions] = FindObjectOptions(),
     ) -> ObjectInfo:
-        infos = await self.finds(locator, options)
+        infos = self.finds(locator, options)
         if 0 == len(infos):
             raise GamiumError(
                 ErrorCode.NotFound,
@@ -70,7 +70,7 @@ class GamiumClient(IGamiumClient):
             )
         return infos[0]
 
-    async def finds(
+    def finds(
         self,
         locator: Locator,
         options: Optional[FindObjectOptions] = FindObjectOptions(),
@@ -85,9 +85,9 @@ class GamiumClient(IGamiumClient):
         fbs_locator = ObjectLocatorT()
         fbs_locator.by = locator.by
         fbs_locator.str = locator.str
-        res = await self._service.request(create_find_objects(fbs_locator))
+        res = self._service.request(create_find_objects(fbs_locator))
 
-        await asyncio.sleep(options.delay_ms / 1000)
+        time.sleep(options.delay_ms / 1000)
         infos = []
         for info in res.infos:
             infos.append(
@@ -110,31 +110,31 @@ class GamiumClient(IGamiumClient):
     def actions(self) -> ActionChain:
         return ActionChain(self._service)
 
-    async def send_key(self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
-        await self.send_keys([by], options)
+    def send_key(self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
+        self.send_keys([by], options)
 
-    async def send_keys(self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
+    def send_keys(self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
         self._logger.info(f"GamiumClient.send_keys {by_list}")
-        await self.actions().send_keys(by_list, options).perform()
+        self.actions().send_keys(by_list, options).perform()
 
-    async def execute_rpc(
+    def execute_rpc(
         self,
         locator: RpcLocator,
         option: Optional[ExecuteRpcOptions] = ExecuteRpcOptions(),
     ) -> any:
         self._logger.info(f"GamiumClient.execute_rpc By: {locator.by}, class: {locator.class_name}, target: {locator.target_name}")
-        res = await self._service.request(create_execute_rpc(locator.by, locator.class_name, locator.target_name, locator.params))
+        res = self._service.request(create_execute_rpc(locator.by, locator.class_name, locator.target_name, locator.params))
         if res.document is None:
             return None
         parsed = json.loads(res.document)
         return parsed
 
-    async def player(
+    def player(
         self,
         locator: Locator,
         options: Optional[FindObjectOptions] = FindObjectOptions(),
     ) -> Player:
-        info = await self.find(locator, options)
+        info = self.find(locator, options)
         return Player(self, self._service, info)
 
     def ui(self) -> UI:
@@ -147,20 +147,20 @@ class GamiumClient(IGamiumClient):
         # TODO
         pass
 
-    async def sleep(self, ms: int) -> None:
+    def sleep(self, ms: int) -> None:
         self._logger.info(f"GamiumClient.sleep {ms} ms")
-        await self.actions().sleep(ms).perform()
+        self.actions().sleep(ms).perform()
 
-    async def wait(
+    def wait(
         self,
         condition: WaitCondition[T],
         options: Optional[WaitOptions] = WaitOptions(),
     ) -> T:
-        return await wait_generic(self, condition, options)
+        return wait_generic(self, condition, options)
 
-    async def try_wait(
+    def try_wait(
         self,
         condition: WaitCondition[T],
         options: Optional[WaitOptions] = WaitOptions(),
     ) -> TryResult[T]:
-        return await tryify(self.wait(condition, options))
+        return tryify(functools.partial(self.wait, condition, options))

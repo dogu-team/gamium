@@ -1,6 +1,6 @@
-import asyncio
 import inspect
 from datetime import datetime
+import time
 from typing import TypeVar
 from gamium.protocol.generated.Types import ErrorCode
 from gamium.condition.condition import Condition
@@ -14,17 +14,17 @@ from gamium.utils.time import current_time_ms
 T = TypeVar("T")
 
 
-async def wait_generic(client: IGamiumClient, condition: WaitCondition[T], options: WaitOptions) -> T:
-    async def call_condition(condition: WaitCondition[T]):
+def wait_generic(client: IGamiumClient, condition: WaitCondition[T], options: WaitOptions) -> T:
+    def call_condition(condition: WaitCondition[T]):
         if callable(condition):
             signature = inspect.signature(condition)
             parameters = signature.parameters
             if len(parameters) > 0:
-                return await condition(client)
+                return condition(client)
             else:
-                return await condition()
+                return condition()
         else:
-            return await condition.func(client)
+            return condition.func(client)
 
     start_time = current_time_ms()
     last_call_time = start_time
@@ -35,7 +35,7 @@ async def wait_generic(client: IGamiumClient, condition: WaitCondition[T], optio
             if current_time_ms() - start_time > options.timeout_ms:
                 is_timeouted = True
             last_call_time = current_time_ms()
-            condition_ret = await call_condition(condition)
+            condition_ret = call_condition(condition)
             if condition_ret:
                 return condition_ret
         except Exception as e:
@@ -45,4 +45,4 @@ async def wait_generic(client: IGamiumClient, condition: WaitCondition[T], optio
                 raise e
         remain_interval_ms = options.interval_ms - (current_time_ms() - last_call_time)
         if 1 < remain_interval_ms:
-            await asyncio.sleep(remain_interval_ms / 1000)
+            time.sleep(remain_interval_ms / 1000)

@@ -23,7 +23,7 @@ class Player:
         self._service = service
         self.info = info
 
-    async def move(
+    def move(
         self,
         camera_locator: Locator,
         dest: Union[Vector3, Locator],
@@ -32,19 +32,19 @@ class Player:
         self._client._logger.info(f"Player({self.info.path}).move. dest: {dest}")
 
         if isinstance(dest, Locator):
-            dest_obj_info = await self._client.find(dest)
+            dest_obj_info = self._client.find(dest)
             dest_pos = dest_obj_info.position
         else:
             dest_pos = dest
 
-        await self._client.actions().move_player(By.path(self.info.path), camera_locator, dest_pos, options).perform()
+        self._client.actions().move_player(By.path(self.info.path), camera_locator, dest_pos, options).perform()
 
-    async def is_near(self, other_locator: Locator, epsilon: Optional[int] = 10):
+    def is_near(self, other_locator: Locator, epsilon: Optional[int] = 10):
         self._client._logger.info(f"Player({self.info.path}).is_near. other_locator: {other_locator.str}")
 
-        await self.refresh()
+        self.refresh()
 
-        other_obj_info = await self._client.find(other_locator)
+        other_obj_info = self._client.find(other_locator)
         other_pos = other_obj_info.position
 
         this_pos_np = np.array([self.info.position.x, self.info.position.y, self.info.position.z])
@@ -55,5 +55,5 @@ class Player:
             return True
         return False
 
-    async def refresh(self):
-        self.info = await self._client.find(By.path(self.info.path))
+    def refresh(self):
+        self.info = self._client.find(By.path(self.info.path))

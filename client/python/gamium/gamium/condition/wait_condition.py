@@ -1,10 +1,10 @@
-from typing import Awaitable, Callable, TypeVar, Union
+from typing import Callable, TypeVar, Union
 from gamium.condition.condition import Condition
 
 
 T = TypeVar("T")
 WaitCondition = Union[
-    Callable[[], Awaitable[T]],
-    Callable[[object], Awaitable[T]],  # Callable[[IGamiumClient], Awaitable[T]]
+    Callable[[], T],
+    Callable[[object], T],  # Callable[[IGamiumClient], T]
     Condition[T],
 ]

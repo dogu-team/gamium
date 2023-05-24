@@ -86,9 +86,7 @@ def create_actions(actions: List[str]) -> PacketTypes[ActionsParamT, ActionsResu
     return PacketTypes(Param.Packets_ActionsParam, Result.Packets_ActionsResult, param)
 
 
-def create_execute_rpc(
-    by: int, class_name: str, target: str, params: List[str]
-) -> PacketTypes[ExecuteRpcParamT, ExecuteRpcResultT]:
+def create_execute_rpc(by: int, class_name: str, target: str, params: List[str]) -> PacketTypes[ExecuteRpcParamT, ExecuteRpcResultT]:
     param = ExecuteRpcParamT()
     param.by = by
     param.className = class_name
@@ -133,9 +131,7 @@ class GamiumService:
             try:
                 self._reader, self._writer = await asyncio.open_connection(self._host, self._port)
             except Exception as e:
-                self._logger.info(
-                    f"Failed to connect to {self._host}:{self._port}. countt: ({i + 1}/{try_count}), error: {e}"
-                )
+                self._logger.info(f"Failed to connect to {self._host}:{self._port}. countt: ({i + 1}/{try_count}), error: {e}")
                 await asyncio.sleep(1)
                 continue
 
@@ -145,9 +141,7 @@ class GamiumService:
             except Exception as e:
                 self._writer.close()
                 stack_trace = "".join(traceback.format_tb(e.__traceback__))
-                self._logger.info(
-                    f"Failed to say hello to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}. {stack_trace}"
-                )
+                self._logger.info(f"Failed to say hello to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}. {stack_trace}")
                 await asyncio.sleep(1)
                 continue
 
@@ -208,9 +202,7 @@ class GamiumService:
                 f"Invalid response seq: {response.seq} != {req.seq}",
             )
         if None == response.error:
-            raise GamiumError(
-                ErrorCode.InternalError, f"request response error is null {response.error}"
-            )
+            raise GamiumError(ErrorCode.InternalError, f"request response error is null {response.error}")
         if response.error.code != ErrorCode.None_:
             reason = response.error.reason.decode("utf-8")
             raise GamiumError(response.error.code, f"request response error {reason}")

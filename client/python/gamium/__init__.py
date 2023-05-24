@@ -1,1 +1,1 @@
-from .gamium import *;
+from .gamium import *

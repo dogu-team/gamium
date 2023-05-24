@@ -26,9 +26,7 @@ class UIElement:
         self._service = service
         self.info = info
 
-    async def click(
-        self, options: Optional[ActionClickOptions] = ActionClickOptions()
-    ) -> None:
+    async def click(self, options: Optional[ActionClickOptions] = ActionClickOptions()) -> None:
         self._client._logger.info(f"UIElement({self.info.path}).click")
         await self.refresh()
         await self._client.actions().click(self.info.screen_position, options).perform()
@@ -43,9 +41,7 @@ class UIElement:
         if isinstance(to, UIElement):
             to_pos = to.info.screen_position
         await self.refresh()
-        await self._client.actions().drag(
-            self.info.screen_position, to_pos, options
-        ).perform()
+        await self._client.actions().drag(self.info.screen_position, to_pos, options).perform()
 
     async def scroll(
         self,
@@ -55,20 +51,14 @@ class UIElement:
         self._client._logger.info(f"UIElement({self.info.path}).scroll")
 
         await self.refresh()
-        await self._client.actions().scroll(
-            self.info.screen_position, delta, options
-        ).sleep(options.duration_ms).scroll(
+        await self._client.actions().scroll(self.info.screen_position, delta, options).sleep(options.duration_ms).scroll(
             self.info.screen_position, Vector2.zero()
         ).perform()
 
-    async def set_text(
-        self, text: str, options: Optional[SetTextOptions] = SetTextOptions()
-    ):
+    async def set_text(self, text: str, options: Optional[SetTextOptions] = SetTextOptions()):
         self._client._logger.info(f"UIElement({self.info.path}).set_text")
 
-        await self._client.actions().set_text(
-            By.path(self.info.path), text, options
-        ).perform()
+        await self._client.actions().set_text(By.path(self.info.path), text, options).perform()
         await self.refresh()
 
     async def get_text(self) -> str:
@@ -77,41 +67,29 @@ class UIElement:
 
     async def is_interactable(
         self,
-        options: Optional[
-            QueryObjectInteractableOptions
-        ] = QueryObjectInteractableOptions(),
+        options: Optional[QueryObjectInteractableOptions] = QueryObjectInteractableOptions(),
     ) -> bool:
         self._client._logger.info(f"UIElement({self.info.path}).is_interactable")
 
-        res = await self._service.request(
-            create_query_object_interactable(
-                self.info.path, options.check_moving, options.check_raycast
-            )
-        )
+        res = await self._service.request(create_query_object_interactable(self.info.path, options.check_moving, options.check_raycast))
         return res.isInteractable
 
     async def try_is_interactable(
         self,
-        options: Optional[
-            QueryObjectInteractableOptions
-        ] = QueryObjectInteractableOptions(),
+        options: Optional[QueryObjectInteractableOptions] = QueryObjectInteractableOptions(),
     ) -> TryResult[bool]:
         return await tryify(self.is_interactable(options))
 
     async def wait_interactable(
         self,
-        options: Optional[
-            QueryObjectInteractableOptions
-        ] = QueryObjectInteractableOptions(),
+        options: Optional[QueryObjectInteractableOptions] = QueryObjectInteractableOptions(),
     ) -> bool:
         self._client._logger.info(f"UIElement({self.info.path}).wait_interactable")
         return await self._client.wait(Until.element_interactable(self, options))
 
     async def try_wait_interactable(
         self,
-        options: Optional[
-            QueryObjectInteractableOptions
-        ] = QueryObjectInteractableOptions(),
+        options: Optional[QueryObjectInteractableOptions] = QueryObjectInteractableOptions(),
     ) -> TryResult[bool]:
         return await tryify(self.wait_interactable(options))
 

@@ -61,18 +61,14 @@ def create_sleep(ms: int) -> ActionPacketTypes[SleepParamT]:
     return ActionPacketTypes(ActionParam.Actions_SleepParam, param)
 
 
-def create_input_key(
-    press: int, codess: List[str]
-) -> ActionPacketTypes[InputKeyParamT]:
+def create_input_key(press: int, codess: List[str]) -> ActionPacketTypes[InputKeyParamT]:
     param = InputKeyParamT()
     param.press = press
     param.codes = codess
     return ActionPacketTypes(ActionParam.Actions_InputKeyParam, param)
 
 
-def create_input_mouse(
-    press: int, button: int, position: Vector2T, delta: Vector2T
-) -> ActionPacketTypes[InputMouseParamT]:
+def create_input_mouse(press: int, button: int, position: Vector2T, delta: Vector2T) -> ActionPacketTypes[InputMouseParamT]:
     param = InputMouseParamT()
     param.press = press
     param.button = button
@@ -143,11 +139,7 @@ class ActionChain:
             )
         )
         self.__add_action(create_sleep(options.duration_ms))
-        self.__add_action(
-            create_input_mouse(
-                InputKeyPressType.UP, InputMouseButtonCode.LEFT, fb_position, Vector2T()
-            )
-        )
+        self.__add_action(create_input_mouse(InputKeyPressType.UP, InputMouseButtonCode.LEFT, fb_position, Vector2T()))
         self.__add_action(create_sleep(33))
         return self
 
@@ -248,9 +240,7 @@ class ActionChain:
         self.__add_action(create_sleep(options.duration_ms))
         return self
 
-    def send_keys(
-        self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()
-    ):
+    def send_keys(self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()):
         codes = []
         for by in by_list:
             codes.append(by.str)
@@ -269,9 +259,7 @@ class ActionChain:
         options: Optional[SetTextOptions] = SetTextOptions(),
     ):
         if locator.by != ObjectLocatorBy.Path:
-            raise GamiumError(
-                ErrorCode.InvalidParameter, "setText only support Path locator"
-            )
+            raise GamiumError(ErrorCode.InvalidParameter, "setText only support Path locator")
 
         self.__add_action(create_set_text(locator.str, text))
         self.__add_action(create_sleep(33))
@@ -289,13 +277,8 @@ class ActionChain:
         fb_dest.y = dest.y
         fb_dest.z = dest.z
 
-        if (
-            player_locator.by != ObjectLocatorBy.Path
-            or camera_locator.by != ObjectLocatorBy.Path
-        ):
-            raise GamiumError(
-                ErrorCode.InvalidParameter, "movePlayer only support Path locator"
-            )
+        if player_locator.by != ObjectLocatorBy.Path or camera_locator.by != ObjectLocatorBy.Path:
+            raise GamiumError(ErrorCode.InvalidParameter, "movePlayer only support Path locator")
 
         self.__add_action(
             create_move_player(
@@ -356,8 +339,5 @@ class ActionChain:
             if result.error.code != ErrorCode.None_:
                 raise GamiumError(
                     ErrorCode.ActionError,
-                    "ActionChains.perform. action failed. error code: "
-                    + str(result.resultCode)
-                    + " error message: "
-                    + result.resultMessage,
+                    "ActionChains.perform. action failed. error code: " + str(result.resultCode) + " error message: " + result.resultMessage,
                 )

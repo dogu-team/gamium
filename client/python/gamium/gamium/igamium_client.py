@@ -14,15 +14,11 @@ T = TypeVar("T")
 # used internally to prevent circular imports
 class IGamiumClient(metaclass=ABCMeta):
     @abstractmethod
-    async def find(
-        self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
-    ) -> ObjectInfo:
+    async def find(self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()) -> ObjectInfo:
         pass
 
     @abstractmethod
-    async def finds(
-        self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
-    ) -> List[ObjectInfo]:
+    async def finds(self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()) -> List[ObjectInfo]:
         pass
 
     @abstractmethod
@@ -30,13 +26,9 @@ class IGamiumClient(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    async def send_key(
-        self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()
-    ) -> None:
+    async def send_key(self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
         pass
 
     @abstractmethod
-    async def wait(
-        condition: WaitCondition[T], options: Optional[WaitOptions] = WaitOptions()
-    ) -> T:
+    async def wait(condition: WaitCondition[T], options: Optional[WaitOptions] = WaitOptions()) -> T:
         pass

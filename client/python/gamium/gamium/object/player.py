@@ -37,23 +37,17 @@ class Player:
         else:
             dest_pos = dest
 
-        await self._client.actions().move_player(
-            By.path(self.info.path), camera_locator, dest_pos, options
-        ).perform()
+        await self._client.actions().move_player(By.path(self.info.path), camera_locator, dest_pos, options).perform()
 
     async def is_near(self, other_locator: Locator, epsilon: Optional[int] = 10):
-        self._client._logger.info(
-            f"Player({self.info.path}).is_near. other_locator: {other_locator.str}"
-        )
+        self._client._logger.info(f"Player({self.info.path}).is_near. other_locator: {other_locator.str}")
 
         await self.refresh()
 
         other_obj_info = await self._client.find(other_locator)
         other_pos = other_obj_info.position
 
-        this_pos_np = np.array(
-            [self.info.position.x, self.info.position.y, self.info.position.z]
-        )
+        this_pos_np = np.array([self.info.position.x, self.info.position.y, self.info.position.z])
         other_pos_np = np.array([other_pos.x, other_pos.y, other_pos.z])
 
         distance = np.linalg.norm(this_pos_np - other_pos_np)

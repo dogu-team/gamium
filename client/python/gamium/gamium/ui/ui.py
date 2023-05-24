@@ -20,29 +20,21 @@ class UI:
         self._client = client
         self._service = service
 
-    async def find(
-        self, locator: Locator, options: FindObjectOptions = FindObjectOptions()
-    ) -> UIElement:
+    async def find(self, locator: Locator, options: FindObjectOptions = FindObjectOptions()) -> UIElement:
         info = await self._client.wait(Until.object_located(locator, options))
         return UIElement(self._client, self._service, info)
 
-    async def try_find(
-        self, locator: Locator, options: FindObjectOptions = FindObjectOptions()
-    ) -> TryResult[UIElement]:
+    async def try_find(self, locator: Locator, options: FindObjectOptions = FindObjectOptions()) -> TryResult[UIElement]:
         return await tryify(self.find(locator, options))
 
-    async def finds(
-        self, locator: Locator, options: FindObjectOptions = FindObjectOptions()
-    ) -> List[UIElement]:
+    async def finds(self, locator: Locator, options: FindObjectOptions = FindObjectOptions()) -> List[UIElement]:
         infos = await self._client.wait(Until.objects_located(locator, options))
         elements = []
         for info in infos:
             elements.append(UIElement(self._client, self._service, info))
         return elements
 
-    async def try_finds(
-        self, locator: Locator, options: FindObjectOptions = FindObjectOptions()
-    ) -> TryResult[List[UIElement]]:
+    async def try_finds(self, locator: Locator, options: FindObjectOptions = FindObjectOptions()) -> TryResult[List[UIElement]]:
         return await tryify(self.finds(locator, options))
 
     async def click(
@@ -98,4 +90,4 @@ class UI:
     ):
         elem = await self.find(locator, find_options)
         await self._client.wait(Until.element_interactable(elem))
-        await elem.get_text()
+        return await elem.get_text()

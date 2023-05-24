@@ -110,14 +110,10 @@ class GamiumClient(IGamiumClient):
     def actions(self) -> ActionChain:
         return ActionChain(self._service)
 
-    async def send_key(
-        self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()
-    ) -> None:
+    async def send_key(self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
         await self.send_keys([by], options)
 
-    async def send_keys(
-        self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()
-    ) -> None:
+    async def send_keys(self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
         self._logger.info(f"GamiumClient.send_keys {by_list}")
         await self.actions().send_keys(by_list, options).perform()
 
@@ -126,12 +122,8 @@ class GamiumClient(IGamiumClient):
         locator: RpcLocator,
         option: Optional[ExecuteRpcOptions] = ExecuteRpcOptions(),
     ) -> any:
-        self._logger.info(
-            f"GamiumClient.execute_rpc By: {locator.by}, class: {locator.class_name}, target: {locator.target_name}"
-        )
-        res = await self._service.request(
-            create_execute_rpc(locator.by, locator.class_name, locator.target_name, locator.params)
-        )
+        self._logger.info(f"GamiumClient.execute_rpc By: {locator.by}, class: {locator.class_name}, target: {locator.target_name}")
+        res = await self._service.request(create_execute_rpc(locator.by, locator.class_name, locator.target_name, locator.params))
         if res.document is None:
             return None
         parsed = json.loads(res.document)

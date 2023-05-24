@@ -33,7 +33,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--line-length", "100"],
+  "python.formatting.blackArgs": ["--line-length", "160"],
   "debug.javascript.autoAttachFilter": "onlyWithFlag",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,

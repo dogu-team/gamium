@@ -1,12 +1,10 @@
 from typing import List, Optional, TypeVar
+from gamium.protocol.types import ObjectInfo
 from gamium.condition.wait_condition import WaitCondition
 from gamium.options.wait_options import WaitOptions
 from gamium.actions.action_chain import ActionChain
 from gamium.actions.key_by import KeyBy
 from gamium.locator.locator import Locator
-from gamium.protocol.generated import (
-    ObjectInfo,
-)
 from gamium.options import FindObjectOptions, SendKeyOptions
 from abc import *
 

@@ -6,13 +6,6 @@ from gamium.options.wait_options import WaitOptions
 from gamium.utils.wait import wait_generic
 from gamium.protocol.types import ObjectInfo
 
-from gamium.protocol.generated import (
-    ObjectInfoT,
-    ErrorCode,
-    QueryProfileResultT,
-    QueryScreenResultT,
-    HelloResultT,
-)
 from gamium.options import FindObjectOptions, ExecuteRpcOptions, SendKeyOptions
 
 from gamium.igamium_client import IGamiumClient

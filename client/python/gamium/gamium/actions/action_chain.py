@@ -1,23 +1,35 @@
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
-from gamium.gamium_service import create_actions
-from gamium.protocol.generated import (
-    ActionResultT,
-    ActionParamSingleT,
-    AppQuitParamT,
-    InputMouseParamT,
-    InputSetTextParamT,
-    MovePlayerParamT,
-    ErrorCode,
+from gamium.protocol.generated.Packets.ActionParam import ActionParam
+from gamium.protocol.generated.Types.ErrorCode import ErrorCode
+from gamium.protocol.generated.Types.InputKeyPressType import InputKeyPressType
+from gamium.protocol.generated.Types.InputMouseButtonCode import (
     InputMouseButtonCode,
-    ObjectLocatorBy,
-    Vector2T,
-    Vector3T,
-    InputKeyParamT,
-    InputKeyPressType,
-    SleepParamT,
-    ActionParam,
 )
+from gamium.protocol.generated.Types.ObjectLocatorBy import ObjectLocatorBy
+from gamium.protocol.generated.Packets.ActionParamSingle import (
+    ActionParamSingleT,
+)
+from gamium.protocol.generated.Packets.ActionResult import ActionResultT
+from gamium.protocol.generated.Packets.Actions.AppQuitParam import (
+    AppQuitParamT,
+)
+from gamium.protocol.generated.Packets.Actions.InputKeyParam import (
+    InputKeyParamT,
+)
+from gamium.protocol.generated.Packets.Actions.InputMouseParam import (
+    InputMouseParamT,
+)
+from gamium.protocol.generated.Packets.Actions.InputSetTextParam import (
+    InputSetTextParamT,
+)
+from gamium.protocol.generated.Packets.Actions.MovePlayerParam import (
+    MovePlayerParamT,
+)
+from gamium.protocol.generated.Packets.Actions.SleepParam import SleepParamT
+from gamium.protocol.generated.Types.Vector2 import Vector2T
+from gamium.protocol.generated.Types.Vector3 import Vector3T
+from gamium.gamium_service import create_actions
 from gamium.options import (
     ActionClickOptions,
     ActionDragOptions,

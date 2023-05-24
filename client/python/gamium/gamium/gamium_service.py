@@ -3,28 +3,45 @@ import socket
 import traceback
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
-from gamium.protocol.generated import (
-    ExecuteRpcParamT,
+from gamium.protocol.generated.Types.ErrorCode import ErrorCode
+from gamium.protocol.generated.Param import Param
+from gamium.protocol.generated.Result import Result
+from gamium.protocol.generated.Packets.ActionsParam import ActionsParamT
+from gamium.protocol.generated.Packets.ActionsResult import ActionsResultT
+from gamium.protocol.generated.Packets.ExecuteRpcParam import ExecuteRpcParamT
+from gamium.protocol.generated.Packets.ExecuteRpcResult import (
     ExecuteRpcResultT,
-    QueryObjectInteractableParamT,
-    QueryObjectInteractableResultT,
-    ActionsParamT,
-    ActionsResultT,
-    Param,
-    Result,
-    RequestT,
-    ResponseT,
-    ErrorCode,
-    ObjectLocatorT,
-    HelloResultT,
-    FindObjectsResultT,
-    QueryProfileParamT,
-    QueryProfileResultT,
-    QueryScreenParamT,
-    QueryScreenResultT,
-    FindObjectsParamT,
-    HelloParamT,
 )
+from gamium.protocol.generated.Packets.FindObjectsParam import (
+    FindObjectsParamT,
+)
+from gamium.protocol.generated.Packets.FindObjectsResult import (
+    FindObjectsResultT,
+)
+from gamium.protocol.generated.Packets.HelloParam import HelloParamT
+from gamium.protocol.generated.Packets.HelloResult import HelloResultT
+from gamium.protocol.generated.Packets.QueryObjectInteractableParam import (
+    QueryObjectInteractableParamT,
+)
+from gamium.protocol.generated.Packets.QueryObjectInteractableResult import (
+    QueryObjectInteractableResultT,
+)
+from gamium.protocol.generated.Packets.QueryProfileParam import (
+    QueryProfileParamT,
+)
+from gamium.protocol.generated.Packets.QueryProfileResult import (
+    QueryProfileResultT,
+)
+from gamium.protocol.generated.Packets.QueryScreenParam import (
+    QueryScreenParamT,
+)
+from gamium.protocol.generated.Packets.QueryScreenResult import (
+    QueryScreenResultT,
+)
+from gamium.protocol.generated.Request import RequestT
+from gamium.protocol.generated.Response import ResponseT
+from gamium.protocol.generated.Types.ObjectLocator import ObjectLocatorT
+
 from gamium.internal import Logger, SizePrefixedRecvQueue
 from gamium.errors.gamium_error import GamiumError
 

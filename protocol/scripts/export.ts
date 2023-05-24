@@ -185,7 +185,7 @@ async function run(): Promise<void> {
     time.checkTime('exportPython', exportPython(fbslist)),
   ]);
 
-  await Promise.all([time.checkTime('createIndexTs', formatTypescriptNamespace()), time.checkTime('createInitPy', formatPythonNamespace())]);
+  await Promise.all([time.checkTime('createIndexTs', formatTypescriptNamespace())]);
 
   await time.checkTime('copyToProjects', copyToProjects());
 }

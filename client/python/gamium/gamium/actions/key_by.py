@@ -1,4 +1,4 @@
-from gamium.protocol.generated import InputKeyBy, UnityKeyCode, UnityKeyboard
+from gamium.protocol.generated.Types.InputKeyBy import InputKeyBy
 
 
 class KeyBy:

@@ -1,8 +1,8 @@
 from typing import Optional, Union
 
 import numpy as np
+from gamium.protocol.generated.Types.Vector3 import Vector3T
 from gamium.protocol.types import ObjectInfo
-from gamium.protocol.generated import Vector3
 from gamium.actions.action_chain import create_move_player
 from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import GamiumService
@@ -26,7 +26,7 @@ class Player:
     async def move(
         self,
         camera_locator: Locator,
-        dest: Union[Vector3, Locator],
+        dest: Union[Vector3T, Locator],
         options: Optional[MovePlayerOptions] = MovePlayerOptions(),
     ) -> None:
         self._client._logger.info(f"Player({self._info.path}).move. dest: {dest}")

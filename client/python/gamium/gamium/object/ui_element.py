@@ -1,8 +1,9 @@
-from typing import Optional
+from typing import Optional, Union
+from gamium.condition.condition import Condition
 from gamium.protocol_util.types import ObjectInfo
 
 from gamium.Protocol import Vector2T
-from gamium.gamium_client import GamiumClient
+from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import (
     GamiumService,
     create_query_object_interactable,
@@ -18,7 +19,7 @@ from gamium.options.set_text_options import SetTextOptions
 
 
 class UIElement:
-    def __init__(self, client: GamiumClient, service: GamiumService, info: ObjectInfo):
+    def __init__(self, client: IGamiumClient, service: GamiumService, info: ObjectInfo):
         self._client = client
         self._service = service
         self._info = info
@@ -28,10 +29,13 @@ class UIElement:
         await self.refresh()
         await self._client.actions().click(By.path(self._info.path), options).perform()
 
-    async def drag(self, dest: By) -> None:
+    async def drag(self, to: Union["UIElement", Vector2T]) -> None:
         self._client._logger.info(f"UIElement({self._info.path}).drag")
+        to_pos = to
+        if isinstance(to, UIElement):
+            to_pos = to._info.screen_position
         await self.refresh()
-        await self._client.actions().drag(By.path(self._info.path), dest).perform()
+        await self._client.actions().drag(By.path(self._info.path), to_pos).perform()
 
     async def scroll(
         self, delta: Vector2T, options: Optional[ActionScrollOptions] = ActionScrollOptions()
@@ -67,3 +71,7 @@ class UIElement:
 
     async def refresh(self):
         self._info = await self._client.find(By.path(self._info.path))
+
+
+class UIElementCondition(Condition[UIElement]):
+    pass

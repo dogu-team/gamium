@@ -1,8 +1,9 @@
 import asyncio
 import json
 from typing import List, Optional
-from client.python.gamium.gamium.condition.wait_condition import WaitCondition
-from client.python.gamium.gamium.options.wait_options import WaitOptions
+from gamium.condition.wait_condition import WaitCondition
+from gamium.options.wait_options import WaitOptions
+from gamium.utils.wait import wait_generic
 from gamium.protocol_util.types import ObjectInfo
 
 from gamium.Protocol import (
@@ -143,5 +144,4 @@ class GamiumClient(IGamiumClient):
     async def wait(
         condition: WaitCondition[T], options: Optional[WaitOptions] = WaitOptions()
     ) -> T:
-        # TODO
-        pass
+        return await wait_generic(condition, options)

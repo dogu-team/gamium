@@ -1,6 +1,6 @@
 import asyncio
-import datetime
 import inspect
+from datetime import datetime
 from typing import TypeVar
 from gamium.protocol.generated.Types import ErrorCode
 from gamium.condition.condition import Condition
@@ -34,7 +34,7 @@ async def wait_generic(
 
     for i in range(0, 99999):
         try:
-            if datetime.now().timestamp() - start_time > options.timeout:
+            if datetime.now().timestamp() - start_time > options.timeout_ms:
                 raise GamiumError(
                     ErrorCode.Timeout,
                     f"wait timeout: condition: {condition}, inner_result: {inner_result}, inner_exception: {inner_exception}",
@@ -48,6 +48,8 @@ async def wait_generic(
             inner_exception = e
             if options.ignore_error == False:
                 raise e
-        remain_interval_ms = options.interval - (datetime.now().timestamp() - last_call_time)
+        remain_interval_ms = options.interval_ms - (
+            datetime.now().timestamp() - last_call_time
+        )
         if 1 < remain_interval_ms:
             await asyncio.sleep(remain_interval_ms / 1000)

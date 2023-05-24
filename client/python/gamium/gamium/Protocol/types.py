@@ -8,12 +8,20 @@ class Vector2:
         self.x = x
         self.y = y
 
+    @staticmethod
+    def zero():
+        return Vector2(0, 0)
+
 
 class Vector3:
     def __init__(self, x: float, y: float, z: float):
         self.x = x
         self.y = y
         self.z = z
+
+    @staticmethod
+    def zero():
+        return Vector3(0, 0, 0)
 
 
 class Vector4:
@@ -22,6 +30,10 @@ class Vector4:
         self.y = y
         self.z = z
         self.w = w
+
+    @staticmethod
+    def zero():
+        return Vector4(0, 0, 0, 0)
 
 
 class ObjectInfo:
@@ -50,14 +62,14 @@ class ObjectInfo:
         self.text = text
 
 
-class AErrorResult:
-    def __init__(self, code: ErrorCode, reason: str):
-        self.code = code
+class ErrorResult:
+    def __init__(self, code: int, reason: str):
+        self.code = code  # gamium.protocol.generated.Types.ErrorCode
         self.reason = reason
 
 
 class ActionResult:
-    def __init__(self, error: AErrorResult):
+    def __init__(self, error: ErrorResult):
         self._error = error
 
 
@@ -70,6 +82,12 @@ class InspectObjectOnScreenResult:
 class QueryProfileResult:
     def __init__(self, fps: float):
         self.fps = fps
+
+
+class HelloResult:
+    def __init__(self, width: int, height: int):
+        self.width = width
+        self.height = height
 
 
 class QueryScreenResult:

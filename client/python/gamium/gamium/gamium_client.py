@@ -3,6 +3,7 @@ import json
 from typing import List, Optional
 from gamium.condition.wait_condition import WaitCondition
 from gamium.options.wait_options import WaitOptions
+from gamium.utils.try_utils import TryResult, tryify
 from gamium.utils.wait import wait_generic
 from gamium.protocol.types import ObjectInfo
 
@@ -52,7 +53,9 @@ class GamiumClient(IGamiumClient):
         return await self._service.request(create_profile())
 
     async def find(
-        self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
+        self,
+        locator: Locator,
+        options: Optional[FindObjectOptions] = FindObjectOptions(),
     ) -> ObjectInfo:
         infos = await self.finds(locator, options)
         if 0 == len(infos):
@@ -68,7 +71,9 @@ class GamiumClient(IGamiumClient):
         return infos[0]
 
     async def finds(
-        self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
+        self,
+        locator: Locator,
+        options: Optional[FindObjectOptions] = FindObjectOptions(),
     ) -> List[ObjectInfo]:
         self._logger.info(f"GamiumClient.finds By: {locator.by}, str: {locator.str}")
         if locator.str is None or 0 == len(locator.str):
@@ -83,8 +88,24 @@ class GamiumClient(IGamiumClient):
         res = await self._service.request(create_find_objects(fbs_locator))
 
         await asyncio.sleep(options.delay_ms / 1000)
+        infos = []
+        for info in res.infos:
+            infos.append(
+                ObjectInfo(
+                    info.path,
+                    info.name,
+                    info.type,
+                    info.tag,
+                    info.isActive,
+                    info.screenPosition,
+                    info.screenRectSize,
+                    info.position,
+                    info.rotation,
+                    info.text,
+                )
+            )
 
-        return res.infos
+        return infos
 
     def actions(self) -> ActionChain:
         return ActionChain(self._service)
@@ -101,7 +122,9 @@ class GamiumClient(IGamiumClient):
         await self.actions().send_keys(by_list, options).perform()
 
     async def execute_rpc(
-        self, locator: RpcLocator, option: Optional[ExecuteRpcOptions] = ExecuteRpcOptions()
+        self,
+        locator: RpcLocator,
+        option: Optional[ExecuteRpcOptions] = ExecuteRpcOptions(),
     ) -> any:
         self._logger.info(
             f"GamiumClient.execute_rpc By: {locator.by}, class: {locator.class_name}, target: {locator.target_name}"
@@ -115,7 +138,9 @@ class GamiumClient(IGamiumClient):
         return parsed
 
     async def player(
-        self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()
+        self,
+        locator: Locator,
+        options: Optional[FindObjectOptions] = FindObjectOptions(),
     ) -> Player:
         info = await self.find(locator, options)
         return Player(self, self._service, info)
@@ -135,6 +160,15 @@ class GamiumClient(IGamiumClient):
         await self.actions().sleep(ms).perform()
 
     async def wait(
-        condition: WaitCondition[T], options: Optional[WaitOptions] = WaitOptions()
+        self,
+        condition: WaitCondition[T],
+        options: Optional[WaitOptions] = WaitOptions(),
     ) -> T:
-        return await wait_generic(condition, options)
+        return await wait_generic(self, condition, options)
+
+    async def try_wait(
+        self,
+        condition: WaitCondition[T],
+        options: Optional[WaitOptions] = WaitOptions(),
+    ) -> TryResult[T]:
+        return await tryify(self.wait(condition, options))

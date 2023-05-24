@@ -2,7 +2,7 @@ from typing import Optional, Union
 
 import numpy as np
 from gamium.protocol.generated.Types.Vector3 import Vector3T
-from gamium.protocol.types import ObjectInfo
+from gamium.protocol.types import ObjectInfo, Vector3
 from gamium.actions.action_chain import create_move_player
 from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import GamiumService
@@ -21,15 +21,15 @@ class Player:
     ) -> None:
         self._client = client
         self._service = service
-        self._info = info
+        self.info = info
 
     async def move(
         self,
         camera_locator: Locator,
-        dest: Union[Vector3T, Locator],
+        dest: Union[Vector3, Locator],
         options: Optional[MovePlayerOptions] = MovePlayerOptions(),
     ) -> None:
-        self._client._logger.info(f"Player({self._info.path}).move. dest: {dest}")
+        self._client._logger.info(f"Player({self.info.path}).move. dest: {dest}")
 
         if isinstance(dest, Locator):
             dest_obj_info = await self._client.find(dest)
@@ -38,12 +38,12 @@ class Player:
             dest_pos = dest
 
         await self._client.actions().move_player(
-            By.path(self._info.path), camera_locator, dest_pos, options
+            By.path(self.info.path), camera_locator, dest_pos, options
         ).perform()
 
     async def is_near(self, other_locator: Locator, epsilon: Optional[int] = 10):
         self._client._logger.info(
-            f"Player({self._info.path}).is_near. other_locator: {other_locator.str}"
+            f"Player({self.info.path}).is_near. other_locator: {other_locator.str}"
         )
 
         await self.refresh()
@@ -52,7 +52,7 @@ class Player:
         other_pos = other_obj_info.position
 
         this_pos_np = np.array(
-            [self._info.position.x, self._info.position.y, self._info.position.z]
+            [self.info.position.x, self.info.position.y, self.info.position.z]
         )
         other_pos_np = np.array([other_pos.x, other_pos.y, other_pos.z])
 
@@ -62,4 +62,4 @@ class Player:
         return False
 
     async def refresh(self):
-        self._info = await self._client.find(By.path(self._info.path))
+        self.info = await self._client.find(By.path(self.info.path))

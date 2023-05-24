@@ -1,18 +1,20 @@
-from typing import Optional
-from gamium.object.ui_element import UIElementCondition
+from typing import Optional, TypeVar
 from gamium.protocol.generated.Types import ErrorCode
 from gamium.condition.condition import (
+    Condition,
     ObjectInfoCondition,
     ObjectInfosCondition,
 )
 from gamium.errors.gamium_error import GamiumError
 from gamium.igamium_client import IGamiumClient
 from gamium.locator.locator import Locator
-from gamium.object.ui_element import UIElement
 from gamium.options.find_objects_options import FindObjectOptions
 from gamium.options.query_object_interactable_options import (
     QueryObjectInteractableOptions,
 )
+
+
+T = TypeVar("T")
 
 
 class Until:
@@ -36,9 +38,11 @@ class Until:
 
     @staticmethod
     def element_interactable(
-        param: UIElement,
-        options: Optional[QueryObjectInteractableOptions] = QueryObjectInteractableOptions(),
-    ) -> UIElementCondition:
+        param: T,  # UIElement
+        options: Optional[
+            QueryObjectInteractableOptions
+        ] = QueryObjectInteractableOptions(),
+    ) -> Condition[T]:  # Condition[UIElement]
         async def func(client: IGamiumClient):
             res = await param.is_interactable(options)
             if True == res:
@@ -46,7 +50,7 @@ class Until:
             else:
                 raise GamiumError(
                     ErrorCode.ObjectIsNotInteractable,
-                    f"object not interactable. path: {param._info.path}",
+                    f"object not interactable. path: {param.info.path}",
                 )
 
-        return UIElementCondition(f"locate element gameObject {param._info.path}", func)
+        return Condition[T](f"locate element gameObject {param.info.path}", func)

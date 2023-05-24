@@ -2,7 +2,7 @@ from gamium.protocol.generated.Types.InputKeyBy import InputKeyBy
 
 
 class KeyBy:
-    def __init__(self, by: InputKeyBy, str: str):
+    def __init__(self, by: int, str: str):
         self.by = by
         self.str = str
 

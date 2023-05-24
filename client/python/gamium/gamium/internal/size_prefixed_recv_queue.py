@@ -5,9 +5,9 @@ import struct
 
 class SizePrefixedRecvQueue:
     def __init__(self):
-        self._buffer = bytearray()
+        self._buffer = bytes()
 
-    def pushBuffer(self, buffer: bytearray) -> None:
+    def pushBuffer(self, buffer: bytes) -> None:
         self._buffer += buffer
 
     def has(self) -> bool:
@@ -18,7 +18,7 @@ class SizePrefixedRecvQueue:
             return False
         return True
 
-    def pop(self) -> bytearray:
+    def pop(self) -> bytes:
         size = struct.unpack("<I", self._buffer[:4])[0]
         packet = self._buffer[4 : size + 4]
         self._buffer = self._buffer[size + 4 :]

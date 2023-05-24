@@ -51,9 +51,9 @@ R = TypeVar("R")
 
 
 class PacketTypes(Generic[P, R]):
-    def __init__(self, param_type: Param, result_type: Result, param: P):
-        self.param_type: Param = param_type
-        self.result_type: Result = result_type
+    def __init__(self, param_type: int, result_type: int, param: P):
+        self.param_type = param_type  # Param
+        self.result_type = result_type  # Result
         self.param: P = param
 
 
@@ -123,8 +123,6 @@ class GamiumService:
         self._port = port
         self._request_timeout_ms = request_timeout_ms
         self._logger = logger
-        self._reader = None
-        self._writer = None
         self._seq = 0
         self._recv_queue = SizePrefixedRecvQueue()
 
@@ -159,10 +157,10 @@ class GamiumService:
         if self._writer:
             self._writer.close()
 
-    async def request(self, packet: PacketTypes[P, R], timeout_ms: Optional[int] = None) -> R:
+    async def request(self, packet: PacketTypes[P, R], timeout_ms: Optional[int] = 0) -> R:
         if not self._writer:
             raise Exception("Not connected")
-        if None == timeout_ms:
+        if 0 == timeout_ms:
             timeout_ms = self._request_timeout_ms
 
         req = RequestT()
@@ -216,7 +214,7 @@ class GamiumService:
         if response.error.code != ErrorCode.None_:
             reason = response.error.reason.decode("utf-8")
             raise GamiumError(response.error.code, f"request response error {reason}")
-        self._logger.verbose(f"request: seq: {req.seq}, type: {req.paramType} done")
+        # self._logger.verbose(f"request: seq: {req.seq}, type: {req.paramType} done")
 
         ret = response.result
         # convert all properties of ret to str if bytes type

@@ -1,6 +1,7 @@
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
 from gamium.protocol.generated.Packets.ActionParam import ActionParam
+from gamium.protocol.generated.Types.InputMousePressType import InputMousePressType
 from gamium.protocol.generated.Types.ErrorCode import ErrorCode
 from gamium.protocol.generated.Types.InputKeyPressType import InputKeyPressType
 from gamium.protocol.generated.Types.InputMouseButtonCode import (
@@ -43,13 +44,14 @@ from gamium.actions.key_by import KeyBy
 from gamium.errors.gamium_error import GamiumError
 from gamium.locator.locator import Locator
 from gamium.gamium_service import GamiumService
+from gamium.protocol.types import Vector2, Vector3
 
 P = TypeVar("P")
 
 
 class ActionPacketTypes(Generic[P]):
-    def __init__(self, param_type: ActionParam, param: P):
-        self.param_type: ActionParam = param_type
+    def __init__(self, param_type: int, param: P):
+        self.param_type = param_type  # ActionParam
         self.param: P = param
 
 
@@ -59,7 +61,9 @@ def create_sleep(ms: int) -> ActionPacketTypes[SleepParamT]:
     return ActionPacketTypes(ActionParam.Actions_SleepParam, param)
 
 
-def create_input_key(press: int, codess: List[str]) -> ActionPacketTypes[InputKeyParamT]:
+def create_input_key(
+    press: int, codess: List[str]
+) -> ActionPacketTypes[InputKeyParamT]:
     param = InputKeyParamT()
     param.press = press
     param.codes = codess
@@ -122,54 +126,88 @@ class ActionChain:
         return self.__add_action(create_sleep(ms))
 
     def click(
-        self, position: Vector2T, options: Optional[ActionClickOptions] = ActionClickOptions()
+        self,
+        position: Vector2,
+        options: Optional[ActionClickOptions] = ActionClickOptions(),
     ):
+        fb_position = Vector2T()
+        fb_position.x = position.x
+        fb_position.y = position.y
+
         self.__add_action(
             create_input_mouse(
-                InputKeyPressType.DOWN, InputMouseButtonCode.LEFT, position, Vector2T()
+                InputMousePressType.DOWN,
+                InputMouseButtonCode.LEFT,
+                fb_position,
+                Vector2T(),
             )
         )
         self.__add_action(create_sleep(options.duration_ms))
         self.__add_action(
             create_input_mouse(
-                InputKeyPressType.UP, InputMouseButtonCode.LEFT, position, Vector2T()
+                InputKeyPressType.UP, InputMouseButtonCode.LEFT, fb_position, Vector2T()
             )
         )
         self.__add_action(create_sleep(33))
         return self
 
-    def move(self, position: Vector2T, options: Optional[ActionMoveOptions] = ActionMoveOptions()):
+    def move(
+        self,
+        position: Vector2,
+        options: Optional[ActionMoveOptions] = ActionMoveOptions(),
+    ):
+        fb_position = Vector2T()
+        fb_position.x = position.x
+        fb_position.y = position.y
+
         self.__add_action(
             create_input_mouse(
-                InputKeyPressType.MOVE, InputMouseButtonCode.LEFT, position, Vector2T()
+                InputMousePressType.MOVE,
+                InputMouseButtonCode.LEFT,
+                fb_position,
+                Vector2T(),
             )
         )
         return self
 
     def drag(
         self,
-        from_position: Vector2T,
-        to_position: Vector2T,
+        from_position: Vector2,
+        to_position: Vector2,
         options: Optional[ActionDragOptions] = ActionDragOptions(),
     ):
+        fb_from_position = Vector2T()
+        fb_from_position.x = from_position.x
+        fb_from_position.y = from_position.y
+
+        fb_to_position = Vector2T()
+        fb_to_position.x = to_position.x
+        fb_to_position.y = to_position.y
+
         self.__add_action(
             create_input_mouse(
-                InputKeyPressType.DOWN, InputMouseButtonCode.LEFT, from_position, Vector2T()
+                InputMousePressType.DOWN,
+                InputMouseButtonCode.LEFT,
+                fb_from_position,
+                Vector2T(),
             )
         )
 
-        delta_count = options.duration_ms / (options.interval_ms + 1)
-        delta_vector = [to_position.x, to_position.y] - [from_position.x, from_position.y]
-        delta_vector = delta_vector / delta_count
+        delta_count = int(options.duration_ms / (options.interval_ms + 1))
+        delta_vector = [
+            (to_position.x - from_position.x) / delta_count,
+            (to_position.y - from_position.y) / delta_count,
+        ]
 
         for i in range(delta_count - 1):
+            fb_next_position = Vector2T()
+            fb_next_position.x = from_position.x + delta_vector[0] * i
+            fb_next_position.y = from_position.y + delta_vector[1] * i
             self.__add_action(
                 create_input_mouse(
-                    InputKeyPressType.MOVE,
+                    InputMousePressType.MOVE,
                     InputMouseButtonCode.LEFT,
-                    Vector2T(
-                        from_position.x + delta_vector[0] * i, from_position.y + delta_vector[1] * i
-                    ),
+                    fb_next_position,
                     Vector2T(),
                 )
             )
@@ -177,24 +215,42 @@ class ActionChain:
 
         self.__add_action(
             create_input_mouse(
-                InputKeyPressType.UP, InputMouseButtonCode.LEFT, to_position, Vector2T()
+                InputMousePressType.UP,
+                InputMouseButtonCode.LEFT,
+                fb_to_position,
+                Vector2T(),
             )
         )
         return self
 
     def scroll(
         self,
-        position: Vector2T,
-        delta: Vector2T,
+        position: Vector2,
+        delta: Vector2,
         options: Optional[ActionScrollOptions] = ActionScrollOptions(),
     ):
+        fb_position = Vector2T()
+        fb_position.x = position.x
+        fb_position.y = position.y
+
+        fb_delta = Vector2T()
+        fb_delta.x = delta.x
+        fb_delta.y = delta.y
+
         self.__add_action(
-            create_input_mouse(InputKeyPressType.SCROLL, InputMouseButtonCode.LEFT, position, delta)
+            create_input_mouse(
+                InputMousePressType.SCROLL,
+                InputMouseButtonCode.LEFT,
+                fb_position,
+                delta,
+            )
         )
         self.__add_action(create_sleep(options.duration_ms))
         return self
 
-    def send_keys(self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()):
+    def send_keys(
+        self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()
+    ):
         codes = []
         for by in by_list:
             codes.append(by.str)
@@ -207,10 +263,15 @@ class ActionChain:
         return self
 
     def set_text(
-        self, locator: Locator, text: str, options: Optional[SetTextOptions] = SetTextOptions()
+        self,
+        locator: Locator,
+        text: str,
+        options: Optional[SetTextOptions] = SetTextOptions(),
     ):
         if locator.by != ObjectLocatorBy.Path:
-            raise GamiumError(ErrorCode.InvalidParameter, "setText only support Path locator")
+            raise GamiumError(
+                ErrorCode.InvalidParameter, "setText only support Path locator"
+            )
 
         self.__add_action(create_set_text(locator.str, text))
         self.__add_action(create_sleep(33))
@@ -220,17 +281,27 @@ class ActionChain:
         self,
         player_locator: Locator,
         camera_locator: Locator,
-        dest: Vector3T,
+        dest: Vector3,
         options: Optional[MovePlayerOptions] = MovePlayerOptions(),
     ):
-        if player_locator.by != ObjectLocatorBy.Path or camera_locator.by != ObjectLocatorBy.Path:
-            raise GamiumError(ErrorCode.InvalidParameter, "movePlayer only support Path locator")
+        fb_dest = Vector3T()
+        fb_dest.x = dest.x
+        fb_dest.y = dest.y
+        fb_dest.z = dest.z
+
+        if (
+            player_locator.by != ObjectLocatorBy.Path
+            or camera_locator.by != ObjectLocatorBy.Path
+        ):
+            raise GamiumError(
+                ErrorCode.InvalidParameter, "movePlayer only support Path locator"
+            )
 
         self.__add_action(
             create_move_player(
                 player_locator.str,
                 camera_locator.str,
-                dest,
+                fb_dest,
                 options.by,
                 options.epsilon,
                 options.check_height,
@@ -246,7 +317,8 @@ class ActionChain:
     async def perform(self) -> List[ActionResultT]:
         if len(self.actions) == 0:
             raise GamiumError(
-                ErrorCode.InvalidParameter, "ActionChains.perform. actions shoult not be empty"
+                ErrorCode.InvalidParameter,
+                "ActionChains.perform. actions shoult not be empty",
             )
 
         actions_array: List[str] = []

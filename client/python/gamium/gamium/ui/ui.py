@@ -6,12 +6,13 @@ from gamium.object.ui_element import UIElement
 from gamium.options.action_click_options import ActionClickOptions
 from gamium.options.action_drag_options import ActionDragOptions
 from gamium.options.action_scroll_options import ActionScrollOptions
-from gamium.protocol.types import ObjectInfo
+from gamium.protocol.types import ObjectInfo, Vector2
 from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import GamiumService
 from gamium.internal.logger import Logger
 from gamium.locator.locator import Locator
 from gamium.options.find_objects_options import FindObjectOptions
+from gamium.utils.try_utils import TryResult, tryify
 
 
 class UI:
@@ -25,6 +26,11 @@ class UI:
         info = await self._client.wait(Until.object_located(locator, options))
         return UIElement(self._client, self._service, info)
 
+    async def try_find(
+        self, locator: Locator, options: FindObjectOptions = FindObjectOptions()
+    ) -> TryResult[UIElement]:
+        return await tryify(self.find(locator, options))
+
     async def finds(
         self, locator: Locator, options: FindObjectOptions = FindObjectOptions()
     ) -> List[UIElement]:
@@ -33,6 +39,11 @@ class UI:
         for info in infos:
             elements.append(UIElement(self._client, self._service, info))
         return elements
+
+    async def try_finds(
+        self, locator: Locator, options: FindObjectOptions = FindObjectOptions()
+    ) -> TryResult[List[UIElement]]:
+        return await tryify(self.finds(locator, options))
 
     async def click(
         self,
@@ -47,7 +58,7 @@ class UI:
     async def drag(
         self,
         locator: Locator,
-        to: Union[Locator, Vector2T],
+        to: Union[Locator, Vector2],
         find_options: Optional[FindObjectOptions] = FindObjectOptions(),
         drag_options: Optional[ActionDragOptions] = ActionDragOptions(),
     ):
@@ -56,15 +67,13 @@ class UI:
         to_pos = to
         if isinstance(to, Locator):
             to_elem = await self.find(to)
-            to_pos = to_elem._info.screen_position
-        await self._client.actions().drag(
-            elem._info.screen_position, to_pos, drag_options
-        ).perform()
+            to_pos = to_elem.info.screen_position
+        await self._client.actions().drag(elem.info.screen_position, to_pos, drag_options).perform()
 
     async def scroll(
         self,
         locator: Locator,
-        delta: Vector2T,
+        delta: Vector2,
         find_options: Optional[FindObjectOptions] = FindObjectOptions(),
         scroll_options: Optional[ActionScrollOptions] = ActionScrollOptions(),
     ):

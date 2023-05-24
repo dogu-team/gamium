@@ -4,7 +4,7 @@ from gamium.options.wait_options import WaitOptions
 from gamium.actions.action_chain import ActionChain
 from gamium.actions.key_by import KeyBy
 from gamium.locator.locator import Locator
-from gamium.Protocol import (
+from gamium.protocol.generated import (
     ObjectInfo,
 )
 from gamium.options import FindObjectOptions, SendKeyOptions

@@ -10,11 +10,11 @@ export function formatFbs(path: string): void {
   fs.writeFileSync(path, fbsContents, 'utf8');
 }
 
-export function lowerGamiumNamespace(path: string): void {
+export function replaceGamiumNamespace(path: string, to: string): void {
   let fbsContents = fs.readFileSync(path, 'utf8');
   fbsContents = fbsContents.replace(/namespace [a-zA-Z0-9_.]+;/g, (match: string) => {
-    if (match.startsWith('namespace Gamium')) {
-      return match.replace('Gamium', 'gamium');
+    if (match.startsWith('namespace Gamium.Protocol')) {
+      return match.replace('Gamium.Protocol', to);
     }
     return match;
   });

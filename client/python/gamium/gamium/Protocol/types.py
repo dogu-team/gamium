@@ -1,6 +1,6 @@
 from typing import List
 
-from gamium.Protocol.Types import ErrorCode
+from gamium.protocol.generated.Types import ErrorCode
 
 
 class Vector2:
@@ -50,14 +50,14 @@ class ObjectInfo:
         self.text = text
 
 
-class ErrorResult:
+class AErrorResult:
     def __init__(self, code: ErrorCode, reason: str):
         self.code = code
         self.reason = reason
 
 
 class ActionResult:
-    def __init__(self, error: ErrorResult):
+    def __init__(self, error: AErrorResult):
         self._error = error
 
 

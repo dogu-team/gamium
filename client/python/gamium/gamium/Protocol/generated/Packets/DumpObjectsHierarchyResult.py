@@ -31,7 +31,7 @@ class DumpObjectsHierarchyResult(object):
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            from gamium.Protocol.Types.ObjectsHierarchy import ObjectsHierarchy
+            from gamium.protocol.generated.Types.ObjectsHierarchy import ObjectsHierarchy
             obj = ObjectsHierarchy()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -61,7 +61,7 @@ def StartHierarchiesVector(builder, numElems):
 def DumpObjectsHierarchyResultEnd(builder): return builder.EndObject()
 def End(builder):
     return DumpObjectsHierarchyResultEnd(builder)
-import gamium.Protocol.Types.ObjectsHierarchy
+import gamium.protocol.generated.Types.ObjectsHierarchy
 try:
     from typing import List
 except:
@@ -71,7 +71,7 @@ class DumpObjectsHierarchyResultT(object):
 
     # DumpObjectsHierarchyResultT
     def __init__(self):
-        self.hierarchies = None  # type: List[gamium.Protocol.Types.ObjectsHierarchy.ObjectsHierarchyT]
+        self.hierarchies = None  # type: List[gamium.protocol.generated.Types.ObjectsHierarchy.ObjectsHierarchyT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -100,7 +100,7 @@ class DumpObjectsHierarchyResultT(object):
                 if dumpObjectsHierarchyResult.Hierarchies(i) is None:
                     self.hierarchies.append(None)
                 else:
-                    objectsHierarchy_ = gamium.Protocol.Types.ObjectsHierarchy.ObjectsHierarchyT.InitFromObj(dumpObjectsHierarchyResult.Hierarchies(i))
+                    objectsHierarchy_ = gamium.protocol.generated.Types.ObjectsHierarchy.ObjectsHierarchyT.InitFromObj(dumpObjectsHierarchyResult.Hierarchies(i))
                     self.hierarchies.append(objectsHierarchy_)
 
     # DumpObjectsHierarchyResultT

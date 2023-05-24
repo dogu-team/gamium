@@ -2,7 +2,7 @@ import fsPromises from 'fs/promises';
 import path from 'path';
 import shelljs from 'shelljs';
 import * as filesystem from './util/filesystem';
-import { formatFbs, lowerGamiumNamespace } from './lang/flatbufferFormatter';
+import { formatFbs, replaceGamiumNamespace as replaceGamiumNamespace } from './lang/flatbufferFormatter';
 import * as buildToolsProcess from './util/process';
 import * as time from './util/time';
 import * as typescript from './lang/typescript';
@@ -49,7 +49,7 @@ const LANGUAGES = {
     export_dir: `${EXPORT_DIRNAME}/python`,
     fbs_dir: `${MODIFIED_FBS_DIRNAME}/python`,
     protocol_path: `${REPO_PATH}/client/python/gamium`,
-    protocol_delete_path: `${REPO_PATH}/client/python/gamium/Protocol`,
+    protocol_delete_path: `${REPO_PATH}/client/python/gamium/protocol/generated`,
   },
 };
 
@@ -130,7 +130,7 @@ async function exportPython(fbslist: string[]): Promise<void> {
     return fbs.replace(`${FBS_DIRNAME}/`, `${LANGUAGES.python.fbs_dir}/`);
   });
   for (const fbs of fbslist) {
-    lowerGamiumNamespace(`${PROTOCOL_PATH}/${fbs}`);
+    replaceGamiumNamespace(`${PROTOCOL_PATH}/${fbs}`, 'gamium.protocol.generated');
   }
   return buildToolsProcess.createProcess(
     `docker exec ${DOCKER_CONTAINER_NAME} /bin/bash --login -c ` +

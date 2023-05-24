@@ -1,5 +1,5 @@
 from typing import Optional
-from gamium.Protocol.Packets.Actions.MovePlayerBy import MovePlayerBy
+from gamium.protocol.generated.Packets.Actions.MovePlayerBy import MovePlayerBy
 
 
 class MovePlayerOptions:

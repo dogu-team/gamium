@@ -1,12 +1,12 @@
 from typing import List, Optional, Union
-from gamium.Protocol.Types.Vector2 import Vector2T
-from gamium.Protocol.Types.Vector3 import Vector3T
+from gamium.protocol.generated.Types.Vector2 import Vector2T
+from gamium.protocol.generated.Types.Vector3 import Vector3T
 from gamium.condition.until import Until
 from gamium.object.ui_element import UIElement
 from gamium.options.action_click_options import ActionClickOptions
 from gamium.options.action_drag_options import ActionDragOptions
 from gamium.options.action_scroll_options import ActionScrollOptions
-from gamium.protocol_util.types import ObjectInfo
+from gamium.protocol.types import ObjectInfo
 from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import GamiumService
 from gamium.internal.logger import Logger

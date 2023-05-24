@@ -1,7 +1,7 @@
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
 from gamium.gamium_service import create_actions
-from gamium.Protocol import (
+from gamium.protocol.generated import (
     ActionResultT,
     ActionParamSingleT,
     AppQuitParamT,

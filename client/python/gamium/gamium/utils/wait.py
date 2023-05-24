@@ -2,7 +2,7 @@ import asyncio
 import datetime
 import inspect
 from typing import TypeVar
-from gamium.Protocol.Types import ErrorCode
+from gamium.protocol.generated.Types import ErrorCode
 from gamium.condition.condition import Condition
 from gamium.condition.wait_condition import WaitCondition
 from gamium.errors.gamium_error import GamiumError

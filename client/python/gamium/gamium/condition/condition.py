@@ -1,5 +1,5 @@
 from typing import Awaitable, Callable, Generic, List, TypeVar
-from gamium.Protocol.Types.ObjectInfo import ObjectInfo
+from gamium.protocol.generated.Types.ObjectInfo import ObjectInfo
 
 T = TypeVar("T")
 ConditionFn = Callable[[object], Awaitable[T]]  # Callable[[IGamiumClient], Awaitable[T]]

@@ -1,8 +1,9 @@
 import asyncio
 import socket
+import traceback
 from typing import Generic, List, Optional, TypeVar
 import flatbuffers
-from gamium.Protocol import (
+from gamium.protocol.generated import (
     ExecuteRpcParamT,
     ExecuteRpcResultT,
     QueryObjectInteractableParamT,
@@ -128,8 +129,9 @@ class GamiumService:
                 return res
             except Exception as e:
                 self._writer.close()
+                stack_trace = "".join(traceback.format_tb(e.__traceback__))
                 self._logger.info(
-                    f"Failed to say hello to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}"
+                    f"Failed to say hello to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}. {stack_trace}"
                 )
                 await asyncio.sleep(1)
                 continue

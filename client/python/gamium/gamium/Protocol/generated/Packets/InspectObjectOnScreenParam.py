@@ -29,7 +29,7 @@ class InspectObjectOnScreenParam(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = o + self._tab.Pos
-            from gamium.Protocol.Types.Vector2 import Vector2
+            from gamium.protocol.generated.Types.Vector2 import Vector2
             obj = Vector2()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -40,7 +40,7 @@ class InspectObjectOnScreenParam(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = o + self._tab.Pos
-            from gamium.Protocol.Types.Vector2 import Vector2
+            from gamium.protocol.generated.Types.Vector2 import Vector2
             obj = Vector2()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -58,7 +58,7 @@ def AddScreenSize(builder, screenSize):
 def InspectObjectOnScreenParamEnd(builder): return builder.EndObject()
 def End(builder):
     return InspectObjectOnScreenParamEnd(builder)
-import gamium.Protocol.Types.Vector2
+import gamium.protocol.generated.Types.Vector2
 try:
     from typing import Optional
 except:
@@ -68,8 +68,8 @@ class InspectObjectOnScreenParamT(object):
 
     # InspectObjectOnScreenParamT
     def __init__(self):
-        self.pos = None  # type: Optional[gamium.Protocol.Types.Vector2.Vector2T]
-        self.screenSize = None  # type: Optional[gamium.Protocol.Types.Vector2.Vector2T]
+        self.pos = None  # type: Optional[gamium.protocol.generated.Types.Vector2.Vector2T]
+        self.screenSize = None  # type: Optional[gamium.protocol.generated.Types.Vector2.Vector2T]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -93,9 +93,9 @@ class InspectObjectOnScreenParamT(object):
         if inspectObjectOnScreenParam is None:
             return
         if inspectObjectOnScreenParam.Pos() is not None:
-            self.pos = gamium.Protocol.Types.Vector2.Vector2T.InitFromObj(inspectObjectOnScreenParam.Pos())
+            self.pos = gamium.protocol.generated.Types.Vector2.Vector2T.InitFromObj(inspectObjectOnScreenParam.Pos())
         if inspectObjectOnScreenParam.ScreenSize() is not None:
-            self.screenSize = gamium.Protocol.Types.Vector2.Vector2T.InitFromObj(inspectObjectOnScreenParam.ScreenSize())
+            self.screenSize = gamium.protocol.generated.Types.Vector2.Vector2T.InitFromObj(inspectObjectOnScreenParam.ScreenSize())
 
     # InspectObjectOnScreenParamT
     def Pack(self, builder):

@@ -29,7 +29,7 @@ class FindObjectsParam(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            from gamium.Protocol.Types.ObjectLocator import ObjectLocator
+            from gamium.protocol.generated.Types.ObjectLocator import ObjectLocator
             obj = ObjectLocator()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -44,7 +44,7 @@ def AddLocator(builder, locator):
 def FindObjectsParamEnd(builder): return builder.EndObject()
 def End(builder):
     return FindObjectsParamEnd(builder)
-import gamium.Protocol.Types.ObjectLocator
+import gamium.protocol.generated.Types.ObjectLocator
 try:
     from typing import Optional
 except:
@@ -54,7 +54,7 @@ class FindObjectsParamT(object):
 
     # FindObjectsParamT
     def __init__(self):
-        self.locator = None  # type: Optional[gamium.Protocol.Types.ObjectLocator.ObjectLocatorT]
+        self.locator = None  # type: Optional[gamium.protocol.generated.Types.ObjectLocator.ObjectLocatorT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -78,7 +78,7 @@ class FindObjectsParamT(object):
         if findObjectsParam is None:
             return
         if findObjectsParam.Locator() is not None:
-            self.locator = gamium.Protocol.Types.ObjectLocator.ObjectLocatorT.InitFromObj(findObjectsParam.Locator())
+            self.locator = gamium.protocol.generated.Types.ObjectLocator.ObjectLocatorT.InitFromObj(findObjectsParam.Locator())
 
     # FindObjectsParamT
     def Pack(self, builder):

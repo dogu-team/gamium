@@ -4,9 +4,9 @@ from typing import List, Optional
 from gamium.condition.wait_condition import WaitCondition
 from gamium.options.wait_options import WaitOptions
 from gamium.utils.wait import wait_generic
-from gamium.protocol_util.types import ObjectInfo
+from gamium.protocol.types import ObjectInfo
 
-from gamium.Protocol import (
+from gamium.protocol.generated import (
     ObjectInfoT,
     ErrorCode,
     QueryProfileResultT,

@@ -1,6 +1,6 @@
 from typing import Optional
 from gamium.object.ui_element import UIElementCondition
-from gamium.Protocol.Types import ErrorCode
+from gamium.protocol.generated.Types import ErrorCode
 from gamium.condition.condition import (
     ObjectInfoCondition,
     ObjectInfosCondition,

@@ -77,7 +77,7 @@ class ObjectInfo(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = o + self._tab.Pos
-            from gamium.Protocol.Types.Vector3 import Vector3
+            from gamium.protocol.generated.Types.Vector3 import Vector3
             obj = Vector3()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -88,7 +88,7 @@ class ObjectInfo(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             x = o + self._tab.Pos
-            from gamium.Protocol.Types.Vector2 import Vector2
+            from gamium.protocol.generated.Types.Vector2 import Vector2
             obj = Vector2()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -99,7 +99,7 @@ class ObjectInfo(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             x = o + self._tab.Pos
-            from gamium.Protocol.Types.Vector3 import Vector3
+            from gamium.protocol.generated.Types.Vector3 import Vector3
             obj = Vector3()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -110,7 +110,7 @@ class ObjectInfo(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             x = o + self._tab.Pos
-            from gamium.Protocol.Types.Vector4 import Vector4
+            from gamium.protocol.generated.Types.Vector4 import Vector4
             obj = Vector4()
             obj.Init(self._tab.Bytes, x)
             return obj
@@ -162,9 +162,9 @@ def AddText(builder, text):
 def ObjectInfoEnd(builder): return builder.EndObject()
 def End(builder):
     return ObjectInfoEnd(builder)
-import gamium.Protocol.Types.Vector2
-import gamium.Protocol.Types.Vector3
-import gamium.Protocol.Types.Vector4
+import gamium.protocol.generated.Types.Vector2
+import gamium.protocol.generated.Types.Vector3
+import gamium.protocol.generated.Types.Vector4
 try:
     from typing import List, Optional
 except:
@@ -179,10 +179,10 @@ class ObjectInfoT(object):
         self.type = 0  # type: int
         self.tag = None  # type: List[str]
         self.isActive = False  # type: bool
-        self.screenPosition = None  # type: Optional[gamium.Protocol.Types.Vector3.Vector3T]
-        self.screenRectSize = None  # type: Optional[gamium.Protocol.Types.Vector2.Vector2T]
-        self.position = None  # type: Optional[gamium.Protocol.Types.Vector3.Vector3T]
-        self.rotation = None  # type: Optional[gamium.Protocol.Types.Vector4.Vector4T]
+        self.screenPosition = None  # type: Optional[gamium.protocol.generated.Types.Vector3.Vector3T]
+        self.screenRectSize = None  # type: Optional[gamium.protocol.generated.Types.Vector2.Vector2T]
+        self.position = None  # type: Optional[gamium.protocol.generated.Types.Vector3.Vector3T]
+        self.rotation = None  # type: Optional[gamium.protocol.generated.Types.Vector4.Vector4T]
         self.text = None  # type: str
 
     @classmethod
@@ -215,13 +215,13 @@ class ObjectInfoT(object):
                 self.tag.append(objectInfo.Tag(i))
         self.isActive = objectInfo.IsActive()
         if objectInfo.ScreenPosition() is not None:
-            self.screenPosition = gamium.Protocol.Types.Vector3.Vector3T.InitFromObj(objectInfo.ScreenPosition())
+            self.screenPosition = gamium.protocol.generated.Types.Vector3.Vector3T.InitFromObj(objectInfo.ScreenPosition())
         if objectInfo.ScreenRectSize() is not None:
-            self.screenRectSize = gamium.Protocol.Types.Vector2.Vector2T.InitFromObj(objectInfo.ScreenRectSize())
+            self.screenRectSize = gamium.protocol.generated.Types.Vector2.Vector2T.InitFromObj(objectInfo.ScreenRectSize())
         if objectInfo.Position() is not None:
-            self.position = gamium.Protocol.Types.Vector3.Vector3T.InitFromObj(objectInfo.Position())
+            self.position = gamium.protocol.generated.Types.Vector3.Vector3T.InitFromObj(objectInfo.Position())
         if objectInfo.Rotation() is not None:
-            self.rotation = gamium.Protocol.Types.Vector4.Vector4T.InitFromObj(objectInfo.Rotation())
+            self.rotation = gamium.protocol.generated.Types.Vector4.Vector4T.InitFromObj(objectInfo.Rotation())
         self.text = objectInfo.Text()
 
     # ObjectInfoT

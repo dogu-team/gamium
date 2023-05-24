@@ -1,4 +1,4 @@
-from gamium.Protocol import ObjectLocatorBy, ObjectLocator
+from gamium.protocol.generated import ObjectLocatorBy, ObjectLocator
 
 
 class By:

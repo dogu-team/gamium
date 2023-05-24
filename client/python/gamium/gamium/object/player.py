@@ -1,8 +1,8 @@
 from typing import Optional, Union
 
 import numpy as np
-from gamium.protocol_util.types import ObjectInfo
-from gamium.Protocol import Vector3
+from gamium.protocol.types import ObjectInfo
+from gamium.protocol.generated import Vector3
 from gamium.actions.action_chain import create_move_player
 from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import GamiumService

@@ -1,8 +1,8 @@
 from typing import Optional, Union
 from gamium.condition.condition import Condition
-from gamium.protocol_util.types import ObjectInfo
+from gamium.protocol.types import ObjectInfo
 
-from gamium.Protocol import Vector2T
+from gamium.protocol.generated import Vector2T
 from gamium.igamium_client import IGamiumClient
 from gamium.gamium_service import (
     GamiumService,

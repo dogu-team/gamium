@@ -53,13 +53,13 @@ def AddAction(builder, action):
 def ActionParamSingleEnd(builder): return builder.EndObject()
 def End(builder):
     return ActionParamSingleEnd(builder)
-import gamium.Protocol.Packets.ActionParam
-import gamium.Protocol.Packets.Actions.AppQuitParam
-import gamium.Protocol.Packets.Actions.InputKeyParam
-import gamium.Protocol.Packets.Actions.InputMouseParam
-import gamium.Protocol.Packets.Actions.InputSetTextParam
-import gamium.Protocol.Packets.Actions.MovePlayerParam
-import gamium.Protocol.Packets.Actions.SleepParam
+import gamium.protocol.generated.Packets.ActionParam
+import gamium.protocol.generated.Packets.Actions.AppQuitParam
+import gamium.protocol.generated.Packets.Actions.InputKeyParam
+import gamium.protocol.generated.Packets.Actions.InputMouseParam
+import gamium.protocol.generated.Packets.Actions.InputSetTextParam
+import gamium.protocol.generated.Packets.Actions.MovePlayerParam
+import gamium.protocol.generated.Packets.Actions.SleepParam
 try:
     from typing import Union
 except:
@@ -70,7 +70,7 @@ class ActionParamSingleT(object):
     # ActionParamSingleT
     def __init__(self):
         self.actionType = 0  # type: int
-        self.action = None  # type: Union[None, gamium.Protocol.Packets.Actions.SleepParam.SleepParamT, gamium.Protocol.Packets.Actions.InputKeyParam.InputKeyParamT, gamium.Protocol.Packets.Actions.InputMouseParam.InputMouseParamT, gamium.Protocol.Packets.Actions.InputSetTextParam.InputSetTextParamT, gamium.Protocol.Packets.Actions.MovePlayerParam.MovePlayerParamT, gamium.Protocol.Packets.Actions.AppQuitParam.AppQuitParamT]
+        self.action = None  # type: Union[None, gamium.protocol.generated.Packets.Actions.SleepParam.SleepParamT, gamium.protocol.generated.Packets.Actions.InputKeyParam.InputKeyParamT, gamium.protocol.generated.Packets.Actions.InputMouseParam.InputMouseParamT, gamium.protocol.generated.Packets.Actions.InputSetTextParam.InputSetTextParamT, gamium.protocol.generated.Packets.Actions.MovePlayerParam.MovePlayerParamT, gamium.protocol.generated.Packets.Actions.AppQuitParam.AppQuitParamT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):
@@ -94,7 +94,7 @@ class ActionParamSingleT(object):
         if actionParamSingle is None:
             return
         self.actionType = actionParamSingle.ActionType()
-        self.action = gamium.Protocol.Packets.ActionParam.ActionParamCreator(self.actionType, actionParamSingle.Action())
+        self.action = gamium.protocol.generated.Packets.ActionParam.ActionParamCreator(self.actionType, actionParamSingle.Action())
 
     # ActionParamSingleT
     def Pack(self, builder):

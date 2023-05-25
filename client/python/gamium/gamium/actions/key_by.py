@@ -20,4 +20,5 @@ class KeyBy:
     @staticmethod
     def unity_keyboard(keyboard_code: int):
         origin = KeyBy.__UnityKeyboardKeys.get(keyboard_code.lower())
-        return KeyBy(InputKeyBy.UNITY_KEYBOARD, origin)
+        casted = origin.replace("Digit", "")
+        return KeyBy(InputKeyBy.UNITY_KEYBOARD, casted)

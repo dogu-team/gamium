@@ -1,6 +1,15 @@
 from typing import List
 
-from gamium.protocol.generated.Types import ErrorCode
+from gamium.protocol.generated.Types.ErrorCode import ErrorCode
+from gamium.protocol.generated.Types.ExecuteRpcBy import ExecuteRpcBy
+from gamium.protocol.generated.Types.InputKeyBy import InputKeyBy
+from gamium.protocol.generated.Types.InputKeyPressType import InputKeyPressType
+from gamium.protocol.generated.Types.InputMouseButtonCode import InputMouseButtonCode
+from gamium.protocol.generated.Types.InputMousePressType import InputMousePressType
+from gamium.protocol.generated.Packets.Actions import MovePlayerBy
+from gamium.protocol.generated.Types.ObjectLocatorBy import ObjectLocatorBy
+from gamium.protocol.generated.Types.Unity.UnityKeyboard import UnityKeyboard
+from gamium.protocol.generated.Types.Unity.UnityKeyCode import UnityKeyCode
 
 
 class Vector2:

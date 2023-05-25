@@ -199,10 +199,10 @@ class GamiumService:
                 f"Invalid response seq: {response.seq} != {req.seq}",
             )
         if None == response.error:
-            raise GamiumError(ErrorCode.InternalError, f"request response error is null {response.error}")
+            raise GamiumError(ErrorCode.InternalError, f"request response error is null: {response.error}")
         if response.error.code != ErrorCode.None_:
             reason = response.error.reason.decode("utf-8")
-            raise GamiumError(response.error.code, f"request response error {reason}")
+            raise GamiumError(response.error.code, f"request response error: {reason}")
         # self._logger.verbose(f"request: seq: {req.seq}, type: {req.paramType} done")
 
         ret = response.result

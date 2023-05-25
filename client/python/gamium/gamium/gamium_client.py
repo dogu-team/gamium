@@ -114,7 +114,7 @@ class GamiumClient(IGamiumClient):
         self.send_keys([by], options)
 
     def send_keys(self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
-        self._logger.info(f"GamiumClient.send_keys {by_list}")
+        self._logger.info(f"GamiumClient.send_keys {[by.str for by in by_list]}")
         self.actions().send_keys(by_list, options).perform()
 
     def execute_rpc(
@@ -123,7 +123,14 @@ class GamiumClient(IGamiumClient):
         option: Optional[ExecuteRpcOptions] = ExecuteRpcOptions(),
     ) -> any:
         self._logger.info(f"GamiumClient.execute_rpc By: {locator.by}, class: {locator.class_name}, target: {locator.target_name}")
-        res = self._service.request(create_execute_rpc(locator.by, locator.class_name, locator.target_name, locator.params))
+        params: List[str] = []
+        for param in locator.params:
+            if option.cast_number_to_float:
+                if isinstance(param, int):
+                    params.append(str(float(param)))
+                    continue
+            params.append(str(param))
+        res = self._service.request(create_execute_rpc(locator.by, locator.class_name, locator.target_name, params))
         if res.document is None:
             return None
         parsed = json.loads(res.document)

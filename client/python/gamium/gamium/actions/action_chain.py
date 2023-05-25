@@ -234,7 +234,7 @@ class ActionChain:
                 InputMousePressType.SCROLL,
                 InputMouseButtonCode.LEFT,
                 fb_position,
-                delta,
+                fb_delta,
             )
         )
         self.__add_action(create_sleep(options.duration_ms))

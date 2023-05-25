@@ -13,4 +13,5 @@ from gamium.errors.gamium_error import *
 from gamium.object.player import *
 from gamium.object.ui_element import *
 from gamium.options import *
+from gamium.protocol.types import *
 from gamium.ui.ui import *

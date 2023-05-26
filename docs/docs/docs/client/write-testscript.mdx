@@ -29,6 +29,18 @@ const ui = gamium.ui();
 ```
 
 </TabItem>
+
+<TabItem value="py" label="Python" default>
+
+```python
+from gamium import *
+
+gamium = GamiumClient("127.0.0.1", 50061)
+gamium.connect()
+ui = gamium.ui()
+```
+
+</TabItem>
 </Tabs>
 
 ## Click Buton
@@ -40,6 +52,13 @@ Locate the Button Object you want to press, then write a script and click it.
 
 ```ts
 await ui.click(By.path('Object path'));
+```
+
+</TabItem>
+<TabItem value="py" label="Python" default>
+
+```python
+ui.click(By.path('Object path'))
 ```
 
 </TabItem>

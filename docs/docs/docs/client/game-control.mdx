@@ -14,13 +14,21 @@ User keystrokes can be simulated through `Gamium Client`.
 
 You can use it as below.
 
-
 <Tabs groupId="language" defaultValue="ts">
-<TabItem value="ts" label="TypeScript" default> 
+<TabItem value="ts" label="TypeScript" default>
 
 ```ts
 await gamium.sendKey(KeyBy.unityKeycode('Space'));
 await gamium.sendKey(KeyBy.unityKeyboard('Space'));
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python" default>
+
+```python
+gamium.send_key(KeyBy.unity_keycode('Space'));
+gamium.end_key(KeyBy.unity_keyboard('Space'));
 ```
 
 </TabItem>
@@ -37,7 +45,7 @@ You can combine several actions as shown below.
 #### Usage
 
 <Tabs groupId="language" defaultValue="ts">
-<TabItem value="ts" label="TypeScript" default> 
+<TabItem value="ts" label="TypeScript" default>
 
 ```ts
 await gamium
@@ -50,6 +58,22 @@ await gamium
   .actions()
   .sendKeys([KeyBy.unityKeycode('W'), KeyBy.unityKeycode('A')])
   .sendKeys([KeyBy.unityKeycode('Space')])
+  .perform();
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python" default>
+
+```python
+gamium.actions()
+  .move(Vector2(screen.width / 2, screen.height / 2 ))
+  .click(Vector2(screen.width / 2, screen.height / 2 ))
+  .perform();
+
+gamium.actions()
+  .send_keys([KeyBy.unity_keycode('W'), KeyBy.unity_keycode('A')])
+  .send_keys([KeyBy.unity_keycode('Space')])
   .perform();
 ```
 

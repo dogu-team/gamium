@@ -16,7 +16,8 @@
     "start": "ts-node src/index.ts",
     "test": "ts-node test/test-parse",
     "watch": "clear; echo Watching... && nodemon",
-    "docs:typescript": "ts-node scripts/mirror-doc"
+    "docs:typescript": "ts-node scripts/gendoc_typescript",
+    "docs:python": "ts-node scripts/gendoc_python"
   },
   "types": "build/src/index.d.ts",
   "dependencies": {

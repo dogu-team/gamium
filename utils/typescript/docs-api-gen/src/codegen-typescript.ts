@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from 'fs';
 import {
   AccessorDeclaration,
   ClassDeclaration,
@@ -10,41 +10,24 @@ import {
   PropertyDeclaration,
   TypeAliasDeclaration,
   TypescriptParser,
-} from "typescript-parser";
-import { CodeGenElem, makeTypedCodeBlock } from "./codegen-elem";
-import { buildTree, CodeGenElemTreeNode } from "./codegen-elemtree";
-import {
-  CUSTOM_CHILD,
-  DIVIDER,
-  generateSubtag,
-  H1,
-  H2,
-  H3,
-  H4,
-  H5,
-  UL,
-  UL2,
-} from "./markdown-tag";
-
-type CodeGenElems = CodeGenElem[];
-type CodeGenElemData = {
-  category: "class" | "interface" | "enum";
-  elems: CodeGenElems;
-};
+} from 'typescript-parser';
+import { CodeGenElem, CodeGenElemData, CodeGenElems, makeTypedCodeBlock } from './codegen-elem';
+import { buildTree, CodeGenElemTreeNode } from './codegen-elemtree';
+import { generateSubtag, TagsMap } from './markdown-tag';
 
 export interface TypescriptGenerateOption {
-  classExlude: string[];
-  interfaceExlude: string[];
-  methodsExlude: string[];
-  propertiesExlude: string[];
+  classExclude: string[];
+  interfaceExclude: string[];
+  methodsExclude: string[];
+  propertiesExclude: string[];
 }
 
-function defualtOption(): TypescriptGenerateOption {
+function defaultOption(): TypescriptGenerateOption {
   return {
-    classExlude: [],
-    interfaceExlude: [],
-    methodsExlude: [],
-    propertiesExlude: [],
+    classExclude: [],
+    interfaceExclude: [],
+    methodsExclude: [],
+    propertiesExclude: [],
   };
 }
 
@@ -56,31 +39,25 @@ interface TypescriptGenerateContext {
 export class CodeGenTypescript {
   constructor(
     private readonly codeFilePath: string,
-    private readonly option: Partial<TypescriptGenerateOption> = defualtOption(),
+    private readonly option: Partial<TypescriptGenerateOption> = defaultOption(),
     public readonly elems: CodeGenElem[] = [],
-    public readonly nodes: CodeGenElemTreeNode[] = []
+    public readonly nodes: CodeGenElemTreeNode[] = [],
   ) {}
 
   async parse(): Promise<CodeGenElemData[]> {
-    const codeElems = await CodeGenTypescript.parseCodeFile(
-      this.codeFilePath,
-      this.option
-    );
+    const codeElems = await CodeGenTypescript.parseCodeFile(this.codeFilePath, this.option);
     return codeElems;
   }
 
-  private static async parseCodeFile(
-    filePath: string,
-    option: Partial<TypescriptGenerateOption>
-  ): Promise<CodeGenElemData[]> {
+  private static async parseCodeFile(filePath: string, option: Partial<TypescriptGenerateOption>): Promise<CodeGenElemData[]> {
     const parser = new TypescriptParser();
     const parsed = await parser.parseFile(filePath, process.cwd());
 
     const ret: CodeGenElemData[] = [];
-    const optionMixed = { ...defualtOption(), ...option };
+    const optionMixed = { ...defaultOption(), ...option };
 
     const context: TypescriptGenerateContext = {
-      fileContents: fs.readFileSync(filePath, "utf8"),
+      fileContents: fs.readFileSync(filePath, 'utf8'),
       option: optionMixed,
     };
 
@@ -90,14 +67,14 @@ export class CodeGenTypescript {
       }
       if (decl instanceof ClassDeclaration) {
         ret.push({
-          category: "class",
+          category: 'class',
           elems: generateElemFromClass(decl, context),
         });
       }
 
       if (decl instanceof InterfaceDeclaration) {
         ret.push({
-          category: "interface",
+          category: 'interface',
           elems: generateElemFromInterface(decl, context),
         });
       }
@@ -108,7 +85,7 @@ export class CodeGenTypescript {
 
       if (decl instanceof EnumDeclaration) {
         ret.push({
-          category: "enum",
+          category: 'enum',
           elems: generateElemFromEnum(decl, context),
         });
       }
@@ -117,21 +94,18 @@ export class CodeGenTypescript {
   }
 }
 
-function generateElemFromClass(
-  classDecl: ClassDeclaration,
-  context: TypescriptGenerateContext
-): CodeGenElems {
-  if (context.option.classExlude.includes(classDecl.name)) {
+function generateElemFromClass(classDecl: ClassDeclaration, context: TypescriptGenerateContext): CodeGenElems {
+  if (context.option.classExclude.includes(classDecl.name)) {
     return [];
   }
   const ret: CodeGenElems = [];
   ret.push({
-    tag: H1,
+    tag: TagsMap.H1,
     text: classDecl.name,
   });
   ret.push({
-    tag: DIVIDER,
-    text: "",
+    tag: TagsMap.DIVIDER,
+    text: '',
   });
   let mutatedMethodDecls = classDecl.methods
     .sort((a, b) => {
@@ -145,7 +119,7 @@ function generateElemFromClass(
     })
     .filter((m) => {
       // functino signature like => [util.inspect.custom](depth: unknown, opts: unknown): string
-      if (!m.name || m.name === "undefined") {
+      if (!m.name || m.name === 'undefined') {
         return false;
       }
       return true;
@@ -153,88 +127,75 @@ function generateElemFromClass(
 
   if (0 < mutatedMethodDecls.length) {
     ret.push({
-      tag: H2,
-      text: "Methods",
+      tag: TagsMap.H2,
+      text: 'Methods',
     });
-    ret.push(
-      ...mutatedMethodDecls
-        .map((m) => generateElemFromMethod(m, context))
-        .flat()
-    );
+    ret.push(...mutatedMethodDecls.map((m) => generateElemFromMethod(m, context)).flat());
   }
-  const propElems = classDecl.properties
-    .map((p) => generateElemFromProperty(p, context))
-    .flat();
-  const accessorElems = classDecl.accessors
-    .map((p) => generateElemFromAccessor(p))
-    .flat();
+  const propElems = classDecl.properties.map((p) => generateElemFromProperty(p, context)).flat();
+  const accessorElems = classDecl.accessors.map((p) => generateElemFromAccessor(p)).flat();
   const propAndAccessorElems = [...propElems, ...accessorElems];
   if (0 < propAndAccessorElems.length) {
     ret.push({
-      tag: H2,
-      text: "Properties",
+      tag: TagsMap.H2,
+      text: 'Properties',
     });
     ret.push(...propAndAccessorElems);
   }
   return ret;
 }
 
-function generateElemFromMethod(
-  methodDecl: MethodDeclaration,
-  context: TypescriptGenerateContext
-): CodeGenElems {
-  if (context.option.methodsExlude.includes(methodDecl.name)) {
+function generateElemFromMethod(methodDecl: MethodDeclaration, context: TypescriptGenerateContext): CodeGenElems {
+  if (context.option.methodsExclude.includes(methodDecl.name)) {
     return [];
   }
   const tags: string[] = [];
   if (methodDecl.visibility === DeclarationVisibility.Private) {
     return [];
   } else {
-    tags.push(generateSubtag("public"));
+    tags.push(generateSubtag('public'));
   }
   if (methodDecl.isStatic) {
-    tags.push(generateSubtag("static"));
+    tags.push(generateSubtag('static'));
   }
   if (methodDecl.isAbstract) {
-    tags.push(generateSubtag("abstract"));
+    tags.push(generateSubtag('abstract'));
   }
   if (methodDecl.isOptional) {
-    tags.push(generateSubtag("optional"));
+    tags.push(generateSubtag('optional'));
   }
 
   const ret: CodeGenElems = [
     {
-      tag: H3,
+      tag: TagsMap.H3,
       text: `${methodDecl.name}`,
     },
   ];
   if (0 < tags.length) {
     ret.push({
-      tag: CUSTOM_CHILD,
-      text: tags.join(" "),
+      tag: TagsMap.CUSTOM_CHILD,
+      text: tags.join(' '),
     });
   }
-  const paramElems = methodDecl.parameters
-    .map((p) => generateElemFromParam(p))
-    .flat();
+  const paramElems = methodDecl.parameters.map((p) => generateElemFromParam(p)).flat();
   const returnElems = generateElemFromReturn(methodDecl.type);
   if (0 < paramElems.length) {
     ret.push({
-      tag: H5,
-      text: "Arguments",
+      tag: TagsMap.H5,
+      text: 'Arguments',
     });
     ret.push(...paramElems);
   }
   if (0 < returnElems.length) {
     ret.push({
-      tag: H5,
-      text: "Returns",
+      tag: TagsMap.H5,
+      text: 'Returns',
     });
     ret.push(...returnElems);
   }
   ret.push({
-    tag: DIVIDER,
-    text: "",
+    tag: TagsMap.DIVIDER,
+    text: '',
   });
   return ret;
 }
@@ -244,21 +205,21 @@ function generateElemFromParam(paramDecl: ParameterDeclaration): CodeGenElems {
   const childs: CodeGenElems = [];
   let type = paramDecl.type;
   if (paramDecl.type) {
-    if (paramDecl.type.startsWith("{") && paramDecl.type.endsWith("}")) {
-      type = "object";
+    if (paramDecl.type.startsWith('{') && paramDecl.type.endsWith('}')) {
+      type = 'object';
       const keyValueRegex = /([a-zA-Z0-9_]+): ([a-zA-Z0-9_]+)/g;
       const matches = paramDecl.type.matchAll(keyValueRegex);
       for (const match of matches) {
         childs.push({
-          tag: UL2,
+          tag: TagsMap.UL2,
           text: `${match[1]} ${makeTypedCodeBlock(match[2])}`,
         });
       }
     }
   }
   ret.push({
-    tag: UL,
-    text: `${paramDecl.name} ${type ? makeTypedCodeBlock(type) : ""}`,
+    tag: TagsMap.UL,
+    text: `${paramDecl.name} ${type ? makeTypedCodeBlock(type) : ''}`,
   });
   if (0 < childs.length) {
     ret.push(...childs);
@@ -272,46 +233,39 @@ function generateElemFromReturn(returnType?: string): CodeGenElem[] {
   }
   return [
     {
-      tag: UL,
+      tag: TagsMap.UL,
       text: makeTypedCodeBlock(returnType),
     },
   ];
 }
 
-function generateElemFromInterface(
-  decl: InterfaceDeclaration,
-  context: TypescriptGenerateContext
-): CodeGenElem[] {
+function generateElemFromInterface(decl: InterfaceDeclaration, context: TypescriptGenerateContext): CodeGenElem[] {
   const ret: CodeGenElems = [];
   if (!decl.isExported) {
     return ret;
   }
-  if (context.option.interfaceExlude.includes(decl.name)) {
+  if (context.option.interfaceExclude.includes(decl.name)) {
     return [];
   }
 
   ret.push({
-    tag: H1,
+    tag: TagsMap.H1,
     text: decl.name,
   });
-  const propElems = decl.properties
-    .map((p) => generateElemFromProperty(p, context))
-    .flat();
+  const propElems = decl.properties.map((p) => generateElemFromProperty(p, context)).flat();
   if (0 < propElems.length) {
     ret.push({
-      tag: H2,
-      text: "Properties",
+      tag: TagsMap.H2,
+      text: 'Properties',
     });
 
     ret.push(...propElems);
   }
-  const methodElems = decl.methods
-    .map((m) => generateElemFromMethod(m, context))
-    .flat();
+  const methodElems = decl.methods.map((m) => generateElemFromMethod(m, context)).flat();
   if (0 < methodElems.length) {
     ret.push({
-      tag: H2,
-      text: "Methods",
+      tag: TagsMap.H2,
+      text: 'Methods',
     });
     ret.push(...methodElems);
   }
@@ -319,26 +273,23 @@ function generateElemFromInterface(
   return ret;
 }
 
-function generateElemFromProperty(
-  decl: PropertyDeclaration,
-  context: TypescriptGenerateContext
-): CodeGenElem[] {
+function generateElemFromProperty(decl: PropertyDeclaration, context: TypescriptGenerateContext): CodeGenElem[] {
   if (decl.visibility !== DeclarationVisibility.Public) {
     return [];
   }
 
-  if (context.option.propertiesExlude.includes(decl.name)) {
+  if (context.option.propertiesExclude.includes(decl.name)) {
     return [];
   }
 
   return [
     {
-      tag: H4,
-      text: `${decl.name} ${decl.type ? makeTypedCodeBlock(decl.type) : ""}`,
+      tag: TagsMap.H4,
+      text: `${decl.name} ${decl.type ? makeTypedCodeBlock(decl.type) : ''}`,
     },
     {
-      tag: DIVIDER,
-      text: "",
+      tag: TagsMap.DIVIDER,
+      text: '',
     },
   ];
 }
@@ -350,58 +301,48 @@ function generateElemFromAccessor(decl: AccessorDeclaration): CodeGenElem[] {
 
   return [
     {
-      tag: H4,
-      text: `${decl.name} ${decl.type ? makeTypedCodeBlock(decl.type) : ""}`,
+      tag: TagsMap.H4,
+      text: `${decl.name} ${decl.type ? makeTypedCodeBlock(decl.type) : ''}`,
     },
     {
-      tag: DIVIDER,
-      text: "",
+      tag: TagsMap.DIVIDER,
+      text: '',
     },
   ];
 }
 
-function generateElemFromTypeAlias(
-  decl: TypeAliasDeclaration,
-  context: TypescriptGenerateContext
-): CodeGenElem[] {
+function generateElemFromTypeAlias(decl: TypeAliasDeclaration, context: TypescriptGenerateContext): CodeGenElem[] {
   const ret: CodeGenElems = [];
   if (!decl.isExported) {
     return [];
   }
   ret.push({
-    tag: H1,
+    tag: TagsMap.H1,
     text: decl.name,
   });
 
-  const rightSide = context.fileContents
-    .substring(decl.start!, decl.end)
-    .split("=")[1]
-    .trim()
-    .replace(";", "");
+  const rightSide = context.fileContents.substring(decl.start!, decl.end).split('=')[1].trim().replace(';', '');
 
   ret.push({
-    tag: H4,
+    tag: TagsMap.H4,
     text: makeTypedCodeBlock(rightSide),
   });
   return ret;
 }
 
-function generateElemFromEnum(
-  decl: EnumDeclaration,
-  context: TypescriptGenerateContext
-): CodeGenElem[] {
+function generateElemFromEnum(decl: EnumDeclaration, context: TypescriptGenerateContext): CodeGenElem[] {
   const ret: CodeGenElems = [];
   if (!decl.isExported) {
     return [];
   }
   ret.push({
-    tag: H1,
+    tag: TagsMap.H1,
     text: decl.name,
   });
 
   for (const member of decl.members) {
     ret.push({
-      tag: H4,
+      tag: TagsMap.H4,
       text: member,
     });
   }

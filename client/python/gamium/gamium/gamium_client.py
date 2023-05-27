@@ -6,7 +6,7 @@ from gamium.options.wait_options import WaitOptions
 from gamium.utils.generics import T
 from gamium.utils.try_utils import TryResult, tryify
 from gamium.utils.wait import wait_generic
-from gamium.protocol.types import ObjectInfo
+from gamium.protocol.types import ObjectInfo, Vector2, Vector3, Vector4
 
 from gamium.options import FindObjectOptions, ExecuteRpcOptions, SendKeyOptions
 
@@ -96,10 +96,10 @@ class GamiumClient(IGamiumClient):
                     info.type,
                     info.tag,
                     info.isActive,
-                    info.screenPosition,
-                    info.screenRectSize,
-                    info.position,
-                    info.rotation,
+                    Vector3(info.screenPosition.x, info.screenPosition.y, info.screenPosition.z) if info.screenPosition is not None else Vector3.zero(),
+                    Vector2(info.screenRectSize.x, info.screenRectSize.y) if info.screenRectSize is not None else Vector2.zero(),
+                    Vector3(info.position.x, info.position.y, info.position.z) if info.position is not None else Vector3.zero(),
+                    Vector4(info.rotation.x, info.rotation.y, info.rotation.z, info.rotation.w) if info.rotation is not None else Vector4.zero(),
                     info.text,
                 )
             )
@@ -169,7 +169,7 @@ class GamiumClient(IGamiumClient):
         condition: WaitCondition[T],
         options: WaitOptions = WaitOptions(),
     ) -> TryResult[T]:
-        return tryify(functools.partial(self.wait, condition, options))
+        return tryify(functools.partial(self.wait, condition, options))  # type: ignore  # Ignore type error on this line
 
     @property
     def _logger(self) -> Logger:

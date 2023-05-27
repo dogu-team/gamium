@@ -155,13 +155,13 @@ def generate_elem_from_assign(assign_def: ast.Assign, arg_def: ast.arg, context:
     return ret
 
 
-# @click.command()
-# @click.option("--file_path", default=None, type=str, help="Path to the file to parse")
-# @click.option("--output_path", default=None, type=str, help="Path to the file to parse")
-# @click.option("--class_exclude", "-s", type=str, multiple=True, help="List of class name strings")
-# @click.option("--interface_exclude", "-s", type=str, multiple=True, help="List of interface name strings")
-# @click.option("--methods_exclude", "-s", type=str, multiple=True, help="List of method name strings")
-# @click.option("--properties_exclude", "-s", type=str, multiple=True, help="List of property name strings")
+@click.command()
+@click.option("--file_path", default=None, type=str, help="Path to the file to parse")
+@click.option("--output_path", default=None, type=str, help="Path to the file to parse")
+@click.option("--class_exclude", "-s", type=str, multiple=True, help="List of class name strings")
+@click.option("--interface_exclude", "-s", type=str, multiple=True, help="List of interface name strings")
+@click.option("--methods_exclude", "-s", type=str, multiple=True, help="List of method name strings")
+@click.option("--properties_exclude", "-s", type=str, multiple=True, help="List of property name strings")
 def parse(file_path, output_path, class_exclude, interface_exclude, methods_exclude, properties_exclude):
     if file_path is None:
         raise Exception("file_path is required")
@@ -179,21 +179,19 @@ def parse(file_path, output_path, class_exclude, interface_exclude, methods_excl
     for part in parsed.body:
         if isinstance(part, ast.ClassDef):
             ret.append(CodeGenElemData("class", generate_elem_from_class(part, context)))
-        if isinstance(part, ast.alias):
-            pass
 
     # write ret to tmp.json
     with open(output_path, "w") as file:
         json.dump({"root": [x.to_dict() for x in ret]}, file, indent=2)
 
 
-# if __name__ == "__main__":
-#     parse()
-parse(
-    "/Users/jenkins/projects/gamium/client/python/gamium/gamium/locator/locator.py",
-    "/Users/jenkins/projects/gamium/utils/typescript/docs-api-gen/tmp.json",
-    [],
-    [],
-    [],
-    [],
-)
+if __name__ == "__main__":
+    parse()
+# parse(
+#     "/Users/jenkins/projects/gamium/client/python/gamium/gamium/locator/locator.py",
+#     "/Users/jenkins/projects/gamium/utils/typescript/docs-api-gen/tmp.json",
+#     [],
+#     [],
+#     [],
+#     [],
+# )

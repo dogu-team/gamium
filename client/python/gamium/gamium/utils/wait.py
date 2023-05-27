@@ -15,11 +15,11 @@ def wait_generic(client: IGamiumClient, condition: WaitCondition[T], options: Wa
     def call_condition(condition: WaitCondition[T]):
         if callable(condition):
             signature = inspect.signature(condition)
-            parameters = signature.parameters
-            if len(parameters) > 0:
-                return condition(client)
+            parameter_count = len(signature.parameters)
+            if parameter_count > 0:
+                return condition(client)  # type: ignore # no way to let mypy know that this has parameter
             else:
-                return condition()
+                return condition()  # type: ignore # no way to let mypy know that this hasn't  parameter
         else:
             return condition.func(client)
 

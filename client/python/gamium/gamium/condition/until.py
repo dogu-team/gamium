@@ -1,5 +1,5 @@
-from typing import List, Optional
-from gamium.protocol.generated.Types import ErrorCode
+from typing import List
+from gamium.protocol.generated.Types.ErrorCode import ErrorCode
 from gamium.condition.condition import (
     Condition,
     ObjectInfoCondition,
@@ -33,17 +33,19 @@ class Until:
 
     @staticmethod
     def element_interactable(
-        param: T,  # UIElement
+        param: T,  # type : UIElement
         options: QueryObjectInteractableOptions = QueryObjectInteractableOptions(),
-    ) -> Condition[T]:  # Condition[UIElement]
+    ) -> Condition[T]:  # type : Condition[UIElement]
+        # type: ignore
+        # to prevent circular import, UIElement is not imported. so ignore type check
         def func(client: IGamiumClient) -> T:
-            res = param.is_interactable(options)
+            res = param.is_interactable(options)  # type: ignore # same reason as above
             if True == res:
                 return param
             else:
                 raise GamiumError(
                     ErrorCode.ObjectIsNotInteractable,
-                    f"object not interactable. path: {param.info.path}",
+                    f"object not interactable. path: {param.info.path}",  # type: ignore # same reason as above
                 )
 
-        return Condition[T](f"locate element gameObject {param.info.path}", func)
+        return Condition[T](f"locate element gameObject {param.info.path}", func)  # type: ignore # same reason as above

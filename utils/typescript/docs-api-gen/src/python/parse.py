@@ -50,11 +50,13 @@ def generate_elem_from_class(class_def: ast.ClassDef, context: GenerateContext) 
     functions = [func for func in class_def.body if isinstance(func, ast.FunctionDef)]
     functions = [x for x in functions if 0 < len(x.name)]
     functions.sort(key=lambda func: func.name)
+    function_elems = []
+    for func in functions:
+        function_elems.extend(generate_elem_from_function(func, context))
 
-    if len(functions) > 0:
+    if len(function_elems) > 0:
         ret.append(CodeGenElem(TagsMap.H2, "Methods"))
-        for func in functions:
-            ret.extend(generate_elem_from_function(func, context))
+        ret.extend(function_elems)
     return ret
 
 

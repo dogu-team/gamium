@@ -12,12 +12,12 @@ const repoRootPath = path.resolve(__dirname, '..', '..', '..', '..');
 const docsPath = path.resolve(repoRootPath, 'docs');
 const docsApiPath = path.resolve(docsPath, 'docs/api/client/python');
 const projectPath = path.resolve(repoRootPath, 'client', 'python', 'gamium');
-const gamiumProtocolPath = path.resolve(projectPath, 'gamium/protocol/generated/gamium/protocol');
+const gamiumProtocolPath = path.resolve(projectPath, 'gamium/protocol/generated');
 const classesMdxDirectory = path.resolve(docsApiPath, 'classes');
 const typesMdxDirectory = path.resolve(docsApiPath, 'types');
 const enumsMdxDirectory = path.resolve(docsApiPath, 'enums');
 
-const optionFiles = fs.readdirSync(path.resolve(projectPath, 'gamium/options')).filter((file) => file !== 'index.ts');
+const optionFiles = fs.readdirSync(path.resolve(projectPath, 'gamium/options')).filter((file) => file !== '__init__.py' && file.endsWith('.py'));
 
 const fileToMdList: FileToMd[] = [
   {
@@ -27,13 +27,86 @@ const fileToMdList: FileToMd[] = [
       propertiesExclude: ['logger'],
     },
   },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/ui/ui.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/object/player.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/object/ui_element.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/actions/action_chain.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/locator/locator.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/locator/rpc_locator.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/locator/by.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/actions/key_by.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/locator/rpc_by.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/condition/until.py'),
+  },
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/errors/gamium_error.py'),
+  },
+
+  ...optionFiles.map((file) => ({
+    codeFilePath: path.resolve(projectPath, 'gamium/options', file),
+  })),
+  {
+    codeFilePath: path.resolve(projectPath, 'gamium/protocol/types.py'),
+    option: {
+      classExclude: ['ObjectHierarchyNode', 'ObjectsHierarchy', 'InspectObjectOnScreenResult', 'HelloResult'],
+    },
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Types/ObjectType.py'),
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Types/Unity/UnityKeyboard.py'),
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Types/Unity/UnityKeyCode.py'),
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Types/Unity/UnityKeyCode.py'),
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Types/ObjectLocatorBy.py'),
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Types/InputKeyBy.py'),
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Types/ExecuteRpcBy.py'),
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Packets/Actions/MovePlayerBy.py'),
+  },
+  {
+    codeFilePath: path.resolve(gamiumProtocolPath, 'Types/ErrorCode.py'),
+  },
 ];
 
 const typeToExternalLink: Map<string, string> = new Map([
-  ['str', 'https://docs.python.org/ko/3.9/library/stdtypes.html?highlight=str#str'],
-  ['Optional', 'https://docs.python.org/ko/3.9/library/typing.html?highlight=optional#typing.Optional'],
-  ['List', 'https://docs.python.org/ko/3.9/library/typing.html?highlight=optional#typing.List'],
-  ['T', 'https://docs.python.org/ko/3.9/library/typing.html?highlight=optional#typing.TypeVar'],
+  ['int', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex'],
+  ['str', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex'],
+  ['bool', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#boolean-values'],
+  ['Optional', 'https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.Optional'],
+  ['Union', 'https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.Union'],
+  ['List', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range'],
+  ['T', 'https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.TypeVar'],
 ]);
 
 (async () => {

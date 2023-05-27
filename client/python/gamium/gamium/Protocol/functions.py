@@ -1,10 +1,10 @@
-from typing import Dict, TypeVar
+from typing import Dict
+
+from gamium.utils.generics import T
 
 
 # def refresh_object_info(client: GamiumClient, info: ObjectInfo):
 #     self._info = self._client.find(By.path(self._info.path))
-
-T = TypeVar("T")
 
 
 def get_property_lowered_to_origin_keys_map(type: T) -> Dict[str, str]:

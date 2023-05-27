@@ -5,9 +5,9 @@ from gamium.protocol.generated.Packets.Actions.MovePlayerBy import MovePlayerBy
 class MovePlayerOptions:
     def __init__(
         self,
-        by: Optional[int] = MovePlayerBy.KeyPress,
-        epsilon: Optional[float] = 0.6,
-        check_height: Optional[bool] = False,
+        by: int = MovePlayerBy.KeyPress,
+        epsilon: float = 0.6,
+        check_height: bool = False,
     ):
         self.by = by
         self.epsilon = epsilon

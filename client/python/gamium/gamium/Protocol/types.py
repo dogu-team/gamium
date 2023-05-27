@@ -6,7 +6,7 @@ from gamium.protocol.generated.Types.InputKeyBy import InputKeyBy
 from gamium.protocol.generated.Types.InputKeyPressType import InputKeyPressType
 from gamium.protocol.generated.Types.InputMouseButtonCode import InputMouseButtonCode
 from gamium.protocol.generated.Types.InputMousePressType import InputMousePressType
-from gamium.protocol.generated.Packets.Actions import MovePlayerBy
+from gamium.protocol.generated.Packets.Actions.MovePlayerBy import MovePlayerBy
 from gamium.protocol.generated.Types.ObjectLocatorBy import ObjectLocatorBy
 from gamium.protocol.generated.Types.Unity.UnityKeyboard import UnityKeyboard
 from gamium.protocol.generated.Types.Unity.UnityKeyCode import UnityKeyCode
@@ -18,8 +18,12 @@ class Vector2:
         self.y = y
 
     @staticmethod
-    def zero():
+    def zero() -> "Vector2":
         return Vector2(0, 0)
+
+    @staticmethod
+    def from_vector3(vector3: "Vector3") -> "Vector2":
+        return Vector2(vector3.x, vector3.y)
 
 
 class Vector3:
@@ -29,7 +33,7 @@ class Vector3:
         self.z = z
 
     @staticmethod
-    def zero():
+    def zero() -> "Vector3":
         return Vector3(0, 0, 0)
 
 
@@ -41,7 +45,7 @@ class Vector4:
         self.w = w
 
     @staticmethod
-    def zero():
+    def zero() -> "Vector4":
         return Vector4(0, 0, 0, 0)
 
 

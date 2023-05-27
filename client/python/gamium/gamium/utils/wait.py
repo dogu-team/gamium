@@ -1,17 +1,14 @@
 import inspect
 from datetime import datetime
 import time
-from typing import TypeVar
-from gamium.protocol.generated.Types import ErrorCode
+from gamium.protocol.generated.Types.ErrorCode import ErrorCode
 from gamium.condition.condition import Condition
 from gamium.condition.wait_condition import WaitCondition
 from gamium.errors.gamium_error import GamiumError
 from gamium.igamium_client import IGamiumClient
 from gamium.options.wait_options import WaitOptions
+from gamium.utils.generics import T
 from gamium.utils.time import current_time_ms
-
-
-T = TypeVar("T")
 
 
 def wait_generic(client: IGamiumClient, condition: WaitCondition[T], options: WaitOptions) -> T:
@@ -46,3 +43,5 @@ def wait_generic(client: IGamiumClient, condition: WaitCondition[T], options: Wa
         remain_interval_ms = options.interval_ms - (current_time_ms() - last_call_time)
         if 1 < remain_interval_ms:
             time.sleep(remain_interval_ms / 1000)
+
+    raise GamiumError(ErrorCode.Timeout, "timeout")

@@ -1,4 +1,4 @@
-from typing import Generic, List, Optional, TypeVar
+from typing import Generic, List
 import flatbuffers
 from gamium.protocol.generated.Packets.ActionParam import ActionParam
 from gamium.protocol.generated.Types.InputMousePressType import InputMousePressType
@@ -45,8 +45,7 @@ from gamium.errors.gamium_error import GamiumError
 from gamium.locator.locator import Locator
 from gamium.gamium_service import GamiumService
 from gamium.protocol.types import Vector2, Vector3
-
-P = TypeVar("P")
+from gamium.utils.generics import P
 
 
 class ActionPacketTypes(Generic[P]):
@@ -112,7 +111,7 @@ def create_app_quit(exit_code: int, delay_ms: int) -> ActionPacketTypes[AppQuitP
 class ActionChain:
     def __init__(self, service: GamiumService) -> None:
         self._service = service
-        self.actions = []
+        self.actions: List[ActionPacketTypes] = []
 
     def __add_action(self, action: ActionPacketTypes):
         self.actions.append(action)
@@ -124,7 +123,7 @@ class ActionChain:
     def click(
         self,
         position: Vector2,
-        options: Optional[ActionClickOptions] = ActionClickOptions(),
+        options: ActionClickOptions = ActionClickOptions(),
     ):
         fb_position = Vector2T()
         fb_position.x = position.x
@@ -146,7 +145,7 @@ class ActionChain:
     def move(
         self,
         position: Vector2,
-        options: Optional[ActionMoveOptions] = ActionMoveOptions(),
+        options: ActionMoveOptions = ActionMoveOptions(),
     ):
         fb_position = Vector2T()
         fb_position.x = position.x
@@ -166,7 +165,7 @@ class ActionChain:
         self,
         from_position: Vector2,
         to_position: Vector2,
-        options: Optional[ActionDragOptions] = ActionDragOptions(),
+        options: ActionDragOptions = ActionDragOptions(),
     ):
         fb_from_position = Vector2T()
         fb_from_position.x = from_position.x
@@ -219,7 +218,7 @@ class ActionChain:
         self,
         position: Vector2,
         delta: Vector2,
-        options: Optional[ActionScrollOptions] = ActionScrollOptions(),
+        options: ActionScrollOptions = ActionScrollOptions(),
     ):
         fb_position = Vector2T()
         fb_position.x = position.x
@@ -240,7 +239,7 @@ class ActionChain:
         self.__add_action(create_sleep(options.duration_ms))
         return self
 
-    def send_keys(self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()):
+    def send_keys(self, by_list: List[KeyBy], options: SendKeyOptions = SendKeyOptions()):
         codes = []
         for by in by_list:
             codes.append(by.str)
@@ -256,7 +255,7 @@ class ActionChain:
         self,
         locator: Locator,
         text: str,
-        options: Optional[SetTextOptions] = SetTextOptions(),
+        options: SetTextOptions = SetTextOptions(),
     ):
         if locator.by != ObjectLocatorBy.Path:
             raise GamiumError(ErrorCode.InvalidParameter, "setText only support Path locator")
@@ -270,7 +269,7 @@ class ActionChain:
         player_locator: Locator,
         camera_locator: Locator,
         dest: Vector3,
-        options: Optional[MovePlayerOptions] = MovePlayerOptions(),
+        options: MovePlayerOptions = MovePlayerOptions(),
     ):
         fb_dest = Vector3T()
         fb_dest.x = dest.x
@@ -293,7 +292,7 @@ class ActionChain:
         self.__add_action(create_sleep(33))
         return self
 
-    def app_quit(self, exit_code: Optional[int] = 0, delay_ms: Optional[int] = 10):
+    def app_quit(self, exit_code: int = 0, delay_ms: int = 10):
         self.__add_action(create_app_quit(exit_code, delay_ms))
         return self
 
@@ -325,19 +324,19 @@ class ActionChain:
     def __check_action_return(self, results: List[ActionResultT]):
         for i in range(len(results)):
             result = results[i]
-            if result == None:
+            if result is None:
                 raise GamiumError(
-                    ErrorCode.ActionError,
+                    ErrorCode.InternalError,
                     f"ActionChains.perform action {i} return undefined",
                 )
 
-            if result.error == None:
+            if result.error is None:
                 raise GamiumError(
-                    ErrorCode.ActionError,
+                    ErrorCode.InternalError,
                     "ActionChains.perform. action failed. error is None",
                 )
             if result.error.code != ErrorCode.None_:
                 raise GamiumError(
-                    ErrorCode.ActionError,
-                    "ActionChains.perform. action failed. error code: " + str(result.resultCode) + " error message: " + result.resultMessage,
+                    ErrorCode.InternalError,
+                    "ActionChains.perform. action failed. error code: " + str(result.error.code) + " error message: " + result.error.reason,
                 )

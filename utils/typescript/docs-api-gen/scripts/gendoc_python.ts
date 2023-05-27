@@ -23,7 +23,7 @@ const fileToMdList: FileToMd[] = [
   {
     codeFilePath: path.resolve(projectPath, 'gamium/gamium_client.py'),
     option: {
-      methodsExclude: ['connect', 'disconnect', 'inspector', 'hello', 'sleep'],
+      methodsExclude: ['connect', 'disconnect', 'inspector', 'hello', 'sleep', 'logger'],
       propertiesExclude: ['logger'],
     },
   },
@@ -103,9 +103,12 @@ const typeToExternalLink: Map<string, string> = new Map([
   ['int', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex'],
   ['str', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex'],
   ['bool', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#boolean-values'],
+  ['List', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range'],
+  ['Tuple', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range'],
+  ['None', 'https://docs.python.org/3.9/library/constants.html?highlight=none#None'],
   ['Optional', 'https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.Optional'],
   ['Union', 'https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.Union'],
-  ['List', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range'],
+  ['Any', 'https://docs.python.org/3.9/library/typing.html?highlight=any#typing.Any'],
   ['T', 'https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.TypeVar'],
 ]);
 

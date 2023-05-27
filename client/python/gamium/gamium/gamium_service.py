@@ -1,7 +1,7 @@
 import socket
 import time
 import traceback
-from typing import Generic, List, Optional, TypeVar
+from typing import Generic, List, Optional
 import flatbuffers
 from gamium.protocol.generated.Types.ErrorCode import ErrorCode
 from gamium.protocol.generated.Param import Param
@@ -44,10 +44,7 @@ from gamium.protocol.generated.Types.ObjectLocator import ObjectLocatorT
 
 from gamium.internal import Logger, SizePrefixedRecvQueue
 from gamium.errors.gamium_error import GamiumError
-
-
-P = TypeVar("P")
-R = TypeVar("R")
+from gamium.utils.generics import P, R
 
 
 class PacketTypes(Generic[P, R]):
@@ -130,9 +127,10 @@ class GamiumService:
 
         for i in range(try_count):
             try:
+                self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self._socket.connect((self._host, self._port))
             except Exception as e:
-                self._logger.info(f"Failed to connect to {self._host}:{self._port}. countt: ({i + 1}/{try_count}), error: {e}")
+                self._logger.info(f"Failed to connect to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}")
                 time.sleep(1)
                 continue
 
@@ -151,14 +149,14 @@ class GamiumService:
     def disconnect(self):
         self._socket.close()
 
-    def request(self, packet: PacketTypes[P, R], timeout_ms: Optional[int] = 0) -> R:
+    def request(self, packet: PacketTypes[P, R], timeout_ms: int = 0) -> R:
         if 0 == timeout_ms:
             timeout_ms = self._request_timeout_ms
 
         req = RequestT()
         req.seq = self.__get_seq()
         req.paramType = packet.param_type
-        req.param = packet.param
+        req.param = packet.param  # type: ignore  # Ignore assignment error on this line
 
         builder = flatbuffers.Builder()
         request_offset = req.Pack(builder)
@@ -198,7 +196,7 @@ class GamiumService:
                 ErrorCode.InternalError,
                 f"Invalid response seq: {response.seq} != {req.seq}",
             )
-        if None == response.error:
+        if response.error is None:
             raise GamiumError(ErrorCode.InternalError, f"request response error is null: {response.error}")
         if response.error.code != ErrorCode.None_:
             reason = response.error.reason.decode("utf-8")

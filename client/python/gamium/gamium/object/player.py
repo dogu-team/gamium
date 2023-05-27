@@ -27,7 +27,7 @@ class Player:
         self,
         camera_locator: Locator,
         dest: Union[Vector3, Locator],
-        options: Optional[MovePlayerOptions] = MovePlayerOptions(),
+        options: MovePlayerOptions = MovePlayerOptions(),
     ) -> None:
         self._client._logger.info(f"Player({self.info.path}).move. dest: {dest}")
 
@@ -39,7 +39,7 @@ class Player:
 
         self._client.actions().move_player(By.path(self.info.path), camera_locator, dest_pos, options).perform()
 
-    def is_near(self, other_locator: Locator, epsilon: Optional[int] = 10):
+    def is_near(self, other_locator: Locator, epsilon: int = 10):
         self._client._logger.info(f"Player({self.info.path}).is_near. other_locator: {other_locator.str}")
 
         self.refresh()

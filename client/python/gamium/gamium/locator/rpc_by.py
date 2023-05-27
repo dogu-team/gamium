@@ -4,7 +4,7 @@ from gamium.protocol.generated.Types.ExecuteRpcBy import ExecuteRpcBy
 
 
 class RpcBy:
-    def __init__(self, by: int, class_name: str, target_name: str, params: Tuple[Any]):
+    def __init__(self, by: int, class_name: str, target_name: str, params: Tuple[Any, ...]):
         self.by = by  # gamium.protocol.generated.Types.ExecuteRpcBy
         self.class_name = class_name
         self.target_name = target_name

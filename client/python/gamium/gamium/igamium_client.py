@@ -1,4 +1,5 @@
-from typing import List, Optional, TypeVar
+from typing import List, Optional
+from gamium.internal.logger import Logger
 from gamium.protocol.types import ObjectInfo
 from gamium.condition.wait_condition import WaitCondition
 from gamium.options.wait_options import WaitOptions
@@ -8,17 +9,17 @@ from gamium.locator.locator import Locator
 from gamium.options import FindObjectOptions, SendKeyOptions
 from abc import *
 
-T = TypeVar("T")
+from gamium.utils.generics import T
 
 
 # used internally to prevent circular imports
 class IGamiumClient(metaclass=ABCMeta):
     @abstractmethod
-    def find(self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()) -> ObjectInfo:
+    def find(self, locator: Locator, options: FindObjectOptions = FindObjectOptions()) -> ObjectInfo:
         pass
 
     @abstractmethod
-    def finds(self, locator: Locator, options: Optional[FindObjectOptions] = FindObjectOptions()) -> List[ObjectInfo]:
+    def finds(self, locator: Locator, options: FindObjectOptions = FindObjectOptions()) -> List[ObjectInfo]:
         pass
 
     @abstractmethod
@@ -26,9 +27,14 @@ class IGamiumClient(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def send_key(self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
+    def send_key(self, by: KeyBy, options: SendKeyOptions = SendKeyOptions()) -> None:
         pass
 
     @abstractmethod
-    def wait(condition: WaitCondition[T], options: Optional[WaitOptions] = WaitOptions()) -> T:
+    def wait(self, condition: WaitCondition[T], options: WaitOptions = WaitOptions()) -> T:
+        pass
+
+    @property
+    @abstractmethod
+    def _logger(self) -> Logger:
         pass

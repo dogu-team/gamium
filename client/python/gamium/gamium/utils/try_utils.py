@@ -1,20 +1,26 @@
-from typing import Callable, Generic, TypeVar
+from typing import Callable, Generic, Union
 
 from gamium.errors.gamium_error import GamiumError
-
-
-T = TypeVar("T")
+from gamium.utils.generics import T
 
 
 def tryify(func: Callable[[], T]) -> "TryResult[T]":
     try:
-        return TryResult(True, func(), GamiumError.default())
+        return TryValueResult(func())
     except GamiumError as e:
-        return TryResult(False, None, e)
+        return TryErrorResult(e)
 
 
-class TryResult(Generic[T]):
-    def __init__(self, success: bool, value: T, error: GamiumError):
-        self.success = success
+class TryValueResult(Generic[T]):
+    def __init__(self, value: T):
+        self.success = True
         self.value = value
+
+
+class TryErrorResult:
+    def __init__(self, error: Exception):
+        self.success = False
         self.error = error
+
+
+TryResult = Union[TryValueResult[T], TryErrorResult]

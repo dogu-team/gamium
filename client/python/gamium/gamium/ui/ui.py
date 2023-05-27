@@ -41,8 +41,8 @@ class UI:
     def click(
         self,
         locator: Locator,
-        find_options: Optional[FindObjectOptions] = FindObjectOptions(),
-        click_options: Optional[ActionClickOptions] = ActionClickOptions(),
+        find_options: FindObjectOptions = FindObjectOptions(),
+        click_options: ActionClickOptions = ActionClickOptions(),
     ):
         elem = self.find(locator, find_options)
         self._client.wait(Until.element_interactable(elem))
@@ -52,23 +52,26 @@ class UI:
         self,
         locator: Locator,
         to: Union[Locator, Vector2],
-        find_options: Optional[FindObjectOptions] = FindObjectOptions(),
-        drag_options: Optional[ActionDragOptions] = ActionDragOptions(),
+        find_options: FindObjectOptions = FindObjectOptions(),
+        drag_options: ActionDragOptions = ActionDragOptions(),
     ):
         elem = self.find(locator, find_options)
         self._client.wait(Until.element_interactable(elem))
-        to_pos = to
+        to_pos = Vector2.zero()
         if isinstance(to, Locator):
             to_elem = self.find(to)
-            to_pos = to_elem.info.screen_position
-        self._client.actions().drag(elem.info.screen_position, to_pos, drag_options).perform()
+            to_pos = Vector2.from_vector3(to_elem.info.screen_position)
+        if isinstance(to, Vector2):
+            to_pos = to
+        elem_pos = Vector2.from_vector3(elem.info.screen_position)
+        self._client.actions().drag(elem_pos, to_pos, drag_options).perform()
 
     def scroll(
         self,
         locator: Locator,
         delta: Vector2,
-        find_options: Optional[FindObjectOptions] = FindObjectOptions(),
-        scroll_options: Optional[ActionScrollOptions] = ActionScrollOptions(),
+        find_options: FindObjectOptions = FindObjectOptions(),
+        scroll_options: ActionScrollOptions = ActionScrollOptions(),
     ):
         elem = self.find(locator, find_options)
         self._client.wait(Until.element_interactable(elem))
@@ -78,7 +81,7 @@ class UI:
         self,
         locator: Locator,
         text: str,
-        find_options: Optional[FindObjectOptions] = FindObjectOptions(),
+        find_options: FindObjectOptions = FindObjectOptions(),
     ):
         elem = self.find(locator, find_options)
         self._client.wait(Until.element_interactable(elem))
@@ -87,7 +90,7 @@ class UI:
     def get_text(
         self,
         locator: Locator,
-        find_options: Optional[FindObjectOptions] = FindObjectOptions(),
+        find_options: FindObjectOptions = FindObjectOptions(),
     ):
         elem = self.find(locator, find_options)
         self._client.wait(Until.element_interactable(elem))

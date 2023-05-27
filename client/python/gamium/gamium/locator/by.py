@@ -2,7 +2,7 @@ from gamium.protocol.generated.Types.ObjectLocatorBy import ObjectLocatorBy
 
 
 class By:
-    def __init__(self, by: ObjectLocatorBy, str: str):
+    def __init__(self, by: int, str: str):
         self.by = by
         self.str = str
 

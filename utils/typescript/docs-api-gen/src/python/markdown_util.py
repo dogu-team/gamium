@@ -1,11 +1,12 @@
 import re
 
 
-def make_typed_code_block(param):
+def make_typed_code_block(param: str):
     ret = ""
     is_bracket_open = False
     param = param.replace("\r", "")
     param = param.replace("\n", "")
+    param = param.replace('"', "")
     param = re.sub(r"\s+", " ", param)
     for elem in param:
         if not elem.isalnum():

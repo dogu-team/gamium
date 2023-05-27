@@ -47,6 +47,13 @@ def generate_elem_from_class(class_def: ast.ClassDef, context: GenerateContext) 
     ret.append(CodeGenElem(TagsMap.H1, class_def.name))
     ret.append(CodeGenElem(TagsMap.DIVIDER, ""))
 
+    init_function = [func for func in class_def.body if isinstance(func, ast.FunctionDef) and func.name == "__init__"]
+    if 0 < len(init_function):
+        property_elems = generate_elem_from_init_function(init_function[0], context)
+        if 0 < len(property_elems):
+            ret.append(CodeGenElem(TagsMap.H2, "Properties"))
+            ret.extend(property_elems)
+
     functions = [func for func in class_def.body if isinstance(func, ast.FunctionDef)]
     functions = [x for x in functions if 0 < len(x.name)]
     functions.sort(key=lambda func: func.name)
@@ -57,6 +64,7 @@ def generate_elem_from_class(class_def: ast.ClassDef, context: GenerateContext) 
     if len(function_elems) > 0:
         ret.append(CodeGenElem(TagsMap.H2, "Methods"))
         ret.extend(function_elems)
+
     return ret
 
 
@@ -87,6 +95,7 @@ def generate_elem_from_function(func_def: ast.FunctionDef, context: GenerateCont
     if 0 < len(return_elems):
         ret.append(CodeGenElem(TagsMap.H5, "Return"))
         ret.extend(return_elems)
+
     ret.append(CodeGenElem(TagsMap.DIVIDER, ""))
 
     return ret
@@ -104,8 +113,8 @@ def generate_elem_from_return(expr: ast.expr | None, context: GenerateContext) -
     if None == expr:
         return []
     if isinstance(expr, ast.Constant):
-        if expr.kind == None:
-            return []
+        expr_text = context.lines[expr.lineno - 1][expr.col_offset : expr.end_col_offset]
+        return [CodeGenElem(TagsMap.UL, make_typed_code_block(expr_text))]
     if isinstance(expr, ast.Name):
         return [CodeGenElem(TagsMap.UL, make_typed_code_block(expr.id))]
     if isinstance(expr, ast.Subscript):
@@ -115,13 +124,44 @@ def generate_elem_from_return(expr: ast.expr | None, context: GenerateContext) -
     raise Exception("Not implemented")
 
 
-@click.command()
-@click.option("--file_path", default=None, type=str, help="Path to the file to parse")
-@click.option("--output_path", default=None, type=str, help="Path to the file to parse")
-@click.option("--class_exclude", "-s", type=str, multiple=True, help="List of class name strings")
-@click.option("--interface_exclude", "-s", type=str, multiple=True, help="List of interface name strings")
-@click.option("--methods_exclude", "-s", type=str, multiple=True, help="List of method name strings")
-@click.option("--properties_exclude", "-s", type=str, multiple=True, help="List of property name strings")
+def generate_elem_from_init_function(func_def: ast.FunctionDef, context: GenerateContext) -> List[CodeGenElem]:
+    if func_def.name != "__init__":
+        return []
+    ret: List[CodeGenElem] = []
+
+    args = [arg for arg in func_def.args.args if arg.arg != "self"]
+    assigns = [assign for assign in func_def.body if isinstance(assign, ast.Assign)]
+    for arg in args:
+        match_assign = [assign for assign in assigns if isinstance(assign.targets[0], ast.Attribute) and assign.targets[0].attr == arg.arg]
+        if 0 < len(match_assign):
+            ret.extend(generate_elem_from_assign(match_assign[0], arg, context))
+
+    return ret
+
+
+def generate_elem_from_assign(assign_def: ast.Assign, arg_def: ast.arg, context: GenerateContext) -> List[CodeGenElem]:
+    ret: List[CodeGenElem] = []
+    if len(assign_def.targets) < 1:
+        return []
+    attr: ast.Attribute = assign_def.targets[0]
+    if attr.value.id != "self":
+        return []
+    if attr.attr.startswith("_"):
+        return []
+    annotation = arg_def.annotation
+    annotation_text = context.lines[annotation.lineno - 1][annotation.col_offset : annotation.end_col_offset]
+    ret.append(CodeGenElem(TagsMap.H4, f"{attr.attr} {make_typed_code_block(annotation_text)}"))
+    ret.append(CodeGenElem(TagsMap.DIVIDER, ""))
+    return ret
+
+
+# @click.command()
+# @click.option("--file_path", default=None, type=str, help="Path to the file to parse")
+# @click.option("--output_path", default=None, type=str, help="Path to the file to parse")
+# @click.option("--class_exclude", "-s", type=str, multiple=True, help="List of class name strings")
+# @click.option("--interface_exclude", "-s", type=str, multiple=True, help="List of interface name strings")
+# @click.option("--methods_exclude", "-s", type=str, multiple=True, help="List of method name strings")
+# @click.option("--properties_exclude", "-s", type=str, multiple=True, help="List of property name strings")
 def parse(file_path, output_path, class_exclude, interface_exclude, methods_exclude, properties_exclude):
     if file_path is None:
         raise Exception("file_path is required")
@@ -139,6 +179,7 @@ def parse(file_path, output_path, class_exclude, interface_exclude, methods_excl
     for part in parsed.body:
         if isinstance(part, ast.ClassDef):
             ret.append(CodeGenElemData("class", generate_elem_from_class(part, context)))
+        if isinstance(part, ast.alias):
             pass
 
     # write ret to tmp.json
@@ -146,5 +187,13 @@ def parse(file_path, output_path, class_exclude, interface_exclude, methods_excl
         json.dump({"root": [x.to_dict() for x in ret]}, file, indent=2)
 
 
-if __name__ == "__main__":
-    parse()
+# if __name__ == "__main__":
+#     parse()
+parse(
+    "/Users/jenkins/projects/gamium/client/python/gamium/gamium/locator/locator.py",
+    "/Users/jenkins/projects/gamium/utils/typescript/docs-api-gen/tmp.json",
+    [],
+    [],
+    [],
+    [],
+)

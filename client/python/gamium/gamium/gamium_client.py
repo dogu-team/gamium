@@ -1,8 +1,9 @@
 import functools
 import json
-from typing import List, Optional
+from typing import Any, List, Optional
 from gamium.condition.wait_condition import WaitCondition
 from gamium.options.wait_options import WaitOptions
+from gamium.utils.generics import T
 from gamium.utils.try_utils import TryResult, tryify
 from gamium.utils.wait import wait_generic
 from gamium.protocol.types import ObjectInfo
@@ -20,8 +21,6 @@ from gamium.errors.gamium_error import GamiumError
 from gamium.internal.logger import Logger
 from gamium.locator.locator import Locator
 
-T = TypeVar("T")
-
 
 class GamiumClient(IGamiumClient):
     def __init__(
@@ -29,9 +28,9 @@ class GamiumClient(IGamiumClient):
         host: str,
         port: int,
         request_timeout_ms: int = 50000,
-        printable: any = None,
+        printable: Any = None,
     ):
-        self._logger = Logger()
+        self.__internal_loger = Logger()
         if printable:
             self._logger.set_handler(printable)
         self._service = GamiumService(host, port, request_timeout_ms, self._logger)
@@ -55,17 +54,17 @@ class GamiumClient(IGamiumClient):
     def find(
         self,
         locator: Locator,
-        options: Optional[FindObjectOptions] = FindObjectOptions(),
+        options: FindObjectOptions = FindObjectOptions(),
     ) -> ObjectInfo:
         infos = self.finds(locator, options)
         if 0 == len(infos):
             raise GamiumError(
-                ErrorCode.NotFound,
+                ErrorCode.ObjectNotFound,
                 f"GamiumClient.find By: {locator.by}, str: {locator.str} not found",
             )
-        if None == infos[0]:
+        if infos[0] is None:
             raise GamiumError(
-                ErrorCode.NotFound,
+                ErrorCode.ObjectNotFound,
                 f"GamiumClient.find By: {locator.by}, str: {locator.str} not found",
             )
         return infos[0]
@@ -73,7 +72,7 @@ class GamiumClient(IGamiumClient):
     def finds(
         self,
         locator: Locator,
-        options: Optional[FindObjectOptions] = FindObjectOptions(),
+        options: FindObjectOptions = FindObjectOptions(),
     ) -> List[ObjectInfo]:
         self._logger.info(f"GamiumClient.finds By: {locator.by}, str: {locator.str}")
         if locator.str is None or 0 == len(locator.str):
@@ -110,18 +109,18 @@ class GamiumClient(IGamiumClient):
     def actions(self) -> ActionChain:
         return ActionChain(self._service)
 
-    def send_key(self, by: KeyBy, options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
+    def send_key(self, by: KeyBy, options: SendKeyOptions = SendKeyOptions()) -> None:
         self.send_keys([by], options)
 
-    def send_keys(self, by_list: List[KeyBy], options: Optional[SendKeyOptions] = SendKeyOptions()) -> None:
+    def send_keys(self, by_list: List[KeyBy], options: SendKeyOptions = SendKeyOptions()) -> None:
         self._logger.info(f"GamiumClient.send_keys {[by.str for by in by_list]}")
         self.actions().send_keys(by_list, options).perform()
 
     def execute_rpc(
         self,
         locator: RpcLocator,
-        option: Optional[ExecuteRpcOptions] = ExecuteRpcOptions(),
-    ) -> any:
+        option: ExecuteRpcOptions = ExecuteRpcOptions(),
+    ) -> Any:
         self._logger.info(f"GamiumClient.execute_rpc By: {locator.by}, class: {locator.class_name}, target: {locator.target_name}")
         params: List[str] = []
         for param in locator.params:
@@ -139,7 +138,7 @@ class GamiumClient(IGamiumClient):
     def player(
         self,
         locator: Locator,
-        options: Optional[FindObjectOptions] = FindObjectOptions(),
+        options: FindObjectOptions = FindObjectOptions(),
     ) -> Player:
         info = self.find(locator, options)
         return Player(self, self._service, info)
@@ -161,13 +160,17 @@ class GamiumClient(IGamiumClient):
     def wait(
         self,
         condition: WaitCondition[T],
-        options: Optional[WaitOptions] = WaitOptions(),
+        options: WaitOptions = WaitOptions(),
     ) -> T:
         return wait_generic(self, condition, options)
 
     def try_wait(
         self,
         condition: WaitCondition[T],
-        options: Optional[WaitOptions] = WaitOptions(),
+        options: WaitOptions = WaitOptions(),
     ) -> TryResult[T]:
         return tryify(functools.partial(self.wait, condition, options))
+
+    @property
+    def _logger(self) -> Logger:
+        return self.__internal_loger

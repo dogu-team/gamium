@@ -19,7 +19,6 @@ with open(os.path.join(dirpath, "..", "res/markdown-tags.json"), "r") as file:
     tags_json = json.load(file)
 
 TagsMap = DotDict(tags_json)
-print(f"Markdown Tags: {TagsMap}")
 
 
 def parse_tag(prefix, verbose):

@@ -101,6 +101,7 @@ const fileToMdList: FileToMd[] = [
 
 const typeToExternalLink: Map<string, string> = new Map([
   ['int', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex'],
+  ['float', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex'],
   ['str', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex'],
   ['bool', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#boolean-values'],
   ['List', 'https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range'],

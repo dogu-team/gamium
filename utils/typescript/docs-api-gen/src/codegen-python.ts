@@ -58,7 +58,6 @@ export class CodeGenPython {
 }
 
 async function exec(command: string): Promise<void> {
-  console.log(command);
   const proc = child_process.exec(command);
   proc.stdout?.pipe(process.stdout);
   proc.stderr?.pipe(process.stderr);

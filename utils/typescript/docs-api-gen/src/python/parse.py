@@ -155,6 +155,18 @@ def generate_elem_from_assign(assign_def: ast.Assign, arg_def: ast.arg, context:
     return ret
 
 
+def generate_elem_from_type_alias(left: ast.Name, right: ast.Name, context: GenerateContext) -> List[CodeGenElem]:
+    if left.id in context.option.class_excludes:
+        return []
+
+    ret: List[CodeGenElem] = []
+    ret.append(CodeGenElem(TagsMap.H1, left.id))
+    ret.append(CodeGenElem(TagsMap.DIVIDER, ""))
+
+    ret.append(CodeGenElem(TagsMap.H4, f"{make_typed_code_block(right.id)}"))
+    return ret
+
+
 @click.command()
 @click.option("--file_path", default=None, type=str, help="Path to the file to parse")
 @click.option("--output_path", default=None, type=str, help="Path to the file to parse")
@@ -166,12 +178,6 @@ def parse(file_path, output_path, class_exclude, interface_exclude, methods_excl
     if file_path is None:
         raise Exception("file_path is required")
 
-    print(f"file_path: {file_path}")
-    print(f"class_exclude: {class_exclude}")
-    print(f"interface_exclude: {interface_exclude}")
-    print(f"methods_exclude: {methods_exclude}")
-    print(f"properties_exclude: {properties_exclude}")
-
     contents = open(file_path).read()
     context: GenerateContext = GenerateContext(contents, GenerateOption(class_exclude, interface_exclude, methods_exclude, properties_exclude))
     parsed = ast.parse(contents)
@@ -179,6 +185,14 @@ def parse(file_path, output_path, class_exclude, interface_exclude, methods_excl
     for part in parsed.body:
         if isinstance(part, ast.ClassDef):
             ret.append(CodeGenElemData("class", generate_elem_from_class(part, context)))
+        elif isinstance(part, ast.Assign):
+            if isinstance(part.targets[0], ast.Name) and isinstance(part.value, ast.Name):
+                left: ast.Name = part.targets[0]
+                right: ast.Name = part.value
+                # check left and right startswith upper case
+                if left.id[0].isupper() and right.id[0].isupper():
+                    ret.append(CodeGenElemData("class", generate_elem_from_type_alias(left, right, context)))
+            # pass
 
     # write ret to tmp.json
     with open(output_path, "w") as file:

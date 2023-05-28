@@ -117,9 +117,9 @@ const typeToExternalLink: Map<string, string> = new Map([
   const typeMdx = new CodeGenTypeMdxMapper([classesMdxDirectory, typesMdxDirectory, enumsMdxDirectory], typeToExternalLink);
   await typeMdx.parse();
   for (const fileToMd of fileToMdList) {
-    const ts = new CodeGenPython(fileToMd.codeFilePath, fileToMd.option);
+    const python = new CodeGenPython(fileToMd.codeFilePath, fileToMd.option);
 
-    const elemData = await ts.parse();
+    const elemData = await python.parse();
     for (const elemDatum of elemData) {
       const nodes = buildTree(elemDatum.elems);
       const category = mapCategory(elemDatum.category);

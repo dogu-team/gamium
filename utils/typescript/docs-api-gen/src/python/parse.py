@@ -47,6 +47,17 @@ def generate_elem_from_class(class_def: ast.ClassDef, context: GenerateContext) 
     ret.append(CodeGenElem(TagsMap.H1, class_def.name))
     ret.append(CodeGenElem(TagsMap.DIVIDER, ""))
 
+    functions = [func for func in class_def.body if isinstance(func, ast.FunctionDef)]
+    functions = [x for x in functions if 0 < len(x.name)]
+    functions.sort(key=lambda func: func.name)
+    function_elems = []
+    for func in functions:
+        function_elems.extend(generate_elem_from_function(func, context))
+
+    if len(function_elems) > 0:
+        ret.append(CodeGenElem(TagsMap.H2, "Methods"))
+        ret.extend(function_elems)
+
     init_function = [func for func in class_def.body if isinstance(func, ast.FunctionDef) and func.name == "__init__"]
     assigns = [assign for assign in class_def.body if isinstance(assign, ast.Assign)]
     property_elems = []
@@ -59,17 +70,6 @@ def generate_elem_from_class(class_def: ast.ClassDef, context: GenerateContext) 
         ret.append(CodeGenElem(TagsMap.H2, "Properties"))
         ret.extend(property_elems)
         ret.extend(assign_elems)
-
-    functions = [func for func in class_def.body if isinstance(func, ast.FunctionDef)]
-    functions = [x for x in functions if 0 < len(x.name)]
-    functions.sort(key=lambda func: func.name)
-    function_elems = []
-    for func in functions:
-        function_elems.extend(generate_elem_from_function(func, context))
-
-    if len(function_elems) > 0:
-        ret.append(CodeGenElem(TagsMap.H2, "Methods"))
-        ret.extend(function_elems)
 
     return ret
 

@@ -48,11 +48,17 @@ def generate_elem_from_class(class_def: ast.ClassDef, context: GenerateContext) 
     ret.append(CodeGenElem(TagsMap.DIVIDER, ""))
 
     init_function = [func for func in class_def.body if isinstance(func, ast.FunctionDef) and func.name == "__init__"]
+    assigns = [assign for assign in class_def.body if isinstance(assign, ast.Assign)]
+    property_elems = []
+    assign_elems = []
     if 0 < len(init_function):
         property_elems = generate_elem_from_init_function(init_function[0], context)
-        if 0 < len(property_elems):
-            ret.append(CodeGenElem(TagsMap.H2, "Properties"))
-            ret.extend(property_elems)
+    if 0 < len(assigns):
+        assign_elems = [x for assign in assigns for x in generate_elem_from_class_field(assign, context)]
+    if 0 < len(property_elems) or assign_elems:
+        ret.append(CodeGenElem(TagsMap.H2, "Properties"))
+        ret.extend(property_elems)
+        ret.extend(assign_elems)
 
     functions = [func for func in class_def.body if isinstance(func, ast.FunctionDef)]
     functions = [x for x in functions if 0 < len(x.name)]
@@ -155,6 +161,18 @@ def generate_elem_from_assign(assign_def: ast.Assign, arg_def: ast.arg, context:
     return ret
 
 
+def generate_elem_from_class_field(assign_def: ast.Assign, context: GenerateContext) -> List[CodeGenElem]:
+    if len(assign_def.targets) < 1:
+        return []
+    name: ast.Name = assign_def.targets[0]
+    if name.id.startswith("_"):
+        return []
+
+    ret: List[CodeGenElem] = []
+    ret.append(CodeGenElem(TagsMap.H4, f"{name.id}"))
+    return ret
+
+
 def generate_elem_from_type_alias(left: ast.Name, right: ast.Name, context: GenerateContext) -> List[CodeGenElem]:
     if left.id in context.option.class_excludes:
         return []
@@ -185,7 +203,7 @@ def parse(file_path, output_path, class_exclude, interface_exclude, methods_excl
     for part in parsed.body:
         if isinstance(part, ast.ClassDef):
             ret.append(CodeGenElemData("class", generate_elem_from_class(part, context)))
-        elif isinstance(part, ast.Assign):
+        elif isinstance(part, ast.Assign):  # type alias ( ex. Locator = By )
             if isinstance(part.targets[0], ast.Name) and isinstance(part.value, ast.Name):
                 left: ast.Name = part.targets[0]
                 right: ast.Name = part.value
@@ -201,11 +219,3 @@ def parse(file_path, output_path, class_exclude, interface_exclude, methods_excl
 
 if __name__ == "__main__":
     parse()
-# parse(
-#     "/Users/jenkins/projects/gamium/client/python/gamium/gamium/locator/locator.py",
-#     "/Users/jenkins/projects/gamium/utils/typescript/docs-api-gen/tmp.json",
-#     [],
-#     [],
-#     [],
-#     [],
-# )

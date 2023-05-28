@@ -4,5 +4,5 @@ class GamiumError(Exception):
         self.message = message
 
     @staticmethod
-    def default():
+    def default() -> "GamiumError":
         return GamiumError(0, "")

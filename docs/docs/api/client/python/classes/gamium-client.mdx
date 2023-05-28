@@ -6,6 +6,20 @@ toc_max_heading_level: 4
 
 # GamiumClient <s generated />
 
+Provides the ability to interact with the `Gamium Engine`. Gamium Client can communicate with game builds with `Gamium Engine SDK`.
+The `Gamium Client` sends the specified message and the `Gamium Engine SDK` that receives the message performs the logic corresponding to the message.
+
+The `Gamium Client` can be used as follows.
+
+##### Usage
+
+```python
+from gamium import *
+
+gamium = GamiumClient("127.0.0.1", 50061)
+gamium.connect()
+```
+
 <hr class="solid" />  <s generated />
 
 ## Methods <s generated />
@@ -13,6 +27,14 @@ toc_max_heading_level: 4
 ### actions <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Create an [`ActionChain`](action-chain). You can check how to use it in [Control Game](../../../../docs/client/game-control).
+
+##### Usage
+
+```python
+gamium.actions().click(Vector2(0, 0)).move(Vector2(0, 0)).perform()
+```
 
 ##### Return <s generated />
 
@@ -23,6 +45,17 @@ toc_max_heading_level: 4
 ### execute_rpc <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+You can call a specific function within the game. You can check the usage in [Remote Procedure Call](../../../../docs/client/rpc).
+
+##### Usage
+
+```python
+gamium.execute_rpc(
+  RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10),
+)
+gamium.execute_rpc(RpcBy.method('Namespace', 'FunctionName', params))
+```
 
 ##### Arguments <s generated />
 
@@ -40,6 +73,15 @@ toc_max_heading_level: 4
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
+Locate the object through [`Locator`](locator).
+
+
+##### Usage
+
+```python
+object = gamium.find(By.path('Object path'))
+```
+
 ##### Arguments <s generated />
 
 - locator [`Locator`]( locator) <s generated />
@@ -55,6 +97,16 @@ toc_max_heading_level: 4
 ### finds <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Locate the object through [`Locator`](locator). Returns all objects that match the specified `Object path`.
+
+##### Usage
+
+```python
+objects = gamium.finds(By.path('Object path'))
+```
+
+A [GamiumError](gamium-error) of the code [ObjectNotFound](error-code#objectnotfound-) will occur if the specified object is not found.
 
 ##### Arguments <s generated />
 
@@ -72,6 +124,15 @@ toc_max_heading_level: 4
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
+Locate the object through [`Locator`](locator). Returns the object by considering the object as [`Player`](player).
+This object allows you to manipulate `Player`.
+
+##### Usage
+
+```python
+player = gamium.player(By.path('Object path'))
+```
+
 ##### Arguments <s generated />
 
 - locator [`Locator`]( locator) <s generated />
@@ -88,6 +149,8 @@ toc_max_heading_level: 4
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
+Collect performance indicators within the game. Returns the performance indicators collected at the time requested by Game.
+
 ##### Return <s generated />
 
 - `QueryProfileResultT` <s generated />
@@ -98,6 +161,14 @@ toc_max_heading_level: 4
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
+Get the screen information for the Game.
+
+##### Usage
+
+```python
+screen = gamium.screen()
+```
+
 ##### Return <s generated />
 
 - `QueryScreenResultT` <s generated />
@@ -107,6 +178,14 @@ toc_max_heading_level: 4
 ### send_key <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Enter the key that corresponds to [`KeyBy`](key-by). You can check how to use it in [`Control Game`](../../../../docs/client/game-control).
+
+##### Usage
+
+```python
+gamium.send_key(KeyBy.unity_keycode('E'))
+```
 
 ##### Arguments <s generated />
 
@@ -123,6 +202,14 @@ toc_max_heading_level: 4
 ### send_keys <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Enter the key corresponding to the [`KeyBy`](key-by) array at the same time. You can check how to use it in [`Control Game`](../../../../docs/client/game-control).
+
+##### Usage
+
+```python
+gamium.send_keys([KeyBy.unity_keycode('W'), KeyBy.unity_keycode('D')])
+```
 
 ##### Arguments <s generated />
 
@@ -156,6 +243,15 @@ toc_max_heading_level: 4
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
+
+Create [`UI`](ui) object. [`UI`](ui) Object makes it easy to manipulate UI objects.
+
+##### Usage
+
+```python
+ui = gamium.ui();
+```
+
 ##### Return <s generated />
 
 - [`UI`]( ui) <s generated />
@@ -165,6 +261,16 @@ toc_max_heading_level: 4
 ### wait <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait until the conditions are satisfied. If the conditions are not met, a [Timeout](error-code#timeout-) code is generated.
+
+##### Usage
+
+```python
+buttonInfo = gamium.wait(
+  Until.object_located(By.path('Object path')),
+)
+```
 
 ##### Arguments <s generated />
 

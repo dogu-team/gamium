@@ -45,7 +45,7 @@ The interface we provide is inspired by Selenium and Playwright.
 | Language                                         | Supported   |
 | ------------------------------------------------ | ----------- |
 | [Typescript](https://www.typescriptlang.org/)    | ✅          |
-| [Python](https://www.python.org/)                | Coming soon |
+| [Python](https://www.python.org/)                | ✅          |
 | [C#](https://learn.microsoft.com/dotnet/csharp/) | Coming soon |
 
 ## Getting Started

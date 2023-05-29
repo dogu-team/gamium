@@ -6,6 +6,8 @@ toc_max_heading_level: 4
 
 # By <s generated />
 
+Class used by [Identifying GamiumObject](../../../../docs/client/object-path).
+
 <hr class="solid" />  <s generated />
 
 ## Methods <s generated />
@@ -13,6 +15,14 @@ toc_max_heading_level: 4
 ### path <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+
+Use the Object Path to locate the object.
+
+##### Usage
+
+```python
+camera_info = gamium.find(By.path('/Main Camera[1]'))
+```
 
 ##### Arguments <s generated />
 
@@ -23,6 +33,14 @@ toc_max_heading_level: 4
 ### tag <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='static'/> <s generated />
+
+Use the Object Tag to locate the object.
+
+##### Usage
+
+```python
+camera_info = gamium.find(By.tag('MainCamera'))
+```
 
 ##### Arguments <s generated />
 

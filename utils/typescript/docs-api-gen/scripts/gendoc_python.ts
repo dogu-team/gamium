@@ -38,6 +38,9 @@ const fileToMdList: FileToMd[] = [
   },
   {
     codeFilePath: path.resolve(projectPath, 'gamium/actions/action_chain.py'),
+    option: {
+      classExclude: ['ActionPacketTypes'],
+    },
   },
   {
     codeFilePath: path.resolve(projectPath, 'gamium/locator/locator.py'),

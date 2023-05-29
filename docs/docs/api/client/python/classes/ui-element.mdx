@@ -14,6 +14,16 @@ toc_max_heading_level: 4
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
+Click UIElement.
+
+##### Usage
+
+```python
+ok_button = ui.find(By.path('Object path'))
+gamium.wait(Until.element_interactable(ok_button))
+ok_button.click()
+```
+
 ##### Arguments <s generated />
 
 - options [`ActionClickOptions`]( action-click-options) <s generated />
@@ -27,6 +37,16 @@ toc_max_heading_level: 4
 ### drag <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Drag the UIElement.
+
+##### Usage
+
+```python
+handle = await ui.find(By.path('Object path'))
+gamium.wait(Until.element_interactable(handle))
+handle.drag(Vector2(handle.info.screen_position.x - 30, handle.info.screen_position.y), ActionDragOptions(1000, 100))
+```
 
 ##### Arguments <s generated />
 
@@ -44,6 +64,15 @@ toc_max_heading_level: 4
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
+Import text if it is a UIElement that has text.
+
+##### Usage
+
+```python
+quest_object = await ui.find(By.path('Object path'))
+progress = quest_object.get_text()
+```
+
 ##### Return <s generated />
 
 - [`str`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
@@ -53,6 +82,15 @@ toc_max_heading_level: 4
 ### is_interactable <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Verify that UIElement is interactive. To return to true, you must pass a number of conditions. Option allows you to override some conditions.
+
+##### Usage
+
+```python
+ok_button = await ui.find(By.path('Object path'))
+is_interactable = await ok_button.is_interactable()
+```
 
 ##### Arguments <s generated />
 
@@ -68,11 +106,30 @@ toc_max_heading_level: 4
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
+Updates the information that the object has.
+
+##### Usage
+
+```python
+ok_button = await ui.find(By.path('Object path'))
+ok_button.refresh()
+```
+
 <hr class="solid" />  <s generated />
 
 ### scroll <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Scroll by delta from UIElement.
+
+##### Usage
+
+```python
+dragger = ui.find(By.path('Object path'))
+gamium.wait(Until.element_interactable(dragger))
+dragger.scroll(Vector2(0, -0.5), ActionScrollOptions(2000))
+```
 
 ##### Arguments <s generated />
 
@@ -85,6 +142,15 @@ toc_max_heading_level: 4
 ### set_text <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Enter text in UIElement.
+
+##### Usage
+
+```python
+text1 = ui.find(By.path('Object path'))
+text1.set_text('Hello World').perform()
+```
 
 ##### Arguments <s generated />
 
@@ -125,6 +191,15 @@ toc_max_heading_level: 4
 ### wait_interactable <s generated />
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait for UIElement to interact..
+
+##### Usage
+
+```python
+okButton = ui.find(By.path('Object path'))
+okButton.wait_interactable()
+```
 
 ##### Arguments <s generated />
 

@@ -69,7 +69,7 @@ class ObjectInfo:
         self.tag = tag
         self.is_active = is_active
         self.screen_position = screen_position
-        self._screen_rect_size = screen_rect_size
+        self.screen_rect_size = screen_rect_size
         self.position = position
         self.rotation = rotation
         self.text = text
@@ -83,7 +83,7 @@ class ErrorResult:
 
 class ActionResult:
     def __init__(self, error: ErrorResult):
-        self._error = error
+        self.error = error
 
 
 class InspectObjectOnScreenResult:

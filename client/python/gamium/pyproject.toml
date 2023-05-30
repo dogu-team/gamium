@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "gamium"
-version = "0.0.1"
+version = "0.0.2"
 description = ""
 authors = ["dogu"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
 flatbuffers = "22.10.26"
 numpy = "^1.24.0"
 

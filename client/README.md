@@ -13,5 +13,5 @@ Please refer to the document below
 | Language   | Supported |
 | ---------- | --------- |
 | Typescript | V         |
-| Python     | scheduled |
+| Python     | V         |
 | C#         | scheduled |

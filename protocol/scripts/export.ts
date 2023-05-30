@@ -132,10 +132,11 @@ async function exportPython(fbslist: string[]): Promise<void> {
   for (const fbs of fbslist) {
     replaceGamiumNamespace(`${PROTOCOL_PATH}/${fbs}`, 'gamium.protocol.generated');
   }
-  return buildToolsProcess.createProcess(
+  await buildToolsProcess.createProcess(
     `docker exec ${DOCKER_CONTAINER_NAME} /bin/bash --login -c ` +
       `"source /root/.bashrc && flatc --python -I ${LANGUAGES.python.fbs_dir} -o ${LANGUAGES.python.export_dir} ${FLATC_COMMON_OPTION} ${fbslist.join(' ')}"`,
   );
+  await fsPromises.rm(path.resolve(PROTOCOL_PATH, `${LANGUAGES.python.export_dir}/gamium/__init__.py`));
 }
 
 async function formatTypescriptNamespace(): Promise<void> {
@@ -146,18 +147,6 @@ async function formatTypescriptNamespace(): Promise<void> {
   await typescript.createIndexTsInternal(LANGUAGES.typescript.export_dir, {
     dirPostFixExclude: [],
     filePostFixExclude: ['.d.ts'],
-  });
-  return Promise.resolve();
-}
-
-async function formatPythonNamespace(): Promise<void> {
-  shelljs.ls(`${LANGUAGES.python.export_dir}/*.py`).forEach((file) => {
-    shelljs.rm(file);
-  });
-
-  await python.createInitPyInternal(LANGUAGES.python.export_dir, {
-    dirPostFixExclude: [],
-    filePostFixExclude: ['__init__.py'],
   });
   return Promise.resolve();
 }

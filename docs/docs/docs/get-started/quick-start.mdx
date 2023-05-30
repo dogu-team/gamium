@@ -3,6 +3,8 @@ sidebar_position: 2
 title: Quick Start
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import unity_dogurpgsample_editor from '@site/static/img/gamium/unity_dogurpgsample_editor.png';
 import unity_open_sample_login_scene from '@site/static/img/gamium/unity_open_sample_login_scene.png';
 
@@ -37,6 +39,9 @@ The engine is now running without problems. Next, let's connect the client to th
 
 ### Connect to the engine
 
+<Tabs groupId="language" defaultValue="ts">
+<TabItem value="ts" label="TypeScript" default>
+
 1. Open the `gamium-unity-samples/client/typescript` directory with Visual Studio Code.
 2. Open the terminal and execute the following command.
    - This command initializes the automation script project, connects to the running gamium engine, and runs the automation script.
@@ -45,6 +50,21 @@ The engine is now running without problems. Next, let's connect the client to th
 yarn install
 yarn run:DoguRpgSample
 ```
+
+</TabItem>
+<TabItem value="py" label="Python" default>
+
+1. Open the `gamium-unity-samples/client/python` directory with Visual Studio Code.
+2. Open the terminal and execute the following command.
+   - This command initializes the automation script project, connects to the running gamium engine, and runs the automation script.
+
+```bash
+pip3 install -r requirements.txt
+python3 dogurpgsample-test.py
+```
+
+</TabItem>
+</Tabs>
 
 If the test proceeds as shown in the screen below, you followed the guide well.
 

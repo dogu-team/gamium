@@ -66,7 +66,7 @@ jobs:
         env:
           DOGU_GAMIUM_ENGINE_UNITY_SAMPLES_PATH: '${{ github.workspace }}/gamium-unity-samples'
           DOGU_GAMIUM_ENGINE_UNITY_SAMPLE_NAME: ${{ matrix.project }}
-          DOGU_GAMIUM_ENGINE_VERSION: ${{ github.event.inputs.version == '' && ${{ github.head_ref }} || github.event.inputs.version }}
+          DOGU_GAMIUM_ENGINE_VERSION: ${{ github.event.inputs.version == '' && github.head_ref || github.event.inputs.version }}
           DOGU_UNITY_BUILD_TARGET: ${{ matrix.unity_buildtarget }}
           DOGU_GITHUB_TOKEN: ${{ secrets.DOGU_GITHUB_TOKEN }}
           YARN_ENABLE_IMMUTABLE_INSTALLS: false

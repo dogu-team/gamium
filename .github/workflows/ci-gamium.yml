@@ -86,10 +86,17 @@ jobs:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
         working-directory: ./gamium-unity-samples/client/typescript
 
+      - name: Prepare python
+        if: ${{ matrix.do_test }}
+        run: |
+          pip3 install -r requirements.txt
+        working-directory: ./gamium-unity-samples/client/python
+        continue-on-error: true
+
       - name: Run ${{ matrix.project }} python
         if: ${{ matrix.do_test }}
         run: |
-          pip3 install -r requirements.txt && ${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/${{ steps.project-lower.outputs.lowercase }}${{ matrix.build_ext }} && python3 ${{ steps.project-lower.outputs.lowercase }}-test.py
+          ${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/${{ steps.project-lower.outputs.lowercase }}${{ matrix.build_ext }} && python3 ${{ steps.project-lower.outputs.lowercase }}-test.py
         working-directory: ./gamium-unity-samples/client/python
 
   send-slack:

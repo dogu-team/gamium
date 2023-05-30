@@ -96,7 +96,7 @@ jobs:
       - name: Run ${{ matrix.project }} python
         if: ${{ matrix.do_test }}
         run: |
-          ${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/${{ steps.project-lower.outputs.lowercase }}${{ matrix.build_ext }} && python3 ${{ steps.project-lower.outputs.lowercase }}-test.py
+          ${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/${{ steps.project-lower.outputs.lowercase }}${{ matrix.build_ext }} && python ${{ steps.project-lower.outputs.lowercase }}-test.py
         working-directory: ./gamium-unity-samples/client/python
 
   send-slack:

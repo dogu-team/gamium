@@ -6,7 +6,8 @@
     "newbie": "yarn install && yarn newbie:husky",
     "newbie:husky": "husky install",
     "rebuild": "yarn clean && yarn build",
-    "test": "yarn workspaces foreach --jobs unlimited -ptvi run test"
+    "test": "yarn workspaces foreach --jobs unlimited -ptvi run test",
+    "format": "yarn workspaces foreach --jobs unlimited -ptvi run format"
   },
   "workspaces": {
     "packages": [
@@ -27,6 +28,11 @@
     "prettier": "2.8.8",
     "prettier-package-json": "2.8.0",
     "typescript": "4.7.4"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write"
+    ]
   },
   "packageManager": "yarn@3.3.1"
 }

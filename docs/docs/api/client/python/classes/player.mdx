@@ -1,0 +1,83 @@
+---
+sidebar_position: 3
+title: Player
+toc_max_heading_level: 4
+---
+
+# Player <s generated />
+
+Indicates the player that the user plays.
+
+<hr class="solid" />  <s generated />
+
+## Methods <s generated />
+
+### is_near <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Verify that the GameObject and other GameObject are within a certain distance.
+
+##### Usage
+
+```python
+player = gamium.player(By.path('Object path'))
+player.is_near(By.path('Another object path'), 10)
+```
+
+##### Arguments <s generated />
+
+- other_locator [`Locator`]( locator) <s generated />
+
+- epsilon [`int`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### move <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Move the Player to a specific position.
+
+##### Usage
+
+```python
+player = gamium.player(By.path('Object path'))
+player.move(By.path('Camera object path'), By.path('Dest Object path'), MovePlayerOptions(MovePlayerBy.Navigation))
+```
+
+##### Arguments <s generated />
+
+- camera_locator [`Locator`]( locator) <s generated />
+
+- dest [`Union`]( https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.Union)[[`Vector3`]( vector3), [`Locator`]( locator)] <s generated />
+
+- options [`MovePlayerOptions`]( move-player-options) <s generated />
+
+##### Return <s generated />
+
+- [`None`]( https://docs.python.org/3.9/library/constants.html?highlight=none#None) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### refresh <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Updates the information that the object has.
+
+##### Usage
+
+```python
+player = gamium.player(By.path('Object path'))
+player.refresh()
+```
+
+<hr class="solid" />  <s generated />
+
+## Properties <s generated />
+
+#### info [`ObjectInfo`]( object-info) <s generated />
+
+<hr class="solid" />  <s generated />
+

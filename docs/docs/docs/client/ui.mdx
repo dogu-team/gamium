@@ -23,6 +23,14 @@ await ui.click(By.path('Object path'));
 ```
 
 </TabItem>
+<TabItem value="py" label="Python" default>
+
+```python
+ui = gamium.ui()
+ui.click(By.path('Object path'))
+```
+
+</TabItem>
 </Tabs>
 
 ### Auto wait
@@ -37,6 +45,15 @@ The above Usage works the same as below.
 const button = await ui.wait(By.path('Object path'));
 await gamium.wait(Until.elementInteractable(button));
 await button.click();
+```
+
+</TabItem>
+<TabItem value="py" label="Python" default>
+
+```python
+button = ui.wait(By.path('Object path'))
+gamium.wait(Until.element_interactable(button))
+button.click();
 ```
 
 </TabItem>

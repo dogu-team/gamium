@@ -2,14 +2,6 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { ActionParam, unionListToActionParam } from '../../../gamium/protocol/packets/action-param.js';
-import { AppQuitParamT } from '../../../gamium/protocol/packets/actions/app-quit-param.js';
-import { InputKeyParamT } from '../../../gamium/protocol/packets/actions/input-key-param.js';
-import { InputMouseParamT } from '../../../gamium/protocol/packets/actions/input-mouse-param.js';
-import { InputSetTextParamT } from '../../../gamium/protocol/packets/actions/input-set-text-param.js';
-import { MovePlayerParamT } from '../../../gamium/protocol/packets/actions/move-player-param.js';
-import { SleepParamT } from '../../../gamium/protocol/packets/actions/sleep-param.js';
-
 export class ActionsParam implements flatbuffers.IUnpackableObject<ActionsParamT> {
   bb: flatbuffers.ByteBuffer | null = null;
   bb_pos = 0;
@@ -28,59 +20,24 @@ export class ActionsParam implements flatbuffers.IUnpackableObject<ActionsParamT
     return (obj || new ActionsParam()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
   }
 
-  actionsType(index: number): ActionParam | null {
+  actions(index: number): string;
+  actions(index: number, optionalEncoding: flatbuffers.Encoding): string | Uint8Array;
+  actions(index: number, optionalEncoding?: any): string | Uint8Array | null {
     const offset = this.bb!.__offset(this.bb_pos, 4);
-    return offset ? this.bb!.readUint8(this.bb!.__vector(this.bb_pos + offset) + index) : 0;
-  }
-
-  actionsTypeLength(): number {
-    const offset = this.bb!.__offset(this.bb_pos, 4);
-    return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
-  }
-
-  actionsTypeArray(): Uint8Array | null {
-    const offset = this.bb!.__offset(this.bb_pos, 4);
-    return offset
-      ? new Uint8Array(
-          this.bb!.bytes().buffer,
-          this.bb!.bytes().byteOffset + this.bb!.__vector(this.bb_pos + offset),
-          this.bb!.__vector_len(this.bb_pos + offset),
-        )
-      : null;
-  }
-
-  actions(index: number, obj: any): any | null {
-    const offset = this.bb!.__offset(this.bb_pos, 6);
-    return offset ? this.bb!.__union(obj, this.bb!.__vector(this.bb_pos + offset) + index * 4) : null;
+    return offset ? this.bb!.__string(this.bb!.__vector(this.bb_pos + offset) + index * 4, optionalEncoding) : null;
   }
 
   actionsLength(): number {
-    const offset = this.bb!.__offset(this.bb_pos, 6);
+    const offset = this.bb!.__offset(this.bb_pos, 4);
     return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
   }
 
   static startActionsParam(builder: flatbuffers.Builder) {
-    builder.startObject(2);
-  }
-
-  static addActionsType(builder: flatbuffers.Builder, actionsTypeOffset: flatbuffers.Offset) {
-    builder.addFieldOffset(0, actionsTypeOffset, 0);
-  }
-
-  static createActionsTypeVector(builder: flatbuffers.Builder, data: ActionParam[]): flatbuffers.Offset {
-    builder.startVector(1, data.length, 1);
-    for (let i = data.length - 1; i >= 0; i--) {
-      builder.addInt8(data[i]!);
-    }
-    return builder.endVector();
-  }
-
-  static startActionsTypeVector(builder: flatbuffers.Builder, numElems: number) {
-    builder.startVector(1, numElems, 1);
+    builder.startObject(1);
   }
 
   static addActions(builder: flatbuffers.Builder, actionsOffset: flatbuffers.Offset) {
-    builder.addFieldOffset(1, actionsOffset, 0);
+    builder.addFieldOffset(0, actionsOffset, 0);
   }
 
   static createActionsVector(builder: flatbuffers.Builder, data: flatbuffers.Offset[]): flatbuffers.Offset {
@@ -100,66 +57,27 @@ export class ActionsParam implements flatbuffers.IUnpackableObject<ActionsParamT
     return offset;
   }
 
-  static createActionsParam(builder: flatbuffers.Builder, actionsTypeOffset: flatbuffers.Offset, actionsOffset: flatbuffers.Offset): flatbuffers.Offset {
+  static createActionsParam(builder: flatbuffers.Builder, actionsOffset: flatbuffers.Offset): flatbuffers.Offset {
     ActionsParam.startActionsParam(builder);
-    ActionsParam.addActionsType(builder, actionsTypeOffset);
     ActionsParam.addActions(builder, actionsOffset);
     return ActionsParam.endActionsParam(builder);
   }
 
   unpack(): ActionsParamT {
-    return new ActionsParamT(
-      this.bb!.createScalarList<ActionParam>(this.actionsType.bind(this), this.actionsTypeLength()),
-      (() => {
-        const ret = [];
-        for (let targetEnumIndex = 0; targetEnumIndex < this.actionsTypeLength(); ++targetEnumIndex) {
-          const targetEnum = this.actionsType(targetEnumIndex);
-          if (targetEnum === null || ActionParam[targetEnum!] === 'NONE') {
-            continue;
-          }
-
-          const temp = unionListToActionParam(targetEnum, this.actions.bind(this), targetEnumIndex);
-          if (temp === null) {
-            continue;
-          }
-          ret.push(temp.unpack());
-        }
-        return ret;
-      })(),
-    );
+    return new ActionsParamT(this.bb!.createScalarList<string>(this.actions.bind(this), this.actionsLength()));
   }
 
   unpackTo(_o: ActionsParamT): void {
-    _o.actionsType = this.bb!.createScalarList<ActionParam>(this.actionsType.bind(this), this.actionsTypeLength());
-    _o.actions = (() => {
-      const ret = [];
-      for (let targetEnumIndex = 0; targetEnumIndex < this.actionsTypeLength(); ++targetEnumIndex) {
-        const targetEnum = this.actionsType(targetEnumIndex);
-        if (targetEnum === null || ActionParam[targetEnum!] === 'NONE') {
-          continue;
-        }
-
-        const temp = unionListToActionParam(targetEnum, this.actions.bind(this), targetEnumIndex);
-        if (temp === null) {
-          continue;
-        }
-        ret.push(temp.unpack());
-      }
-      return ret;
-    })();
+    _o.actions = this.bb!.createScalarList<string>(this.actions.bind(this), this.actionsLength());
   }
 }
 
 export class ActionsParamT implements flatbuffers.IGeneratedObject {
-  constructor(
-    public actionsType: ActionParam[] = [],
-    public actions: (AppQuitParamT | InputKeyParamT | InputMouseParamT | InputSetTextParamT | MovePlayerParamT | SleepParamT)[] = [],
-  ) {}
+  constructor(public actions: string[] = []) {}
 
   pack(builder: flatbuffers.Builder): flatbuffers.Offset {
-    const actionsType = ActionsParam.createActionsTypeVector(builder, this.actionsType);
     const actions = ActionsParam.createActionsVector(builder, builder.createObjectOffsetList(this.actions));
 
-    return ActionsParam.createActionsParam(builder, actionsType, actions);
+    return ActionsParam.createActionsParam(builder, actions);
   }
 }

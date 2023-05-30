@@ -16,12 +16,16 @@ union ActionParam {
   Actions.AppQuitParam,
 }
 
+table ActionParamSingle {
+  action: ActionParam;
+}
+
 table ActionResult {
   error: Types.ErrorResult;
 }
 
 table ActionsParam {
-  actions: [ActionParam];
+  actions: [string]; // Serialized ActionParamSingle list  ( flatbuffers does not support union vector with python, so we use string vector instead ) https://github.com/google/flatbuffers/issues/4530
 }
 
 table ActionsResult {

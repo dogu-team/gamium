@@ -1,0 +1,207 @@
+---
+sidebar_position: 2
+title: UI
+toc_max_heading_level: 4
+---
+
+# UI <s generated />
+
+[UI Controling](../../../../docs/client/ui) has a description. Class for easy UI manipulation.
+
+<hr class="solid" />  <s generated />
+
+
+## Methods <s generated />
+
+### click <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait for the specified object to be found through [`Locator`](locator). If the object is found, wait until interaction is possible. Click if interaction is possible.
+
+##### Usage
+
+```python
+ui.click(By.path('Object path'))
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- find_options [`FindObjectOptions`]( find-object-options) <s generated />
+
+- click_options [`ActionClickOptions`]( action-click-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### drag <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait for the specified object to be found through [`Locator`](locator). If the object is found, wait until interaction is possible. If interaction is possible, start the drag.
+
+##### Usage
+
+```python
+ui.drag(By.path('Object path'), Vector2(0, 0))
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- to [`Union`]( https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.Union)[[`Locator`]( locator), [`Vector2`]( vector2)] <s generated />
+
+- find_options [`FindObjectOptions`]( find-object-options) <s generated />
+
+- drag_options [`ActionDragOptions`]( action-drag-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### find <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait for the specified object to be found through [`Locator`](locator). If an object is found, it is considered to be [`UIElement`](ui-element) and returns the object
+
+##### Usage
+
+```python
+elem = ui.find(By.path('Object path'))
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- options [`FindObjectOptions`]( find-object-options) <s generated />
+
+##### Return <s generated />
+
+- [`UIElement`]( ui-element) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### finds <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Finds the objects specified through [`Locator`](locator). If the objects are found, consider them as [`UIelement`](ui-element) and return the objects
+
+##### Usage
+
+```python
+elems = ui.finds(By.path('Object path'))
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- options [`FindObjectOptions`]( find-object-options) <s generated />
+
+##### Return <s generated />
+
+- [`List`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range)[[`UIElement`]( ui-element)] <s generated />
+
+<hr class="solid" />  <s generated />
+
+### get_text <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait for the specified object to be found through [`Locator`](locator). If the object is found, wait until interaction is possible. Returns Text if interaction is possible and Text exists.
+
+##### Usage
+
+```python
+progress = ui.get_text(By.path('Object path'))
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- find_options [`FindObjectOptions`]( find-object-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### scroll <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait for the specified object to be found through ['Locator'](locator). If the object is found, wait until interaction is possible. Start scrolling if interaction is possible.
+
+##### Usage
+
+```python
+ui.scroll(By.path('Object path'), Vector2(0, -0.1 ))
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- delta [`Vector2`]( vector2) <s generated />
+
+- find_options [`FindObjectOptions`]( find-object-options) <s generated />
+
+- scroll_options [`ActionScrollOptions`]( action-scroll-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### set_text <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait for the specified object to be found through ['Locator'](locator). If the object is found, wait until interaction is possible. If you can interact and type Text, type Text.
+
+##### Usage
+
+```python
+ui.set_text(By.path('Object path'), 'Hello, World!')
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- text [`str`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
+
+- find_options [`FindObjectOptions`]( find-object-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### try_find <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- options [`FindObjectOptions`]( find-object-options) <s generated />
+
+##### Return <s generated />
+
+- `TryResult`[[`UIElement`]( ui-element)] <s generated />
+
+<hr class="solid" />  <s generated />
+
+### try_finds <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- options [`FindObjectOptions`]( find-object-options) <s generated />
+
+##### Return <s generated />
+
+- `TryResult`[[`List`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range)[[`UIElement`]( ui-element)]] <s generated />
+
+<hr class="solid" />  <s generated />
+

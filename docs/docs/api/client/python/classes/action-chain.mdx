@@ -1,0 +1,220 @@
+---
+sidebar_position: 5
+title: ActionChain
+toc_max_heading_level: 4
+---
+
+# ActionChain <s generated />
+
+This class is used when you want to run multiple actions in a row in [`Game Controling`](/docs/client/game-control).
+
+<hr class="solid" />  <s generated />
+
+## Methods <s generated />
+
+### app_quit <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- exit_code [`int`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
+
+- delay_ms [`int`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### click <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Add the action of clicking on the screen coordinates to the Action Chain.
+
+##### Usage
+
+```python
+gamium.actions().click({ x: 0, y: 0 }).perform()
+```
+
+##### Arguments <s generated />
+
+- position [`Vector2`]( vector2) <s generated />
+
+- options [`ActionClickOptions`]( action-click-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### drag <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Adds an action to ActionChain that drags from one coordinate to another coordinate.
+
+##### Usage
+
+```python
+gamium.actions().drag(Vector2(0, 0), Vector2(0, 10)).perform()
+```
+
+##### Arguments <s generated />
+
+- from_position [`Vector2`]( vector2) <s generated />
+
+- to_position [`Vector2`]( vector2) <s generated />
+
+- options [`ActionDragOptions`]( action-drag-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### move <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Add the action of moving the mouse to a specific coordinate to the Action Chain.
+
+##### Usage
+
+```python
+gamium.actions().move(Vector2(0, 0)).perform()
+```
+
+##### Arguments <s generated />
+
+- position [`Vector2`]( vector2) <s generated />
+
+- options [`ActionMoveOptions`]( action-move-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### move_player <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Adds an action to the Action Chain that moves the Player to a specific position.
+
+##### Usage
+
+```python
+gamium
+  .actions()
+  .move_player(
+    By.path('/PlayerSpawnPoint[1]/WizardCharacter(Clone)[1]'),
+    By.path('/Main Camera[1]'),
+    Vector3(0, 0, 0),
+    MovePlayerOptions(MovePlayerBy.Navigation),
+  )
+  .perform()
+```
+
+##### Arguments <s generated />
+
+- player_locator [`Locator`]( locator) <s generated />
+
+- camera_locator [`Locator`]( locator) <s generated />
+
+- dest [`Vector3`]( vector3) <s generated />
+
+- options [`MovePlayerOptions`]( move-player-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### perform <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Request actions registered in the AccrtionChain to 'Gamium Engine'.
+
+##### Return <s generated />
+
+- [`List`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range)[`ActionResultT`] <s generated />
+
+<hr class="solid" />  <s generated />
+
+### scroll <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Adds an action to ActionChain that scrolls by delta from a specific coordinate.
+
+##### Usage
+
+```python
+gamium.actions().scroll(Vector2(0, 0), Vector2(0, 10)).perform()
+```
+
+##### Arguments <s generated />
+
+- position [`Vector2`]( vector2) <s generated />
+
+- delta [`Vector2`]( vector2) <s generated />
+
+- options [`ActionScrollOptions`]( action-scroll-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### send_keys <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Adds an action to ActionChain that causes specific keystrokes to occur.
+
+##### Usage
+
+```python
+game
+  .actions()
+  .send_keys([KeyBy.unity_keycode('Space')])
+  .perform()
+```
+
+##### Arguments <s generated />
+
+- by_list [`List`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#sequence-types-list-tuple-range)[[`KeyBy`]( key-by)] <s generated />
+
+- options [`SendKeyOptions`]( send-key-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### set_text <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Adds an action to ActionChain to enter text for a specific object.
+
+##### Usage
+
+```python
+gamium
+  .actions()
+  .set_text(By.path('/Canvas[1]/Panel[1]/InputField[1]/Text[1]'), 'Hello World')
+  .perform()
+```
+
+##### Arguments <s generated />
+
+- locator [`Locator`]( locator) <s generated />
+
+- text [`str`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
+
+- options [`SetTextOptions`]( set-text-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### sleep <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Add an empty time in the middle of the ActionChain.
+
+##### Usage
+
+```python
+gamium.actions().sleep(300).set_text(text1, 'Hello World').perform()
+```
+
+##### Arguments <s generated />
+
+- ms [`int`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
+
+<hr class="solid" />  <s generated />
+

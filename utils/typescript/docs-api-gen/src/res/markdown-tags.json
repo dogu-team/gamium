@@ -1,0 +1,38 @@
+{
+  "H1": {
+    "prefix": "# ",
+    "depth": 0
+  },
+  "H2": {
+    "prefix": "## ",
+    "depth": 1
+  },
+  "H3": {
+    "prefix": "### ",
+    "depth": 2
+  },
+  "H4": {
+    "prefix": "#### ",
+    "depth": 3
+  },
+  "H5": {
+    "prefix": "##### ",
+    "depth": 4
+  },
+  "UL": {
+    "prefix": "- ",
+    "depth": "childOfBefore"
+  },
+  "UL2": {
+    "prefix": "  - ",
+    "depth": "childOfBefore"
+  },
+  "DIVIDER": {
+    "prefix": "<hr class=\"solid\" /> ",
+    "depth": "childOfBefore"
+  },
+  "CUSTOM_CHILD": {
+    "prefix": "<s childtag /> ",
+    "depth": "childOfBefore"
+  }
+}

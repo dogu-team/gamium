@@ -34,4 +34,19 @@ const property = await gamium.executeRpc(
 ```
 
 </TabItem>
+<TabItem value="py" label="Python" default>
+
+```python
+gamium.execute_rpc(
+  RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10),
+);
+field = gamium.execute_rpc(
+  RpcBy.field('Gamium.Private.CodebaseSample', 'field'),
+);
+property = gamium.execute_rpc(
+  RpcBy.property('Gamium.Private.CodebaseSample', 'property'),
+);
+```
+
+</TabItem>
 </Tabs>

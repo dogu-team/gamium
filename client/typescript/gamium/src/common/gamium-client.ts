@@ -72,13 +72,13 @@ export class GamiumClient {
   }
 
   async finds(locator: Locator, options: Partial<FindObjectOptions> = DefaultFindObjectOptions()): Promise<ObjectInfo[]> {
-    this.logger.info(`GamiumClient.findObjects By:${locator.by}, str:${locator.str}`);
+    this.logger.info(`GamiumClient.finds By:${locator.by}, str:${locator.str}`);
     const optionMixed: FindObjectOptions = {
       ...DefaultFindObjectOptions(),
       ...options,
     };
     if (locator.str === undefined || locator.str === null || locator.str.length === 0) {
-      throw new GamiumError(ErrorCode.InvalidParameter, `GamiumClient.findObject By:${locator.by}, str:${locator.str} is invalid`);
+      throw new GamiumError(ErrorCode.InvalidParameter, `GamiumClient.finds By:${locator.by}, str:${locator.str} is invalid`);
     }
     const res = await this.gamiumService.request(
       createFindObjects({
@@ -126,7 +126,9 @@ export class GamiumClient {
   // execute
 
   async executeRpc(locator: RpcLocator, option: Partial<ExecuteRpcOptions> = DefaultExecuteRpcOptions()): Promise<undefined | number | string | object> {
-    this.logger.info(`GamiumClient.executeRpc By:${locator.by}, className:${locator.className}, targetName:${locator.targetName}, params:${stringifyAllProps(locator.params)}`);
+    this.logger.info(
+      `GamiumClient.executeRpc By:${locator.by}, className:${locator.className}, targetName:${locator.targetName}, params:${stringifyAllProps(locator.params)}`,
+    );
     const params = locator.params.map((p) => {
       const doc = JSON.stringify(p);
       if (option.castNumberToFloat) {

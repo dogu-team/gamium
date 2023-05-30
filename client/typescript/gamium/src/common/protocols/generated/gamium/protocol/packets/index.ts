@@ -1,3 +1,4 @@
+export * from './action-param-single';
 export * from './action-param';
 export * from './action-result';
 export * from './actions';

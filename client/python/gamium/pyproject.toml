@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "gamium"
+version = "2.0.0"
+description = ""
+authors = ["dogu"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flatbuffers = "22.10.26"
+numpy = "^1.24.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

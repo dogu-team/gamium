@@ -23,6 +23,15 @@ await gamium.sendKey(KeyBy.unityKeyboard('Space'));
 ```
 
 </TabItem>
+
+<TabItem value="py" label="Python" default>
+
+```python
+gamium.send_key(KeyBy.unity_keycode('Space'));
+gamium.end_key(KeyBy.unity_keyboard('Space'));
+```
+
+</TabItem>
 </Tabs>
 
 ## ActionChain
@@ -49,6 +58,22 @@ await gamium
   .actions()
   .sendKeys([KeyBy.unityKeycode('W'), KeyBy.unityKeycode('A')])
   .sendKeys([KeyBy.unityKeycode('Space')])
+  .perform();
+```
+
+</TabItem>
+
+<TabItem value="py" label="Python" default>
+
+```python
+gamium.actions()
+  .move(Vector2(screen.width / 2, screen.height / 2 ))
+  .click(Vector2(screen.width / 2, screen.height / 2 ))
+  .perform();
+
+gamium.actions()
+  .send_keys([KeyBy.unity_keycode('W'), KeyBy.unity_keycode('A')])
+  .send_keys([KeyBy.unity_keycode('Space')])
   .perform();
 ```
 

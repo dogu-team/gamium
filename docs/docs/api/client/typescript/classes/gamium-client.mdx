@@ -14,10 +14,11 @@ The `Gamium Client` can be used as follows.
 ##### Usage
 
 ```ts
-import { prepareGamium } from '@dogu-tech/toolkit';
+import { GamiumClient, NodeGamiumService } from 'gamium';
 
-const gamiumKit = await prepareGamium();
-const gamium = gamiumKit.gamium;
+const gamiumService = new NodeGamiumService('127.0.0.1', 50061);
+await gamiumService.connect();
+const gamium = new GamiumClient(gamiumService);
 ```
 
 <hr class="solid" />  <s generated />
@@ -28,7 +29,7 @@ const gamium = gamiumKit.gamium;
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
-Create an [`ActionChain`](action-chain). You can check how to use it in ["Control Game"](../../../../docs/client/game-control).
+Create an [`ActionChain`](action-chain). You can check how to use it in [Control Game](../../../../docs/client/game-control).
 
 ##### Usage
 
@@ -78,7 +79,7 @@ Locate the object through [`Locator`](../types/locator).
 ##### Usage
 
 ```ts
-const cameraObj = await gamium.find(By.path('Object path'));
+const object = await gamium.find(By.path('Object path'));
 ```
 
 ##### Arguments <s generated />
@@ -102,10 +103,10 @@ Locate the object through [`Locator`](../types/locator). Returns all objects tha
 ##### Usage
 
 ```ts
-const products = await gamium.finds(By.path('Object path'));
+const objects = await gamium.finds(By.path('Object path'));
 ```
 
-A [GamiumError](Gamium-error) of the code [ObjectNotFound](../enums/error-code#objectnotfound-) will occur if the specified object is not found.
+A [GamiumError](gamium-error) of the code [ObjectNotFound](../enums/error-code#objectnotfound-) will occur if the specified object is not found.
 
 ##### Arguments <s generated />
 
@@ -307,7 +308,7 @@ const ui = gamium.ui();
 
 <s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
 
-Wait until the conditions are satisfied. If the conditions are not met, a [Gamium-error](../enums/error-code#timeout-) code is generated.
+Wait until the conditions are satisfied. If the conditions are not met, a [Timeout](../enums/error-code#timeout-) code is generated.
 
 ##### Usage
 

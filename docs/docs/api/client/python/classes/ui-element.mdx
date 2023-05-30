@@ -1,0 +1,219 @@
+---
+sidebar_position: 4
+title: UIElement
+toc_max_heading_level: 4
+---
+
+# UIElement <s generated />
+
+<hr class="solid" />  <s generated />
+
+## Methods <s generated />
+
+### click <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Click UIElement.
+
+##### Usage
+
+```python
+ok_button = ui.find(By.path('Object path'))
+gamium.wait(Until.element_interactable(ok_button))
+ok_button.click()
+```
+
+##### Arguments <s generated />
+
+- options [`ActionClickOptions`]( action-click-options) <s generated />
+
+##### Return <s generated />
+
+- [`None`]( https://docs.python.org/3.9/library/constants.html?highlight=none#None) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### drag <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Drag the UIElement.
+
+##### Usage
+
+```python
+handle = await ui.find(By.path('Object path'))
+gamium.wait(Until.element_interactable(handle))
+handle.drag(Vector2(handle.info.screen_position.x - 30, handle.info.screen_position.y), ActionDragOptions(1000, 100))
+```
+
+##### Arguments <s generated />
+
+- to [`Union`]( https://docs.python.org/3.9/library/typing.html?highlight=optional#typing.Union)[[`UIElement`]( ui-element), [`Vector2`]( vector2)] <s generated />
+
+- options [`ActionDragOptions`]( action-drag-options) <s generated />
+
+##### Return <s generated />
+
+- [`None`]( https://docs.python.org/3.9/library/constants.html?highlight=none#None) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### get_text <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Import text if it is a UIElement that has text.
+
+##### Usage
+
+```python
+quest_object = await ui.find(By.path('Object path'))
+progress = quest_object.get_text()
+```
+
+##### Return <s generated />
+
+- [`str`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### is_interactable <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Verify that UIElement is interactive. To return to true, you must pass a number of conditions. Option allows you to override some conditions.
+
+##### Usage
+
+```python
+ok_button = await ui.find(By.path('Object path'))
+is_interactable = await ok_button.is_interactable()
+```
+
+##### Arguments <s generated />
+
+- options [`QueryObjectInteractableOptions`]( query-object-interactable-options) <s generated />
+
+##### Return <s generated />
+
+- [`bool`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#boolean-values) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### refresh <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Updates the information that the object has.
+
+##### Usage
+
+```python
+ok_button = await ui.find(By.path('Object path'))
+ok_button.refresh()
+```
+
+<hr class="solid" />  <s generated />
+
+### scroll <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Scroll by delta from UIElement.
+
+##### Usage
+
+```python
+dragger = ui.find(By.path('Object path'))
+gamium.wait(Until.element_interactable(dragger))
+dragger.scroll(Vector2(0, -0.5), ActionScrollOptions(2000))
+```
+
+##### Arguments <s generated />
+
+- delta [`Vector2`]( vector2) <s generated />
+
+- options [`ActionScrollOptions`]( action-scroll-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### set_text <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Enter text in UIElement.
+
+##### Usage
+
+```python
+text1 = ui.find(By.path('Object path'))
+text1.set_text('Hello World').perform()
+```
+
+##### Arguments <s generated />
+
+- text [`str`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#numeric-types-int-float-complex) <s generated />
+
+- options [`SetTextOptions`]( set-text-options) <s generated />
+
+<hr class="solid" />  <s generated />
+
+### try_is_interactable <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- options [`QueryObjectInteractableOptions`]( query-object-interactable-options) <s generated />
+
+##### Return <s generated />
+
+- `TryResult`[[`bool`]( https://docs.python.org/3.9/library/stdtypes.html?highlight=int#boolean-values)] <s generated />
+
+<hr class="solid" />  <s generated />
+
+### try_wait_interactable <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+##### Arguments <s generated />
+
+- options [`QueryObjectInteractableOptions`]( query-object-interactable-options) <s generated />
+
+##### Return <s generated />
+
+- `TryResult`[[`None`]( https://docs.python.org/3.9/library/constants.html?highlight=none#None)] <s generated />
+
+<hr class="solid" />  <s generated />
+
+### wait_interactable <s generated />
+
+<s childtag /> <code style={{ position:'relative', top:'-20px', fontSize:'70%'}} children='public'/> <s generated />
+
+Wait for UIElement to interact..
+
+##### Usage
+
+```python
+okButton = ui.find(By.path('Object path'))
+okButton.wait_interactable()
+```
+
+##### Arguments <s generated />
+
+- options [`QueryObjectInteractableOptions`]( query-object-interactable-options) <s generated />
+
+##### Return <s generated />
+
+- [`None`]( https://docs.python.org/3.9/library/constants.html?highlight=none#None) <s generated />
+
+<hr class="solid" />  <s generated />
+
+## Properties <s generated />
+
+#### info [`ObjectInfo`]( object-info) <s generated />
+
+<hr class="solid" />  <s generated />
+

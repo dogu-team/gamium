@@ -77,13 +77,19 @@ jobs:
         with:
           string: ${{ matrix.project }}
 
-      - name: Run ${{ matrix.project }}
+      - name: Run ${{ matrix.project }} typescript
         if: ${{ matrix.do_test }}
         run: |
           yarn && ${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/${{ steps.project-lower.outputs.lowercase }}${{ matrix.build_ext }} && yarn run:${{ matrix.project }}
         env:
           YARN_ENABLE_IMMUTABLE_INSTALLS: false
         working-directory: ./gamium-unity-samples/client/typescript
+
+      - name: Run ${{ matrix.project }} python
+        if: ${{ matrix.do_test }}
+        run: |
+          pip3 install -r requirements.txt && python3 ${{ steps.project-lower.outputs.lowercase }}-test.py
+        working-directory: ./gamium-unity-samples/client/python
 
   send-slack:
     runs-on: ubuntu-latest

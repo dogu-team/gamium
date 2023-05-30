@@ -7,6 +7,7 @@ on:
         type: string
         description: 'Gamium revision (tag, branch, commit)'
         default: 'main'
+  pull_request:
 
 jobs:
   build:
@@ -88,7 +89,7 @@ jobs:
       - name: Run ${{ matrix.project }} python
         if: ${{ matrix.do_test }}
         run: |
-          pip3 install -r requirements.txt && python3 ${{ steps.project-lower.outputs.lowercase }}-test.py
+          pip3 install -r requirements.txt && ${{ github.workspace }}/gamium-unity-samples/${{ matrix.project }}/build/${{ matrix.unity_buildtarget }}/${{ steps.project-lower.outputs.lowercase }}${{ matrix.build_ext }} && python3 ${{ steps.project-lower.outputs.lowercase }}-test.py
         working-directory: ./gamium-unity-samples/client/python
 
   send-slack:

@@ -85,13 +85,13 @@ const config = {
             label: 'API',
           },
           {
-            href: 'https://blog.dogutech.io/tag/gamium/',
+            href: 'https://blog.dogutech.io/tag/gamium',
             label: 'Blog',
             position: 'left',
           },
           {
             href: 'https://github.com/dogu-team/gamium',
-            label: 'GitHub',
+            html: '<img src=https://cdn-icons-png.flaticon.com/512/25/25231.png style="width: 32px; height: 32px; margin: auto; display:block;"></img>',
             position: 'right',
           },
           {
@@ -150,7 +150,6 @@ const config = {
         appId: 'Z64JW7L04L',
         apiKey: '4e59d4bed7018a2b2130676ec6f82a9f',
         indexName: 'gamium-dogutech',
-        
       },
     }),
   markdown: {

@@ -34,26 +34,26 @@ The interface we provide is inspired by Selenium and Playwright.
 
 ### Engine
 
-| Engine                             | Windows / macOS | Android     | iOS         | Xbox         | PS4 / PS5    | Switch       |
-| ---------------------------------- | --------------- | ----------- | ----------- | ------------ | ------------ | ------------ |
-| [Unity](https://unity.com)         | ✅              | ✅          | ✅          | Need testing | Need testing | Need testing |
-| [Unreal](https://unrealengine.com) | In progress     | In progress | In progress | Planned      | Planned      | Planned      |
-| [Godot](https://godotengine.org/)  | Planned         | Planned     | Planned     | Planned      | Planned      | Planned      |
+| Engine                | Windows / macOS | Android     | iOS         | Xbox         | PS4 / PS5    | Switch       |
+| --------------------- | --------------- | ----------- | ----------- | ------------ | ------------ | ------------ |
+| [Unity](engine/unity) | ✅              | ✅          | ✅          | Need testing | Need testing | Need testing |
+| Unreal                | In progress     | In progress | In progress | Planned      | Planned      | Planned      |
+| Godot                 | Planned         | Planned     | Planned     | Planned      | Planned      | Planned      |
 
 ### Proprietary Engine
 
-| Language                                         | Support |
-| ------------------------------------------------ | ------- |
-| [C++](https://en.wikipedia.org/wiki/C%2B%2B)     | Planned |
-| [C#](https://learn.microsoft.com/dotnet/csharp/) | Planned |
+| Language | Support |
+| -------- | ------- |
+| C++      | Planned |
+| C#       | Planned |
 
 ### Client Language
 
-| Language                                         | Support |
-| ------------------------------------------------ | ------- |
-| [Typescript](https://www.typescriptlang.org/)    | ✅      |
-| [Python](https://www.python.org/)                | ✅      |
-| [C#](https://learn.microsoft.com/dotnet/csharp/) | Planned |
+| Language                               | Support |
+| -------------------------------------- | ------- |
+| [Typescript](client/typescript/gamium) | ✅      |
+| [Python](client/python/gamium)         | ✅      |
+| C#                                     | Planned |
 
 ## Getting Started
 
@@ -62,14 +62,14 @@ The interface we provide is inspired by Selenium and Playwright.
 ## Stay in touch
 
 - Author - [Dogu Technologies](https://dogutech.io)
-- [Documentation](https://gamium.dogutech.io/docs/get-started/introduction)
+- Documentation - [Introduction](https://gamium.dogutech.io/docs/get-started/introduction)
+- News - [Blog](https://blog.dogutech.io/tag/gamium/)
 
 ## Game Test Automation Infra
 
 If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can use our TestOps service
 
-☁️ - [Dogu Cloud TestOps](https://dogutech.io)  
-📖 - [Dogu Docs](https://docs.dogutech.io)
+☁️ - [Dogu TestOps](https://dogutech.io)
 
 ## Contributing
 

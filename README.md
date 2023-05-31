@@ -40,13 +40,20 @@ The interface we provide is inspired by Selenium and Playwright.
 | [Unreal](https://unrealengine.com) | In progress     | In progress | In progress | Planned      | Planned      | Planned      |
 | [Godot](https://godotengine.org/)  | Planned         | Planned     | Planned     | Planned      | Planned      | Planned      |
 
+### Proprietary Engine
+
+| Language                                         | Support |
+| ------------------------------------------------ | ------- |
+| [C++](https://en.wikipedia.org/wiki/C%2B%2B)     | Planned |
+| [C#](https://learn.microsoft.com/dotnet/csharp/) | Planned |
+
 ### Client Language
 
-| Language                                         | Supported |
-| ------------------------------------------------ | --------- |
-| [Typescript](https://www.typescriptlang.org/)    | ✅        |
-| [Python](https://www.python.org/)                | ✅        |
-| [C#](https://learn.microsoft.com/dotnet/csharp/) | Planned   |
+| Language                                         | Support |
+| ------------------------------------------------ | ------- |
+| [Typescript](https://www.typescriptlang.org/)    | ✅      |
+| [Python](https://www.python.org/)                | ✅      |
+| [C#](https://learn.microsoft.com/dotnet/csharp/) | Planned |
 
 ## Getting Started
 

@@ -40,7 +40,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`Home`}
-      description="Documentation for Dogu, game test automation service."
+      description="Documentation for Gamium, game test automation tools."
     >
       <HomepageHeader />
       {/* <main className={styles.docsMain}>

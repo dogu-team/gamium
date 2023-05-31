@@ -85,12 +85,20 @@ export default function Home(): JSX.Element {
         <FeatureCard
           icon={<OpenSourceIcon className={styles.svg} />}
           title="Open source"
-          description="Gamium is open source project maintained by Dogu Technologies team."
+          description={
+            <p>
+              Gamium is{' '}
+              <a href="https://github.com/dogu-team/gamium">
+                open source project
+              </a>{' '}
+              maintained by Dogu Technologies team.
+            </p>
+          }
         />
         <FeatureCard
           icon={<GameControllerIcon className={styles.svg} />}
           title="Test in real game"
-          description="Gamium allows you to run test in real game environment."
+          description="Gamium allows you to run test in environment like android, ios, windows real device and emulator."
         />
         <FeatureCard
           icon={<InspectIcon className={styles.svg} />}

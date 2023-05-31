@@ -34,7 +34,7 @@ The interface we provide is inspired by Selenium and Playwright.
 
 ### Engine
 
-| Engine                             | Windows / Mac | Android     | iOS         | Xbox         | PS           | Switch       |
+| Engine                             | Windows / Mac | Android     | iOS         | Xbox         | PS4 / PS5    | Switch       |
 | ---------------------------------- | ------------- | ----------- | ----------- | ------------ | ------------ | ------------ |
 | [Unity](https://unity.com)         | ✅            | ✅          | ✅          | Need testing | Need testing | Need testing |
 | [Unreal](https://unrealengine.com) | In progress   | In progress | In progress | Planned      | Planned      | Planned      |

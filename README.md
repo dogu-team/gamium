@@ -34,11 +34,11 @@ The interface we provide is inspired by Selenium and Playwright.
 
 ### Engine
 
-| Engine                             | Windows / Mac | Android     | iOS         | Xbox         | PS4 / PS5    | Switch       |
-| ---------------------------------- | ------------- | ----------- | ----------- | ------------ | ------------ | ------------ |
-| [Unity](https://unity.com)         | ✅            | ✅          | ✅          | Need testing | Need testing | Need testing |
-| [Unreal](https://unrealengine.com) | In progress   | In progress | In progress | Planned      | Planned      | Planned      |
-| [Godot](https://godotengine.org/)  | Planned       | Planned     | Planned     | Planned      | Planned      | Planned      |
+| Engine                             | Windows / macOS | Android     | iOS         | Xbox         | PS4 / PS5    | Switch       |
+| ---------------------------------- | --------------- | ----------- | ----------- | ------------ | ------------ | ------------ |
+| [Unity](https://unity.com)         | ✅              | ✅          | ✅          | Need testing | Need testing | Need testing |
+| [Unreal](https://unrealengine.com) | In progress     | In progress | In progress | Planned      | Planned      | Planned      |
+| [Godot](https://godotengine.org/)  | Planned         | Planned     | Planned     | Planned      | Planned      | Planned      |
 
 ### Client Language
 

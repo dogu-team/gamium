@@ -14,4 +14,4 @@ Please refer to the document below
 | ---------- | --------- |
 | Typescript | V         |
 | Python     | V         |
-| C#         | scheduled |
+| C#         | Planned   |

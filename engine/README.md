@@ -9,8 +9,8 @@ Please refer to the document below
 
 ## Supported Engine
 
-| Engine | Supported |
-| ------ | --------- |
-| Unity  | V         |
-| Unreal | scheduled |
-| Godot  | scheduled |
+| Engine | Supported   |
+| ------ | ----------- |
+| Unity  | V           |
+| Unreal | In progress |
+| Godot  | Planned     |

@@ -34,19 +34,19 @@ The interface we provide is inspired by Selenium and Playwright.
 
 ### Engine
 
-| Engine                             | Supported   |
-| ---------------------------------- | ----------- |
-| [Unity](https://unity.com)         | ✅          |
-| [Unreal](https://unrealengine.com) | Coming soon |
-| [Godot](https://godotengine.org/)  | Coming soon |
+| Engine                             | Windows / Mac | Android     | iOS         | Xbox         | PS           | Switch       |
+| ---------------------------------- | ------------- | ----------- | ----------- | ------------ | ------------ | ------------ |
+| [Unity](https://unity.com)         | ✅            | ✅          | ✅          | Need testing | Need testing | Need testing |
+| [Unreal](https://unrealengine.com) | In progress   | In progress | In progress | Planned      | Planned      | Planned      |
+| [Godot](https://godotengine.org/)  | Planned       | Planned     | Planned     | Planned      | Planned      | Planned      |
 
 ### Client Language
 
-| Language                                         | Supported   |
-| ------------------------------------------------ | ----------- |
-| [Typescript](https://www.typescriptlang.org/)    | ✅          |
-| [Python](https://www.python.org/)                | ✅          |
-| [C#](https://learn.microsoft.com/dotnet/csharp/) | Coming soon |
+| Language                                         | Supported |
+| ------------------------------------------------ | --------- |
+| [Typescript](https://www.typescriptlang.org/)    | ✅        |
+| [Python](https://www.python.org/)                | ✅        |
+| [C#](https://learn.microsoft.com/dotnet/csharp/) | Planned   |
 
 ## Getting Started
 

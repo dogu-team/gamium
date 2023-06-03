@@ -59,16 +59,16 @@ The interface we provide is inspired by Selenium and Playwright.
 
 - Please refer to the [Get Started](https://gamium.dogutech.io/docs/get-started/introduction)
 
-## Stay in touch
+## Resources
 
 [Documentation](https://gamium.dogutech.io)  
 [Blog](https://blog.dogutech.io/tag/gamium/)
 
-## Game Test Automation Infra
+## Infra
 
 If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can use our TestOps service
 
-☁️ - [Dogu TestOps](https://dogutech.io)
+[TestOps Platform](https://dogutech.io)
 
 ## Contributing
 

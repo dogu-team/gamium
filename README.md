@@ -61,9 +61,8 @@ The interface we provide is inspired by Selenium and Playwright.
 
 ## Stay in touch
 
-- Author - [Dogu Technologies](https://dogutech.io)
-- Documentation - [Introduction](https://gamium.dogutech.io/docs/get-started/introduction)
-- News - [Blog](https://blog.dogutech.io/tag/gamium/)
+[Documentation](https://gamium.dogutech.io)
+[Blog](https://blog.dogutech.io/tag/gamium/)
 
 ## Game Test Automation Infra
 

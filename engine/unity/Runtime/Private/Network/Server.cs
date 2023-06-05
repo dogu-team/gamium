@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using Gamium.Private.Debug;
 using Gamium.Protocol;
 using Gamium.Protocol.Types;
 using Google.FlatBuffers;
@@ -227,6 +228,8 @@ namespace Gamium.Private
                     _config.port = port;
                 }
             }
+
+            Visual.shouldShow = _config.showVisualDebug;
         }
 
         static internal Server instance;

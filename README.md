@@ -18,7 +18,7 @@ Users just need to put the gamium engine into the game build and send the specif
 You can look up the UI and then click and scroll,
 
 ```ts
-await gamium.ui().click(By.path('Object path'));
+await gamium.ui().click(By.path('/Canvas[1]/Login[1]/Panel[1]/GuestLoginBtn[1]'));
 ```
 
 You can simulate input into the game,

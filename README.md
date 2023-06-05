@@ -15,9 +15,23 @@ Gamium provides the ability to script the behavior of game users. Starting from 
 Automation starts when the gamium client sends a network message to the gamium engine for the specified command.
 Users just need to put the gamium engine into the game build and send the specified message using the client sdk.
 
-You can look up the UI and then click and scroll,  
-You can simulate input into the game,  
+You can look up the UI and then click and scroll,
+
+```ts
+await gamium.ui().click(By.path('Object path'));
+```
+
+You can simulate input into the game,
+
+```ts
+await gamium.sendKey(KeyBy.unityKeyboard('Space'));
+```
+
 You can also call specific functions.
+
+```ts
+await gamium.executeRpc(RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10));
+```
 
 ## Philosophy
 

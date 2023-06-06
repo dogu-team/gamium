@@ -1,0 +1,27 @@
+---
+sidebar_position: 1
+toc_max_heading_level: 4
+title: Source Code Organization
+---
+
+# Source Code Organization
+
+A quick look at how the gamium repository is structured.
+
+#### Directory tree
+
+- `client`
+  - This is where client libraries for controlling the Gamium Engine are created.
+  - For details, please refer to the documentation for each language.
+    - [TypeScript](./client-development/typescript)
+    - [Python](./client-development/python)
+- `docs`
+  - This is where the documents to create the current page https://gamium.dogutech.io/ are written. Created via [Docusaurus](https://docusaurus.io/).
+- `engine`
+  - Gamium Engine codes applied to various game engines are located.
+  - For details, please refer to the documentation for each engine.
+    - [Unity](./engine-development/unity)
+- `protocol`
+  - This is where the protocol for communication between the Gamium Client and the Gamium Engine is defined.. This protocol was defined using [FlatBuffers](https://google.github.io/flatbuffers/). For more information, please refer to [Protocol Development](./protocol-development).
+- `utils`
+  - This is where various functions used during development are gathered. For example, `docs-api-gen` is used to generate API documentation for the Gamium Client in typescript and python codes.

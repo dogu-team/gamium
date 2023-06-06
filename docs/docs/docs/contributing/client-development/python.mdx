@@ -1,0 +1,77 @@
+---
+sidebar_position: 3
+toc_max_heading_level: 4
+title: Python
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Gamium Client Python
+
+Gamium Client Python is located in the `client/python/gamium` folder from the source root.
+This project was organized through [poetry](https://python-poetry.org/).
+
+### Package Import
+
+#### Requirements
+
+- Python 3.9 or later
+
+#### Install
+
+#### Open Python project
+
+You need a python project. If there is no python project, please use the [**sample client project**](https://github.com/dogu-team/gamium-unity-samples/tree/main/client/python).  
+or you can use your python project.
+
+#### Find local source code path
+
+Clone the project on GitHub to local.
+The Gamium Client TypeScript is located in the `client/python/gamium` folder from the source root.
+
+```sh
+$ git clone https://github.com/dogu-team/gamium.git
+$ cd client/python/gamium
+$ pwd
+```
+
+Please remember the path output from pwd. This path is {gamium_client_python_local_path} which will be shown below.
+
+#### Add the package to your project
+
+You can import python package through [PYTHONPATH](https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH) environment variable.
+Add pwd output above to PYTHONPATH environment variable.
+
+<Tabs groupId="shell" defaultValue="sh">
+<TabItem value="sh" label="sh" default>
+
+```sh
+export PYTHONPATH={gamium_client_python_local_path}:$PYTHONPATH
+```
+
+</TabItem>
+
+<TabItem value="cmd" label="cmd" default>
+
+```cmd
+set PYTHONPATH={gamium_client_python_local_path};%PYTHONPATH%
+```
+
+</TabItem>
+</Tabs>
+
+### Build and Run
+
+- Refer to [Write Test Script](../../client/write-testscript) documentation to import gamium and write the desired script.
+- And run the python script you wrote.
+
+### Generate API documentation
+
+- API documentation can be generated via `{gamium-repo}/utils/docs-api-gen`. Go to gamium-repo in the shell and run the command below.
+
+```
+cd docs-api-gen
+yarn
+yarn run docs:python
+```

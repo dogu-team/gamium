@@ -1,0 +1,72 @@
+---
+sidebar_position: 2
+toc_max_heading_level: 4
+title: TypeScript
+---
+
+# Gamium Client TypeScript
+
+Gamium Client TypeScript is located in the `client/typescript/gamium` folder from the source root.
+
+### Package Import
+
+#### Requirements
+
+- [Node.js](https://nodejs.org) 16.0.0 or later
+- [yarn](https://yarnpkg.com/)
+- [TypeScript](https://www.typescriptlang.org/) 4.7.4
+
+#### Install
+
+#### Open Node project
+
+You need a node project. If there is no node project, please use the [**sample client project**](https://github.com/dogu-team/gamium-unity-samples/tree/main/client/typescript).  
+or you can use your node project.
+
+#### Find local source code path
+
+Clone the project on GitHub to local.
+The Gamium Client TypeScript is located in the `client/typescript/gamium` folder from the source root.
+
+```sh
+$ git clone https://github.com/dogu-team/gamium.git
+$ cd client/typescript/gamium
+$ pwd
+```
+
+Please remember the path output from pwd. This path is {gamium_client_typescript_local_path} which will be shown below.
+
+#### Add the package to your project
+
+You can import local node package through [package.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-json) file.
+The file is located at `{your node project}/package.json`.
+Looking for the file and replace `{gamium_client_typescript_local_path}` with the path to the Gamium Client Typescript source code path.
+
+```json
+{
+  "dependencies": {
+    "gamium": "file:{gamium_client_typescript_local_path}"
+  }
+}
+```
+
+### Build and Run
+
+- Install dependency packages through the yarn command in the node project path.
+
+```sh
+yarn
+```
+
+- Refer to [Write Test Script](../../client/write-testscript) documentation to import gamium and write the desired script.
+- And run the typescript script you wrote.
+
+### Generate API documentation
+
+- API documentation can be generated via `{gamium-repo}/utils/docs-api-gen`. Go to gamium-repo in the shell and run the command below.
+
+```
+cd docs-api-gen
+yarn
+yarn run docs:typescript
+```

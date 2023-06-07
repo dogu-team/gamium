@@ -70,23 +70,28 @@ The interface we provide is inspired by Selenium and Playwright.
 | C#                                     | Planned |
 
 ## Getting Started
+Please refer to the [Get Started](https://gamium.dogutech.io/docs/get-started/introduction)
 
-- Please refer to the [Get Started](https://gamium.dogutech.io/docs/get-started/introduction)
+
 
 ## Resources
 
 [Documentation](https://gamium.dogutech.io)  
 [Blog](https://blog.dogutech.io/tag/gamium/)
 
+
+## Contributing
+
+If you are interested in reporting/fixing issues and contributing directly to the code base, please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
+
+## Join the Community
+[Discord](https://discord.gg/cUWPGWgUFG)
+
 ## Infra
 
 If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can use our TestOps service
 
 [TestOps Platform](https://dogutech.io)
-
-## Contributing
-
-If you are interested in reporting/fixing issues and contributing directly to the code base, please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
 
 ## License
 

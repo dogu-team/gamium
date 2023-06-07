@@ -81,8 +81,9 @@ Please refer to the [Get Started](https://gamium.dogutech.io/docs/get-started/in
 
 
 ## Contributing
-Please, don't hesitate to [file an issue](https://github.com/dogu-team/gamium/issues/new) if you have questions.
-If you are interested in contributing directly to the code base, please see [CONTRIBUTING.md](CONTRIBUTING.md) for more information on what we're looking for and how to get started.
+Please, don't hesitate to [file an issue](https://github.com/dogu-team/gamium/issues/new) if you have questions.  
+Please, don't hesitate to [Pull request](https://github.com/dogu-team/gamium/issues/new) if you are interested in contributing directly to the code base.  
+But I'd really appreciate it if you could read the [CONTRIBUTING.md](CONTRIBUTING.md) before making your request.
 
 ## Join the Community
 [Discord](https://discord.gg/cUWPGWgUFG)

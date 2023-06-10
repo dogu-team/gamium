@@ -142,6 +142,10 @@ const config = {
                 label: 'Blog',
                 href: 'https://blog.dogutech.io/tag/gamium/',
               },
+              {
+                label: 'Community',
+                href: 'https://discord.gg/cUWPGWgUFG',
+              },
             ],
           },
         ],

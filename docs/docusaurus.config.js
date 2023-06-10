@@ -90,6 +90,11 @@ const config = {
             position: 'left',
           },
           {
+            href: 'https://discord.gg/cUWPGWgUFG',
+            label: 'Community',
+            position: 'left',
+          },
+          {
             href: 'https://github.com/dogu-team/gamium',
             label: 'Github',
             // html: '<img src=https://cdn-icons-png.flaticon.com/512/25/25231.png style="width: 32px; height: 32px; margin: auto; display:block;"></img>',

@@ -15,6 +15,17 @@ Gamium provides the ability to script the behavior of game users. Starting from 
 Automation starts when the gamium client sends a network message to the gamium engine for the specified command.
 Users just need to put the gamium engine into the game build and send the specified message using the client sdk.
 
+## Philosophy
+
+As various platforms emerge, the number of things to test is increasing. Accordingly, the mobile app automation framework is used universally, but in the case of games, there are many projects where tests are not yet automated.
+
+We want to solve this problem and develop automation library with multi-engine support through the same interface.
+The interface we provide is inspired by Selenium and Playwright.
+
+## Demo
+
+<img src=".github/resources/gamium-dogurpgsample_demo.gif"  title="Demo"/>
+
 You can look up the UI and then click and scroll,
 
 ```ts
@@ -32,17 +43,6 @@ You can also call specific functions.
 ```ts
 await gamium.executeRpc(RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10));
 ```
-
-## Philosophy
-
-As various platforms emerge, the number of things to test is increasing. Accordingly, the mobile app automation framework is used universally, but in the case of games, there are many projects where tests are not yet automated.
-
-We want to solve this problem and develop automation library with multi-engine support through the same interface.
-The interface we provide is inspired by Selenium and Playwright.
-
-## Demo
-
-<img src=".github/resources/gamium-dogurpgsample_demo.gif"  title="Demo"/>
 
 ## Support List
 

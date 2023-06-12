@@ -8,7 +8,7 @@
 Gamium is an SDK that allows you to automate gameplay
 </p>
 
-## Demo
+## Tested Demo by Gamium
 
 <img src=".github/resources/gamium-dogurpgsample_demo.gif"  title="Demo"/>
 
@@ -88,7 +88,7 @@ You can also call specific functions.
 await gamium.executeRpc(RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam1', 10));
 ```
 
-## Look at Resources
+## Read Resources
 
 [Documentation](https://gamium.dogutech.io)  
 [Blog](https://blog.dogutech.io/tag/gamium/)

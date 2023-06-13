@@ -1,0 +1,17 @@
+name: 💡 Feature Request
+description: If you have a brilliant idea, don't hesitate to share it!
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is the problem that we can solve?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Solution brainstorm
+      description: What are the ways to solve the problem? You don't have to be specific. Please share your thoughts.
+    validations:
+      required: false

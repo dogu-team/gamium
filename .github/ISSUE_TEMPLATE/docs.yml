@@ -1,5 +1,5 @@
 name: 📝 Documentation
-description:
+description: Let's make the Gamium documentation more comprehensive. If you find any issues, please let us know!
 body:
   - type: input
     id: link
@@ -11,7 +11,7 @@ body:
     validations:
       required: false
   - type: textarea
-    id: expected
+    id: update
     attributes:
       label: Update
       description: What content needs to be added/modified/removed? Please provide specific details if possible!

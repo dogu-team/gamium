@@ -6,6 +6,8 @@ body:
     attributes:
       label: Problem
       description: What is the problem that we can solve?
+      attributes: |-
+        I would like to brew coffee with water at different temperatures, but Gamium can only brew coffee with a fixed temperature of water.
     validations:
       required: true
   - type: textarea
@@ -13,5 +15,7 @@ body:
     attributes:
       label: Solution brainstorm
       description: What are the ways to solve the problem? You don't have to be specific. Please share your thoughts.
+      attributes: |-
+        Add a temperature setting to Gamium.
     validations:
       required: false

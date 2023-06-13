@@ -1,0 +1,23 @@
+name: 📝 Documentation
+description:
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link
+      description: Which page of the document requires an update? If this needs a new page, leave it blank.
+      placeholder: |-
+        https://gamium.dogutech.io/docs/get-started/introduction
+    validations:
+      required: false
+  - type: textarea
+    id: expected
+    attributes:
+      label: Update
+      description: What content needs to be added/modified/removed? Please provide specific details if possible!
+      placeholder: |-
+        1. foo
+        2. bar
+        3. baz
+    validations:
+      required: true

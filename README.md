@@ -8,7 +8,7 @@
 Gamium is an SDK that allows you to automate gameplay
 </p>
 
-## Tested Demo by Gamium
+## Automation Demo by Gamium
 
 <img src=".github/resources/gamium-dogurpgsample_demo.gif"  title="Demo"/>
 

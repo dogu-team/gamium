@@ -82,6 +82,7 @@ import gamium.protocol.generated.Packets.ChangeConfigurationResult
 import gamium.protocol.generated.Packets.DumpObjectsHierarchyResult
 import gamium.protocol.generated.Packets.ExecuteRpcResult
 import gamium.protocol.generated.Packets.FindObjectsResult
+import gamium.protocol.generated.Packets.GetPageSourceResult
 import gamium.protocol.generated.Packets.HelloResult
 import gamium.protocol.generated.Packets.InspectObjectOnScreenResult
 import gamium.protocol.generated.Packets.InspectObjectWithIdResult
@@ -102,7 +103,7 @@ class ResponseT(object):
         self.seq = 0  # type: int
         self.error = None  # type: Optional[gamium.protocol.generated.Types.ErrorResult.ErrorResultT]
         self.resultType = 0  # type: int
-        self.result = None  # type: Union[None, gamium.protocol.generated.Packets.HelloResult.HelloResultT, gamium.protocol.generated.Packets.QueryScreenResult.QueryScreenResultT, gamium.protocol.generated.Packets.FindObjectsResult.FindObjectsResultT, gamium.protocol.generated.Packets.QueryObjectInteractableResult.QueryObjectInteractableResultT, gamium.protocol.generated.Packets.ActionsResult.ActionsResultT, gamium.protocol.generated.Packets.ExecuteRpcResult.ExecuteRpcResultT, gamium.protocol.generated.Packets.InspectObjectOnScreenResult.InspectObjectOnScreenResultT, gamium.protocol.generated.Packets.InspectObjectWithIdResult.InspectObjectWithIdResultT, gamium.protocol.generated.Packets.DumpObjectsHierarchyResult.DumpObjectsHierarchyResultT, gamium.protocol.generated.Packets.ChangeConfigurationResult.ChangeConfigurationResultT, gamium.protocol.generated.Packets.QueryProfileResult.QueryProfileResultT]
+        self.result = None  # type: Union[None, gamium.protocol.generated.Packets.HelloResult.HelloResultT, gamium.protocol.generated.Packets.QueryScreenResult.QueryScreenResultT, gamium.protocol.generated.Packets.FindObjectsResult.FindObjectsResultT, gamium.protocol.generated.Packets.QueryObjectInteractableResult.QueryObjectInteractableResultT, gamium.protocol.generated.Packets.ActionsResult.ActionsResultT, gamium.protocol.generated.Packets.ExecuteRpcResult.ExecuteRpcResultT, gamium.protocol.generated.Packets.InspectObjectOnScreenResult.InspectObjectOnScreenResultT, gamium.protocol.generated.Packets.InspectObjectWithIdResult.InspectObjectWithIdResultT, gamium.protocol.generated.Packets.DumpObjectsHierarchyResult.DumpObjectsHierarchyResultT, gamium.protocol.generated.Packets.ChangeConfigurationResult.ChangeConfigurationResultT, gamium.protocol.generated.Packets.QueryProfileResult.QueryProfileResultT, gamium.protocol.generated.Packets.GetPageSourceResult.GetPageSourceResultT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):

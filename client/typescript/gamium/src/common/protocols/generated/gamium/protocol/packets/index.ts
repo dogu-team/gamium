@@ -1,5 +1,5 @@
-export * from './action-param-single';
 export * from './action-param';
+export * from './action-param-single';
 export * from './action-result';
 export * from './actions';
 export * from './actions-param';
@@ -13,6 +13,8 @@ export * from './execute-rpc-param';
 export * from './execute-rpc-result';
 export * from './find-objects-param';
 export * from './find-objects-result';
+export * from './get-page-source-param';
+export * from './get-page-source-result';
 export * from './hello-param';
 export * from './hello-result';
 export * from './inspect-object-on-screen-param';

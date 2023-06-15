@@ -2,7 +2,6 @@ import {
   ActionParam,
   AppQuitParamT,
   ErrorCode,
-  ErrorResultT,
   InputKeyParamT,
   InputMouseParamT,
   InputSetTextParamT,
@@ -10,20 +9,16 @@ import {
   ObjectLocatorT,
   ObjectType,
   Param,
-  QueryProfileResultT,
-  QueryScreenResultT,
   Result,
   SleepParamT,
-} from "./generated";
+} from './generated';
 
-type OmitedPackProperty<T> = Omit<T, "pack">;
+type OmitedPackProperty<T> = Omit<T, 'pack'>;
 type FilledPlainObject<T> = { [P in keyof T]: NonNullable<T[P]> };
 type RemoveBytesToStringProperty<T> = {
   [P in keyof T]: T[P] extends string | Uint8Array ? string : T[P];
 };
-type FilteredGamiumObject<T> = RemoveBytesToStringProperty<
-  FilledPlainObject<OmitedPackProperty<T>>
->;
+type FilteredGamiumObject<T> = RemoveBytesToStringProperty<FilledPlainObject<OmitedPackProperty<T>>>;
 
 export type AppQuitParam = FilteredGamiumObject<AppQuitParamT>;
 export type InputKeyParam = FilteredGamiumObject<InputKeyParamT>;
@@ -40,7 +35,7 @@ export {
   ObjectLocatorBy,
   UnityKeyboard,
   UnityKeyCode,
-} from "./generated";
+} from './generated';
 export { ActionParam };
 export { ObjectType };
 export { Param };

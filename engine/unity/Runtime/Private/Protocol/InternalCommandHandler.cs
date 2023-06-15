@@ -31,6 +31,7 @@ namespace Gamium
             PacketTypes.dumpObjectsHierarchy.SetInternalHandler(InspectorCommandHandler.HandleDumpObjectHierarchy);
             PacketTypes.changeConfiguration.SetInternalHandler(HandleChangeConfiguration);
             PacketTypes.queryProfile.SetInternalHandler(HandleQueryProfile);
+            PacketTypes.getPageSource.SetInternalHandler(InspectorCommandHandler.HandleGetPageSource);
 
             Logger.Verbose($"InternalCommandHandler Setup complete");
         }

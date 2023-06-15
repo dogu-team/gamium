@@ -1,9 +1,9 @@
 /**
  * @note henry: for browser and node.js compatibility
  */
-import { stringifyAllProps } from "./functions";
+import { stringifyAllProps } from './functions';
 
-import util from "util";
+import util from 'util';
 
 /**
  * @reference nodejs util.inspect
@@ -62,7 +62,7 @@ export interface StringifyOptions {
   /**
    * @default false
    */
-  getters?: "get" | "set" | boolean;
+  getters?: 'get' | 'set' | boolean;
 
   /**
    * @default false
@@ -89,9 +89,7 @@ function defaultStringifyOptions(): FilledStringifyOptions {
   };
 }
 
-function fillStringifyOptions(
-  options?: StringifyOptions
-): FilledStringifyOptions {
+function fillStringifyOptions(options?: StringifyOptions): FilledStringifyOptions {
   return { ...defaultStringifyOptions(), ...options };
 }
 
@@ -107,18 +105,18 @@ class NodeStringifier implements Stringifier {
   constructor() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
     this.util = util;
-    if (typeof this.util !== "object") {
-      throw new Error("Cannot load util");
+    if (typeof this.util !== 'object') {
+      throw new Error('Cannot load util');
     }
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     this.inspect = this.util.inspect;
-    if (typeof this.inspect !== "function") {
-      throw new Error("Cannot load util.inspect");
+    if (typeof this.inspect !== 'function') {
+      throw new Error('Cannot load util.inspect');
     }
   }
 
   stringify(value: unknown, options?: StringifyOptions): string {
-    if (typeof value === "object") {
+    if (typeof value === 'object') {
       try {
         const filledOptions = fillStringifyOptions(options);
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -134,7 +132,7 @@ class NodeStringifier implements Stringifier {
 
 class BrowserStringifier implements Stringifier {
   stringify(value: unknown, options?: StringifyOptions): string {
-    if (typeof value === "object") {
+    if (typeof value === 'object') {
       return stringifyAllProps(value);
     } else {
       return String(value);
@@ -142,7 +140,4 @@ class BrowserStringifier implements Stringifier {
   }
 }
 
-export const stringifier =
-  typeof process === "object"
-    ? new NodeStringifier()
-    : new BrowserStringifier();
+export const stringifier = typeof process === 'object' ? new NodeStringifier() : new BrowserStringifier();

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 using Gamium.Extensions;
 using Gamium.Private.Debug;
 using Gamium.Private.Util;
@@ -8,6 +9,7 @@ using Gamium.Protocol.Packets;
 using Gamium.Protocol.Types;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Logger = Gamium.Private.Util.Logger;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
@@ -88,8 +90,8 @@ namespace Gamium.Private.Object
         {
             return ObjectType.UI;
         }
-
-        protected override ErrorResultT GetScreenPositionAndRectSize(out Vector3 pos, out Vector2 bounds)
+        
+        private ErrorResultT GetScreenPositionAndRectSizeInternal(out Vector3 pos, out Vector2 bounds)
         {
             var panelToScreenRatio = value.panel.PanelToScreenRatio(out var panelSize);
 
@@ -102,9 +104,16 @@ namespace Gamium.Private.Object
                 yCenter * panelToScreenRatio.y, 0);
             bounds = new Vector2(value.worldBound.size.x * panelToScreenRatio.x,
                 value.worldBound.size.y * panelToScreenRatio.y);
+            
+            return ErrorResultExtensions.None;
+        }
+
+        protected override ErrorResultT GetScreenPositionAndRectSize(out Vector3 pos, out Vector2 bounds)
+        {
+            var err = GetScreenPositionAndRectSizeInternal(out pos, out bounds);
             Visual.ShowText(pos, 1.5f, "?");
 
-            return ErrorResultExtensions.None;
+            return err;
         }
 
         protected override string GetText()
@@ -216,6 +225,26 @@ namespace Gamium.Private.Object
             }
 
             return (ErrorResultExtensions.None);
+        }
+
+        protected override void SetXmlAttributes(XmlElement thisElement, int index)
+        {
+            thisElement.SetAttribute("name", GetName());
+            thisElement.SetAttribute("index", index.ToString());
+            thisElement.SetAttribute("text", GetText());
+            Vector3 pos = Vector3.zero;
+            Vector2 rectSize = Vector2.zero;
+            var err = GetScreenPositionAndRectSizeInternal(out pos, out rectSize);
+            if (!err.IsSuccess())
+            {
+                Logger.Error($"VisualElement({GetPath()}) GetScreenPositionAndRectSizeInternal failed. {err}");
+            }
+            thisElement.SetAttribute("screen-position", $"{pos.x},{pos.y},{pos.z}");
+            thisElement.SetAttribute("screen-rect-size", $"{rectSize.x},{rectSize.y}");
+            var position = value.transform.position;
+            thisElement.SetAttribute("position", $"{position.x},{position.y},{position.z}");
+            var rotation = value.transform.rotation;
+            thisElement.SetAttribute("rotation", $"{rotation.x},{rotation.y},{rotation.z},{rotation.w}");
         }
     }
 }

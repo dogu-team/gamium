@@ -34,6 +34,7 @@ public struct Response : IFlatbufferObject
   public Gamium.Protocol.Packets.DumpObjectsHierarchyResult ResultAsPackets_DumpObjectsHierarchyResult() { return Result<Gamium.Protocol.Packets.DumpObjectsHierarchyResult>().Value; }
   public Gamium.Protocol.Packets.ChangeConfigurationResult ResultAsPackets_ChangeConfigurationResult() { return Result<Gamium.Protocol.Packets.ChangeConfigurationResult>().Value; }
   public Gamium.Protocol.Packets.QueryProfileResult ResultAsPackets_QueryProfileResult() { return Result<Gamium.Protocol.Packets.QueryProfileResult>().Value; }
+  public Gamium.Protocol.Packets.GetPageSourceResult ResultAsPackets_GetPageSourceResult() { return Result<Gamium.Protocol.Packets.GetPageSourceResult>().Value; }
 
   public static Offset<Gamium.Protocol.Response> CreateResponse(FlatBufferBuilder builder,
       uint seq = 0,
@@ -103,6 +104,9 @@ public struct Response : IFlatbufferObject
         break;
       case Gamium.Protocol.Result.Packets_QueryProfileResult:
         _o.Result.Value = this.Result<Gamium.Protocol.Packets.QueryProfileResult>().HasValue ? this.Result<Gamium.Protocol.Packets.QueryProfileResult>().Value.UnPack() : null;
+        break;
+      case Gamium.Protocol.Result.Packets_GetPageSourceResult:
+        _o.Result.Value = this.Result<Gamium.Protocol.Packets.GetPageSourceResult>().HasValue ? this.Result<Gamium.Protocol.Packets.GetPageSourceResult>().Value.UnPack() : null;
         break;
     }
   }

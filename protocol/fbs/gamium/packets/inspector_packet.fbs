@@ -30,3 +30,10 @@ table DumpObjectsHierarchyParam {
 table DumpObjectsHierarchyResult {
   hierarchies: [Types.ObjectsHierarchy] (native_inline);
 }
+
+table GetPageSourceParam {
+}
+
+table GetPageSourceResult {
+  page_source: string;
+}

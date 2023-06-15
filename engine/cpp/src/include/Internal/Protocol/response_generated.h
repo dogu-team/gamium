@@ -45,11 +45,12 @@ enum class Result : uint8_t {
   Packets_DumpObjectsHierarchyResult = 9,
   Packets_ChangeConfigurationResult = 10,
   Packets_QueryProfileResult = 11,
+  Packets_GetPageSourceResult = 12,
   MIN = NONE,
-  MAX = Packets_QueryProfileResult
+  MAX = Packets_GetPageSourceResult
 };
 
-inline const Result (&EnumValuesResult())[12] {
+inline const Result (&EnumValuesResult())[13] {
   static const Result values[] = {
     Result::NONE,
     Result::Packets_HelloResult,
@@ -62,13 +63,14 @@ inline const Result (&EnumValuesResult())[12] {
     Result::Packets_InspectObjectWithIdResult,
     Result::Packets_DumpObjectsHierarchyResult,
     Result::Packets_ChangeConfigurationResult,
-    Result::Packets_QueryProfileResult
+    Result::Packets_QueryProfileResult,
+    Result::Packets_GetPageSourceResult
   };
   return values;
 }
 
 inline const char * const *EnumNamesResult() {
-  static const char * const names[13] = {
+  static const char * const names[14] = {
     "NONE",
     "Packets_HelloResult",
     "Packets_QueryScreenResult",
@@ -81,13 +83,14 @@ inline const char * const *EnumNamesResult() {
     "Packets_DumpObjectsHierarchyResult",
     "Packets_ChangeConfigurationResult",
     "Packets_QueryProfileResult",
+    "Packets_GetPageSourceResult",
     nullptr
   };
   return names;
 }
 
 inline const char *EnumNameResult(Result e) {
-  if (flatbuffers::IsOutRange(e, Result::NONE, Result::Packets_QueryProfileResult)) return "";
+  if (flatbuffers::IsOutRange(e, Result::NONE, Result::Packets_GetPageSourceResult)) return "";
   const size_t index = static_cast<size_t>(e);
   return EnumNamesResult()[index];
 }
@@ -140,6 +143,10 @@ template<> struct ResultTraits<Gamium::Protocol::Packets::QueryProfileResult> {
   static const Result enum_value = Result::Packets_QueryProfileResult;
 };
 
+template<> struct ResultTraits<Gamium::Protocol::Packets::GetPageSourceResult> {
+  static const Result enum_value = Result::Packets_GetPageSourceResult;
+};
+
 template<typename T> struct ResultUnionTraits {
   static const Result enum_value = Result::NONE;
 };
@@ -186,6 +193,10 @@ template<> struct ResultUnionTraits<Gamium::Protocol::Packets::ChangeConfigurati
 
 template<> struct ResultUnionTraits<Gamium::Protocol::Packets::QueryProfileResultT> {
   static const Result enum_value = Result::Packets_QueryProfileResult;
+};
+
+template<> struct ResultUnionTraits<Gamium::Protocol::Packets::GetPageSourceResultT> {
+  static const Result enum_value = Result::Packets_GetPageSourceResult;
 };
 
 struct ResultUnion {
@@ -306,6 +317,14 @@ struct ResultUnion {
     return type == Result::Packets_QueryProfileResult ?
       reinterpret_cast<const Gamium::Protocol::Packets::QueryProfileResultT *>(value) : nullptr;
   }
+  Gamium::Protocol::Packets::GetPageSourceResultT *AsPackets_GetPageSourceResult() {
+    return type == Result::Packets_GetPageSourceResult ?
+      reinterpret_cast<Gamium::Protocol::Packets::GetPageSourceResultT *>(value) : nullptr;
+  }
+  const Gamium::Protocol::Packets::GetPageSourceResultT *AsPackets_GetPageSourceResult() const {
+    return type == Result::Packets_GetPageSourceResult ?
+      reinterpret_cast<const Gamium::Protocol::Packets::GetPageSourceResultT *>(value) : nullptr;
+  }
 };
 
 bool VerifyResult(flatbuffers::Verifier &verifier, const void *obj, Result type);
@@ -380,6 +399,9 @@ struct Response FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const Gamium::Protocol::Packets::QueryProfileResult *result_as_Packets_QueryProfileResult() const {
     return result_type() == Gamium::Protocol::Result::Packets_QueryProfileResult ? static_cast<const Gamium::Protocol::Packets::QueryProfileResult *>(result()) : nullptr;
   }
+  const Gamium::Protocol::Packets::GetPageSourceResult *result_as_Packets_GetPageSourceResult() const {
+    return result_type() == Gamium::Protocol::Result::Packets_GetPageSourceResult ? static_cast<const Gamium::Protocol::Packets::GetPageSourceResult *>(result()) : nullptr;
+  }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<uint32_t>(verifier, VT_SEQ, 4) &&
@@ -437,6 +459,10 @@ template<> inline const Gamium::Protocol::Packets::ChangeConfigurationResult *Re
 
 template<> inline const Gamium::Protocol::Packets::QueryProfileResult *Response::result_as<Gamium::Protocol::Packets::QueryProfileResult>() const {
   return result_as_Packets_QueryProfileResult();
+}
+
+template<> inline const Gamium::Protocol::Packets::GetPageSourceResult *Response::result_as<Gamium::Protocol::Packets::GetPageSourceResult>() const {
+  return result_as_Packets_GetPageSourceResult();
 }
 
 struct ResponseBuilder {
@@ -579,6 +605,10 @@ inline bool VerifyResult(flatbuffers::Verifier &verifier, const void *obj, Resul
       auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::QueryProfileResult *>(obj);
       return verifier.VerifyTable(ptr);
     }
+    case Result::Packets_GetPageSourceResult: {
+      auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::GetPageSourceResult *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
     default: return true;
   }
 }
@@ -642,6 +672,10 @@ inline void *ResultUnion::UnPack(const void *obj, Result type, const flatbuffers
       auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::QueryProfileResult *>(obj);
       return ptr->UnPack(resolver);
     }
+    case Result::Packets_GetPageSourceResult: {
+      auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::GetPageSourceResult *>(obj);
+      return ptr->UnPack(resolver);
+    }
     default: return nullptr;
   }
 }
@@ -693,6 +727,10 @@ inline flatbuffers::Offset<void> ResultUnion::Pack(flatbuffers::FlatBufferBuilde
       auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::QueryProfileResultT *>(value);
       return CreateQueryProfileResult(_fbb, ptr, _rehasher).Union();
     }
+    case Result::Packets_GetPageSourceResult: {
+      auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::GetPageSourceResultT *>(value);
+      return CreateGetPageSourceResult(_fbb, ptr, _rehasher).Union();
+    }
     default: return 0;
   }
 }
@@ -741,6 +779,10 @@ inline ResultUnion::ResultUnion(const ResultUnion &u) : type(u.type), value(null
     }
     case Result::Packets_QueryProfileResult: {
       value = new Gamium::Protocol::Packets::QueryProfileResultT(*reinterpret_cast<Gamium::Protocol::Packets::QueryProfileResultT *>(u.value));
+      break;
+    }
+    case Result::Packets_GetPageSourceResult: {
+      value = new Gamium::Protocol::Packets::GetPageSourceResultT(*reinterpret_cast<Gamium::Protocol::Packets::GetPageSourceResultT *>(u.value));
       break;
     }
     default:
@@ -805,6 +847,11 @@ inline void ResultUnion::Reset() {
       delete ptr;
       break;
     }
+    case Result::Packets_GetPageSourceResult: {
+      auto ptr = reinterpret_cast<Gamium::Protocol::Packets::GetPageSourceResultT *>(value);
+      delete ptr;
+      break;
+    }
     default: break;
   }
   value = nullptr;
@@ -824,7 +871,8 @@ inline const flatbuffers::TypeTable *ResultTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 7 },
     { flatbuffers::ET_SEQUENCE, 0, 8 },
     { flatbuffers::ET_SEQUENCE, 0, 9 },
-    { flatbuffers::ET_SEQUENCE, 0, 10 }
+    { flatbuffers::ET_SEQUENCE, 0, 10 },
+    { flatbuffers::ET_SEQUENCE, 0, 11 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
     Gamium::Protocol::Packets::HelloResultTypeTable,
@@ -837,10 +885,11 @@ inline const flatbuffers::TypeTable *ResultTypeTable() {
     Gamium::Protocol::Packets::InspectObjectWithIdResultTypeTable,
     Gamium::Protocol::Packets::DumpObjectsHierarchyResultTypeTable,
     Gamium::Protocol::Packets::ChangeConfigurationResultTypeTable,
-    Gamium::Protocol::Packets::QueryProfileResultTypeTable
+    Gamium::Protocol::Packets::QueryProfileResultTypeTable,
+    Gamium::Protocol::Packets::GetPageSourceResultTypeTable
   };
   static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_UNION, 12, type_codes, type_refs, nullptr, nullptr, nullptr
+    flatbuffers::ST_UNION, 13, type_codes, type_refs, nullptr, nullptr, nullptr
   };
   return &tt;
 }

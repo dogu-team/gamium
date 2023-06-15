@@ -2,18 +2,19 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { ActionsResult, ActionsResultT } from '../../gamium/protocol/packets/actions-result.js';
-import { ChangeConfigurationResult, ChangeConfigurationResultT } from '../../gamium/protocol/packets/change-configuration-result.js';
-import { DumpObjectsHierarchyResult, DumpObjectsHierarchyResultT } from '../../gamium/protocol/packets/dump-objects-hierarchy-result.js';
-import { ExecuteRpcResult, ExecuteRpcResultT } from '../../gamium/protocol/packets/execute-rpc-result.js';
-import { FindObjectsResult, FindObjectsResultT } from '../../gamium/protocol/packets/find-objects-result.js';
-import { HelloResult, HelloResultT } from '../../gamium/protocol/packets/hello-result.js';
-import { InspectObjectOnScreenResult, InspectObjectOnScreenResultT } from '../../gamium/protocol/packets/inspect-object-on-screen-result.js';
-import { InspectObjectWithIdResult, InspectObjectWithIdResultT } from '../../gamium/protocol/packets/inspect-object-with-id-result.js';
-import { QueryObjectInteractableResult, QueryObjectInteractableResultT } from '../../gamium/protocol/packets/query-object-interactable-result.js';
-import { QueryProfileResult, QueryProfileResultT } from '../../gamium/protocol/packets/query-profile-result.js';
-import { QueryScreenResult, QueryScreenResultT } from '../../gamium/protocol/packets/query-screen-result.js';
-import { Result, unionToResult, unionListToResult } from '../../gamium/protocol/result.js';
+import { ActionsResultT } from '../../gamium/protocol/packets/actions-result.js';
+import { ChangeConfigurationResultT } from '../../gamium/protocol/packets/change-configuration-result.js';
+import { DumpObjectsHierarchyResultT } from '../../gamium/protocol/packets/dump-objects-hierarchy-result.js';
+import { ExecuteRpcResultT } from '../../gamium/protocol/packets/execute-rpc-result.js';
+import { FindObjectsResultT } from '../../gamium/protocol/packets/find-objects-result.js';
+import { GetPageSourceResultT } from '../../gamium/protocol/packets/get-page-source-result.js';
+import { HelloResultT } from '../../gamium/protocol/packets/hello-result.js';
+import { InspectObjectOnScreenResultT } from '../../gamium/protocol/packets/inspect-object-on-screen-result.js';
+import { InspectObjectWithIdResultT } from '../../gamium/protocol/packets/inspect-object-with-id-result.js';
+import { QueryObjectInteractableResultT } from '../../gamium/protocol/packets/query-object-interactable-result.js';
+import { QueryProfileResultT } from '../../gamium/protocol/packets/query-profile-result.js';
+import { QueryScreenResultT } from '../../gamium/protocol/packets/query-screen-result.js';
+import { Result, unionToResult } from '../../gamium/protocol/result.js';
 import { ErrorResult, ErrorResultT } from '../../gamium/protocol/types/error-result.js';
 
 export class Response implements flatbuffers.IUnpackableObject<ResponseT> {
@@ -127,6 +128,7 @@ export class ResponseT implements flatbuffers.IGeneratedObject {
       | DumpObjectsHierarchyResultT
       | ExecuteRpcResultT
       | FindObjectsResultT
+      | GetPageSourceResultT
       | HelloResultT
       | InspectObjectOnScreenResultT
       | InspectObjectWithIdResultT

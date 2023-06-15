@@ -1,4 +1,4 @@
-import { stringifier, StringifyOptions } from "./stringifier";
+import { stringifier, StringifyOptions } from './stringifier';
 
 export async function delay(milliseconds: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -14,13 +14,10 @@ export function stringifyError(value: unknown): string {
 
 export function stringifyAllProps(value: unknown): string {
   if (null == value) {
-    return "null";
+    return 'null';
   }
   if (undefined == value) {
-    return "undefined";
+    return 'undefined';
   }
-  return JSON.stringify(value, Object.getOwnPropertyNames(value), 2).replaceAll(
-    "\\n",
-    "\n"
-  );
+  return JSON.stringify(value, Object.getOwnPropertyNames(value), 2).replaceAll('\\n', '\n');
 }

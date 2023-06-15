@@ -44,11 +44,12 @@ enum class Param : uint8_t {
   Packets_DumpObjectsHierarchyParam = 9,
   Packets_ChangeConfigurationParam = 10,
   Packets_QueryProfileParam = 11,
+  Packets_GetPageSourceParam = 12,
   MIN = NONE,
-  MAX = Packets_QueryProfileParam
+  MAX = Packets_GetPageSourceParam
 };
 
-inline const Param (&EnumValuesParam())[12] {
+inline const Param (&EnumValuesParam())[13] {
   static const Param values[] = {
     Param::NONE,
     Param::Packets_HelloParam,
@@ -61,13 +62,14 @@ inline const Param (&EnumValuesParam())[12] {
     Param::Packets_InspectObjectWithIdParam,
     Param::Packets_DumpObjectsHierarchyParam,
     Param::Packets_ChangeConfigurationParam,
-    Param::Packets_QueryProfileParam
+    Param::Packets_QueryProfileParam,
+    Param::Packets_GetPageSourceParam
   };
   return values;
 }
 
 inline const char * const *EnumNamesParam() {
-  static const char * const names[13] = {
+  static const char * const names[14] = {
     "NONE",
     "Packets_HelloParam",
     "Packets_QueryScreenParam",
@@ -80,13 +82,14 @@ inline const char * const *EnumNamesParam() {
     "Packets_DumpObjectsHierarchyParam",
     "Packets_ChangeConfigurationParam",
     "Packets_QueryProfileParam",
+    "Packets_GetPageSourceParam",
     nullptr
   };
   return names;
 }
 
 inline const char *EnumNameParam(Param e) {
-  if (flatbuffers::IsOutRange(e, Param::NONE, Param::Packets_QueryProfileParam)) return "";
+  if (flatbuffers::IsOutRange(e, Param::NONE, Param::Packets_GetPageSourceParam)) return "";
   const size_t index = static_cast<size_t>(e);
   return EnumNamesParam()[index];
 }
@@ -139,6 +142,10 @@ template<> struct ParamTraits<Gamium::Protocol::Packets::QueryProfileParam> {
   static const Param enum_value = Param::Packets_QueryProfileParam;
 };
 
+template<> struct ParamTraits<Gamium::Protocol::Packets::GetPageSourceParam> {
+  static const Param enum_value = Param::Packets_GetPageSourceParam;
+};
+
 template<typename T> struct ParamUnionTraits {
   static const Param enum_value = Param::NONE;
 };
@@ -185,6 +192,10 @@ template<> struct ParamUnionTraits<Gamium::Protocol::Packets::ChangeConfiguratio
 
 template<> struct ParamUnionTraits<Gamium::Protocol::Packets::QueryProfileParamT> {
   static const Param enum_value = Param::Packets_QueryProfileParam;
+};
+
+template<> struct ParamUnionTraits<Gamium::Protocol::Packets::GetPageSourceParamT> {
+  static const Param enum_value = Param::Packets_GetPageSourceParam;
 };
 
 struct ParamUnion {
@@ -305,6 +316,14 @@ struct ParamUnion {
     return type == Param::Packets_QueryProfileParam ?
       reinterpret_cast<const Gamium::Protocol::Packets::QueryProfileParamT *>(value) : nullptr;
   }
+  Gamium::Protocol::Packets::GetPageSourceParamT *AsPackets_GetPageSourceParam() {
+    return type == Param::Packets_GetPageSourceParam ?
+      reinterpret_cast<Gamium::Protocol::Packets::GetPageSourceParamT *>(value) : nullptr;
+  }
+  const Gamium::Protocol::Packets::GetPageSourceParamT *AsPackets_GetPageSourceParam() const {
+    return type == Param::Packets_GetPageSourceParam ?
+      reinterpret_cast<const Gamium::Protocol::Packets::GetPageSourceParamT *>(value) : nullptr;
+  }
 };
 
 bool VerifyParam(flatbuffers::Verifier &verifier, const void *obj, Param type);
@@ -370,6 +389,9 @@ struct Request FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
   const Gamium::Protocol::Packets::QueryProfileParam *param_as_Packets_QueryProfileParam() const {
     return param_type() == Gamium::Protocol::Param::Packets_QueryProfileParam ? static_cast<const Gamium::Protocol::Packets::QueryProfileParam *>(param()) : nullptr;
   }
+  const Gamium::Protocol::Packets::GetPageSourceParam *param_as_Packets_GetPageSourceParam() const {
+    return param_type() == Gamium::Protocol::Param::Packets_GetPageSourceParam ? static_cast<const Gamium::Protocol::Packets::GetPageSourceParam *>(param()) : nullptr;
+  }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<uint32_t>(verifier, VT_SEQ, 4) &&
@@ -425,6 +447,10 @@ template<> inline const Gamium::Protocol::Packets::ChangeConfigurationParam *Req
 
 template<> inline const Gamium::Protocol::Packets::QueryProfileParam *Request::param_as<Gamium::Protocol::Packets::QueryProfileParam>() const {
   return param_as_Packets_QueryProfileParam();
+}
+
+template<> inline const Gamium::Protocol::Packets::GetPageSourceParam *Request::param_as<Gamium::Protocol::Packets::GetPageSourceParam>() const {
+  return param_as_Packets_GetPageSourceParam();
 }
 
 struct RequestBuilder {
@@ -546,6 +572,10 @@ inline bool VerifyParam(flatbuffers::Verifier &verifier, const void *obj, Param 
       auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::QueryProfileParam *>(obj);
       return verifier.VerifyTable(ptr);
     }
+    case Param::Packets_GetPageSourceParam: {
+      auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::GetPageSourceParam *>(obj);
+      return verifier.VerifyTable(ptr);
+    }
     default: return true;
   }
 }
@@ -609,6 +639,10 @@ inline void *ParamUnion::UnPack(const void *obj, Param type, const flatbuffers::
       auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::QueryProfileParam *>(obj);
       return ptr->UnPack(resolver);
     }
+    case Param::Packets_GetPageSourceParam: {
+      auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::GetPageSourceParam *>(obj);
+      return ptr->UnPack(resolver);
+    }
     default: return nullptr;
   }
 }
@@ -660,6 +694,10 @@ inline flatbuffers::Offset<void> ParamUnion::Pack(flatbuffers::FlatBufferBuilder
       auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::QueryProfileParamT *>(value);
       return CreateQueryProfileParam(_fbb, ptr, _rehasher).Union();
     }
+    case Param::Packets_GetPageSourceParam: {
+      auto ptr = reinterpret_cast<const Gamium::Protocol::Packets::GetPageSourceParamT *>(value);
+      return CreateGetPageSourceParam(_fbb, ptr, _rehasher).Union();
+    }
     default: return 0;
   }
 }
@@ -708,6 +746,10 @@ inline ParamUnion::ParamUnion(const ParamUnion &u) : type(u.type), value(nullptr
     }
     case Param::Packets_QueryProfileParam: {
       value = new Gamium::Protocol::Packets::QueryProfileParamT(*reinterpret_cast<Gamium::Protocol::Packets::QueryProfileParamT *>(u.value));
+      break;
+    }
+    case Param::Packets_GetPageSourceParam: {
+      value = new Gamium::Protocol::Packets::GetPageSourceParamT(*reinterpret_cast<Gamium::Protocol::Packets::GetPageSourceParamT *>(u.value));
       break;
     }
     default:
@@ -772,6 +814,11 @@ inline void ParamUnion::Reset() {
       delete ptr;
       break;
     }
+    case Param::Packets_GetPageSourceParam: {
+      auto ptr = reinterpret_cast<Gamium::Protocol::Packets::GetPageSourceParamT *>(value);
+      delete ptr;
+      break;
+    }
     default: break;
   }
   value = nullptr;
@@ -791,7 +838,8 @@ inline const flatbuffers::TypeTable *ParamTypeTable() {
     { flatbuffers::ET_SEQUENCE, 0, 7 },
     { flatbuffers::ET_SEQUENCE, 0, 8 },
     { flatbuffers::ET_SEQUENCE, 0, 9 },
-    { flatbuffers::ET_SEQUENCE, 0, 10 }
+    { flatbuffers::ET_SEQUENCE, 0, 10 },
+    { flatbuffers::ET_SEQUENCE, 0, 11 }
   };
   static const flatbuffers::TypeFunction type_refs[] = {
     Gamium::Protocol::Packets::HelloParamTypeTable,
@@ -804,10 +852,11 @@ inline const flatbuffers::TypeTable *ParamTypeTable() {
     Gamium::Protocol::Packets::InspectObjectWithIdParamTypeTable,
     Gamium::Protocol::Packets::DumpObjectsHierarchyParamTypeTable,
     Gamium::Protocol::Packets::ChangeConfigurationParamTypeTable,
-    Gamium::Protocol::Packets::QueryProfileParamTypeTable
+    Gamium::Protocol::Packets::QueryProfileParamTypeTable,
+    Gamium::Protocol::Packets::GetPageSourceParamTypeTable
   };
   static const flatbuffers::TypeTable tt = {
-    flatbuffers::ST_UNION, 12, type_codes, type_refs, nullptr, nullptr, nullptr
+    flatbuffers::ST_UNION, 13, type_codes, type_refs, nullptr, nullptr, nullptr
   };
   return &tt;
 }

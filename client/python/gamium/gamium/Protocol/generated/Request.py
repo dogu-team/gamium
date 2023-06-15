@@ -68,6 +68,7 @@ import gamium.protocol.generated.Packets.ChangeConfigurationParam
 import gamium.protocol.generated.Packets.DumpObjectsHierarchyParam
 import gamium.protocol.generated.Packets.ExecuteRpcParam
 import gamium.protocol.generated.Packets.FindObjectsParam
+import gamium.protocol.generated.Packets.GetPageSourceParam
 import gamium.protocol.generated.Packets.HelloParam
 import gamium.protocol.generated.Packets.InspectObjectOnScreenParam
 import gamium.protocol.generated.Packets.InspectObjectWithIdParam
@@ -86,7 +87,7 @@ class RequestT(object):
     def __init__(self):
         self.seq = 0  # type: int
         self.paramType = 0  # type: int
-        self.param = None  # type: Union[None, gamium.protocol.generated.Packets.HelloParam.HelloParamT, gamium.protocol.generated.Packets.QueryScreenParam.QueryScreenParamT, gamium.protocol.generated.Packets.FindObjectsParam.FindObjectsParamT, gamium.protocol.generated.Packets.QueryObjectInteractableParam.QueryObjectInteractableParamT, gamium.protocol.generated.Packets.ActionsParam.ActionsParamT, gamium.protocol.generated.Packets.ExecuteRpcParam.ExecuteRpcParamT, gamium.protocol.generated.Packets.InspectObjectOnScreenParam.InspectObjectOnScreenParamT, gamium.protocol.generated.Packets.InspectObjectWithIdParam.InspectObjectWithIdParamT, gamium.protocol.generated.Packets.DumpObjectsHierarchyParam.DumpObjectsHierarchyParamT, gamium.protocol.generated.Packets.ChangeConfigurationParam.ChangeConfigurationParamT, gamium.protocol.generated.Packets.QueryProfileParam.QueryProfileParamT]
+        self.param = None  # type: Union[None, gamium.protocol.generated.Packets.HelloParam.HelloParamT, gamium.protocol.generated.Packets.QueryScreenParam.QueryScreenParamT, gamium.protocol.generated.Packets.FindObjectsParam.FindObjectsParamT, gamium.protocol.generated.Packets.QueryObjectInteractableParam.QueryObjectInteractableParamT, gamium.protocol.generated.Packets.ActionsParam.ActionsParamT, gamium.protocol.generated.Packets.ExecuteRpcParam.ExecuteRpcParamT, gamium.protocol.generated.Packets.InspectObjectOnScreenParam.InspectObjectOnScreenParamT, gamium.protocol.generated.Packets.InspectObjectWithIdParam.InspectObjectWithIdParamT, gamium.protocol.generated.Packets.DumpObjectsHierarchyParam.DumpObjectsHierarchyParamT, gamium.protocol.generated.Packets.ChangeConfigurationParam.ChangeConfigurationParamT, gamium.protocol.generated.Packets.QueryProfileParam.QueryProfileParamT, gamium.protocol.generated.Packets.GetPageSourceParam.GetPageSourceParamT]
 
     @classmethod
     def InitFromBuf(cls, buf, pos):

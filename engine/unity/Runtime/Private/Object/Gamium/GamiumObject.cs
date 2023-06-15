@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 using Gamium.Protocol.Packets;
 using Gamium.Protocol.Types;
 using UnityEngine;
@@ -41,6 +42,24 @@ namespace Gamium.Private.Object
                 Path = GetPath(),
                 Children = GetChildren().Select(c => c.ToHierarchyNode()).ToList(),
             };
+        }
+
+        protected abstract void SetXmlAttributes(XmlElement thisElement, int index);
+
+        internal XmlElement ToXmlElement(XmlDocument document, int index)
+        {
+            var element = document.CreateElement(GetGamiumObjectType().ToString());
+            
+            SetXmlAttributes(element, index);
+            GetChildren()
+                .Select((child, childIndex) => child.ToXmlElement(document, childIndex + 1))
+                .ToList()
+                .ForEach((childElement) => 
+                {
+                    element.AppendChild(childElement);
+                });
+
+            return element;
         }
     }
 }

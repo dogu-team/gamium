@@ -1,3 +1,7 @@
+# 2.0.1
+
+- feat: add get-page-source api.
+
 # 2.0.0
 
 - feat: support python client. so actions flatbuffer schema has been changed.

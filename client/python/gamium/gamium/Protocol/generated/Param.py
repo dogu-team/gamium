@@ -15,6 +15,7 @@ class Param(object):
     Packets_DumpObjectsHierarchyParam = 9
     Packets_ChangeConfigurationParam = 10
     Packets_QueryProfileParam = 11
+    Packets_GetPageSourceParam = 12
 
 def ParamCreator(unionType, table):
     from flatbuffers.table import Table
@@ -53,4 +54,7 @@ def ParamCreator(unionType, table):
     if unionType == Param().Packets_QueryProfileParam:
         import gamium.protocol.generated.Packets.QueryProfileParam
         return gamium.protocol.generated.Packets.QueryProfileParam.QueryProfileParamT.InitFromBuf(table.Bytes, table.Pos)
+    if unionType == Param().Packets_GetPageSourceParam:
+        import gamium.protocol.generated.Packets.GetPageSourceParam
+        return gamium.protocol.generated.Packets.GetPageSourceParam.GetPageSourceParamT.InitFromBuf(table.Bytes, table.Pos)
     return None

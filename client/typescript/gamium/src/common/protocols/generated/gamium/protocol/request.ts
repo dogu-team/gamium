@@ -2,18 +2,19 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { ActionsParam, ActionsParamT } from '../../gamium/protocol/packets/actions-param.js';
-import { ChangeConfigurationParam, ChangeConfigurationParamT } from '../../gamium/protocol/packets/change-configuration-param.js';
-import { DumpObjectsHierarchyParam, DumpObjectsHierarchyParamT } from '../../gamium/protocol/packets/dump-objects-hierarchy-param.js';
-import { ExecuteRpcParam, ExecuteRpcParamT } from '../../gamium/protocol/packets/execute-rpc-param.js';
-import { FindObjectsParam, FindObjectsParamT } from '../../gamium/protocol/packets/find-objects-param.js';
-import { HelloParam, HelloParamT } from '../../gamium/protocol/packets/hello-param.js';
-import { InspectObjectOnScreenParam, InspectObjectOnScreenParamT } from '../../gamium/protocol/packets/inspect-object-on-screen-param.js';
-import { InspectObjectWithIdParam, InspectObjectWithIdParamT } from '../../gamium/protocol/packets/inspect-object-with-id-param.js';
-import { QueryObjectInteractableParam, QueryObjectInteractableParamT } from '../../gamium/protocol/packets/query-object-interactable-param.js';
-import { QueryProfileParam, QueryProfileParamT } from '../../gamium/protocol/packets/query-profile-param.js';
-import { QueryScreenParam, QueryScreenParamT } from '../../gamium/protocol/packets/query-screen-param.js';
-import { Param, unionToParam, unionListToParam } from '../../gamium/protocol/param.js';
+import { ActionsParamT } from '../../gamium/protocol/packets/actions-param.js';
+import { ChangeConfigurationParamT } from '../../gamium/protocol/packets/change-configuration-param.js';
+import { DumpObjectsHierarchyParamT } from '../../gamium/protocol/packets/dump-objects-hierarchy-param.js';
+import { ExecuteRpcParamT } from '../../gamium/protocol/packets/execute-rpc-param.js';
+import { FindObjectsParamT } from '../../gamium/protocol/packets/find-objects-param.js';
+import { GetPageSourceParamT } from '../../gamium/protocol/packets/get-page-source-param.js';
+import { HelloParamT } from '../../gamium/protocol/packets/hello-param.js';
+import { InspectObjectOnScreenParamT } from '../../gamium/protocol/packets/inspect-object-on-screen-param.js';
+import { InspectObjectWithIdParamT } from '../../gamium/protocol/packets/inspect-object-with-id-param.js';
+import { QueryObjectInteractableParamT } from '../../gamium/protocol/packets/query-object-interactable-param.js';
+import { QueryProfileParamT } from '../../gamium/protocol/packets/query-profile-param.js';
+import { QueryScreenParamT } from '../../gamium/protocol/packets/query-screen-param.js';
+import { Param, unionToParam } from '../../gamium/protocol/param.js';
 
 export class Request implements flatbuffers.IUnpackableObject<RequestT> {
   bb: flatbuffers.ByteBuffer | null = null;
@@ -122,6 +123,7 @@ export class RequestT implements flatbuffers.IGeneratedObject {
       | DumpObjectsHierarchyParamT
       | ExecuteRpcParamT
       | FindObjectsParamT
+      | GetPageSourceParamT
       | HelloParamT
       | InspectObjectOnScreenParamT
       | InspectObjectWithIdParamT

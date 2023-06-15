@@ -36,6 +36,8 @@ union Param {
 
   // profile
   Packets.QueryProfileParam,
+
+  Packets.GetPageSourceParam,
 }
 
 table Request {

@@ -7,6 +7,8 @@ import {
   ExecuteRpcResultT,
   FindObjectsParamT,
   FindObjectsResultT,
+  GetPageSourceParamT,
+  GetPageSourceResultT,
   HelloParamT,
   HelloResultT,
   InspectObjectOnScreenParamT,
@@ -120,6 +122,15 @@ export const createInspectWithIdScreen = (param: Plain<InspectObjectWithIdParamT
     result: undefined,
     paramEnum: Param.Packets_InspectObjectWithIdParam,
     resultEnum: Result.Packets_InspectObjectWithIdResult,
+  };
+};
+
+export const createGetPageSource = (param: Plain<GetPageSourceParamT>): PacketTypes<GetPageSourceParamT, GetPageSourceResultT> => {
+  return {
+    param: new GetPageSourceParamT(),
+    result: undefined,
+    paramEnum: Param.Packets_GetPageSourceParam,
+    resultEnum: Result.Packets_GetPageSourceResult,
   };
 };
 

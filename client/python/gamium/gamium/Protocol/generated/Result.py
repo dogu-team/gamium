@@ -15,6 +15,7 @@ class Result(object):
     Packets_DumpObjectsHierarchyResult = 9
     Packets_ChangeConfigurationResult = 10
     Packets_QueryProfileResult = 11
+    Packets_GetPageSourceResult = 12
 
 def ResultCreator(unionType, table):
     from flatbuffers.table import Table
@@ -53,4 +54,7 @@ def ResultCreator(unionType, table):
     if unionType == Result().Packets_QueryProfileResult:
         import gamium.protocol.generated.Packets.QueryProfileResult
         return gamium.protocol.generated.Packets.QueryProfileResult.QueryProfileResultT.InitFromBuf(table.Bytes, table.Pos)
+    if unionType == Result().Packets_GetPageSourceResult:
+        import gamium.protocol.generated.Packets.GetPageSourceResult
+        return gamium.protocol.generated.Packets.GetPageSourceResult.GetPageSourceResultT.InitFromBuf(table.Bytes, table.Pos)
     return None

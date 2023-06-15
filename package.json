@@ -3,11 +3,11 @@
   "scripts": {
     "build": "yarn workspaces foreach --exclude 'dogu' --jobs unlimited -ptvi run build",
     "clean": "yarn workspaces foreach --jobs unlimited -ptvi run clean",
+    "format": "yarn workspaces foreach --jobs unlimited -ptvi run format",
     "newbie": "yarn install && yarn newbie:husky",
     "newbie:husky": "husky install",
     "rebuild": "yarn clean && yarn build",
-    "test": "yarn workspaces foreach --jobs unlimited -ptvi run test",
-    "format": "yarn workspaces foreach --jobs unlimited -ptvi run format"
+    "test": "yarn workspaces foreach --jobs unlimited -ptvi run test"
   },
   "workspaces": {
     "packages": [
@@ -31,7 +31,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "prettier --write"
+      "prettier --write --editorconfig"
     ]
   },
   "packageManager": "yarn@3.3.1"

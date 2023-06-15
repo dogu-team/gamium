@@ -1,6 +1,6 @@
-import { ErrorCode } from "../protocols/generated";
-import { WaitOptions } from "../options/wait-options";
-import { GamiumError } from "./gamium-error";
+import { WaitOptions } from '../options/wait-options';
+import { ErrorCode } from '../protocols/generated';
+import { GamiumError } from './gamium-error';
 
 export class GamiumWaitError extends GamiumError {
   constructor(
@@ -9,7 +9,7 @@ export class GamiumWaitError extends GamiumError {
     public innerResult?: unknown,
     public tryCount?: number,
     public waitOptions?: Partial<WaitOptions>,
-    options?: ErrorOptions
+    options?: ErrorOptions,
   ) {
     super(code, reason, { innerResult, tryCount, waitOptions }, options);
   }

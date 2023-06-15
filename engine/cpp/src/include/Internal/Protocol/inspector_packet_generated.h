@@ -45,6 +45,14 @@ struct DumpObjectsHierarchyResult;
 struct DumpObjectsHierarchyResultBuilder;
 struct DumpObjectsHierarchyResultT;
 
+struct GetPageSourceParam;
+struct GetPageSourceParamBuilder;
+struct GetPageSourceParamT;
+
+struct GetPageSourceResult;
+struct GetPageSourceResultBuilder;
+struct GetPageSourceResultT;
+
 inline const flatbuffers::TypeTable *InspectObjectOnScreenParamTypeTable();
 
 inline const flatbuffers::TypeTable *InspectObjectOnScreenResultTypeTable();
@@ -56,6 +64,10 @@ inline const flatbuffers::TypeTable *InspectObjectWithIdResultTypeTable();
 inline const flatbuffers::TypeTable *DumpObjectsHierarchyParamTypeTable();
 
 inline const flatbuffers::TypeTable *DumpObjectsHierarchyResultTypeTable();
+
+inline const flatbuffers::TypeTable *GetPageSourceParamTypeTable();
+
+inline const flatbuffers::TypeTable *GetPageSourceResultTypeTable();
 
 struct InspectObjectOnScreenParamT : public flatbuffers::NativeTable {
   typedef InspectObjectOnScreenParam TableType;
@@ -439,6 +451,104 @@ inline flatbuffers::Offset<DumpObjectsHierarchyResult> CreateDumpObjectsHierarch
 
 flatbuffers::Offset<DumpObjectsHierarchyResult> CreateDumpObjectsHierarchyResult(flatbuffers::FlatBufferBuilder &_fbb, const DumpObjectsHierarchyResultT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
 
+struct GetPageSourceParamT : public flatbuffers::NativeTable {
+  typedef GetPageSourceParam TableType;
+};
+
+struct GetPageSourceParam FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+  typedef GetPageSourceParamT NativeTableType;
+  typedef GetPageSourceParamBuilder Builder;
+  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+    return GetPageSourceParamTypeTable();
+  }
+  bool Verify(flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           verifier.EndTable();
+  }
+  GetPageSourceParamT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(GetPageSourceParamT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static flatbuffers::Offset<GetPageSourceParam> Pack(flatbuffers::FlatBufferBuilder &_fbb, const GetPageSourceParamT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+};
+
+struct GetPageSourceParamBuilder {
+  typedef GetPageSourceParam Table;
+  flatbuffers::FlatBufferBuilder &fbb_;
+  flatbuffers::uoffset_t start_;
+  explicit GetPageSourceParamBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  flatbuffers::Offset<GetPageSourceParam> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = flatbuffers::Offset<GetPageSourceParam>(end);
+    return o;
+  }
+};
+
+inline flatbuffers::Offset<GetPageSourceParam> CreateGetPageSourceParam(
+    flatbuffers::FlatBufferBuilder &_fbb) {
+  GetPageSourceParamBuilder builder_(_fbb);
+  return builder_.Finish();
+}
+
+flatbuffers::Offset<GetPageSourceParam> CreateGetPageSourceParam(flatbuffers::FlatBufferBuilder &_fbb, const GetPageSourceParamT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+
+struct GetPageSourceResultT : public flatbuffers::NativeTable {
+  typedef GetPageSourceResult TableType;
+  std::string page_source{};
+};
+
+struct GetPageSourceResult FLATBUFFERS_FINAL_CLASS : private flatbuffers::Table {
+  typedef GetPageSourceResultT NativeTableType;
+  typedef GetPageSourceResultBuilder Builder;
+  static const flatbuffers::TypeTable *MiniReflectTypeTable() {
+    return GetPageSourceResultTypeTable();
+  }
+  enum FlatBuffersVTableOffset FLATBUFFERS_VTABLE_UNDERLYING_TYPE {
+    VT_PAGE_SOURCE = 4
+  };
+  const flatbuffers::String *page_source() const {
+    return GetPointer<const flatbuffers::String *>(VT_PAGE_SOURCE);
+  }
+  bool Verify(flatbuffers::Verifier &verifier) const {
+    return VerifyTableStart(verifier) &&
+           VerifyOffset(verifier, VT_PAGE_SOURCE) &&
+           verifier.VerifyString(page_source()) &&
+           verifier.EndTable();
+  }
+  GetPageSourceResultT *UnPack(const flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  void UnPackTo(GetPageSourceResultT *_o, const flatbuffers::resolver_function_t *_resolver = nullptr) const;
+  static flatbuffers::Offset<GetPageSourceResult> Pack(flatbuffers::FlatBufferBuilder &_fbb, const GetPageSourceResultT* _o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+};
+
+struct GetPageSourceResultBuilder {
+  typedef GetPageSourceResult Table;
+  flatbuffers::FlatBufferBuilder &fbb_;
+  flatbuffers::uoffset_t start_;
+  void add_page_source(flatbuffers::Offset<flatbuffers::String> page_source) {
+    fbb_.AddOffset(GetPageSourceResult::VT_PAGE_SOURCE, page_source);
+  }
+  explicit GetPageSourceResultBuilder(flatbuffers::FlatBufferBuilder &_fbb)
+        : fbb_(_fbb) {
+    start_ = fbb_.StartTable();
+  }
+  flatbuffers::Offset<GetPageSourceResult> Finish() {
+    const auto end = fbb_.EndTable(start_);
+    auto o = flatbuffers::Offset<GetPageSourceResult>(end);
+    return o;
+  }
+};
+
+inline flatbuffers::Offset<GetPageSourceResult> CreateGetPageSourceResult(
+    flatbuffers::FlatBufferBuilder &_fbb,
+    flatbuffers::Offset<flatbuffers::String> page_source = 0) {
+  GetPageSourceResultBuilder builder_(_fbb);
+  builder_.add_page_source(page_source);
+  return builder_.Finish();
+}
+
+flatbuffers::Offset<GetPageSourceResult> CreateGetPageSourceResult(flatbuffers::FlatBufferBuilder &_fbb, const GetPageSourceResultT *_o, const flatbuffers::rehasher_function_t *_rehasher = nullptr);
+
 inline InspectObjectOnScreenParamT::InspectObjectOnScreenParamT(const InspectObjectOnScreenParamT &o)
       : pos((o.pos) ? new Gamium::Protocol::Types::Vector2(*o.pos) : nullptr),
         screen_size((o.screen_size) ? new Gamium::Protocol::Types::Vector2(*o.screen_size) : nullptr) {
@@ -635,6 +745,55 @@ inline flatbuffers::Offset<DumpObjectsHierarchyResult> CreateDumpObjectsHierarch
       _hierarchies);
 }
 
+inline GetPageSourceParamT *GetPageSourceParam::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+  auto _o = std::unique_ptr<GetPageSourceParamT>(new GetPageSourceParamT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
+}
+
+inline void GetPageSourceParam::UnPackTo(GetPageSourceParamT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+  (void)_o;
+  (void)_resolver;
+}
+
+inline flatbuffers::Offset<GetPageSourceParam> GetPageSourceParam::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GetPageSourceParamT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+  return CreateGetPageSourceParam(_fbb, _o, _rehasher);
+}
+
+inline flatbuffers::Offset<GetPageSourceParam> CreateGetPageSourceParam(flatbuffers::FlatBufferBuilder &_fbb, const GetPageSourceParamT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+  (void)_rehasher;
+  (void)_o;
+  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const GetPageSourceParamT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  return Gamium::Protocol::Packets::CreateGetPageSourceParam(
+      _fbb);
+}
+
+inline GetPageSourceResultT *GetPageSourceResult::UnPack(const flatbuffers::resolver_function_t *_resolver) const {
+  auto _o = std::unique_ptr<GetPageSourceResultT>(new GetPageSourceResultT());
+  UnPackTo(_o.get(), _resolver);
+  return _o.release();
+}
+
+inline void GetPageSourceResult::UnPackTo(GetPageSourceResultT *_o, const flatbuffers::resolver_function_t *_resolver) const {
+  (void)_o;
+  (void)_resolver;
+  { auto _e = page_source(); if (_e) _o->page_source = _e->str(); }
+}
+
+inline flatbuffers::Offset<GetPageSourceResult> GetPageSourceResult::Pack(flatbuffers::FlatBufferBuilder &_fbb, const GetPageSourceResultT* _o, const flatbuffers::rehasher_function_t *_rehasher) {
+  return CreateGetPageSourceResult(_fbb, _o, _rehasher);
+}
+
+inline flatbuffers::Offset<GetPageSourceResult> CreateGetPageSourceResult(flatbuffers::FlatBufferBuilder &_fbb, const GetPageSourceResultT *_o, const flatbuffers::rehasher_function_t *_rehasher) {
+  (void)_rehasher;
+  (void)_o;
+  struct _VectorArgs { flatbuffers::FlatBufferBuilder *__fbb; const GetPageSourceResultT* __o; const flatbuffers::rehasher_function_t *__rehasher; } _va = { &_fbb, _o, _rehasher}; (void)_va;
+  auto _page_source = _o->page_source.empty() ? _fbb.CreateSharedString("") : _fbb.CreateString(_o->page_source);
+  return Gamium::Protocol::Packets::CreateGetPageSourceResult(
+      _fbb,
+      _page_source);
+}
+
 inline const flatbuffers::TypeTable *InspectObjectOnScreenParamTypeTable() {
   static const flatbuffers::TypeCode type_codes[] = {
     { flatbuffers::ET_SEQUENCE, 0, 0 },
@@ -707,6 +866,23 @@ inline const flatbuffers::TypeTable *DumpObjectsHierarchyResultTypeTable() {
   };
   static const flatbuffers::TypeTable tt = {
     flatbuffers::ST_TABLE, 1, type_codes, type_refs, nullptr, nullptr, nullptr
+  };
+  return &tt;
+}
+
+inline const flatbuffers::TypeTable *GetPageSourceParamTypeTable() {
+  static const flatbuffers::TypeTable tt = {
+    flatbuffers::ST_TABLE, 0, nullptr, nullptr, nullptr, nullptr, nullptr
+  };
+  return &tt;
+}
+
+inline const flatbuffers::TypeTable *GetPageSourceResultTypeTable() {
+  static const flatbuffers::TypeCode type_codes[] = {
+    { flatbuffers::ET_STRING, 0, -1 }
+  };
+  static const flatbuffers::TypeTable tt = {
+    flatbuffers::ST_TABLE, 1, type_codes, nullptr, nullptr, nullptr, nullptr
   };
   return &tt;
 }

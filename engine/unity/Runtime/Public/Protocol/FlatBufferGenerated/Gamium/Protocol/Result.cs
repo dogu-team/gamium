@@ -19,6 +19,7 @@ public enum Result : byte
   Packets_DumpObjectsHierarchyResult = 9,
   Packets_ChangeConfigurationResult = 10,
   Packets_QueryProfileResult = 11,
+  Packets_GetPageSourceResult = 12,
 };
 
 public class ResultUnion {
@@ -53,6 +54,8 @@ public class ResultUnion {
   public static ResultUnion FromPackets_ChangeConfigurationResult(Gamium.Protocol.Packets.ChangeConfigurationResultT _packets_changeconfigurationresult) { return new ResultUnion{ Type = Result.Packets_ChangeConfigurationResult, Value = _packets_changeconfigurationresult }; }
   public Gamium.Protocol.Packets.QueryProfileResultT AsPackets_QueryProfileResult() { return this.As<Gamium.Protocol.Packets.QueryProfileResultT>(); }
   public static ResultUnion FromPackets_QueryProfileResult(Gamium.Protocol.Packets.QueryProfileResultT _packets_queryprofileresult) { return new ResultUnion{ Type = Result.Packets_QueryProfileResult, Value = _packets_queryprofileresult }; }
+  public Gamium.Protocol.Packets.GetPageSourceResultT AsPackets_GetPageSourceResult() { return this.As<Gamium.Protocol.Packets.GetPageSourceResultT>(); }
+  public static ResultUnion FromPackets_GetPageSourceResult(Gamium.Protocol.Packets.GetPageSourceResultT _packets_getpagesourceresult) { return new ResultUnion{ Type = Result.Packets_GetPageSourceResult, Value = _packets_getpagesourceresult }; }
 
   public static int Pack(Google.FlatBuffers.FlatBufferBuilder builder, ResultUnion _o) {
     switch (_o.Type) {
@@ -68,6 +71,7 @@ public class ResultUnion {
       case Result.Packets_DumpObjectsHierarchyResult: return Gamium.Protocol.Packets.DumpObjectsHierarchyResult.Pack(builder, _o.AsPackets_DumpObjectsHierarchyResult()).Value;
       case Result.Packets_ChangeConfigurationResult: return Gamium.Protocol.Packets.ChangeConfigurationResult.Pack(builder, _o.AsPackets_ChangeConfigurationResult()).Value;
       case Result.Packets_QueryProfileResult: return Gamium.Protocol.Packets.QueryProfileResult.Pack(builder, _o.AsPackets_QueryProfileResult()).Value;
+      case Result.Packets_GetPageSourceResult: return Gamium.Protocol.Packets.GetPageSourceResult.Pack(builder, _o.AsPackets_GetPageSourceResult()).Value;
     }
   }
 }

@@ -1,26 +1,9 @@
-import {
-  ObjectHierarchyNodeT,
-  ObjectInfoT,
-  ObjectsHierarchyT,
-  Vector2T,
-  Vector3T,
-  Vector4T,
-} from "./generated";
-import { GamiumClient } from "../gamium-client";
-import { By } from "../locator/by";
-import {
-  ObjectHierarchyNode,
-  ObjectInfo,
-  ObjectsHierarchy,
-  Vector2,
-  Vector3,
-  Vector4,
-} from "./types";
+import { GamiumClient } from '../gamium-client';
+import { By } from '../locator/by';
+import { ObjectHierarchyNodeT, ObjectInfoT, ObjectsHierarchyT, Vector2T, Vector3T, Vector4T } from './generated';
+import { ObjectHierarchyNode, ObjectInfo, ObjectsHierarchy, Vector2, Vector3, Vector4 } from './types';
 
-export async function refreshObjectInfo(
-  game: GamiumClient,
-  info: ObjectInfo
-): Promise<ObjectInfo> {
+export async function refreshObjectInfo(game: GamiumClient, info: ObjectInfo): Promise<ObjectInfo> {
   return await game.find(By.path(info.path.toString()));
 }
 
@@ -40,7 +23,7 @@ export class Zero {
 
 export class Plainify {
   static string(value: string | Uint8Array | null): string {
-    return typeof value === "string" ? value : value?.toString() ?? "";
+    return typeof value === 'string' ? value : value?.toString() ?? '';
   }
 
   static vector2(value: Vector2T | null): Vector2 {
@@ -59,16 +42,7 @@ export class Plainify {
   }
 
   static objectInfo(value: ObjectInfoT): ObjectInfo {
-    const {
-      path,
-      name,
-      text,
-      screenPosition,
-      screenRectSize,
-      position,
-      rotation,
-      ...rest
-    } = value;
+    const { path, name, text, screenPosition, screenRectSize, position, rotation, ...rest } = value;
     return {
       path: Plainify.string(path),
       name: Plainify.string(name),

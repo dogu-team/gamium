@@ -1,27 +1,25 @@
-import { ErrorCode } from "../../protocols/generated";
-import { GamiumWaitError } from "../../errors/gamium-wait-error";
-import { GamiumClient } from "../../gamium-client";
-import { DefaultWaitOptions, WaitOptions } from "../../options/wait-options";
-import { WaitCondition } from "../../wait-condition";
-import { delay } from "../functions";
+import { GamiumWaitError } from '../../errors/gamium-wait-error';
+import { GamiumClient } from '../../gamium-client';
+import { DefaultWaitOptions, WaitOptions } from '../../options/wait-options';
+import { ErrorCode } from '../../protocols/generated';
+import { WaitCondition } from '../../wait-condition';
+import { delay } from '../functions';
 
 export const waitGeneric = async <Type>(
   GamiumClient: GamiumClient,
   condition: WaitCondition<Type>,
-  option: Partial<WaitOptions> = DefaultWaitOptions()
+  option: Partial<WaitOptions> = DefaultWaitOptions(),
 ): Promise<Type> => {
   const optionMixed: WaitOptions = { ...DefaultWaitOptions(), ...option };
-  const callCondition: (cond: typeof condition) => Promise<Type> = async (
-    condition
-  ) => {
-    if ("then" in condition) {
+  const callCondition: (cond: typeof condition) => Promise<Type> = async (condition) => {
+    if ('then' in condition) {
       return await condition;
     }
-    if ("message" in condition && "contidionFunc" in condition) {
+    if ('message' in condition && 'contidionFunc' in condition) {
       return await condition.contidionFunc(GamiumClient);
     }
     const conditionRet = condition(GamiumClient);
-    if ("then" in conditionRet) {
+    if ('then' in conditionRet) {
       return await conditionRet;
     }
     return conditionRet;
@@ -30,7 +28,7 @@ export const waitGeneric = async <Type>(
   let lastCallTime = Date.now();
 
   let i = 0;
-  const error = new GamiumWaitError(ErrorCode.Timeout, "wait timeout");
+  const error = new GamiumWaitError(ErrorCode.Timeout, 'wait timeout');
   error.waitOptions = optionMixed;
 
   for (i = 0; i < Infinity; i++) {
@@ -51,8 +49,7 @@ export const waitGeneric = async <Type>(
         break;
       }
     }
-    const remainIntervalMs =
-      optionMixed.intervalMs - (Date.now() - lastCallTime);
+    const remainIntervalMs = optionMixed.intervalMs - (Date.now() - lastCallTime);
     if (1 < remainIntervalMs) {
       await delay(remainIntervalMs - 1);
     }

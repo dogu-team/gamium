@@ -19,6 +19,7 @@ public enum Param : byte
   Packets_DumpObjectsHierarchyParam = 9,
   Packets_ChangeConfigurationParam = 10,
   Packets_QueryProfileParam = 11,
+  Packets_GetPageSourceParam = 12,
 };
 
 public class ParamUnion {
@@ -53,6 +54,8 @@ public class ParamUnion {
   public static ParamUnion FromPackets_ChangeConfigurationParam(Gamium.Protocol.Packets.ChangeConfigurationParamT _packets_changeconfigurationparam) { return new ParamUnion{ Type = Param.Packets_ChangeConfigurationParam, Value = _packets_changeconfigurationparam }; }
   public Gamium.Protocol.Packets.QueryProfileParamT AsPackets_QueryProfileParam() { return this.As<Gamium.Protocol.Packets.QueryProfileParamT>(); }
   public static ParamUnion FromPackets_QueryProfileParam(Gamium.Protocol.Packets.QueryProfileParamT _packets_queryprofileparam) { return new ParamUnion{ Type = Param.Packets_QueryProfileParam, Value = _packets_queryprofileparam }; }
+  public Gamium.Protocol.Packets.GetPageSourceParamT AsPackets_GetPageSourceParam() { return this.As<Gamium.Protocol.Packets.GetPageSourceParamT>(); }
+  public static ParamUnion FromPackets_GetPageSourceParam(Gamium.Protocol.Packets.GetPageSourceParamT _packets_getpagesourceparam) { return new ParamUnion{ Type = Param.Packets_GetPageSourceParam, Value = _packets_getpagesourceparam }; }
 
   public static int Pack(Google.FlatBuffers.FlatBufferBuilder builder, ParamUnion _o) {
     switch (_o.Type) {
@@ -68,6 +71,7 @@ public class ParamUnion {
       case Param.Packets_DumpObjectsHierarchyParam: return Gamium.Protocol.Packets.DumpObjectsHierarchyParam.Pack(builder, _o.AsPackets_DumpObjectsHierarchyParam()).Value;
       case Param.Packets_ChangeConfigurationParam: return Gamium.Protocol.Packets.ChangeConfigurationParam.Pack(builder, _o.AsPackets_ChangeConfigurationParam()).Value;
       case Param.Packets_QueryProfileParam: return Gamium.Protocol.Packets.QueryProfileParam.Pack(builder, _o.AsPackets_QueryProfileParam()).Value;
+      case Param.Packets_GetPageSourceParam: return Gamium.Protocol.Packets.GetPageSourceParam.Pack(builder, _o.AsPackets_GetPageSourceParam()).Value;
     }
   }
 }

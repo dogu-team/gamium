@@ -1,41 +1,9 @@
 {
   "name": "gamium",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "author": "dogu",
   "homepage": "https://github.com/dogu-team/gamium.git",
-  "files": [
-    "build"
-  ],
-  "scripts": {
-    "build": "ts-node scripts/build.ts",
-    "clean": "shx rm -rf build",
-    "dev": "nodemon",
-    "rebuild": "yarn run clean && yarn run build",
-    "watch": "clear; echo gamium Watching... && nodemon"
-  },
-  "dependencies": {
-    "flatbuffers": "22.10.26",
-    "gl-matrix": "3.4.3"
-  },
-  "devDependencies": {
-    "@types/assert": "1.5.6",
-    "@types/node": "18.15.11",
-    "@types/shelljs": "0.8.11",
-    "ansi-styles": "6.2.1",
-    "cross-env": "7.0.3",
-    "glob": "10.2.3",
-    "mjscjs": "1.1.0",
-    "nodemon": "2.0.22",
-    "shelljs": "0.8.5",
-    "shx": "0.3.4",
-    "ts-node": "10.9.1",
-    "tsconfig-paths": "4.0.0",
-    "typescript": "4.7.4"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
   "type": "commonjs",
   "exports": {
     ".": {
@@ -59,6 +27,38 @@
       }
     }
   },
+  "main": "./build/cjs/index.cjs",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "ts-node scripts/build.ts",
+    "clean": "shx rm -rf build",
+    "dev": "nodemon",
+    "rebuild": "yarn run clean && yarn run build",
+    "watch": "clear; echo gamium Watching... && nodemon"
+  },
   "types": "./build/cjs/index.d.ts",
-  "main": "./build/cjs/index.cjs"
+  "dependencies": {
+    "flatbuffers": "22.10.26",
+    "gl-matrix": "3.4.3"
+  },
+  "devDependencies": {
+    "@types/assert": "1.5.6",
+    "@types/node": "18.15.11",
+    "@types/shelljs": "0.8.11",
+    "ansi-styles": "6.2.1",
+    "cross-env": "7.0.3",
+    "glob": "10.2.3",
+    "mjscjs": "1.1.0",
+    "nodemon": "2.0.22",
+    "shelljs": "0.8.5",
+    "shx": "0.3.4",
+    "ts-node": "10.9.1",
+    "tsconfig-paths": "4.0.0",
+    "typescript": "4.7.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

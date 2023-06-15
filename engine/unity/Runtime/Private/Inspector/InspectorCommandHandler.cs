@@ -2,12 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Gamium.Extensions;
+using Gamium.Private;
 using Gamium.Private.Object;
 using Gamium.Private.Util;
 using Gamium.Protocol.Packets;
 using Gamium.Protocol.Types;
+using Private.Inspector;
 using UnityEngine;
 using GamiumVector3 = Gamium.Protocol.Types.Vector3;
+using Logger = Gamium.Private.Util.Logger;
 using Vector2 = UnityEngine.Vector2;
 
 namespace Gamium
@@ -69,8 +72,7 @@ namespace Gamium
                 Info = objectInfo,
             }));
         }
-
-
+        
         internal static Task<PacketResult<DumpObjectsHierarchyResultT>> HandleDumpObjectHierarchy(
             DumpObjectsHierarchyParamT req)
         {
@@ -99,11 +101,22 @@ namespace Gamium
 
                 hierarchies[treeName].Children.Add(r.ToHierarchyNode());
             }
-
-
+            
             return Task.FromResult(new PacketResult<DumpObjectsHierarchyResultT>(new DumpObjectsHierarchyResultT
             {
                 Hierarchies = hierarchies.Values.ToList()
+            }));
+        }
+        
+        internal static Task<PacketResult<GetPageSourceResultT>> HandleGetPageSource(
+            GetPageSourceParamT req)
+        {
+            var roots = GamiumObjectRegistry.GetRoots().ToArray();
+            var pageSource = PageSourceSerializer.Serialize(Server.instance, roots);
+
+            return Task.FromResult(new PacketResult<GetPageSourceResultT>(new GetPageSourceResultT
+            {
+                PageSource = pageSource
             }));
         }
     }

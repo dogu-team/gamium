@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 using Gamium.Extensions;
 using Gamium.Private.Debug;
 using Gamium.Private.Util;
@@ -9,6 +10,7 @@ using Gamium.Protocol.Types;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Logger = Gamium.Private.Util.Logger;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -213,6 +215,26 @@ namespace Gamium.Private.Object
         internal override Task<ErrorResultT> IsInteractable(QueryObjectInteractableParamT param)
         {
             return GameObjectInteractability.IsInteractable(param, value);
+        }
+
+        protected override void SetXmlAttributes(XmlElement thisElement, int index)
+        {
+            thisElement.SetAttribute("name", GetName());
+            thisElement.SetAttribute("index", index.ToString());
+            thisElement.SetAttribute("text", GetText());
+            Vector3 pos = Vector3.zero;
+            Vector2 rectSize = Vector2.zero;
+            ErrorResultT err = value.GetScreenPositionAndRectSize(out pos, out rectSize);
+            if (!err.IsSuccess())
+            {
+                Logger.Error($"GameObjectGamiumObject.UpdateXmlAttributes: {err}");
+            }
+            thisElement.SetAttribute("screen-position", $"{pos.x},{pos.y},{pos.z}");
+            thisElement.SetAttribute("screen-rect-size", $"{rectSize.x},{rectSize.y}");
+            var position = value.transform.position;
+            thisElement.SetAttribute("position", $"{position.x},{position.y},{position.z}");
+            var rotation = value.transform.rotation;
+            thisElement.SetAttribute("rotation", $"{rotation.x},{rotation.y},{rotation.z},{rotation.w}");
         }
     }
 }

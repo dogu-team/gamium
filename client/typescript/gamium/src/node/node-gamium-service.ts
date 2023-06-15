@@ -1,10 +1,10 @@
-import { ErrorCode, GamiumError, GamiumProtocol, GamiumService, PacketTypes, Version, createHello } from '../common';
-import { Socket } from 'net';
-import { SizePrefixedRecvQueue } from './size-prefixed-recv-queue';
-import { Printable } from '../common/internal/logs';
-import { delay, stringify, stringifyError } from '../common/internal/functions';
-import * as flatbuffers from 'flatbuffers';
 import { EventEmitter } from 'events';
+import * as flatbuffers from 'flatbuffers';
+import { Socket } from 'net';
+import { createHello, ErrorCode, GamiumError, GamiumProtocol, GamiumService, PacketTypes, Version } from '../common';
+import { delay, stringify, stringifyError } from '../common/internal/functions';
+import { Printable } from '../common/internal/logs';
+import { SizePrefixedRecvQueue } from './size-prefixed-recv-queue';
 
 const _dummyReq = new GamiumProtocol.RequestT();
 const _dummyRes = new GamiumProtocol.ResponseT();
@@ -21,7 +21,12 @@ export class NodeGamiumService implements GamiumService {
   }
   private isConnected: boolean;
   private seq = 0;
-  constructor(private readonly host: string, private readonly port: number, private readonly requestTimeout: number = 50000, private readonly printable: Printable = console) {
+  constructor(
+    private readonly host: string,
+    private readonly port: number,
+    private readonly requestTimeout: number = 50000,
+    private readonly printable: Printable = console,
+  ) {
     this.client = new Socket();
     this.isConnected = false;
 
@@ -106,7 +111,10 @@ export class NodeGamiumService implements GamiumService {
     this.client.destroy();
   }
 
-  request<P extends GcGaParamTypes, R extends GcGaResultTypes>(packet: PacketTypes<P, R>, options: { timeout: number } = { timeout: this.requestTimeout }): Promise<R> {
+  request<P extends GcGaParamTypes, R extends GcGaResultTypes>(
+    packet: PacketTypes<P, R>,
+    options: { timeout: number } = { timeout: this.requestTimeout },
+  ): Promise<R> {
     return new Promise((resolve, reject) => {
       const { printable } = this;
       const befAsyncError = new Error('GamiumEngineService.request');

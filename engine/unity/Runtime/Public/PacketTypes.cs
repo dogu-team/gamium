@@ -217,6 +217,17 @@ namespace Gamium
         }
     }
 
+    internal class PacketGetPageSourceMapping : PacketTypeMapping<GetPageSourceParamT, GetPageSourceResultT>
+    {
+        internal PacketGetPageSourceMapping() : base(
+            Param.Packets_GetPageSourceParam,
+            Result.Packets_GetPageSourceResult,
+            req => req.Param.AsPackets_GetPageSourceParam(),
+            ResultUnion.FromPackets_GetPageSourceResult)
+        {
+        }
+    }
+
     public static class PacketTypes
     {
         internal static PacketHelloMapping hello = new PacketHelloMapping();
@@ -237,6 +248,8 @@ namespace Gamium
         internal static PacketChangeConfigurationMapping changeConfiguration = new PacketChangeConfigurationMapping();
         internal static PacketQueryProfileMapping queryProfile = new PacketQueryProfileMapping();
 
+        internal static PacketGetPageSourceMapping getPageSource = new PacketGetPageSourceMapping();
+
         internal static Dictionary<Param, IPacketTypeMapping> mappings = new Dictionary<Param, IPacketTypeMapping>
         {
             { hello.paramType, hello },
@@ -250,6 +263,7 @@ namespace Gamium
             { dumpObjectsHierarchy.paramType, dumpObjectsHierarchy },
             { changeConfiguration.paramType, changeConfiguration },
             { queryProfile.paramType, queryProfile },
+            { getPageSource.paramType, getPageSource }
         };
 
         private static void TestHandler()

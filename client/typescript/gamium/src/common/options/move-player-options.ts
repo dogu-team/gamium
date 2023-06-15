@@ -1,4 +1,4 @@
-import { MovePlayerBy } from "../protocols/generated";
+import { MovePlayerBy } from '../protocols/generated';
 
 export interface MovePlayerOptions {
   by: MovePlayerBy;

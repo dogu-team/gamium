@@ -37,6 +37,8 @@ union Result {
 
   // profile
   Packets.QueryProfileResult,
+
+  Packets.GetPageSourceResult,
 }
 
 table Response {

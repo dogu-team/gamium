@@ -1,6 +1,7 @@
 {
   "name": "gamium",
-  "version": "2.0.1",
+  "version": "2.0.2",
+  "description": "Gamium is an SDK that allows you to automate gameplay",
   "license": "MIT",
   "author": "dogu",
   "homepage": "https://github.com/dogu-team/gamium.git",
@@ -29,7 +30,7 @@
   },
   "main": "./build/cjs/index.cjs",
   "files": [
-    "build"
+    "build/**/*.{cjs,mjs,d.ts}"
   ],
   "scripts": {
     "build": "ts-node scripts/build.ts",

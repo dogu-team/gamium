@@ -51,22 +51,23 @@ The interface we provide is inspired by Selenium and Playwright.
 | [Python](client/python/gamium)         | ✅      |
 | C#                                     | Planned |
 
-
 ## Getting Started
+
 Please refer to the [Get Started](https://gamium.dogutech.io/docs/get-started/introduction)
 
 ## Installation
 
 [npm](https://www.npmjs.com/package/gamium)
+
 ```
 npm i gamium
 ```
 
 [pip](https://pypi.org/project/gamium/)
+
 ```
 pip install gamium
 ```
-
 
 ## Examples
 
@@ -94,14 +95,17 @@ await gamium.executeRpc(RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam
 [Blog](https://blog.dogutech.io/tag/gamium/)
 
 ## Join the Community
+
+We love stars so make sure you star ⭐ us on GitHub.
+
 [Discord](https://discord.gg/cUWPGWgUFG)
 
 ## Build Testing Platform With Dogu
 
 If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can start to build with [Dogu](https://github.com/dogu-team/dogu-platform)
 
-
 ## Contributing
+
 Please, don't hesitate to [file a question](https://github.com/dogu-team/gamium/discussions/new?category=q-a).
 
 If you have problem, [file an issue](https://github.com/dogu-team/gamium/issues/new).  

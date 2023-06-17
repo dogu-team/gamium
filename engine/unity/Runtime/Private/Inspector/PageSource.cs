@@ -43,9 +43,8 @@ namespace Private.Inspector
                     hierarchy.AppendChild(scene);
                     scenes.Add(sceneName, scene);
                 }
-
-                var index = scenes[sceneName].ChildNodes.Count + 1;
-                scenes[sceneName].AppendChild(root.ToXmlElement(document, index));
+                
+                scenes[sceneName].AppendChild(root.ToXmlElement(document));
             }
 
             StringWriter stringWriter = new StringWriter();

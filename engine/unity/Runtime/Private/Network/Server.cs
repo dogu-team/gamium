@@ -121,7 +121,7 @@ namespace Gamium.Private
 
         public string GetVersion()
         {
-            return "2.0.1";
+            return "2.0.2";
         }
 
         public string GetLastErrorMessage()

@@ -44,22 +44,22 @@ namespace Gamium.Private.Object
             };
         }
 
-        protected abstract void SetXmlAttributes(XmlElement thisElement, int index);
+        protected abstract void SetXmlAttributes(XmlElement thisElement);
 
-        internal XmlElement ToXmlElement(XmlDocument document, int index)
+        internal XmlElement ToXmlElement(XmlDocument document)
         {
-            var element = document.CreateElement(GetGamiumObjectType().ToString());
+            var thisElement = document.CreateElement(GetGamiumObjectType().ToString());
+            SetXmlAttributes(thisElement);
             
-            SetXmlAttributes(element, index);
             GetChildren()
-                .Select((child, childIndex) => child.ToXmlElement(document, childIndex + 1))
+                .Select((child) => child.ToXmlElement(document))
                 .ToList()
                 .ForEach((childElement) => 
                 {
-                    element.AppendChild(childElement);
+                    thisElement.AppendChild(childElement);
                 });
 
-            return element;
+            return thisElement;
         }
     }
 }

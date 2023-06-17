@@ -217,9 +217,10 @@ namespace Gamium.Private.Object
             return GameObjectInteractability.IsInteractable(param, value);
         }
 
-        protected override void SetXmlAttributes(XmlElement thisElement, int index)
+        protected override void SetXmlAttributes(XmlElement thisElement)
         {
             thisElement.SetAttribute("name", GetName());
+            var index = value.GetIndexFromParent();
             thisElement.SetAttribute("index", index.ToString());
             thisElement.SetAttribute("text", GetText());
             Vector3 pos = Vector3.zero;

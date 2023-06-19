@@ -1,4 +1,5 @@
 name: 📝 Documentation
+title: '[Docs]: '
 description: Let's make the Gamium documentation more comprehensive. If you find any issues, please let us know!
 body:
   - type: input

@@ -1,4 +1,5 @@
 name: 🐛 Bug Report
+title: '[Bug]: '
 description: Please explain something that's not working in proper way.
 body:
   - type: textarea

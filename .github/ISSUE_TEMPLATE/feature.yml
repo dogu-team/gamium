@@ -1,4 +1,5 @@
 name: 💡 Feature Request
+title: '[Feature]: '
 description: If you have a brilliant idea, don't hesitate to share it!
 body:
   - type: textarea

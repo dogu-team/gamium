@@ -58,12 +58,10 @@ dependencies, and tools contained in the `gamium/gamium` repository.
 
 ## Style Guides
 
-See [Coding Style](https://gamium.dogutech.io/docs/contributing/development-guides/coding-style) for information about which standards Gamium adheres to in different parts of its codebase.
+See [Coding Style](https://gamium.dogutech.io/docs/contributing/coding-style) for information about which standards Gamium adheres to in different parts of its codebase.
 
 ## Further Reading
 
 For more in-depth guides on developing Gamium, see the following:
 
-- [protocol development](https://gamium.dogutech.io/docs/contributing/development-guides/protocol-development)
-- [engine development](https://gamium.dogutech.io/docs/contributing/development-guides/engine-development/overview)
-- [client development](https://gamium.dogutech.io/docs/contributing/development-guides/client-development/overview)
+- [Source Code Organization](https://gamium.dogutech.io/docs/contributing/source-code-organization)

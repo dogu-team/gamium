@@ -5,7 +5,7 @@
   <b>Gamium</b>
 </p>
 <p align="center">
-Gamium is an SDK that allows you to automate gameplay
+Gamium is an SDK that allows you to automate game test
 </p>
 
 ## Automation Demo by Gamium

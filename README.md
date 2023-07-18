@@ -98,7 +98,7 @@ await gamium.executeRpc(RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam
 
 We love stars so make sure you star ⭐ us on GitHub.
 
-[Discord](https://discord.gg/cUWPGWgUFG)
+[Slack Community](https://join.slack.com/t/dogu-community/shared_invite/zt-1zespy16o-TgYIureSBI6ma6o_nG3gVw)
 
 ## Build Testing Platform With Dogu
 

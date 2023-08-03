@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import * as flatbuffers from 'flatbuffers';
 import WebSocket from 'ws';
 import { createHello, ErrorCode, GamiumError, GamiumProtocol, GamiumService, PacketTypes, Version } from '../common';
-import { delay, stringify, stringifyError } from '../common/internal/functions';
+import { delay, loop, stringify, stringifyError } from '../common/internal/functions';
 import { Printable } from '../common/internal/logs';
 import { SizePrefixedRecvQueue } from './size-prefixed-recv-queue';
 
@@ -17,45 +17,45 @@ export class WebsocketGamiumService implements GamiumService {
   private readonly recvQueue = new SizePrefixedRecvQueue();
 
   get connected(): boolean {
-    return !this.client;
+    return this.client !== undefined;
   }
   private seq = 0;
   constructor(private readonly url: string, private readonly requestTimeout: number = 50000, private readonly printable: Printable = console) {}
 
-  async connect(tryCount = 3): Promise<GamiumProtocol.HelloResultT> {
+  async connect(tryCount = 1): Promise<GamiumProtocol.HelloResultT> {
     const { printable } = this;
 
     printable.info(`GamiumEngineService.connect ${this.url}`);
 
     for (let i = 0; i < tryCount; i++) {
-      const res = await new Promise<GamiumProtocol.HelloResultT | Error>((resolve, reject) => {
-        const client = new WebSocket(this.url);
-        this.setHandlers(client);
+      const client = new WebSocket(this.url);
+      this.setHandlers(client);
 
-        client.once('close', (code: number, reason: Buffer) => {
-          client.removeAllListeners();
-          resolve(new GamiumError(ErrorCode.Disconnected, `close ${code}, ${reason.toString()}`));
-        });
-        client.once('open', () => {
-          this.client = client;
-          printable.info(`GamiumEngineService. client open`);
-          this.request(createHello({ version: Version }), { timeout: 120 * 1000 })
-            .then((helloRes) => {
-              printable.info(`GamiumEngineService. hello success. ${stringify(helloRes)}`);
-              resolve(helloRes);
-            })
-            .catch((err) => {
-              printable.warn?.(`GamiumEngineService. hello failed. cont: ${i}, error:${stringifyError(err)}`);
-              this.client?.close();
-              resolve(new Error(`hello failed. cont: ${i}, error:${stringifyError(err)}`));
-            });
-        });
+      for await (const _ of loop(1000, 10)) {
+        if (client.readyState !== WebSocket.CONNECTING) {
+          break;
+        }
+      }
+      if (client.readyState !== WebSocket.OPEN) {
+        client.removeAllListeners();
+        printable.warn?.(`GamiumEngineService. connect failed.  cont: ${i}`);
+        await delay(1000);
+        continue;
+      }
+
+      this.client = client;
+      printable.info(`GamiumEngineService. client open`);
+      const res = await this.request(createHello({ version: Version }), { timeout: 120 * 1000 }).catch((err) => {
+        printable.warn?.(`GamiumEngineService. hello failed. cont: ${i}, error:${stringifyError(err)}`);
+        this.client?.close();
+        return err;
       });
       if (res instanceof Error) {
         printable.warn?.(`GamiumEngineService. connect failed. error: ${res.message}, cont: ${i}`);
         await delay(1000);
         continue;
       } else {
+        printable.info(`GamiumEngineService. hello success. ${stringify(res)}`);
         return res;
       }
     }

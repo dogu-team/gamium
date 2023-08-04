@@ -1,18 +1,23 @@
-import { node_package } from '@dogu-dev-private/build-tools';
 import path from 'path';
+import { buildTree, CodeGenTypeMdxMapper } from '../src';
 import { CodeGenMarkdown } from '../src/codegen-markdown';
 import { CodeGenSyncer } from '../src/codegen-syncer';
 import { CodeGenTypescript } from '../src/codegen-typescript';
 
 (async () => {
-  const codeFilePath = path.resolve(node_package.findRootWorkspace(), 'packages/typescript-dev-private/docs-gen/test/sample/sample-class-b.ts');
-  const mdFilePath = path.resolve(node_package.findRootWorkspace(), 'packages/typescript-dev-private/docs-gen/test/sample-class-b.md');
+  const codeFilePath = path.resolve(__dirname, 'sample/sample-class-b.ts');
+  const mdFilePath = path.resolve(__dirname, 'sample-class-b.md');
   const ts = new CodeGenTypescript(codeFilePath);
-  const md = new CodeGenMarkdown(mdFilePath);
+  const typeMdx = new CodeGenTypeMdxMapper([__dirname, __dirname, __dirname], new Map<string, string>());
 
-  await ts.parse();
-  await md.parse();
+  const elemData = await ts.parse();
+  for (const elemDatum of elemData) {
+    const nodes = buildTree(elemDatum.elems);
 
-  const syncer = new CodeGenSyncer(ts, md);
-  await syncer.sync();
+    const md = new CodeGenMarkdown(mdFilePath);
+    await md.parse();
+
+    const syncer = new CodeGenSyncer(nodes, md, typeMdx);
+    await syncer.sync();
+  }
 })();

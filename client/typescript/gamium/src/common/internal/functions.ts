@@ -21,3 +21,18 @@ export function stringifyAllProps(value: unknown): string {
   }
   return JSON.stringify(value, Object.getOwnPropertyNames(value), 2).replaceAll('\\n', '\n');
 }
+
+export async function* loop(delayMilliseconds: number, count = Infinity): AsyncGenerator<void> {
+  for (let i = 0; ; ) {
+    if (count !== Infinity) {
+      if (!(i < count)) {
+        break;
+      }
+    }
+    yield;
+    await delay(delayMilliseconds);
+    if (count !== Infinity) {
+      i++;
+    }
+  }
+}

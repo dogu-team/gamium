@@ -8,19 +8,19 @@ import { ErrorCode } from './protocols/generated';
 
 export class Until {
   static objectLocated(locator: Locator, options: Partial<FindObjectOptions> = DefaultFindObjectOptions()): ObjectInfoCondition {
-    return new ObjectInfoCondition(`locate element locator:${JSON.stringify(locator)}`, (driver) => {
+    return new ObjectInfoCondition(`locate element locator:${locator.str}`, (driver) => {
       return driver.find(locator, options);
     });
   }
 
   static objectsLocated(locator: Locator, options: Partial<FindObjectOptions> = DefaultFindObjectOptions()): ObjectInfosCondition {
-    return new ObjectInfosCondition(`locate element locator:${JSON.stringify(locator)}`, (driver) => {
+    return new ObjectInfosCondition(`locate element locator:${locator.str}`, (driver) => {
       return driver.finds(locator, options);
     });
   }
 
   static elementInteractable(param: UIElement, options: Partial<QueryObjectInteractableOptions> = DefaultQueryObjectInteractableOptions()): UIElementCondition {
-    return new UIElementCondition(`locate element gameObject:${JSON.stringify(param)}`, (_) => {
+    return new UIElementCondition(`locate element gameObject:${param.info.path}`, (_) => {
       return new Promise((resolve, reject) => {
         param
           .isInteractable(options)

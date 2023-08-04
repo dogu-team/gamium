@@ -6,19 +6,22 @@ import { WaitCondition } from '../../wait-condition';
 import { delay } from '../functions';
 
 export const waitGeneric = async <Type>(
-  GamiumClient: GamiumClient,
+  gamiumClient: GamiumClient,
   condition: WaitCondition<Type>,
   option: Partial<WaitOptions> = DefaultWaitOptions(),
 ): Promise<Type> => {
+  if (!gamiumClient.connected) {
+    throw new GamiumWaitError(ErrorCode.Disconnected, 'notconnected');
+  }
   const optionMixed: WaitOptions = { ...DefaultWaitOptions(), ...option };
   const callCondition: (cond: typeof condition) => Promise<Type> = async (condition) => {
     if ('then' in condition) {
       return await condition;
     }
     if ('message' in condition && 'contidionFunc' in condition) {
-      return await condition.contidionFunc(GamiumClient);
+      return await condition.contidionFunc(gamiumClient);
     }
-    const conditionRet = condition(GamiumClient);
+    const conditionRet = condition(gamiumClient);
     if ('then' in conditionRet) {
       return await conditionRet;
     }

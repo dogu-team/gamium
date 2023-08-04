@@ -42,12 +42,14 @@
   "types": "./build/cjs/index.d.ts",
   "dependencies": {
     "flatbuffers": "22.10.26",
-    "gl-matrix": "3.4.3"
+    "gl-matrix": "3.4.3",
+    "ws": "8.13.0"
   },
   "devDependencies": {
     "@types/assert": "1.5.6",
     "@types/node": "18.15.11",
     "@types/shelljs": "0.8.11",
+    "@types/ws": "8",
     "ansi-styles": "6.2.1",
     "cross-env": "7.0.3",
     "glob": "10.2.3",

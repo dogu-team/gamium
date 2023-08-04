@@ -5,6 +5,21 @@
   "license": "MIT",
   "author": "dogu",
   "homepage": "https://github.com/dogu-team/gamium.git",
+  "keywords": [
+    "game",
+    "qa",
+    "gametest",
+    "gametesting",
+    "gametestautomation",
+    "unity",
+    "unreal",
+    "test",
+    "testautomation",
+    "android",
+    "ios",
+    "windows",
+    "macos"
+  ],
   "type": "commonjs",
   "exports": {
     ".": {

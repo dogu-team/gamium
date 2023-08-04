@@ -1,10 +1,12 @@
 from gamium.locator.by import By
 from gamium.gamium_client import *
-from gamium.gamium_service import *
+from gamium.igamium_service import *
+from gamium.tcp_gamium_service import TcpGamiumService
 
 
 def main():
-    gamium = GamiumClient("127.0.0.1", 50061)
+    service = TcpGamiumService("127.0.0.1", 50061)
+    gamium = GamiumClient(service)
     gamium.connect()
 
     res = gamium.hello()

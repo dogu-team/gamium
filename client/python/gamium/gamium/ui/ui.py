@@ -9,7 +9,7 @@ from gamium.options.action_drag_options import ActionDragOptions
 from gamium.options.action_scroll_options import ActionScrollOptions
 from gamium.protocol.types import ObjectInfo, Vector2
 from gamium.igamium_client import IGamiumClient
-from gamium.gamium_service import GamiumService
+from gamium.igamium_service import IGamiumService
 from gamium.internal.logger import Logger
 from gamium.locator.locator import Locator
 from gamium.options.find_objects_options import FindObjectOptions
@@ -17,7 +17,7 @@ from gamium.utils.try_utils import TryResult, tryify
 
 
 class UI:
-    def __init__(self, client: IGamiumClient, service: GamiumService):
+    def __init__(self, client: IGamiumClient, service: IGamiumService):
         self._client = client
         self._service = service
 

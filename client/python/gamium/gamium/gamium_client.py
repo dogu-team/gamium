@@ -1,8 +1,10 @@
 import functools
 import json
+import time
 from typing import Any, List, Optional
 from gamium.condition.wait_condition import WaitCondition
 from gamium.options.wait_options import WaitOptions
+from gamium.protocol.generated.Types import ErrorCode
 from gamium.utils.generics import T
 from gamium.utils.try_utils import TryResult, tryify
 from gamium.utils.wait import wait_generic
@@ -16,7 +18,7 @@ from gamium.object.player import Player
 from gamium.ui.ui import UI
 from gamium.actions.key_by import KeyBy
 from gamium.actions.action_chain import ActionChain
-from gamium.gamium_service import *
+from gamium.igamium_service import *
 from gamium.errors.gamium_error import GamiumError
 from gamium.internal.logger import Logger
 from gamium.locator.locator import Locator
@@ -25,15 +27,16 @@ from gamium.locator.locator import Locator
 class GamiumClient(IGamiumClient):
     def __init__(
         self,
-        host: str,
-        port: int,
-        request_timeout_ms: int = 50000,
+        service: IGamiumService,
         printable: Any = None,
     ):
         self.__internal_loger = Logger()
         if printable:
             self._logger.set_handler(printable)
-        self._service = GamiumService(host, port, request_timeout_ms, self._logger)
+        self._service = service
+
+    def is_connected(self) -> bool:
+        return self._service.is_connected()
 
     def connect(self) -> None:
         self._logger.info("GamiumClient.connect")

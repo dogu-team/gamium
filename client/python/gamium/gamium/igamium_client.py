@@ -15,6 +15,10 @@ from gamium.utils.generics import T
 # used internally to prevent circular imports
 class IGamiumClient(metaclass=ABCMeta):
     @abstractmethod
+    def is_connected(self) -> bool:
+        pass
+
+    @abstractmethod
     def find(self, locator: Locator, options: FindObjectOptions = FindObjectOptions()) -> ObjectInfo:
         pass
 

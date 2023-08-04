@@ -30,7 +30,7 @@ from gamium.protocol.generated.Packets.Actions.MovePlayerParam import (
 from gamium.protocol.generated.Packets.Actions.SleepParam import SleepParamT
 from gamium.protocol.generated.Types.Vector2 import Vector2T
 from gamium.protocol.generated.Types.Vector3 import Vector3T
-from gamium.gamium_service import create_actions
+from gamium.igamium_service import IGamiumService, create_actions
 from gamium.options import (
     ActionClickOptions,
     ActionDragOptions,
@@ -43,7 +43,6 @@ from gamium.options import (
 from gamium.actions.key_by import KeyBy
 from gamium.errors.gamium_error import GamiumError
 from gamium.locator.locator import Locator
-from gamium.gamium_service import GamiumService
 from gamium.protocol.types import Vector2, Vector3
 from gamium.utils.generics import P
 
@@ -109,7 +108,7 @@ def create_app_quit(exit_code: int, delay_ms: int) -> ActionPacketTypes[AppQuitP
 
 
 class ActionChain:
-    def __init__(self, service: GamiumService) -> None:
+    def __init__(self, service: IGamiumService) -> None:
         self._service = service
         self.actions: List[ActionPacketTypes] = []
 

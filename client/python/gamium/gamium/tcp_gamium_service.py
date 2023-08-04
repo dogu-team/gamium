@@ -61,8 +61,8 @@ class TcpGamiumService(IGamiumService):
         raise Exception(f"Failed to connect to {self._host}:{self._port}")
 
     def disconnect(self):
-        self._socket.close()
         self._is_connected = False
+        self._socket.close()
 
     def request(self, packet: PacketTypes[P, R], timeout_ms: int = 0) -> R:
         if 0 == timeout_ms:
@@ -81,19 +81,22 @@ class TcpGamiumService(IGamiumService):
             self._socket.sendall(builder.Output())
         except socket.error as e:
             self._logger.error(f"Failed to send request: {e}")
+            self.disconnect()
             raise e
 
         try:
             while True:
                 data = self._socket.recv(1024)
+                if len(data) == 0:
+                    self.disconnect()
                 self._recv_queue.pushBuffer(data)
                 if self._recv_queue.has():
                     break
             return self.pop_message(req)
 
-        except Exception as e:
-            self._logger.error(f"Failed to receive response: {e}")
+        except ConnectionResetError:
             self.disconnect()
+        except Exception as e:
             raise e
 
         return data

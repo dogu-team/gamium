@@ -1,6 +1,6 @@
 {
   "name": "gamium",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Gamium is an SDK that allows you to automate gameplay",
   "license": "MIT",
   "author": "dogu",
@@ -52,7 +52,8 @@
     "clean": "shx rm -rf build",
     "dev": "nodemon",
     "rebuild": "yarn run clean && yarn run build",
-    "watch": "clear; echo gamium Watching... && nodemon"
+    "watch": "clear; echo gamium Watching... && nodemon",
+    "publish": "yarn run rebuild && npm publish"
   },
   "types": "./build/cjs/index.d.ts",
   "dependencies": {

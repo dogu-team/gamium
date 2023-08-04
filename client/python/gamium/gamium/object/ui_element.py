@@ -6,8 +6,8 @@ from gamium.options.action_drag_options import ActionDragOptions
 from gamium.protocol.types import ObjectInfo, Vector2
 
 from gamium.igamium_client import IGamiumClient
-from gamium.gamium_service import (
-    GamiumService,
+from gamium.igamium_service import (
+    IGamiumService,
     create_query_object_interactable,
 )
 from gamium.internal.logger import Logger
@@ -22,7 +22,7 @@ from gamium.utils.try_utils import TryResult, tryify
 
 
 class UIElement:
-    def __init__(self, client: IGamiumClient, service: GamiumService, info: ObjectInfo):
+    def __init__(self, client: IGamiumClient, service: IGamiumService, info: ObjectInfo):
         self._client = client
         self._service = service
         self.info = info

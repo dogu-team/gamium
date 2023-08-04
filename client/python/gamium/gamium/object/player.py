@@ -5,7 +5,7 @@ from gamium.protocol.generated.Types.Vector3 import Vector3T
 from gamium.protocol.types import ObjectInfo, Vector3
 from gamium.actions.action_chain import create_move_player
 from gamium.igamium_client import IGamiumClient
-from gamium.gamium_service import GamiumService
+from gamium.igamium_service import IGamiumService
 from gamium.internal.logger import Logger
 from gamium.locator.by import By
 from gamium.locator.locator import Locator
@@ -16,7 +16,7 @@ class Player:
     def __init__(
         self,
         client: IGamiumClient,
-        service: GamiumService,
+        service: IGamiumService,
         info: ObjectInfo,
     ) -> None:
         self._client = client

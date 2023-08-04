@@ -12,6 +12,9 @@ from gamium.utils.time import current_time_ms
 
 
 def wait_generic(client: IGamiumClient, condition: WaitCondition[T], options: WaitOptions) -> T:
+    if client.is_connected() == False:
+        raise GamiumError(ErrorCode.Disconnected, "Not connected")
+
     def call_condition(condition: WaitCondition[T]):
         if callable(condition):
             signature = inspect.signature(condition)

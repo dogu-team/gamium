@@ -11,9 +11,8 @@ Contributors guide: https://github.com/dogu-team/gamium/blob/main/CONTRIBUTING.m
 
 <!-- Remove items that do not apply. For completed items, change [ ] to [x]. -->
 
-- [ ] PR description included and stakeholders cc'd
+- [ ] PR description included
 - [ ] `yarn test` passes
-- [ ] tests are [changed or added](https://gamium.dogutech.io/docs/contributing/development-guides/testing)
 - [ ] relevant documentation, tutorials, templates and examples are changed or added
 
 #### Release Notes

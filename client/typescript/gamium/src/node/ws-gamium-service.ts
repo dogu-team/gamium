@@ -120,7 +120,7 @@ export class WebsocketGamiumService implements GamiumService {
 
       // timeout handle
       const timeout = setTimeout(() => {
-        printable.error?.(`GamiumEngineService. request timeout: ${seq}`);
+        printable.error?.(`GamiumEngineService. request timeout: seq: ${seq}, timeout: ${options.timeout}`);
         reject(new GamiumError(ErrorCode.Timeout, 'request timeout', undefined, { cause: befAsyncError }));
       }, options.timeout);
 

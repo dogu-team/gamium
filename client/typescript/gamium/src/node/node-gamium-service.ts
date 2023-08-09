@@ -24,7 +24,8 @@ export class NodeGamiumService implements GamiumService {
   constructor(
     private readonly host: string,
     private readonly port: number,
-    private readonly requestTimeout: number = 50000,
+    private readonly requestTimeout: number = 60000,
+    private readonly closeOnTimeout: boolean = true,
     private readonly printable: Printable = console,
   ) {
     this.client = new Socket();
@@ -108,7 +109,7 @@ export class NodeGamiumService implements GamiumService {
     if (this.client.destroyed) {
       return;
     }
-    this.client.destroy();
+    this.client.resetAndDestroy();
   }
 
   request<P extends GcGaParamTypes, R extends GcGaResultTypes>(
@@ -127,6 +128,9 @@ export class NodeGamiumService implements GamiumService {
       // timeout handle
       const timeout = setTimeout(() => {
         printable.error?.(`GamiumEngineService. request timeout: seq: ${seq}, timeout: ${options.timeout}`);
+        if (this.closeOnTimeout) {
+          this.disconnect();
+        }
         reject(new GamiumError(ErrorCode.Timeout, 'request timeout', undefined, { cause: befAsyncError }));
       }, options.timeout);
 

@@ -20,7 +20,12 @@ export class WebsocketGamiumService implements GamiumService {
     return this.client !== undefined;
   }
   private seq = 0;
-  constructor(private readonly url: string, private readonly requestTimeout: number = 50000, private readonly printable: Printable = console) {}
+  constructor(
+    private readonly url: string,
+    private readonly requestTimeout: number = 60000,
+    private readonly closeOnTimeout: boolean = true,
+    private readonly printable: Printable = console,
+  ) {}
 
   async connect(tryCount = 1): Promise<GamiumProtocol.HelloResultT> {
     const { printable } = this;
@@ -121,6 +126,9 @@ export class WebsocketGamiumService implements GamiumService {
       // timeout handle
       const timeout = setTimeout(() => {
         printable.error?.(`GamiumEngineService. request timeout: seq: ${seq}, timeout: ${options.timeout}`);
+        if (this.closeOnTimeout) {
+          this.disconnect();
+        }
         reject(new GamiumError(ErrorCode.Timeout, 'request timeout', undefined, { cause: befAsyncError }));
       }, options.timeout);
 

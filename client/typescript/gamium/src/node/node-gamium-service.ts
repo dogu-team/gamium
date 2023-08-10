@@ -32,25 +32,25 @@ export class NodeGamiumService implements GamiumService {
     this.isConnected = false;
 
     this.client.on('connect', () => {
-      printable.debug?.('GamiumEngineService. client connect');
+      printable.debug?.('NodeGamiumService. client connect');
       this.isConnected = true;
     });
 
     this.client.on('error', (error: Error) => {
-      printable.error(`GamiumEngineService. client error: ${stringify(error)}`);
+      printable.error(`NodeGamiumService. client error: ${stringify(error)}`);
     });
 
     this.client.on('timeout', () => {
-      printable.error('GamiumEngineService. client timeout');
+      printable.error('NodeGamiumService. client timeout');
     });
 
     this.client.on('close', (isError: boolean) => {
-      printable.error('GamiumEngineService. client close');
+      printable.error('NodeGamiumService. client close');
       this.isConnected = false;
     });
 
     this.client.on('end', () => {
-      printable.debug?.('GamiumEngineService. client end');
+      printable.debug?.('NodeGamiumService. client end');
       this.isConnected = false;
     });
 
@@ -69,7 +69,7 @@ export class NodeGamiumService implements GamiumService {
 
   async connect(tryCount = 30): Promise<GamiumProtocol.HelloResultT> {
     const { printable } = this;
-    printable.info(`GamiumEngineService.connect ${this.host}, ${this.port}`);
+    printable.info(`NodeGamiumService.connect ${this.host}, ${this.port}`);
     if (this.client.connecting) {
       throw new GamiumError(ErrorCode.InternalError, 'already connected');
     }
@@ -84,17 +84,17 @@ export class NodeGamiumService implements GamiumService {
         });
       });
       if (!isConnected) {
-        printable.warn?.(`GamiumEngineService. connect failed. cont: ${i}`);
+        printable.warn?.(`NodeGamiumService. connect failed. cont: ${i}`);
         await delay(1000);
         continue;
       }
 
       try {
         const helloRes = await this.request(createHello({ version: Version }), { timeout: 1000 });
-        printable.info(`GamiumEngineService. hello success. ${stringify(helloRes)}`);
+        printable.info(`NodeGamiumService. hello success. ${stringify(helloRes)}`);
         return helloRes;
       } catch (err) {
-        printable.warn?.(`GamiumEngineService. hello failed. cont: ${i}, error:${stringifyError(err)}`);
+        printable.warn?.(`NodeGamiumService. hello failed. cont: ${i}, error:${stringifyError(err)}`);
       }
 
       if (!this.client.destroyed) {
@@ -105,7 +105,7 @@ export class NodeGamiumService implements GamiumService {
     throw new GamiumError(ErrorCode.Disconnected, 'notconnected');
   }
 
-  disconnect(): void {
+  async disconnect(): Promise<void> {
     if (this.client.destroyed) {
       return;
     }
@@ -118,7 +118,7 @@ export class NodeGamiumService implements GamiumService {
   ): Promise<R> {
     return new Promise((resolve, reject) => {
       const { printable } = this;
-      const befAsyncError = new Error('GamiumEngineService.request');
+      const befAsyncError = new Error('NodeGamiumService.request');
       if (!this.isConnected) {
         throw new GamiumError(ErrorCode.Disconnected, 'notconnected');
       }
@@ -127,7 +127,7 @@ export class NodeGamiumService implements GamiumService {
 
       // timeout handle
       const timeout = setTimeout(() => {
-        printable.error?.(`GamiumEngineService. request timeout: seq: ${seq}, timeout: ${options.timeout}`);
+        printable.error?.(`NodeGamiumService. request timeout: seq: ${seq}, timeout: ${options.timeout}`);
         if (this.closeOnTimeout) {
           this.disconnect();
         }
@@ -143,7 +143,7 @@ export class NodeGamiumService implements GamiumService {
       const requestOffset = requestObj.pack(builder);
       builder.finishSizePrefixed(requestOffset);
       this.client.write(builder.asUint8Array());
-      printable.verbose?.(`GamiumEngineService. request: ${stringify(requestObj).substring(0, 300)} >> `);
+      printable.verbose?.(`NodeGamiumService. request: ${stringify(requestObj).substring(0, 300)} >> `);
     });
   }
 
@@ -157,7 +157,7 @@ export class NodeGamiumService implements GamiumService {
   ): void {
     const { printable } = this;
     this.responseEmitter.once(seq.toString(), (response: GamiumProtocol.ResponseT) => {
-      printable.verbose?.(`GamiumEngineService. response: ${stringify(response).substring(0, 300)} >> `);
+      printable.verbose?.(`NodeGamiumService. response: ${stringify(response).substring(0, 300)} >> `);
       if (response.resultType !== packet.resultEnum) {
         clearTimeout(timeout);
         reject(new GamiumError(ErrorCode.InternalError, `request resultType(${response.resultType}) is not ${packet.resultEnum}`, undefined, befAsyncError));
@@ -174,7 +174,7 @@ export class NodeGamiumService implements GamiumService {
         return;
       }
 
-      printable.verbose?.(`GamiumEngineService. request: ${seq}, ${packet.paramEnum} done << `);
+      printable.verbose?.(`NodeGamiumService. request: ${seq}, ${packet.paramEnum} done << `);
       const resultObj = response.result as R;
       if (resultObj == null) {
         clearTimeout(timeout);

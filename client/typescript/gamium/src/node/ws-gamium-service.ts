@@ -15,6 +15,7 @@ export class WebsocketGamiumService implements GamiumService {
   private client: WebSocket | undefined;
   private readonly responseEmitter = new ResponseEmitterImpl();
   private readonly recvQueue = new SizePrefixedRecvQueue();
+  private isDisconnectCalled = false;
 
   get connected(): boolean {
     return this.client !== undefined;
@@ -30,7 +31,7 @@ export class WebsocketGamiumService implements GamiumService {
   async connect(tryCount = 1): Promise<GamiumProtocol.HelloResultT> {
     const { printable } = this;
 
-    printable.info(`GamiumEngineService.connect ${this.url}`);
+    printable.info(`WebsocketGamiumService.connect ${this.url}`);
 
     for (let i = 0; i < tryCount; i++) {
       const client = new WebSocket(this.url);
@@ -43,24 +44,24 @@ export class WebsocketGamiumService implements GamiumService {
       }
       if (client.readyState !== WebSocket.OPEN) {
         client.removeAllListeners();
-        printable.warn?.(`GamiumEngineService. connect failed.  cont: ${i}`);
+        printable.warn?.(`WebsocketGamiumService. connect failed.  cont: ${i}`);
         await delay(1000);
         continue;
       }
 
       this.client = client;
-      printable.info(`GamiumEngineService. client open`);
+      printable.info(`WebsocketGamiumService. client open`);
       const res = await this.request(createHello({ version: Version }), { timeout: 120 * 1000 }).catch((err) => {
-        printable.warn?.(`GamiumEngineService. hello failed. cont: ${i}, error:${stringifyError(err)}`);
+        printable.warn?.(`WebsocketGamiumService. hello failed. cont: ${i}, error:${stringifyError(err)}`);
         this.client?.close();
         return err;
       });
       if (res instanceof Error) {
-        printable.warn?.(`GamiumEngineService. connect failed. error: ${res.message}, cont: ${i}`);
+        printable.warn?.(`WebsocketGamiumService. connect failed. error: ${res.message}, cont: ${i}`);
         await delay(1000);
         continue;
       } else {
-        printable.info(`GamiumEngineService. hello success. ${stringify(res)}`);
+        printable.info(`WebsocketGamiumService. hello success. ${stringify(res)}`);
         return res;
       }
     }
@@ -69,24 +70,29 @@ export class WebsocketGamiumService implements GamiumService {
 
   private setHandlers(client: WebSocket): void {
     client.on('connect', () => {
-      this.printable.debug?.('GamiumEngineService. client connect');
+      this.printable.debug?.('WebsocketGamiumService. client connect');
     });
 
     client.on('error', (error: Error) => {
-      this.printable.error(`GamiumEngineService. client error: ${stringify(error)}`);
+      this.printable.error(`WebsocketGamiumService. client error: ${stringify(error)}`);
     });
 
     client.on('timeout', () => {
-      this.printable.error('GamiumEngineService. client timeout');
+      this.printable.error('WebsocketGamiumService. client timeout');
     });
 
     client.on('close', (code: number, reason: Buffer) => {
-      this.printable.error(`GamiumEngineService. client close ${code}, ${reason}`);
+      const message = `WebsocketGamiumService. client close ${code}, ${reason}`;
+      if (this.isDisconnectCalled) {
+        this.printable.info(message);
+      } else {
+        this.printable.error(message);
+      }
       this.client = undefined;
     });
 
     client.on('end', () => {
-      this.printable.debug?.('GamiumEngineService. client end');
+      this.printable.debug?.('WebsocketGamiumService. client end');
       this.client = undefined;
     });
 
@@ -103,11 +109,22 @@ export class WebsocketGamiumService implements GamiumService {
     });
   }
 
-  disconnect(): void {
-    if (!this.client) {
-      return;
-    }
-    this.client.close();
+  async disconnect(): Promise<void> {
+    return new Promise((resolve) => {
+      if (!this.client) {
+        return;
+      }
+      this.isDisconnectCalled = true;
+      const timeout = setTimeout(() => {
+        this.printable.error('WebsocketGamiumService. disconnect failed. not close called');
+      }, 10000);
+      this.client.once('close', () => {
+        clearTimeout(timeout);
+        resolve();
+      });
+
+      this.client.close();
+    });
   }
 
   request<P extends GcGaParamTypes, R extends GcGaResultTypes>(
@@ -116,7 +133,7 @@ export class WebsocketGamiumService implements GamiumService {
   ): Promise<R> {
     return new Promise((resolve, reject) => {
       const { printable } = this;
-      const befAsyncError = new Error('GamiumEngineService.request');
+      const befAsyncError = new Error('WebsocketGamiumService.request');
       if (!this.client) {
         throw new GamiumError(ErrorCode.Disconnected, 'notconnected');
       }
@@ -125,7 +142,7 @@ export class WebsocketGamiumService implements GamiumService {
 
       // timeout handle
       const timeout = setTimeout(() => {
-        printable.error?.(`GamiumEngineService. request timeout: seq: ${seq}, timeout: ${options.timeout}`);
+        printable.error?.(`WebsocketGamiumService. request timeout: seq: ${seq}, timeout: ${options.timeout}`);
         if (this.closeOnTimeout) {
           this.disconnect();
         }
@@ -141,7 +158,7 @@ export class WebsocketGamiumService implements GamiumService {
       const requestOffset = requestObj.pack(builder);
       builder.finishSizePrefixed(requestOffset);
       this.client.send(builder.asUint8Array());
-      printable.verbose?.(`GamiumEngineService. request: ${stringify(requestObj).substring(0, 300)} >> `);
+      printable.verbose?.(`WebsocketGamiumService. request: ${stringify(requestObj).substring(0, 300)} >> `);
     });
   }
 
@@ -155,7 +172,7 @@ export class WebsocketGamiumService implements GamiumService {
   ): void {
     const { printable } = this;
     this.responseEmitter.once(seq.toString(), (response: GamiumProtocol.ResponseT) => {
-      printable.verbose?.(`GamiumEngineService. response: ${stringify(response).substring(0, 300)} >> `);
+      printable.verbose?.(`WebsocketGamiumService. response: ${stringify(response).substring(0, 300)} >> `);
       if (response.resultType !== packet.resultEnum) {
         clearTimeout(timeout);
         reject(new GamiumError(ErrorCode.InternalError, `request resultType(${response.resultType}) is not ${packet.resultEnum}`, undefined, befAsyncError));
@@ -172,7 +189,7 @@ export class WebsocketGamiumService implements GamiumService {
         return;
       }
 
-      printable.verbose?.(`GamiumEngineService. request: ${seq}, ${packet.paramEnum} done << `);
+      printable.verbose?.(`WebsocketGamiumService. request: ${seq}, ${packet.paramEnum} done << `);
       const resultObj = response.result as R;
       if (resultObj == null) {
         clearTimeout(timeout);

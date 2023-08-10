@@ -150,6 +150,6 @@ export interface GamiumRequestOptions {
 export interface GamiumService {
   get connected(): boolean;
   connect(tryCount?: number): Promise<HelloResultT>;
-  disconnect(): void;
+  disconnect(): Promise<void>;
   request<P extends GcGaParamTypes, R extends GcGaResultTypes>(packet: PacketTypes<P, R>, options?: GamiumRequestOptions): Promise<R>;
 }

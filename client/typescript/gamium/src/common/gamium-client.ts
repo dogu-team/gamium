@@ -32,9 +32,9 @@ export class GamiumClient {
     await this.gamiumService.connect(tryCount);
   }
 
-  disconnect(): void {
+  async disconnect(): Promise<void> {
     this.logger.info(`GamiumClient.disconnect`);
-    this.gamiumService.disconnect();
+    await this.gamiumService.disconnect();
   }
 
   async screen(): Promise<QueryScreenResult> {

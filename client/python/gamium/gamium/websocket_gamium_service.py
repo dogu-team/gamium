@@ -22,11 +22,11 @@ class WebsocketGamiumService(IGamiumService):
     def __init__(
         self,
         url: str,
-        request_timeout_ms: int = 50000,
+        timeout_sec: int = 10,
         logger: Logger = Logger(),
     ):
         self._url = url
-        self._request_timeout_ms = request_timeout_ms
+        self._timeout_sec = timeout_sec
         self._logger = logger
         self._socket = None
         self._seq = 0
@@ -41,7 +41,7 @@ class WebsocketGamiumService(IGamiumService):
 
         for i in range(try_count):
             try:
-                self._socket = connect(self._url)
+                self._socket = connect(self._url, open_timeout=self._timeout_sec, close_timeout=self._timeout_sec)
             except Exception as e:
                 self._logger.info(f"Failed to connect to {self._url}. count: ({i + 1}/{try_count}), error: {e}")
                 time.sleep(1)
@@ -67,11 +67,9 @@ class WebsocketGamiumService(IGamiumService):
         self._is_connected = False
         self._socket.close()
 
-    def request(self, packet: PacketTypes[P, R], timeout_ms: int = 0) -> R:
+    def request(self, packet: PacketTypes[P, R]) -> R:
         if None == self._socket:
             raise GamiumError(ErrorCode.InternalError, "socket is not connected")
-        if 0 == timeout_ms:
-            timeout_ms = self._request_timeout_ms
 
         req = RequestT()
         req.seq = self.__get_seq()
@@ -90,7 +88,7 @@ class WebsocketGamiumService(IGamiumService):
 
         try:
             while True:
-                data = self._socket.recv()
+                data = self._socket.recv(timeout=self._timeout_sec)
                 self._recv_queue.pushBuffer(data)
                 if self._recv_queue.has():
                     break

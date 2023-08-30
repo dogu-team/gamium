@@ -115,7 +115,7 @@ def generate_elem_from_arg(arg_def: ast.arg, context: GenerateContext) -> List[C
     return [CodeGenElem(TagsMap.UL, f"{arg_def.arg} {make_typed_code_block(annotation_text)}")]
 
 
-def generate_elem_from_return(expr: ast.expr | None, context: GenerateContext) -> List[CodeGenElem]:
+def generate_elem_from_return(expr: Union[ast.expr, None], context: GenerateContext) -> List[CodeGenElem]:
     if None == expr:
         return []
     if isinstance(expr, ast.Constant):

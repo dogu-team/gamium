@@ -20,12 +20,12 @@ class TcpGamiumService(IGamiumService):
         self,
         host: str,
         port: int,
-        request_timeout_ms: int = 50000,
+        timeout_sec: int = 10,
         logger: Logger = Logger(),
     ):
         self._host = host
         self._port = port
-        self._request_timeout_ms = request_timeout_ms
+        self._timeout_sec = timeout_sec
         self._logger = logger
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._seq = 0
@@ -41,6 +41,7 @@ class TcpGamiumService(IGamiumService):
         for i in range(try_count):
             try:
                 self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self._socket.settimeout(self._timeout_sec / 1000)
                 self._socket.connect((self._host, self._port))
             except Exception as e:
                 self._logger.info(f"Failed to connect to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}")
@@ -64,10 +65,7 @@ class TcpGamiumService(IGamiumService):
         self._is_connected = False
         self._socket.close()
 
-    def request(self, packet: PacketTypes[P, R], timeout_ms: int = 0) -> R:
-        if 0 == timeout_ms:
-            timeout_ms = self._request_timeout_ms
-
+    def request(self, packet: PacketTypes[P, R]) -> R:
         req = RequestT()
         req.seq = self.__get_seq()
         req.paramType = packet.param_type

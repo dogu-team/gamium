@@ -41,7 +41,7 @@ class TcpGamiumService(IGamiumService):
         for i in range(try_count):
             try:
                 self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self._socket.settimeout(self._timeout_sec / 1000)
+                self._socket.settimeout(self._timeout_sec)
                 self._socket.connect((self._host, self._port))
             except Exception as e:
                 self._logger.info(f"Failed to connect to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}")

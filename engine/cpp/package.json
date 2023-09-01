@@ -2,19 +2,14 @@
   "name": "@dogu/gamium-engine-cpp",
   "version": "0.1.0",
   "scripts": {
-    "build:gamium": "ts-node scripts/build",
-    "clean:gamium": "shx rm -rf build",
-    "client": "tsc -b && cross-env NODE_ENV=development ts-node scripts/client"
+    "clean:gamium": "shx rm -rf build"
   },
   "dependencies": {
-    "@dogu-tech/console-dest": "workspace:^",
-    "@dogu-tech/gamium-client": "workspace:^",
     "@types/node": "18.15.11",
     "cross-env": "7.0.3",
     "ts-node": "10.9.1"
   },
   "devDependencies": {
-    "@dogu-dev-private/build-tools": "workspace:^",
     "@types/eslint": "8",
     "@types/node": "18.15.11",
     "@types/prettier": "2",

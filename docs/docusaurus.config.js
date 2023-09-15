@@ -90,7 +90,7 @@ const config = {
             position: 'left',
           },
           {
-            href: 'https://discord.gg/cUWPGWgUFG',
+            href: 'https://join.slack.com/t/dogu-community/shared_invite/zt-1zespy16o-TgYIureSBI6ma6o_nG3gVw',
             label: 'Community',
             position: 'left',
           },
@@ -144,7 +144,7 @@ const config = {
               },
               {
                 label: 'Community',
-                href: 'https://discord.gg/cUWPGWgUFG',
+                href: 'https://join.slack.com/t/dogu-community/shared_invite/zt-1zespy16o-TgYIureSBI6ma6o_nG3gVw',
               },
             ],
           },

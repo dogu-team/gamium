@@ -1,6 +1,6 @@
 {
   "name": "com.dogu.gamium.engine.unity",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "gamium unity server package",
   "license": "MIT",
   "author": "gamium",
@@ -9,7 +9,7 @@
   },
   "keywords": [],
   "changelogUrl": "https://github.com/dogu-team/gamium-engine-unity/blob/main/CHANGELOG.md",
-  "displayName": "Dogu.Gamium.Unity.Server",
+  "displayName": "Dogu.Gamium.Unity.Engine",
   "licensesUrl": "https://github.com/dogu-team/gamium-engine-unity/blob/main/LICENSE.md",
   "unity": "2020.3",
   "unityRelease": "0b5"

@@ -39,11 +39,13 @@ class WebsocketGamiumService(IGamiumService):
     def connect(self, try_count: int = 30) -> HelloResultT:
         self._logger.info(f"Connecting to {self._url}")
 
+        last_error = None
         for i in range(try_count):
             try:
                 self._socket = connect(self._url, open_timeout=self._timeout_sec, close_timeout=self._timeout_sec)
             except Exception as e:
-                self._logger.info(f"Failed to connect to {self._url}. count: ({i + 1}/{try_count}), error: {e}")
+                self._logger.dot()
+                last_error = e
                 time.sleep(1)
                 continue
 
@@ -54,12 +56,14 @@ class WebsocketGamiumService(IGamiumService):
             except Exception as e:
                 if None != self._socket:
                     self._socket.close()
-                stack_trace = "".join(traceback.format_tb(e.__traceback__))
-                self._logger.info(f"Failed to say hello to {self._url}. count: ({i + 1}/{try_count}), error: {e}. {stack_trace}")
+                self._logger.dot()
+                last_error = e
                 time.sleep(1)
                 continue
-
-        raise Exception(f"Failed to connect to {self._url}")
+                
+        self._logger.newline()
+        stack_trace = "".join(traceback.format_tb(last_error.__traceback__))
+        raise Exception(f"Failed to connect to {self._url}. error: {last_error}, stack: {stack_trace}")
 
     def disconnect(self):
         if None == self._socket:
@@ -96,8 +100,8 @@ class WebsocketGamiumService(IGamiumService):
             return self.pop_message(req)
         except ConnectionClosed as e:
             self.disconnect()
+            raise e
         except Exception as e:
-            self._logger.error(f"Failed to receive response: {e}")
             raise e
 
         return data

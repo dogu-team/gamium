@@ -1,3 +1,5 @@
+import sys
+
 class Logger:
     def __init__(self):
         self._printable = ConsolePrintable()
@@ -24,6 +26,14 @@ class Logger:
     def verbose(self, message):
         if hasattr(self._printable, "verbose"):
             self._printable.verbose(message)
+
+    def dot(self):
+        sys.stdout.write(".")
+        sys.stdout.flush()
+
+    def newline(self):
+        sys.stdout.write("\n")
+        sys.stdout.flush()
 
 
 class ConsolePrintable:

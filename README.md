@@ -102,7 +102,7 @@ We love stars so make sure you star ⭐ us on GitHub.
 
 ## Build Testing Platform With Dogu
 
-If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can start to build with [Dogu](https://github.com/dogu-team/dogu-platform)
+If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can start to build with testing solution [Dogu](https://dogutech.io)
 
 ## Contributing
 

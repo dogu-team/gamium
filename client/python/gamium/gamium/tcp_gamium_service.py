@@ -38,13 +38,15 @@ class TcpGamiumService(IGamiumService):
     def connect(self, try_count: int = 30) -> HelloResultT:
         self._logger.info(f"Connecting to {self._host}:{self._port}")
 
+        last_error = None
         for i in range(try_count):
             try:
                 self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self._socket.settimeout(self._timeout_sec)
                 self._socket.connect((self._host, self._port))
             except Exception as e:
-                self._logger.info(f"Failed to connect to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}")
+                self._logger.dot()
+                last_error = e
                 time.sleep(1)
                 continue
 
@@ -54,12 +56,14 @@ class TcpGamiumService(IGamiumService):
                 return res
             except Exception as e:
                 self._socket.close()
-                stack_trace = "".join(traceback.format_tb(e.__traceback__))
-                self._logger.info(f"Failed to say hello to {self._host}:{self._port}. count: ({i + 1}/{try_count}), error: {e}. {stack_trace}")
+                self._logger.dot()
+                last_error = e
                 time.sleep(1)
                 continue
 
-        raise Exception(f"Failed to connect to {self._host}:{self._port}")
+        self._logger.newline()
+        stack_trace = "".join(traceback.format_tb(last_error.__traceback__))
+        raise Exception(f"Failed to connect to {self._host}:{self._port}. error: {last_error}, stack: {stack_trace}")
 
     def disconnect(self):
         self._is_connected = False
@@ -87,13 +91,15 @@ class TcpGamiumService(IGamiumService):
                 data = self._socket.recv(1024)
                 if len(data) == 0:
                     self.disconnect()
+                    raise Exception("Connection closed")
                 self._recv_queue.pushBuffer(data)
                 if self._recv_queue.has():
                     break
             return self.pop_message(req)
 
-        except ConnectionResetError:
+        except ConnectionResetError as e:
             self.disconnect()
+            raise e
         except Exception as e:
             raise e
 

@@ -25,6 +25,12 @@ class Logger:
         if hasattr(self._printable, "verbose"):
             self._printable.verbose(message)
 
+    def dot(self):
+        print(".", end="", flush=True)
+
+    def newline(self):
+        print("", end="\n", flush=True)
+
 
 class ConsolePrintable:
     def __init__(self):
@@ -44,3 +50,4 @@ class ConsolePrintable:
 
     def verbose(self, message):
         print(f"VERBOSE: {message}")
+

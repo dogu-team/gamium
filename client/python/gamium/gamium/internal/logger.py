@@ -1,5 +1,3 @@
-import sys
-
 class Logger:
     def __init__(self):
         self._printable = ConsolePrintable()
@@ -28,12 +26,10 @@ class Logger:
             self._printable.verbose(message)
 
     def dot(self):
-        sys.stdout.write(".")
-        sys.stdout.flush()
+        print(".", end="", flush=True)
 
     def newline(self):
-        sys.stdout.write("\n")
-        sys.stdout.flush()
+        print("", end="\n", flush=True)
 
 
 class ConsolePrintable:
@@ -54,3 +50,4 @@ class ConsolePrintable:
 
     def verbose(self, message):
         print(f"VERBOSE: {message}")
+

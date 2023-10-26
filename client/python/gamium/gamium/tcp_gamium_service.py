@@ -91,6 +91,7 @@ class TcpGamiumService(IGamiumService):
                 data = self._socket.recv(1024)
                 if len(data) == 0:
                     self.disconnect()
+                    raise Exception("Connection closed")
                 self._recv_queue.pushBuffer(data)
                 if self._recv_queue.has():
                     break

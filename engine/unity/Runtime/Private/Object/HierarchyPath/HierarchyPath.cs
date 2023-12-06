@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Gamium.Protocol.Packets;
+using Gamium.Protocol.Types;
 
 namespace Gamium.Private.Object
 {
@@ -33,6 +35,19 @@ namespace Gamium.Private.Object
         {
             nodes = FindGameObjectPath(go).ToArray();
         }
+
+
+        public HierarchyPath(HierarchyPathNode[] currentPath, ObjectHierarchyNodeT current, ObjectHierarchyNodeT[] siblings)
+        {
+            nodes = new HierarchyPathNode[currentPath.Length + 1];
+            for (int i = 0; i < currentPath.Length; i++)
+            {
+                nodes[i] = currentPath[i];
+            }
+
+            nodes[nodes.Length - 1] = new HierarchyPathNode(current, siblings);
+        }
+
 
         public HierarchyPath(VisualElement root, VisualElement target)
         {

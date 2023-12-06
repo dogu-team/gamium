@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Gamium.Protocol.Packets;
+using Gamium.Protocol.Types;
 
 namespace Gamium.Private.Object
 {
@@ -43,6 +45,22 @@ namespace Gamium.Private.Object
             }
 
             name = go.name;
+            oneBaseIndex = index;
+        }
+
+        public HierarchyPathNode(ObjectHierarchyNodeT node, ObjectHierarchyNodeT[] siblings)
+        {
+            var index = node.GetIndexFromParent(siblings);
+            if (0 == index)
+            {
+                nodeString = node.Name;
+            }
+            else
+            {
+                nodeString = $"{node.Name}[{index}]";
+            }
+
+            name = node.Name;
             oneBaseIndex = index;
         }
 

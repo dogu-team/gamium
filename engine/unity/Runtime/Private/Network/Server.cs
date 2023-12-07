@@ -50,6 +50,10 @@ namespace Gamium.Private
         public void SetConfig(ServerConfig config)
         {
             _config = config;
+        }
+
+        public void PrepareStart()
+        {
             AfterSetConfig();
         }
 
@@ -217,7 +221,7 @@ namespace Gamium.Private
 
         private void AfterSetConfig()
         {
-            if (null != _config.inputMappings)
+            if (null != _config.inputMappings && 0 < _config.inputMappings.Length)
             {
                 Input.storage = new GamiumOldInputStorage(_config.inputMappings);
             }

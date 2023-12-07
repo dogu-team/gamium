@@ -33,6 +33,7 @@ namespace Gamium
             Debug.LogError("USE_GAMIUM Scripting Define Symbol is not set. Please set it in Edit > Project Settings > Player > Other Settings > Scripting Define Symbols");
             return;
 #else
+            _server.PrepareStart();
             var serverComponentGo = new GameObject("GamiumEngine");
             ServerComponent.Behaviour _instance = serverComponentGo.AddComponent<ServerComponent.Behaviour>();
             serverComponentGo.AddComponent<TaskManager.Behaviour>();
@@ -54,7 +55,6 @@ namespace Gamium
 
             try
             {
-
                 _instance.RequestRun(_server);
             }
             catch (Exception e)

@@ -34,6 +34,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {\
         "name": "unity-meta-gen",\
         "reference": "workspace:utils/typescript/unity-meta-gen"\
+      },\
+      {\
+        "name": "version",\
+        "reference": "workspace:utils/typescript/version"\
       }\
     ],\
     "enableTopLevelFallback": true,\
@@ -44,7 +48,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["gamium-docs", ["workspace:docs"]],\
       ["gamium-workspace", ["workspace:."]],\
       ["protocol", ["workspace:protocol"]],\
-      ["unity-meta-gen", ["workspace:utils/typescript/unity-meta-gen"]]\
+      ["unity-meta-gen", ["workspace:utils/typescript/unity-meta-gen"]],\
+      ["version", ["workspace:utils/typescript/version"]]\
     ],\
     "fallbackPool": [\
     ],\
@@ -8102,6 +8107,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/commander-npm-10.0.1-f17613b72b-436901d64a.zip/node_modules/commander/",\
           "packageDependencies": [\
             ["commander", "npm:10.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:11.1.0", {\
+          "packageLocation": "./.yarn/cache/commander-npm-11.1.0-56e979613c-fd1a8557c6.zip/node_modules/commander/",\
+          "packageDependencies": [\
+            ["commander", "npm:11.1.0"]\
           ],\
           "linkType": "HARD"\
         }],\
@@ -18180,6 +18192,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["vary", "npm:1.1.2"]\
           ],\
           "linkType": "HARD"\
+        }]\
+      ]],\
+      ["version", [\
+        ["workspace:utils/typescript/version", {\
+          "packageLocation": "./utils/typescript/version/",\
+          "packageDependencies": [\
+            ["version", "workspace:utils/typescript/version"],\
+            ["@types/node", "npm:18.15.11"],\
+            ["commander", "npm:11.1.0"],\
+            ["ts-node", "virtual:ebe31d3211454403cfec2d6645065335974e9ddc8d9c29c9ef23cc84b2a873cc4a3f8c3965dc0a9767f6ca8ced1e68746c736e1623c07fed8594625ac1acbc40#npm:10.9.1"],\
+            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
+          ],\
+          "linkType": "SOFT"\
         }]\
       ]],\
       ["vfile", [\

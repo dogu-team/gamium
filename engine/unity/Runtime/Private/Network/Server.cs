@@ -21,6 +21,7 @@ namespace Gamium.Private
     }
     internal class Server
     {
+        private readonly string Version = "2.0.6";
         public Server()
         {
             try
@@ -37,7 +38,7 @@ namespace Gamium.Private
             }
 
             Logger.Verbose($"Environments : {string.Join(", ", _envs.Select(pair => $" {pair.Key}={pair.Value}"))}");
-            
+
             _stateHandlers[0] = new InternalEventHandler();
         }
 
@@ -121,7 +122,7 @@ namespace Gamium.Private
 
         public string GetVersion()
         {
-            return "2.0.2";
+            return Version;
         }
 
         public string GetLastErrorMessage()
@@ -220,7 +221,7 @@ namespace Gamium.Private
             {
                 Input.storage = new GamiumOldInputStorage(_config.inputMappings);
             }
-            
+
             if (_envs.ContainsKey("GAMIUM_SERVER_PORT"))
             {
                 if (int.TryParse(_envs["GAMIUM_SERVER_PORT"], out var port))

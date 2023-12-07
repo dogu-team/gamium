@@ -15,7 +15,7 @@ jobs:
       max-parallel: 10
       fail-fast: false
       matrix:
-        project: [DoguRpgSample, DragonCrashers, DypThePenguin, UnityUISamples, InputSystemWarriors]
+        project: [DoguRpgSample, DragonCrashers, DypThePenguin, UnityUISamples, InputSystemWarriors, HardTestsProject]
         platform: [windows, android, ios]
         include:
           - platform: windows

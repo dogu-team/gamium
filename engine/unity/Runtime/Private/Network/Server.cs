@@ -21,7 +21,7 @@ namespace Gamium.Private
     }
     internal class Server
     {
-        private readonly string Version = "2.0.6";
+        private readonly string Version = "2.0.9";
         public Server()
         {
             try

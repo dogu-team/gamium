@@ -7,6 +7,7 @@
     "newbie": "yarn install && yarn newbie:husky",
     "newbie:husky": "husky install",
     "rebuild": "yarn clean && yarn build",
+    "upgrade:version": "yarn workspace version run version upgrade",
     "test": "yarn workspaces foreach --jobs unlimited -ptvi run test"
   },
   "workspaces": {

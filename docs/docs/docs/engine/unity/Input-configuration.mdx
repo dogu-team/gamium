@@ -14,7 +14,7 @@ Go to [`Project Settings`](https://docs.unity3d.com/Manual/comp-ManagerGroup.htm
 ## When using Input Manager
 
 You need to modify where you use the class [`UnityEngine.Input`](https://docs.unity3d.com/ScriptReference/Input.html) to use `Gamium.Input`.
-Use a [`using`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive) directive as shown below to alias it to use Gamium.Input rather than the existing Input.
+Look for files that use the input class. And use the [`using`](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive) directive at the top of the file to use Gamium.Input instead of the existing Input.
 
 :::info
 Gamium.Input provides the same API as UnityInput.

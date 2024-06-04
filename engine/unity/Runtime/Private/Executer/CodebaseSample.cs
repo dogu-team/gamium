@@ -61,6 +61,12 @@ namespace Gamium.Private
         }
 
         [Preserve]
+        public static void CallStringParam1(string param1)
+        {
+            Logger.Verbose($"CodebaseSample.CallStringParam1: {param1}");
+        }
+
+        [Preserve]
         public static Dictionary<string, object> CallParamReturn3(double param1, double param2)
         {
             Logger.Verbose($"CodebaseSample.CallParam2: {param1}, {param2}");

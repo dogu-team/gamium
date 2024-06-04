@@ -129,9 +129,9 @@ class GamiumClient(IGamiumClient):
         for param in locator.params:
             if option.cast_number_to_float:
                 if isinstance(param, int):
-                    params.append(str(float(param)))
+                    params.append(json.dumps(float(param)))
                     continue
-            params.append(str(param))
+            params.append(json.dumps(param))
         res = self._service.request(create_execute_rpc(locator.by, locator.class_name, locator.target_name, params))
         if res.document is None:
             return None

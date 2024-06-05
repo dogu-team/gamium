@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gamium"
-version = "2.0.9"
+version = "2.0.10"
 description = ""
 authors = ["dogu"]
 readme = "README.md"

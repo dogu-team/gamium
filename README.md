@@ -92,11 +92,6 @@ await gamium.executeRpc(RpcBy.method('Gamium.Private.CodebaseSample', 'CallParam
 ## Read Resources
 
 [Documentation](https://gamium.dogutech.io)  
-[Blog](https://blog.dogutech.io/tag/gamium/)
-
-## Build Testing Platform With Dogu
-
-If you want to build game test automation infra such as device farm, reporting test, test pipeline then you can start to build with testing solution [Dogu](https://dogutech.io)
 
 ## Contributing
 

@@ -33,7 +33,7 @@ The interface we provide is inspired by Selenium and Playwright.
 | Engine                | Windows / macOS | Android     | iOS         | Xbox         | PS4 / PS5    | Switch       |
 | --------------------- | --------------- | ----------- | ----------- | ------------ | ------------ | ------------ |
 | [Unity](engine/unity) | ✅              | ✅          | ✅          | Need testing | Need testing | Need testing |
-| Unreal                | In progress     | In progress | In progress | Planned      | Planned      | Planned      |
+| Unreal                | Planned         | Planned  | Planned | Planned      | Planned      | Planned      |
 | Godot                 | Planned         | Planned     | Planned     | Planned      | Planned      | Planned      |
 
 ### Proprietary Engine

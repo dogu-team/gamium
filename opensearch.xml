@@ -4,8 +4,8 @@
   <ShortName>Gamium</ShortName>
   <Description>Search Gamium</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://gamium.dogutech.io/img/favicon.ico</Image>
-  <Url type="text/html" method="get" template="https://gamium.dogutech.io/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://gamium.dogutech.io/opensearch.xml" />
-  <moz:SearchForm>https://gamium.dogutech.io/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://dogu-team.github.io/gamium/img/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://dogu-team.github.io/gamium/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://dogu-team.github.io/gamium/opensearch.xml" />
+  <moz:SearchForm>https://dogu-team.github.io/gamium/</moz:SearchForm>
 </OpenSearchDescription>

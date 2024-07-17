@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Gamium',
   tagline: 'Automate game testing sdk',
-  url: 'https://gamium.dogutech.io',
-  baseUrl: '/',
+  url: 'https://dogu-team.github.io/gamium',
+  baseUrl: '/gamium',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
@@ -85,11 +85,6 @@ const config = {
             label: 'API',
           },
           {
-            href: 'https://blog.dogutech.io/tag/gamium',
-            label: 'Blog',
-            position: 'left',
-          },
-          {
             href: 'https://join.slack.com/t/gamiumhq/shared_invite/zt-2794jcspf-6EC5akGpeFvkRpPZbjvuHQ',
             label: 'Community',
             position: 'left',
@@ -123,28 +118,11 @@ const config = {
             ],
           },
           {
-            title: 'Services',
-            items: [
-              {
-                label: 'Dogu Console',
-                href: 'https://dogutech.io',
-              },
-            ],
-          },
-          {
             title: 'More',
             items: [
               {
                 label: 'GitHub',
                 href: 'https://github.com/dogu-team/gamium',
-              },
-              {
-                label: 'Blog',
-                href: 'https://blog.dogutech.io/tag/gamium/',
-              },
-              {
-                label: 'Community',
-                href: 'https://join.slack.com/t/gamiumhq/shared_invite/zt-2794jcspf-6EC5akGpeFvkRpPZbjvuHQ',
               },
             ],
           },

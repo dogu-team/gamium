@@ -53,7 +53,7 @@ The interface we provide is inspired by Selenium and Playwright.
 
 ## Getting Started
 
-Please refer to the [Get Started](https://gamium.dogutech.io/docs/get-started/introduction)
+Please refer to the [Get Started](https://dogu-team.github.io/gamium/docs/get-started/quick-start)
 
 ## Installation
 
